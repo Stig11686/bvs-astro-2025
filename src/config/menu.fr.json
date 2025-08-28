@@ -1,0 +1,261 @@
+{
+  "headerPrimary": [
+    {
+      "name": "Megamenu",
+      "enable": true,
+      "hasMegaMenu": true,
+      "testimonial": {
+        "enable": true,
+        "name": "AVIS",
+        "image": "/images/customers/image.png",
+        "content": "Folex a boosté notre croissance de 25% grâce à une meilleure stratégie."
+      },
+      "services": {
+        "enable": true,
+        "name": "SERVICES"
+      }
+    },
+    {
+      "name": "Pages",
+      "enable": true,
+      "hasChildren": true,
+      "children": [
+        {
+          "name": "Accueil",
+          "enable": true,
+          "hasChildren": true,
+          "children": [
+            {
+              "enable": true,
+              "name": "Digital Agency",
+              "url": "/"
+            },
+            {
+              "enable": true,
+              "name": "Creative Agency",
+              "url": "/creative-agency/"
+            },
+            {
+              "enable": true,
+              "name": "Personal Portfolio",
+              "url": "/personal-portfolio/"
+            },
+            {
+              "enable": true,
+              "name": "Startup Agency",
+              "url": "/startup-agency/",
+              "badge": {
+                "enable": true,
+                "label": "FREE",
+                "color": "success",
+                "colorComment": "color expected value - primary, accent, info, success, danger",
+                "type": "text"
+              }
+            }
+          ]
+        },
+        {
+          "enable": true,
+          "name": "À propos",
+          "url": "/about/"
+        },
+        {
+          "enable": true,
+          "name": "Services",
+          "hasChildren": true,
+          "children": [
+            {
+              "enable": true,
+              "name": "Grid",
+              "url": "/services/"
+            },
+            {
+              "enable": true,
+              "name": "Two Column",
+              "url": "/services/two-column/"
+            },
+            {
+              "enable": true,
+              "name": "Accordion",
+              "url": "/services/accordion/"
+            },
+            {
+              "enable": true,
+              "name": "Single",
+              "url": "/services/branding-design/"
+            }
+          ]
+        },
+        {
+          "enable": true,
+          "name": "Portfolio",
+          "hasChildren": true,
+          "children": [
+            {
+              "enable": true,
+              "name": "masonry",
+              "url": "/portfolio/"
+            },
+            {
+              "enable": true,
+              "name": "Gallery",
+              "url": "/portfolio/gallery/"
+            },
+            {
+              "enable": true,
+              "name": "Slider",
+              "url": "/portfolio/slider/"
+            },
+            {
+              "enable": true,
+              "name": "Full Width",
+              "url": "/portfolio/full-width/"
+            },
+            {
+              "enable": true,
+              "name": "Single",
+              "url": "/portfolio/custom-portfolio-slug/"
+            }
+          ]
+        },
+        {
+          "enable": true,
+          "name": "Blog",
+          "hasChildren": true,
+          "children": [
+            {
+              "enable": true,
+              "name": "Grid",
+              "url": "/blog/"
+            },
+            {
+              "enable": true,
+              "name": "Creative",
+              "url": "/blog/creative/"
+            },
+            {
+              "enable": true,
+              "name": "Single",
+              "url": "/blog/custom-blog-slug/"
+            }
+          ]
+        },
+        {
+          "enable": true,
+          "name": "Tarifs",
+          "url": "/pricing/"
+        },
+        {
+          "enable": true,
+          "name": "Équipe",
+          "url": "/team/"
+        },
+        {
+          "enable": true,
+          "name": "Membre",
+          "url": "/team/daniyel-karlos/"
+        },
+        {
+          "enable": true,
+          "name": "FAQ",
+          "url": "/faq/"
+        },
+        {
+          "enable": true,
+          "name": "Contact",
+          "url": "/contact/",
+          "badge": {
+            "enable": true,
+            "label": "FREE",
+            "color": "success",
+            "colorComment": "color expected value - primary, accent, info, success, danger",
+            "type": "text"
+          }
+        },
+        {
+          "enable": true,
+          "name": "Conditions d'utilisation",
+          "url": "/terms-conditions/"
+        },
+        {
+          "enable": true,
+          "name": "404",
+          "url": "/404/"
+        }
+      ]
+    },
+    {
+      "enable": true,
+      "name": "Elements",
+      "url": "/elements/",
+      "badge": {
+        "enable": true,
+        "label": "NEW",
+        "color": "success",
+        "colorComment": "color expected value - primary, accent, info, success, danger",
+        "type": "text"
+      }
+    }
+  ],
+  "footerPrimary": [
+    {
+      "enable": true,
+      "name": "À propos",
+      "url": "/about/"
+    },
+    {
+      "enable": true,
+      "name": "Carrières",
+      "url": "/"
+    },
+    {
+      "enable": true,
+      "name": "Services",
+      "url": "/services/"
+    },
+    {
+      "enable": true,
+      "name": "Contact",
+      "url": "/contact/"
+    }
+  ],
+  "footerSecondary": [
+    {
+      "enable": true,
+      "name": "Confidentialité",
+      "url": "/privacy-policy/"
+    },
+    {
+      "enable": true,
+      "name": "Conditions",
+      "url": "/terms-conditions/"
+    }
+  ],
+  "footerTertiary": [
+    {
+      "enable": true,
+      "name": "À propos",
+      "url": "/"
+    },
+    {
+      "enable": true,
+      "name": "Portfolio",
+      "url": "/"
+    },
+    {
+      "enable": true,
+      "name": "Services",
+      "url": "/"
+    },
+    {
+      "enable": true,
+      "name": "Avis",
+      "url": "/"
+    },
+    {
+      "enable": true,
+      "name": "Carrières",
+      "url": "/"
+    }
+  ]
+}

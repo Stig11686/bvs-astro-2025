@@ -1,0 +1,124 @@
+---
+import "swiper/css/bundle";
+import type { z } from "astro/zod";
+import type { Section } from "@/types";
+import StackedSplit from "../widgets/StackedSplit.astro";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import overrideObjects from "@/lib/utils/overrideObjects.ts";
+import AnimatedNumber from "../widgets/AnimatedNumber.astro";
+import type { skillsSectionSchema } from "@/sections.schema";
+
+// Type for this section data
+type Skills = Section & NonNullable<z.infer<typeof skillsSectionSchema>>;
+
+type Props = {
+  content?: Skills;
+};
+
+// Fetching the default content for the this section
+let defaultContent = (
+  await getEntryCTM("sections", "skills", Astro.currentLocale)
+)?.data as Skills;
+
+// Enables content customization (e.g., title, description) with a fallback to 'defaultContent' if not provided.
+// The 'content' prop should match the structure of 'defaultContent'.
+// Allows using this section with different content across multiple pages.
+// If 'content' is missing, 'defaultContent' will be used.
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as Skills;
+
+// Extracting required values from 'content' object
+let {
+  enable = true,
+  title,
+  description,
+  image,
+  imagePosition,
+  list,
+} = actualContent as Skills;
+
+if (!enable) {
+  return null;
+}
+---
+
+<StackedSplit image={image} direction={imagePosition}>
+  <div class="space-y-10">
+    {
+      title && (
+        <h2 class="text-h1-sm md:text-h1" set:html={markdownify(title)} />
+      )
+    }
+    {description && <p class="text-lg" set:html={markdownify(description)} />}
+  </div>
+
+  <div class="space-y-6">
+    {
+      list.map((item, index) => (
+        <div
+          data-aos
+          data-delay="400"
+          class:list={[
+            "relative flex flex-wrap justify-between gap-x-8 gap-y-4 pb-3 opacity-100 after:absolute after:bottom-0 after:start-0 after:h-1 after:w-0 after:bg-black after:transition-all after:duration-[3.5s] after:ease-out md:flex-row md:items-center [&.aos-animate]:after:w-full",
+            index % 2 === 0 ? "after:delay-100" : "",
+          ]}
+          style={{
+            width: `${item.value}%`,
+          }}>
+          <div>
+            {item.title && (
+              <span
+                class="font-secondary text-dark text-sm font-semibold uppercase"
+                set:html={markdownify(item.title)}
+              />
+            )}
+            {item.subtitle && (
+              <span
+                class="font-secondary text-xs uppercase"
+                set:html={markdownify(item.subtitle)}
+              />
+            )}
+          </div>
+          {item.value && (
+            <AnimatedNumber
+              class="font-secondary text-dark text-end font-semibold"
+              content={{ value: item.value, appendValue: item.valueAppend }}
+            />
+          )}
+        </div>
+      ))
+    }
+  </div>
+
+  <script>
+    window.addEventListener("load", async function () {
+      const { Swiper } = await import("swiper");
+      const { Autoplay, Pagination } = await import("swiper/modules");
+
+      // Initialize banner Swiper
+      const bannerContent = document.querySelector(
+        "#testimonial-slider",
+      ) as HTMLElement;
+
+      // Initialize content Swiper with navigation
+      new Swiper(bannerContent, {
+        modules: [Autoplay, Pagination],
+        speed: 800,
+        spaceBetween: 100,
+        slidesPerView: 1,
+        pagination: {
+          el: ".testimonial-pagination",
+          clickable: true,
+        },
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: true,
+        },
+        loop: true,
+      });
+    });
+  </script>
+</StackedSplit>

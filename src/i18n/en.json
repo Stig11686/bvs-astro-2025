@@ -1,0 +1,43 @@
+{
+  "common": {
+    "readMore": "Read More",
+    "viewDetails": "View Details",
+    "readMoreAbout": "Read more about",
+    "viewProject": "View Project",
+    "learnMoreAbout": "Learn more about",
+    "emailPlaceholder": "Email Address",
+    "paginationPrevious": "Previous",
+    "paginationNext": "Next",
+    "paginationPortfolioPrev": "Previous Portfolio",
+    "paginationPortfolioNext": "Next Portfolio"
+  },
+  "widgets": {
+    "postSearchFormPlaceholder": "Try Searching 'tips'...",
+    "categoriesTitle": "Categories",
+    "tagsTitle": "Tags",
+    "recentPostsTitle": "Recent Posts"
+  },
+  "headerOffcanvas": {
+    "description": "We are a digital agency that helps businesses create immersive experiences.",
+    "buttonLabel": "Let’s Talk With Us"
+  },
+  "blog": {
+    "category": "Category",
+    "share": "Share:",
+    "paginationPrevious": "Previous Post",
+    "paginationNext": "Next Post"
+  },
+  "navigation": {
+    "buttonLabel": "Get Started"
+  },
+  "subscription": {
+    "title": "Get valuable strategy, culture and brand insights straight to your inbox",
+    "note": "By signing up to receive emails from Frisk, you agree to our [Privacy Policy](/privacy-policy/). We treat your info responsibly."
+  },
+  "footer": {
+    "menuTitleLinks": "Links",
+    "contact": "Contact",
+    "copyright": "Copyright © {{ year }} BVSWebDesign",
+    "_comment": ""
+  }
+}

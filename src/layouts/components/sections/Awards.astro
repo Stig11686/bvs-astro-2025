@@ -1,0 +1,97 @@
+---
+import type { z } from "zod";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import overrideObjects from "@/lib/utils/overrideObjects.ts";
+import type { awardsSectionSchema } from "@/sections.schema";
+
+type AwardsInterface = NonNullable<z.infer<typeof awardsSectionSchema>>;
+
+type Props = {
+  content?: AwardsInterface;
+};
+
+// Fetching the default content for the this section
+let defaultContent = (
+  await getEntryCTM("sections", "awards", Astro.currentLocale)
+)?.data as AwardsInterface;
+
+// Enables content customization (e.g., title, description) with a fallback to 'defaultContent' if not provided.
+// The 'content' prop should match the structure of 'defaultContent'.
+// Allows using this section with different content across multiple pages.
+// If 'content' is missing, 'defaultContent' will be used.
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as AwardsInterface;
+
+// Extracting required values from 'content' object
+let {
+  enable = true,
+  title,
+  list,
+  options: { appearance = "light" } = {},
+} = actualContent as AwardsInterface;
+
+const isDarkAppearance = appearance === "dark";
+
+if (!enable) {
+  return null;
+}
+---
+
+<section>
+  <div
+    class:list={[
+      "container space-y-14",
+      isDarkAppearance ? "text-light" : "text-text-default",
+    ]}>
+    {
+      title && (
+        <h2
+          class="text-h1-sm md:text-h1 mx-auto max-w-3xl text-center text-inherit"
+          set:html={markdownify(title)}
+        />
+      )
+    }
+
+    <div>
+      <div class="mx-auto w-full max-w-5xl">
+        {
+          list?.map(
+            (item) =>
+              item.title && (
+                <div class="group flex flex-wrap gap-x-20 gap-y-6 border-b-2 py-6 transition-all duration-500 first:border-t-2 md:flex-nowrap md:gap-y-4">
+                  {item.year && (
+                    <div
+                      class="font-secondary mt-1 text-sm text-inherit transition-transform duration-500 group-hover:translate-x-5"
+                      set:html={item.year}
+                    />
+                  )}
+                  <div class="w-full max-w-lg space-y-3 transition-transform duration-500 group-hover:translate-x-5 md:space-y-2">
+                    <h3 class="font-secondary text-h6 w-full pe-20 text-start font-medium text-inherit lg:pe-0">
+                      {item.title}
+                    </h3>
+                    <p
+                      class="text-lg"
+                      set:html={markdownify(item.description)}
+                    />
+                  </div>
+                  {item.role && (
+                    <div
+                      class="font-secondary text-sm font-semibold text-inherit uppercase transition-transform duration-500 group-hover:translate-x-5 md:ms-auto md:group-hover:-translate-x-5"
+                      set:html={item.role}
+                    />
+                  )}
+                </div>
+              ),
+          )
+        }
+      </div>
+    </div>
+  </div>
+
+  <script>
+    import "@preline/accordion";
+  </script>
+</section>

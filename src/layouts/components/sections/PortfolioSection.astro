@@ -1,0 +1,201 @@
+---
+import type { Section } from "@/types";
+import PortfolioCard from "@/components/cards/PortfolioCard.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import overrideObjects from "@/lib/utils/overrideObjects.ts";
+import { useTranslations } from "@/lib/utils/languageParser";
+import { getCollectionCTM, getEntryCTM } from "@/lib/contentParser.astro";
+import CustomButton from "@/components/CustomButton.astro";
+import parseTomlToJson from "@/lib/utils/parseTomlToJson";
+import type { CollectionEntry } from "astro:content";
+
+// Type for this section data
+export type PortfolioInterface = Section & {
+  options?: CollectionEntry<"portfolio">["data"]["options"];
+};
+
+type Props = {
+  content?: PortfolioInterface;
+};
+
+// Fetching the default content for the this section
+let defaultContent = (
+  await getEntryCTM("sections", "portfolio-section", Astro.currentLocale)
+)?.data as PortfolioInterface;
+
+// Enables content customization (e.g., title, description) with a fallback to 'defaultContent' if not provided.
+// The 'content' prop should match the structure of 'defaultContent'.
+// Allows using this section with different content across multiple pages.
+// If 'content' is missing, 'defaultContent' will be used.
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as PortfolioInterface;
+
+const config = parseTomlToJson("./src/config/config.toml");
+const t = await useTranslations(Astro.currentLocale as string);
+
+// Extracting required values from 'content' object
+let {
+  enable = true,
+  title,
+  options,
+  button,
+} = actualContent as PortfolioInterface;
+
+const { layout, appearance, limit } = options || {};
+
+let projects = await getCollectionCTM(
+  config.settings.portfolioFolder as "portfolio",
+  Astro.currentLocale,
+);
+
+const isDarkAppearance = appearance === "dark";
+
+// Limiting the number of projects to be displayed
+projects = limit ? projects.slice(0, limit as number) : projects;
+
+if (!enable) {
+  return null;
+}
+---
+
+<section>
+  <div
+    class:list={[
+      isDarkAppearance && "bg-theme-darker py-20 md:py-32",
+      layout === "masonry" && "lg:has-bg-shape",
+      layout === "slider" && "overflow-hidden",
+    ]}>
+    <div class="container space-y-14">
+      {
+        title && (
+          <h2
+            class:list={[
+              "text-h1-sm md:text-h1 mx-auto max-w-4xl text-center",
+              isDarkAppearance && "text-light",
+            ]}
+            set:html={markdownify(title)}
+          />
+        )
+      }
+      {
+        layout === "masonry" || layout === "grid" ? (
+          <div
+            class:list={[
+              "gap-x-20 lg:columns-2",
+              layout === "grid" && "space-y-10",
+            ]}>
+            {projects.map((item, index) => (
+              <PortfolioCard
+                class:list={[
+                  "space-y-4 overflow-hidden",
+                  layout === "masonry" && "break-inside-avoid" +
+                    (index === 0 ? "lg:mt-20" : "mt-10 lg:mt-20"),
+                ]}
+                options={options}
+                translations={t}
+                content={item}
+                index={index}
+              />
+            ))}
+            {button && button.enable && layout === "masonry" && (
+              <div class="mt-10 lg:mt-16">
+                <CustomButton
+                  class:list={[
+                    "flex justify-center uppercase md:mx-auto",
+                    isDarkAppearance ? "btn-accent" : "btn-primary",
+                  ]}
+                  hoverEffect="magnetic-text-flip"
+                  variant="circle"
+                  {...button}
+                />
+              </div>
+            )}
+          </div>
+        ) : layout === "slider" ? (
+          <div class="mx-auto max-w-2xl sm:px-4 md:px-0">
+            <div id="projects-slider" class="swiper max-w-xl overflow-visible!">
+              <div class="swiper-wrapper overflow-visible! pb-14 md:pb-20">
+                {projects.map((item) => (
+                  <div class="swiper-slide group/project-slide h-auto! overflow-hidden!">
+                    <PortfolioCard
+                      options={actualContent.options}
+                      translations={t}
+                      content={item}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div
+                id="projects-slider-pagination"
+                class:list={[
+                  "swiper-pagination flex justify-center [--swiper-pagination-bullet-border-radius:0.375rem] [--swiper-pagination-bullet-size:0.75rem]",
+                  isDarkAppearance
+                    ? "[--swiper-pagination-bullet-inactive-color:#fff] [--swiper-theme-color:var(--color-accent)]"
+                    : "[--swiper-pagination-bullet-inactive-color:#000] [--swiper-theme-color:var(--color-primary)]",
+                ]}
+              />
+            </div>
+          </div>
+        ) : layout === "full-width" ? (
+          <div class="space-y-8">
+            {projects.map((item) => (
+              <PortfolioCard
+                class:list={["space-y-4 overflow-hidden"]}
+                options={actualContent.options}
+                translations={t}
+                content={item}
+              />
+            ))}
+            {button && button.enable && (
+              <div class="mt-10 md:mx-auto lg:mt-16">
+                <CustomButton
+                  hoverEffect="creative-fill"
+                  class:list={[
+                    "mx-auto flex w-fit justify-center uppercase",
+                    isDarkAppearance
+                      ? "btn-accent effect-color-light"
+                      : "btn-primary effect-color-accent",
+                  ]}
+                  {...button}
+                />
+              </div>
+            )}
+          </div>
+        ) : null
+      }
+    </div>
+  </div>
+  <script>
+    window.addEventListener("load", async function () {
+      await import("swiper/swiper-bundle.css");
+      const { Swiper } = await import("swiper");
+      const { Autoplay, Pagination } = await import("swiper/modules");
+
+      // Initialize banner Swiper
+      const projectsSlider = document.querySelector(
+        "#projects-slider",
+      ) as HTMLElement;
+
+      // Initialize content Swiper with navigation
+      new Swiper(projectsSlider, {
+        modules: [Autoplay, Pagination],
+        speed: 800,
+        spaceBetween: 40,
+        slidesPerView: 1,
+        centeredSlides: true,
+        loopAdditionalSlides: 2,
+        pagination: {
+          el: "#projects-slider-pagination",
+          clickable: true,
+        },
+        autoplay: {
+          delay: 4000,
+          disableOnInteraction: true,
+        },
+        loop: true,
+      });
+    });
+  </script>
+</section>

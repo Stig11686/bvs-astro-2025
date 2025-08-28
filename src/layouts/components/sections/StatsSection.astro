@@ -1,0 +1,66 @@
+---
+import type { z } from "astro/zod";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import overrideObjects from "@/lib/utils/overrideObjects";
+import { markdownify } from "@/lib/utils/textConverter";
+import AnimatedNumber from "../widgets/AnimatedNumber.astro";
+import type { statsSectionSchema } from "@/sections.schema";
+import type { Section } from "@/types";
+
+type StatsType = Section & z.infer<typeof statsSectionSchema>;
+
+type Props = {
+  content?: StatsType;
+};
+
+// Fetching the default content for the this section
+let defaultContent = (
+  await getEntryCTM("sections", "stats-section", Astro.currentLocale)
+)?.data as StatsType;
+
+// Enables content customization (e.g., title, description) with a fallback to 'defaultContent' if not provided.
+// The 'content' prop should match the structure of 'defaultContent'.
+// Allows using this section with different content across multiple pages.
+// If 'content' is missing, 'defaultContent' will be used.
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as StatsType;
+
+// Extracting required values from 'content' object
+let { enable = true, list } = actualContent as StatsType;
+
+if (!enable) {
+  return null;
+}
+---
+
+<section>
+  <div class="container">
+    <div
+      class="md:divide-border-dark grid grid-cols-1 gap-y-10 max-md:divide-y-2 md:grid-cols-2 md:gap-x-10 md:divide-x-2 lg:grid-cols-3">
+      {
+        list.map((item) => (
+          <div class="text-center max-md:pb-10 last:max-md:pb-0 md:px-6 md:text-left">
+            {item.value && (
+              <AnimatedNumber
+                class="text-dark sm:text-display-5/none md:text-display-4/none font-secondary text-display-6/none mb-6 leading-normal font-medium"
+                transition_time="1.2s"
+                content={item}
+              />
+            )}
+            {item.label && (
+              <h3
+                class="md:text-h5 text-h5-sm mb-4 font-semibold"
+                set:html={item.label}
+              />
+            )}
+            {item.description && (
+              <p class="text-lg" set:html={markdownify(item.description)} />
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

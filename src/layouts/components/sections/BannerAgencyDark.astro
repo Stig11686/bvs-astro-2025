@@ -1,0 +1,135 @@
+---
+import overrideObjects from "@/lib/utils/overrideObjects.ts";
+import { markdownify } from "@/lib/utils/textConverter";
+import type { Section } from "@/types";
+import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import CustomButton from "@/components/CustomButton.astro";
+import parseTomlToJson from "@/lib/utils/parseTomlToJson";
+import type { bannerAgencySectionSchema } from "@/sections.schema";
+import type { z } from "astro/zod";
+
+// Type for this section data
+type bannerAgency = Section &
+  NonNullable<z.infer<typeof bannerAgencySectionSchema>>;
+
+type Props = {
+  content?: bannerAgency;
+};
+
+// Fetching the default content for the this section
+let defaultContent = (
+  await getEntryCTM("sections", "banner-agency-dark", Astro.currentLocale)
+)?.data as bannerAgency;
+
+// Enables content customization (e.g., title, description) with a fallback to 'defaultContent' if not provided.
+// The 'content' prop should match the structure of 'defaultContent'.
+// Allows using this section with different content across multiple pages.
+// If 'content' is missing, 'defaultContent' will be used.
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as bannerAgency;
+
+// Extracting required values from 'content' object
+let { title, image, titleSize, description, button } =
+  actualContent as bannerAgency;
+
+// Font sizes for the heading (useful if you have a long heading)
+const fontSizeMap: Record<NonNullable<typeof titleSize>, string> = {
+  "display-1":
+    "text-display-5 md:text-display-3 lg:text-display-2 xl:text-display-1",
+  "display-2": "text-display-5 md:text-display-3 xl:text-display-2",
+  "display-3":
+    "text-display-6 xs:text-display-5 md:text-display-4 xl:text-display-3",
+};
+const fontSize = titleSize ? fontSizeMap[titleSize] : fontSizeMap["display-1"];
+
+const config = parseTomlToJson("./src/config/config.toml");
+const { address, phone, email } = config.settings.contactInfo;
+---
+
+<section class="text-light relative overflow-hidden bg-black pt-52 pb-24">
+  <div class="container">
+    {
+      image && (
+        <div
+          data-aos="reveal-anim-right"
+          data-aos-offset="0"
+          data-aos-delay="400"
+          class="absolute top-0 end-0 size-full max-md:opacity-30 md:h-157 md:w-1/2 lg:w-[58%] xl:h-182">
+          <OptimizedImage
+            class="h-full w-full object-cover object-top-right"
+            src={image}
+            width={1082}
+            height={728}
+          />
+        </div>
+      )
+    }
+    <div class="relative z-10 max-w-7xl space-y-7 md:space-y-14">
+      {
+        title && (
+          <h1 class="text-inherit">
+            {title.map((text, index) => (
+              <span
+                class:list={[
+                  fontSize,
+                  "block leading-tight font-bold break-words text-inherit",
+                  index === 2 && "lg:ps-44",
+                ]}
+                {...{
+                  "data-aos":
+                    index % 2 !== 0
+                      ? "reveal-anim-right"
+                      : index % 2 === 0
+                        ? "reveal-anim-left"
+                        : undefined,
+                }}
+                set:html={markdownify(text)}
+              />
+            ))}
+          </h1>
+        )
+      }
+      <div
+        data-aos="reveal-anim-left"
+        data-aos-offset="0"
+        data-aos-delay="500"
+        class="max-w-2xl space-y-8">
+        {
+          description && (
+            <p
+              class="font-medium text-inherit"
+              set:html={markdownify(description)}
+            />
+          )
+        }
+        {
+          button && button.enable && (
+            <CustomButton
+              hoverEffect="creative-fill"
+              {...button}
+              class="btn-accent effect-color-dark"
+            />
+          )
+        }
+      </div>
+    </div>
+    <div
+      data-aos="reveal-anim-right"
+      data-aos-offset="0"
+      data-aos-delay="500"
+      class="font-secondary relative z-10 mt-10 flex max-w-xl flex-wrap gap-x-20 gap-y-5 text-sm/loose uppercase md:mt-20 lg:mt-9 lg:ms-auto lg:justify-around xl:max-w-3xl">
+      {
+        address && (
+          <address class="not-italic" set:html={markdownify(address)} />
+        )
+      }
+      <div class="prose-a:hover:text-accent prose-a:text-inherit">
+        {phone && <p set:html={markdownify(phone)} />}
+        {email && <p set:html={markdownify(email)} />}
+      </div>
+    </div>
+  </div>
+</section>

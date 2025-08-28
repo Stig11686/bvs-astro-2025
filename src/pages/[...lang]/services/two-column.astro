@@ -1,0 +1,47 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import handleDraftPage from "@/lib/utils/handleDraftPage";
+import parseTomlToJson from "@/lib/utils/parseTomlToJson";
+import { generatePaths } from "@/lib/utils/languageParser.ts";
+import ServicesSection from "@/components/sections/ServicesSection.astro";
+import Features from "@/components/sections/Features.astro";
+import PageHeader from "@/components/widgets/PageHeader.astro";
+import ContactSection from "@/components/sections/ContactSection.astro";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+const config = parseTomlToJson("./src/config/config.toml");
+const entry = await getEntryCTM(
+  config.settings.servicesFolder as "services",
+  "-index",
+  Astro.currentLocale,
+);
+
+// Remove drafts pages in production
+const response = handleDraftPage(entry?.data);
+if (response) return response;
+
+// Override the default title for the portfolio list page
+const title = "Services Two Column";
+---
+
+<Base {...entry.data} title={title}>
+  <PageHeader content={{ ...entry.data, title }} />
+  <ServicesSection
+    content={{
+      title: "",
+      options: {
+        layout: "grid",
+        limit: false,
+        iconPlacement: "right",
+        column: 2,
+      },
+    }}
+  />
+  <ContactSection />
+  <Features sectionSpaceTop={false} />
+  <!-- <CallToAction sectionSpaceTop={false} /> -->
+</Base>

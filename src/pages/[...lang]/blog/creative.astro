@@ -1,0 +1,44 @@
+---
+import Base from "@/layouts/Base.astro";
+import BlogLayout from "@/components/BlogLayout.astro";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import parseTomlToJson from "@/lib/utils/parseTomlToJson";
+import handleDraftPage from "@/lib/utils/handleDraftPage";
+import Features from "@/components/sections/Features.astro";
+import { generatePaths } from "@/lib/utils/languageParser.ts";
+import PageHeader from "@/components/widgets/PageHeader.astro";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+const config = parseTomlToJson("./src/config/config.toml");
+const { blogFolder }: { blogFolder: "blog" } = config.settings;
+
+const postIndex = await getEntryCTM(blogFolder, "-index", Astro.currentLocale);
+
+// Remove drafts pages in production
+const response = handleDraftPage(postIndex?.data);
+if (response) return response;
+---
+
+<Base {...postIndex?.data} fitToScreen={false}>
+  <PageHeader content={postIndex?.data} />
+  <BlogLayout
+    pageType="list"
+    sidebar={{
+      enable: true,
+      sticky: true,
+    }}
+    contentList={{
+      options: {
+        layout: "creative",
+        columns: 1,
+      },
+      pagination: { enable: true, currentPage: 1 },
+    }}
+    content={{ ...postIndex, ...postIndex?.data }}
+  />
+  <Features />
+  <!-- <CallToAction sectionSpaceTop={false} /> -->
+</Base>

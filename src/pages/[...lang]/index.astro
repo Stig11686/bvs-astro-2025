@@ -1,0 +1,30 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import HomeBanner from "@/components/sections/BannerAgency.astro";
+import ServicesSection from "@/components/sections/ServicesSection.astro";
+import { generatePaths } from "@/lib/utils/languageParser.ts";
+import AboutOne from "@/components/sections/AboutOne.astro";
+import PortfolioSection from "@/components/sections/PortfolioSection.astro";
+import TeamSection from "@/components/sections/TeamSection.astro";
+import TestimonialCreative from "@/components/sections/TestimonialCreative.astro";
+import BlogSection from "@/components/sections/BlogSection.astro";
+import CallToAction from "@/components/sections/CallToAction.astro";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+const page = await getEntryCTM("homepage", "-index", Astro.currentLocale);
+---
+
+<Base {...page?.data} footerLayout="footer-1">
+  <HomeBanner />
+  <AboutOne />
+  <ServicesSection />
+  <PortfolioSection />
+  <TeamSection />
+  <TestimonialCreative />
+  <BlogSection />
+  <CallToAction content={page?.data.ctaSection} />
+</Base>

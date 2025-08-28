@@ -1,0 +1,194 @@
+---
+import type { NavigationLink } from "@/types";
+import parseTomlToJson from "@/lib/utils/parseTomlToJson";
+import { getCollectionCTM } from "@/lib/contentParser.astro";
+import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
+import {
+  getLocaleUrlCTM,
+  useTranslations,
+} from "@/lib/utils/languageParser.ts";
+import { toSentenceCase } from "@/lib/utils/textConverter";
+import extractSlug from "@/lib/utils/extractSlug";
+
+const config = parseTomlToJson("./src/config/config.toml");
+const menu = Astro.props.menu as NavigationLink;
+
+const t = await useTranslations(Astro.currentLocale as string);
+let services = await getCollectionCTM(
+  config.settings.servicesFolder as "services",
+  Astro.currentLocale,
+);
+
+const has_enable_menu = menu.menus?.filter((menu) => menu.enable) || [];
+
+const isMobile = Astro.props.isMobile;
+---
+
+<div
+  class:list={[
+    "hs-dropdown-menu mega-menu hs-dropdown-open:pointer-events-auto hs-dropdown-open:opacity-100 hs-dropdown-open:mt-5 has-customized-scrollbar lg:bg-theme-light pointer-events-none mt-10 hidden w-full opacity-0 transition-[opacity,margin] max-lg:static! max-lg:transform-none! max-lg:border-s lg:fixed lg:start-0! lg:overflow-auto",
+    isMobile ? "bg-transparent py-0" : "max-h-[90vh] py-4",
+  ]}>
+  <div
+    class:list={[
+      "xl:container-12xl container flex flex-col gap-10 lg:grid lg:grid-cols-3 lg:overflow-auto",
+      isMobile ? "bg-transparent px-0! py-4" : "bg-white lg:pb-4",
+    ]}>
+    {
+      menu.menus && has_enable_menu.length > 0 && (
+        <div class="flex flex-col gap-10 text-sm lg:me-5 lg:py-8">
+          {menu.menus.map(
+            (menu_one) =>
+              menu_one.enable && (
+                <div class="flex flex-col gap-5">
+                  {menu_one.name && (
+                    <legend
+                      class="font-secondary lg:border-border-light border-border-dark border-b pb-3 text-xs tracking-wider opacity-80"
+                      set:html={menu_one.name}
+                    />
+                  )}
+                  {menu_one.children && menu_one.children.length > 0 && (
+                    <div class="flex gap-5 max-lg:flex-wrap">
+                      {menu_one.children.map(
+                        (menu_two) =>
+                          menu_two.enable && (
+                            <div class="flex flex-col gap-4 max-lg:w-full max-lg:min-w-32 lg:flex-1">
+                              {menu_two.name && (
+                                <legend
+                                  class="font-secondary text-xs tracking-wider opacity-40"
+                                  set:html={menu_two.name}
+                                />
+                              )}
+                              <ul class="lg:text-text-default tracking-wider opacity-90 [&>li:not(:first-child)>a]:pt-4">
+                                {menu_two.children?.map((child) => (
+                                  <li role="menuitem">
+                                    <a
+                                      {...{
+                                        // Set `rel` attribute for external links or use provided value
+                                        rel: child.url?.startsWith("http")
+                                          ? child.rel || "noopener noreferrer"
+                                          : child.rel || undefined,
+
+                                        // Set `target` to "_blank" for external links unless otherwise specified
+                                        target: child.url?.startsWith("http")
+                                          ? child.target || "_blank"
+                                          : child.target || undefined,
+                                      }}
+                                      target={
+                                        child.url?.startsWith("http")
+                                          ? "_blank"
+                                          : undefined
+                                      }
+                                      href={getLocaleUrlCTM(
+                                        child.url || Astro.url.origin,
+                                        Astro.currentLocale,
+                                      )}
+                                      class="hover:max-lg:text-accent block text-inherit transition duration-300 hover:lg:opacity-60">
+                                      {child.name}
+                                    </a>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ),
+                      )}
+                    </div>
+                  )}
+                </div>
+              ),
+          )}
+        </div>
+      )
+    }
+    {
+      menu.services && menu.services.enable && (
+        <div class="flex flex-col gap-10 text-sm lg:me-5 lg:py-8">
+          <div class="flex flex-col gap-5">
+            {menu.services.name && (
+              <legend
+                class="font-secondary lg:border-border-light border-border-dark border-b pb-3 text-xs tracking-wider opacity-80"
+                set:html={menu.services.name}
+              />
+            )}
+            <div class="flex flex-1 flex-col gap-4">
+              <div class="space-y-4 tracking-wider">
+                {services.map((service) => (
+                  <div class="group/item max-lg:after:bg-accent/15 after:bg-primary/5 after:translate-centered relative flex items-center justify-start gap-4 py-1.5 after:pointer-events-none after:absolute after:inset-0 after:h-[105%] after:w-[103%] after:opacity-0 after:transition after:duration-300 hover:after:opacity-100">
+                    {service.data.icon && (
+                      <div class="group-hover/item:max-lg:bg-accent/15 max-lg:bg-accent/10 lg:bg-theme-light group-hover/item:bg-primary flex h-12 w-12 shrink-0 items-center justify-center transition duration-300">
+                        <OptimizedImage
+                          alt="icon"
+                          inlineSvg={true}
+                          src={service.data.icon}
+                          class="has-inherited-colors text-text-default group-hover/item:text-accent max-lg:text-accent h-7 w-7 transition group-hover/item:duration-300 group-hover/item:lg:text-white"
+                        />
+                      </div>
+                    )}
+                    <div class="flex w-[calc(100%-4rem)] shrink-0 flex-col gap-1">
+                      {service.data.title && (
+                        <div set:html={service.data.title} />
+                      )}
+                      {service.data.description && (
+                        <p class="truncate opacity-60">
+                          {service.data.description}
+                        </p>
+                      )}
+                    </div>
+                    {service.data.title && (
+                      <a
+                        class="absolute inset-0 z-10 h-full w-full opacity-0"
+                        href={getLocaleUrlCTM(
+                          extractSlug(service),
+                          Astro.currentLocale,
+                          service.collection,
+                        )}
+                        set:html={toSentenceCase(
+                          t("common.readMoreAbout") + " " + service.data.title,
+                        )}
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+    {
+      menu.testimonial && menu.testimonial.enable && (
+        <div class="flex flex-col gap-10 text-sm lg:me-5 lg:py-8">
+          <div class="flex flex-col gap-5">
+            {menu.testimonial.name && (
+              <legend
+                class="font-secondary lg:border-border-light border-border-dark border-b pb-3 text-xs tracking-wider opacity-80"
+                set:html={menu.testimonial.name}
+              />
+            )}
+            <div class="flex flex-1 flex-col gap-4">
+              {menu.testimonial.content && (
+                <p
+                  class="text-base/normal"
+                  set:html={menu.testimonial.content}
+                />
+              )}
+              <OptimizedImage
+                inlineSvg={true}
+                src="/images/testimonial/quote.svg"
+                class="lg:text-primary text-accent mt-5 h-10 w-10"
+                alt="quote icon"
+              />
+              <div class="has-clip-path after:lg:to-primary/50 after:to-accent/50 relative overflow-hidden after:absolute after:inset-0 after:bg-linear-to-b after:from-transparent after:from-40%">
+                <OptimizedImage
+                  class="mx-auto block w-[80%]"
+                  src={menu.testimonial.image}
+                  alt="customer"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  </div>
+</div>

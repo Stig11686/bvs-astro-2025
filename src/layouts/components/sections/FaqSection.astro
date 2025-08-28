@@ -1,0 +1,62 @@
+---
+import type { Section } from "@/types";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import overrideObjects from "@/lib/utils/overrideObjects";
+import AccordionList from "@/layouts/components/widgets/AccordionList.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import type { faqSectionSchema } from "@/sections.schema";
+import type { z } from "astro/zod";
+import Card from "../cards/Card.astro";
+
+type faqSectionType = Section & z.infer<typeof faqSectionSchema>;
+
+// Fetching the default content for the this section
+let defaultContent = (
+  await getEntryCTM("sections", "faq-section", Astro.currentLocale)
+)?.data as faqSectionType;
+
+// Enables content customization (e.g., title, description) with a fallback to 'defaultContent' if not provided.
+// The 'content' prop should match the structure of 'defaultContent'.
+// Allows using this section with different content across multiple pages.
+// If 'content' is missing, 'defaultContent' will be used.
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as faqSectionType;
+
+let { enable = true, title, contactInformation, list = [] } = actualContent;
+
+if (!enable) {
+  return null;
+}
+---
+
+<section>
+  <div class="container">
+    <div class="space-y-12">
+      {
+        title && (
+          <h2
+            class="text-h1-sm md:text-h1 mx-auto max-w-5xl text-center"
+            set:html={markdownify(title)}
+          />
+        )
+      }
+
+      {list.length > 0 && <AccordionList content={list} />}
+
+      {
+        contactInformation && (
+          <div
+            class:list={[
+              "section-spacing grid grid-cols-1 gap-6 md:grid-cols-2",
+            ]}>
+            {contactInformation?.map((item) => (
+              <Card content={item} options={{ iconPlacement: "right" }} />
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

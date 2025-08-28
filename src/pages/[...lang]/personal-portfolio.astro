@@ -1,0 +1,45 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import Clients from "@/components/sections/Clients.astro";
+import { generatePaths } from "@/lib/utils/languageParser.ts";
+import BlogSection from "@/components/sections/BlogSection.astro";
+import ServicesSection from "@/components/sections/ServicesSection.astro";
+import TestimonialGrid from "@/components/sections/TestimonialGrid.astro";
+import PortfolioSection from "@/components/sections/PortfolioSection.astro";
+import PersonalPortfolioBanner from "@/components/sections/BannerPersonalPortfolio.astro";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+const page = await getEntryCTM(
+  "homepage",
+  "personal-portfolio",
+  Astro.currentLocale,
+);
+
+const { servicesSection, clientsSection, portfolioSection, blogSection } =
+  page?.data;
+---
+
+<Base
+  {...page?.data}
+  footerSpaceTop={false}
+  headerPosition="fixed"
+  footerLayout={"footer-3"}
+  hasBodyDarkBackground={true}
+  hasHeaderDarkBackground={true}>
+  <PersonalPortfolioBanner />
+  <ServicesSection content={servicesSection} />
+  <PortfolioSection content={portfolioSection} />
+  <TestimonialGrid
+    content={{
+      options: {
+        appearance: "dark",
+      },
+    }}
+  />
+  <Clients content={clientsSection} />
+  <BlogSection content={blogSection} />
+</Base>

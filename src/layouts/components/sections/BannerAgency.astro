@@ -1,0 +1,120 @@
+---
+import type { Section } from "@/types";
+import { markdownify } from "@/lib/utils/textConverter";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import CustomButton from "@/components/CustomButton.astro";
+import overrideObjects from "@/lib/utils/overrideObjects.ts";
+import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
+import type { bannerAgencySectionSchema } from "@/sections.schema";
+import type { z } from "astro/zod";
+
+// Type for this section data
+type bannerAgency = Section &
+  NonNullable<z.infer<typeof bannerAgencySectionSchema>>;
+
+type Props = {
+  content?: bannerAgency;
+};
+
+// Fetching the default content for the this section
+let defaultContent = (
+  await getEntryCTM("sections", "banner-agency", Astro.currentLocale)
+)?.data as bannerAgency;
+
+// Enables content customization (e.g., title, description) with a fallback to 'defaultContent' if not provided.
+// The 'content' prop should match the structure of 'defaultContent'.
+// Allows using this section with different content across multiple pages.
+// If 'content' is missing, 'defaultContent' will be used.
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as bannerAgency;
+
+// Extracting required values from 'content' object
+let { title, titleSize, description, button, badge } =
+  actualContent as bannerAgency;
+
+// Font sizes for the heading (useful if you have a long heading)
+const fontSizeMap: Record<NonNullable<typeof titleSize>, string> = {
+  "display-1":
+    "text-display-5 md:text-display-3 lg:text-display-2 xl:text-display-1",
+  "display-2": "text-display-5 md:text-display-3 xl:text-display-2",
+  "display-3":
+    "text-display-6 xs:text-display-5 md:text-display-4 xl:text-display-3",
+};
+
+const fontSize = fontSizeMap[titleSize ?? "display-1"];
+---
+
+<section class="lg:pt-20">
+  <div class="container">
+    <div class="mx-auto max-w-7xl">
+      {
+        title && (
+          <h1>
+            {title.map((text, index) => (
+              <span
+                class:list={[
+                  fontSize,
+                  "text-dark block leading-tight font-bold break-words",
+                  index % 2 !== 0 && "lg:text-end",
+                ]}
+                {...{
+                  "data-aos":
+                    index % 2 !== 0
+                      ? "reveal-anim-right"
+                      : index % 2 === 0
+                        ? "reveal-anim-left"
+                        : undefined,
+                }}
+                set:html={markdownify(text)}
+              />
+            ))}
+          </h1>
+        )
+      }
+    </div>
+    <div
+      class="mt-12 ms-auto items-end space-y-10 lg:flex lg:justify-between lg:space-y-0">
+      <div
+        data-aos="reveal-anim-right"
+        data-aos-offset="0"
+        data-aos-delay="400"
+        class="order-2 max-w-2xl space-y-8 lg:me-12 lg:-mb-2 xl:me-24">
+        {
+          description && (
+            <p class="font-medium" set:html={markdownify(description)} />
+          )
+        }
+        {
+          button && button.enable && (
+            <CustomButton
+              hoverEffect="creative-fill"
+              class="effect-color-accent"
+              {...button}
+            />
+          )
+        }
+      </div>
+      {
+        badge && (
+          <div
+            data-aos="reveal-anim-left"
+            data-aos-offset="0"
+            data-aos-delay="400"
+            class="font-secondary flex items-center gap-4 text-xs/normal md:text-sm/normal xl:ms-28">
+            {badge.icon && (
+              <OptimizedImage
+                width={32}
+                height={32}
+                src={badge.icon}
+                alt={badge.label}
+              />
+            )}
+            {badge.label && <span set:html={markdownify(badge.label)} />}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

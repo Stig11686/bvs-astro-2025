@@ -1,0 +1,44 @@
+{
+  "common": {
+    "readMore": "Lire la suite",
+    "viewDetails": "Voir les détails",
+    "readMoreAbout": "En savoir plus sur",
+    "viewProject": "Voir le projet",
+    "learnMoreAbout": "En apprendre davantage sur",
+    "emailPlaceholder": "Adresse e-mail",
+    "monthlyPlan": "Mensuel",
+    "paginationPrevious": "Précédent",
+    "paginationNext": "Suivant",
+    "paginationPortfolioPrev": "Portfolio précédent",
+    "paginationPortfolioNext": "Portfolio suivant"
+  },
+  "widgets": {
+    "postSearchFormPlaceholder": "Essayez de rechercher 'conseils'...",
+    "categoriesTitle": "Catégories",
+    "tagsTitle": "Étiquettes",
+    "recentPostsTitle": "Articles récents"
+  },
+  "headerOffcanvas": {
+    "description": "Nous sommes une agence numérique qui aide les entreprises à créer des expériences immersives.",
+    "buttonLabel": "Discutons ensemble"
+  },
+  "blog": {
+    "category": "Catégorie",
+    "share": "Partager :",
+    "paginationPrevious": "Article précédent",
+    "paginationNext": "Article suivant"
+  },
+  "navigation": {
+    "buttonLabel": "Commencer"
+  },
+  "subscription": {
+    "title": "Recevez des idées précieuses sur la stratégie, la culture et la marque directement dans votre boîte mail",
+    "note": "En vous inscrivant pour recevoir les e-mails de Frisk, vous acceptez notre [Politique de confidentialité](/privacy-policy/). Nous traitons vos informations avec responsabilité."
+  },
+  "footer": {
+    "menuTitleLinks": "Liens",
+    "contact": "Contact",
+    "copyright": "Droits d’auteur © {{ year }} Folex / Thème par [Getastrothemes](https://getastrothemes.com/)",
+    "_comment": "Nous vous serions reconnaissants de conserver le copyright du thème. Merci de soutenir Getastrothemes !"
+  }
+}

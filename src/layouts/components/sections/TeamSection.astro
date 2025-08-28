@@ -1,0 +1,66 @@
+---
+import type { Section } from "@/types";
+import { markdownify } from "@/lib/utils/textConverter";
+import overrideObjects from "@/lib/utils/overrideObjects.ts";
+import TeamCard from "@/layouts/components/cards/TeamCard.astro";
+import { getCollectionCTM, getEntryCTM } from "@/lib/contentParser.astro";
+
+// Type for this section data
+type TeamInterface = Section;
+type Props = {
+  content?: TeamInterface;
+};
+
+// Fetching the default content for the this section
+let defaultContent = (
+  await getEntryCTM("sections", "team-section", Astro.currentLocale)
+)?.data as TeamInterface;
+
+// Enables content customization (e.g., title, description) with a fallback to 'defaultContent' if not provided.
+// The 'content' prop should match the structure of 'defaultContent'.
+// Allows using this section with different content across multiple pages.
+// If 'content' is missing, 'defaultContent' will be used.
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as TeamInterface;
+
+// Extracting required values from 'content' object
+const { enable = true, title, limit } = actualContent as TeamInterface;
+
+const members = await getCollectionCTM("team", Astro.currentLocale);
+
+// Limit the number of team members to be displayed
+const slicedMembers =
+  limit && members ? members.slice(0, limit as number) : members;
+
+if (!enable) {
+  return null;
+}
+---
+
+<section>
+  <div class="container">
+    <div class="space-y-8 overflow-hidden md:space-y-16 lg:flex-nowrap">
+      {
+        title && (
+          <div class="mx-auto lg:max-w-3xl">
+            <h2
+              class="text-h1-sm md:text-h1 text-center"
+              set:html={markdownify(title)}
+            />
+          </div>
+        )
+      }
+      {
+        slicedMembers && slicedMembers.length > 0 && (
+          <div class:list={["grid gap-6", "md:grid-cols-2 xl:grid-cols-4"]}>
+            {slicedMembers.map((item) => (
+              <TeamCard content={item} />
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,103 @@
+---
+import type { z } from "astro/zod";
+import type { Section } from "@/types";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import overrideObjects from "@/lib/utils/overrideObjects.ts";
+import { markdownify } from "@/lib/utils/textConverter";
+import CustomButton from "@/components/CustomButton.astro";
+import type { ctaSectionSchema } from "@/sections.schema";
+
+// Type for this section data
+type ctaInterface = Section & z.infer<typeof ctaSectionSchema>;
+
+type Props = {
+  content?: ctaInterface;
+  sectionSpaceTop?: boolean;
+};
+
+// Fetching the default content for the this section
+let defaultContent = (
+  await getEntryCTM("sections", "call-to-action", Astro.currentLocale)
+)?.data as ctaInterface;
+
+// Enables content customization (e.g., title, description) with a fallback to 'defaultContent' if not provided.
+// The 'content' prop should match the structure of 'defaultContent'.
+// Allows using this section with different content across multiple pages.
+// If 'content' is missing, 'defaultContent' will be used.
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as ctaInterface;
+
+// Extracting required values from 'content' object
+let {
+  enable = true,
+  title,
+  description,
+  button,
+  options,
+} = actualContent as ctaInterface;
+
+const { sectionSpaceTop = true } = Astro.props;
+
+// Extracting required values from 'options' object
+let { appearance = "light", centeredContent = false } = options || {};
+
+if (!enable) {
+  return null;
+}
+---
+
+<section class:list={["cta-section mt-auto", { "pt-0": !sectionSpaceTop }]}>
+  <div
+    class:list={[
+      "relative",
+      {
+        "bg-theme-light pt-24 pb-6 lg:pt-32 lg:pb-24": appearance === "light",
+      },
+      { "bg-accent py-24 lg:py-32": appearance === "accent" },
+    ]}>
+    <div
+      class:list={[
+        "container grid gap-x-20 gap-y-5 xl:gap-x-10",
+        centeredContent
+          ? "grid-cols-1 justify-items-center text-center"
+          : "lg:grid-cols-2 lg:place-items-center lg:gap-y-20",
+      ]}>
+      <div class:list={[centeredContent ? "max-w-5xl" : "max-w-3xl"]}>
+        {
+          title && (
+            <h2
+              class="text-display-6 xs:text-display-5 md:text-display-4 xl:text-display-3 mx-auto"
+              set:html={markdownify(title)}
+            />
+          )
+        }
+      </div>
+      <div
+        class:list={["space-y-10", centeredContent ? "max-w-2xl" : "max-w-lg"]}>
+        {
+          description && (
+            <div class="text-lg" set:html={markdownify(description, true)} />
+          )
+        }
+
+        {
+          button?.enable && (
+            <CustomButton
+              hoverEffect="creative-fill"
+              class:list={[
+                "uppercase",
+                {
+                  "effect-color-light": appearance === "accent",
+                  "effect-color-accent": appearance === "light",
+                },
+              ]}
+              {...button}
+            />
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>

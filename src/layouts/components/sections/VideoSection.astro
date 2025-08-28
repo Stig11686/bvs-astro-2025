@@ -1,0 +1,72 @@
+---
+import type { z } from "astro/zod";
+import VideoModal from "../widgets/VideoModal.astro";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import CustomButton from "@/components/CustomButton.astro";
+import overrideObjects from "@/lib/utils/overrideObjects.ts";
+import BgOptimizedImage from "@/lib/utils/bgOptimizedImage.ts";
+import type { videoSectionSchema } from "@/sections.schema";
+import type { Section } from "@/types";
+
+// Type for this section data
+type VideoInterface = Section & NonNullable<z.infer<typeof videoSectionSchema>>;
+type Props = {
+  content?: VideoInterface;
+};
+
+// Fetching the default content for the this section
+let defaultContent = (
+  await getEntryCTM("sections", "video-section", Astro.currentLocale)
+)?.data as VideoInterface;
+
+// Enables content customization (e.g., title, description) with a fallback to 'defaultContent' if not provided.
+// The 'content' prop should match the structure of 'defaultContent'.
+// Allows using this section with different content across multiple pages.
+// If 'content' is missing, 'defaultContent' will be used.
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as VideoInterface;
+
+// Extracting required values from 'content' object
+let {
+  enable = true,
+  backgroundImage,
+  button,
+  video,
+} = actualContent as VideoInterface;
+
+const optimizedBg = await BgOptimizedImage(backgroundImage);
+
+if (!enable) {
+  return null;
+}
+---
+
+<section>
+  <div
+    class="relative overflow-hidden bg-cover bg-fixed bg-center bg-no-repeat py-40 lg:py-80"
+    style={`background-image: url(${optimizedBg})`}>
+    {
+      button?.enable && (
+        <div class="container">
+          <CustomButton
+            variant="circle"
+            class="btn-light video-modal-toggle effect-color-accent mx-auto block uppercase"
+            hoverEffect="magnetic-text-flip"
+            aria-haspopup="dialog"
+            aria-expanded="false"
+            aria-controls={`#${video.id}`}
+            data-hs-overlay={`#${video.id}`}
+            data-hs-overlay-options='{"emulateScrollbarSpace": true}'
+            title="Play Video"
+            type="button"
+            {...button}
+          />
+        </div>
+      )
+    }
+
+    <VideoModal content={video} />
+  </div>
+</section>

@@ -1,0 +1,68 @@
+---
+import type { Section } from "@/types";
+import BlogCard from "@/layouts/components/cards/BlogCard.astro";
+import overrideObjects from "@/lib/utils/overrideObjects.ts";
+import { markdownify } from "@/lib/utils/textConverter";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import { sanity } from "@/lib/sanityClient";        // ✅ new
+import { blogQuery } from "@/lib/queries";         // ✅ new
+
+// Type for this section data
+export type blogInterface = Section & {
+  options?: {
+    limit?: number;
+    appearance?: "light" | "dark";
+  };
+};
+
+type Props = {
+  content?: blogInterface;
+};
+
+// Fetch default section content from local CMS
+let defaultContent = (
+  await import("@/lib/contentParser.astro").then((m) =>
+    m.getEntryCTM("sections", "blog-section", Astro.currentLocale)
+  )
+)?.data as blogInterface;
+
+// Merge optional overrides from props
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as blogInterface;
+
+let { enable = true, title, options } = actualContent;
+
+if (!enable) return null;
+
+// ✅ Fetch posts from Sanity instead of local collection
+let posts = await sanity.fetch(blogQuery);
+
+// Sort posts by date
+posts = sortByDate(posts);
+
+// Limit posts if options.limit is set
+posts =
+  options?.limit && posts ? posts.slice(0, options.limit) : posts;
+
+const isDarkAppearance = options?.appearance === "dark";
+---
+
+<section>
+  <div class:list={[isDarkAppearance && "bg-theme-darker py-20 md:py-32"]}>
+    <div class="container space-y-8 md:space-y-16">
+      {title && (
+        <div class="mx-auto lg:max-w-3xl">
+          <h2
+            class:list={[
+              "text-h1-sm md:text-h1 text-center",
+              isDarkAppearance && "text-light",
+            ]}
+            set:html={markdownify(title)}
+          />
+        </div>
+      )}
+
+      <div class="grid gap-x-6 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
+        {posts?.map((post) => (

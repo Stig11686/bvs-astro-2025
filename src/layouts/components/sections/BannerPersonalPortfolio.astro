@@ -1,0 +1,124 @@
+---
+import type { Section } from "@/types";
+import { markdownify } from "@/lib/utils/textConverter";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import CustomButton from "@/components/CustomButton.astro";
+import overrideObjects from "@/lib/utils/overrideObjects.ts";
+import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
+import type { bannerAgencySectionSchema } from "@/sections.schema";
+import type { z } from "astro/zod";
+
+// Type for this section data
+type bannerAgency = Section &
+  NonNullable<z.infer<typeof bannerAgencySectionSchema>>;
+
+type Props = {
+  content?: bannerAgency;
+};
+
+// Fetching the default content for the this section
+let defaultContent = (
+  await getEntryCTM(
+    "sections",
+    "personal-portfolio-banner",
+    Astro.currentLocale,
+  )
+)?.data as bannerAgency;
+
+// Enables content customization (e.g., title, description) with a fallback to 'defaultContent' if not provided.
+// The 'content' prop should match the structure of 'defaultContent'.
+// Allows using this section with different content across multiple pages.
+// If 'content' is missing, 'defaultContent' will be used.
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as bannerAgency;
+
+// Extracting required values from 'content' object
+let { subtitle, title, image, titleSize, description, button } =
+  actualContent as bannerAgency;
+
+// Font sizes for the heading (useful if you have a long heading)
+const fontSizeMap: Record<NonNullable<typeof titleSize>, string> = {
+  "display-1":
+    "text-display-5 md:text-display-3 lg:text-display-2 xl:text-display-1",
+  "display-2": "text-display-5 md:text-display-3 xl:text-display-2",
+  "display-3":
+    "text-display-6 xs:text-display-5 md:text-display-4 xl:text-display-3",
+};
+const fontSize = titleSize ? fontSizeMap[titleSize] : fontSizeMap["display-1"];
+---
+
+<section
+  class="text-light after:to-body-dark relative overflow-hidden pt-60 after:absolute after:inset-0 after:z-10 after:size-full after:bg-linear-to-b after:from-transparent after:from-40% after:to-90% after:content-['']">
+  <div class="container">
+    {
+      image && (
+        <div
+          data-aos="reveal-from-blur"
+          data-aos-duration="2000"
+          class="absolute top-0 end-0 z-10 size-full opacity-30 md:opacity-50 lg:w-full lg:opacity-100 xl:h-full">
+          <OptimizedImage
+            class="h-full w-full object-cover object-[70%] xl:object-top-right"
+            src={image}
+            width={1920}
+            height={1080}
+          />
+        </div>
+      )
+    }
+    <div class="relative z-20 space-y-7 md:space-y-14">
+      <div
+        class="max-w-7xl"
+        data-aos="reveal-anim-left"
+        data-aos-offset="0"
+        data-aos-delay=".4s">
+        {
+          subtitle && (
+            <sapn
+              class="md:text-h3 text-h6 mb-2 inline-block text-inherit md:mb-0"
+              set:html={markdownify(subtitle)}
+            />
+          )
+        }
+        {
+          title && (
+            <h1 class="text-inherit">
+              {title.map((text) => (
+                <span
+                  class:list={[
+                    fontSize,
+                    "block leading-tight font-bold break-words text-inherit",
+                  ]}
+                  set:html={markdownify(text)}
+                />
+              ))}
+            </h1>
+          )
+        }
+      </div>
+      <div
+        data-aos="reveal-anim-right"
+        data-aos-offset="0"
+        class="max-w-md space-y-8 md:ms-auto">
+        {
+          description && (
+            <p
+              class="text-lg text-inherit"
+              set:html={markdownify(description)}
+            />
+          )
+        }
+        {
+          button && button.enable && (
+            <CustomButton
+              hoverEffect="creative-fill"
+              class="effect-color-dark btn-accent uppercase"
+              {...button}
+            />
+          )
+        }
+      </div>
+    </div>
+  </div>
+</section>

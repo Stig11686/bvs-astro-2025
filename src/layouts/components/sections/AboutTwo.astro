@@ -1,0 +1,75 @@
+---
+import type { Section } from "@/types";
+import { markdownify } from "@/lib/utils/textConverter";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import StackedSplit from "../widgets/StackedSplit.astro";
+import overrideObjects from "@/lib/utils/overrideObjects.ts";
+import { getLocaleUrlCTM } from "@/lib/utils/languageParser.ts";
+import CustomButton from "../CustomButton.astro";
+
+// Type for this section data
+type AboutTwo = Section & {
+  imagePosition: "left" | "right";
+};
+
+type Props = {
+  content?: AboutTwo;
+};
+
+// Fetching the default content for the this section
+let defaultContent = (
+  await getEntryCTM("sections", "about-two", Astro.currentLocale)
+)?.data as AboutTwo;
+
+// Enables content customization (e.g., title, description) with a fallback to 'defaultContent' if not provided.
+// The 'content' prop should match the structure of 'defaultContent'.
+// Allows using this section with different content across multiple pages.
+// If 'content' is missing, 'defaultContent' will be used.
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as AboutTwo;
+
+// Extracting required values from 'content' object
+let {
+  enable = true,
+  title,
+  image,
+  description,
+  imagePosition,
+  button,
+} = actualContent as AboutTwo;
+
+if (!enable) {
+  return null;
+}
+---
+
+<StackedSplit image={image} direction={imagePosition}>
+  <div class="space-y-8">
+    {
+      title && (
+        <h2 class="text-h1-sm md:text-h1" set:html={markdownify(title)} />
+      )
+    }
+    {
+      description && (
+        <div
+          class="prose-styles prose-p:mt-4 prose-headings:mt-5 prose-headings:mb-0"
+          set:html={markdownify(description, true)}
+        />
+      )
+    }
+  </div>
+  {
+    button?.enable && (
+      <CustomButton
+        title={title}
+        hoverEffect="creative-fill"
+        {...button}
+        class="effect-color-light text-base-sm uppercase md:text-base"
+        url={getLocaleUrlCTM(button.url, Astro.currentLocale)}
+      />
+    )
+  }
+</StackedSplit>

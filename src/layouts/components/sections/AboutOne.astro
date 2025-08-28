@@ -1,0 +1,68 @@
+---
+import type { Section } from "@/types";
+import CustomButton from "../CustomButton.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import StackedSplit from "../widgets/StackedSplit.astro";
+import overrideObjects from "@/lib/utils/overrideObjects.ts";
+import { getLocaleUrlCTM } from "@/lib/utils/languageParser.ts";
+
+// Type for this section data
+type AboutOne = Section & {
+  imagePosition: "left" | "right";
+};
+
+type Props = {
+  content?: AboutOne;
+};
+
+// Fetching the default content for the this section
+let defaultContent = (
+  await getEntryCTM("sections", "about-one", Astro.currentLocale)
+)?.data as AboutOne;
+
+// Enables content customization (e.g., title, description) with a fallback to 'defaultContent' if not provided.
+// The 'content' prop should match the structure of 'defaultContent'.
+// Allows using this section with different content across multiple pages.
+// If 'content' is missing, 'defaultContent' will be used.
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as AboutOne;
+
+// Extracting required values from 'content' object
+let {
+  enable = true,
+  title,
+  image,
+  description,
+  imagePosition,
+  button,
+} = actualContent as AboutOne;
+
+if (!enable) {
+  return null;
+}
+---
+
+<StackedSplit image={image} direction={imagePosition}>
+  <div class="space-y-8 text-white">
+    {
+      title && (
+        <h2 class="text-h1-sm md:text-h1 text-white" set:html={markdownify(title)} />
+      )
+    }
+    {description && <p set:html={markdownify(description)} />}
+  </div>
+  {
+    button?.enable && (
+      <CustomButton
+        variant="text"
+        class="text-base-sm uppercase md:text-base text-white border-white"
+        {...button}
+        label={button.label}
+        url={getLocaleUrlCTM(button.url, Astro.currentLocale)}
+      />
+    )
+  }
+</StackedSplit>
