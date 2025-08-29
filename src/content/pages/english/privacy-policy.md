@@ -4,91 +4,77 @@ metaDescription: "This is a example description"
 draft: false
 ---
 
-**Effective Date: July, 2022**
+# Privacy Policy  
 
-Welcome to Folex ("we," "our," or "us"). Your privacy is important to us, and we are committed to protecting the personal information you share with us. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website, https://www.folex.com ("Website").
+**Last updated:** August 29, 2025  
 
-### Information We Collect
+At **BVSWebDesign**, your privacy is important to us. This Privacy Policy explains what personal information we collect, how we use it, and your rights regarding your data.  
 
-We collect two types of information from you:
+---
 
-- **Personal Information:**
+## 1. Information We Collect  
 
-  - Name
-  - Email address
-  - Billing information (e.g., credit card details)
-  - Any information you provide voluntarily through forms, surveys, or account creation
+We only collect personal data that you choose to provide through our contact form. Specifically:  
 
-- **Non-Personal Information:**
-  - IP address
-  - Browser type
-  - Operating system
-  - Pages visited and time spent on our site
-  - Referring website
+- **Contact Form (via formsubmit.co):**  
+  When you use the contact form, we collect the information you provide (such as your name, email address, and message).  
 
-### How We Use Your Information
+- **Analytics Data (via Google Analytics):**  
+  We use Google Analytics to understand how visitors use our website. Google Analytics collects data such as:  
+  - Pages visited  
+  - Time spent on the site  
+  - Device type and browser information  
+  - General location (city/country level, not exact addresses)  
 
-We use the information we collect for the following purposes:
+This data is collected in an anonymized or aggregated format. We do not use Google Analytics to personally identify you.  
 
-- To provide and improve our services
-- To process transactions and send receipts
-- To send you updates, promotions, and service-related communications
-- To personalize your experience on our Website
-- To comply with legal obligations
-- To detect and prevent fraudulent activity
+---
 
-### Cookies and Tracking Technologies
+## 2. How We Use Your Information  
 
-We use cookies and similar tracking technologies to enhance your experience on our Website. These include:
+We use the information we collect for the following purposes:  
 
-- **Essential Cookies:** Required for the operation of our Website.
-- **Performance Cookies:** Help us understand how you use our site.
-- **Marketing Cookies:** Track your browsing behavior for targeted advertising.
+- To respond to your inquiries sent through the contact form.  
+- To analyze website traffic and improve user experience.  
 
-You can control cookies through your browser settings.
+We do not use your data for marketing purposes, nor do we sell or share your data with third parties.  
 
-### Sharing of Information
+---
 
-We do not sell, rent, or trade your personal information. However, we may share your information with:
+## 3. Data Sharing and Third Parties  
 
-- **Service Providers:** Third-party companies that help us operate our Website and provide services.
-- **Legal Authorities:** When required by law or to protect our rights and property.
-- **Business Transfers:** In case of a merger, acquisition, or sale of assets.
+- **Formsubmit.co** processes form submissions on our behalf. Please refer to [Formsubmit’s Privacy Policy](https://formsubmit.co/privacy.pdf) for details on how they handle your information.  
+- **Google Analytics** is provided by Google LLC. Please refer to [Google’s Privacy Policy](https://policies.google.com/privacy) for more details.  
 
-### Data Security
+---
 
-We implement industry-standard security measures to protect your data. However, no method of transmission over the Internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your personal information, we cannot guarantee absolute security.
+## 4. Data Retention  
 
-### Your Rights
+- Contact form submissions are stored only as long as needed to respond to your inquiry.  
+- Google Analytics data is retained according to Google’s data retention policies.  
 
-Depending on your location, you may have the following rights regarding your personal information:
+---
 
-- Access your data
-- Correct or update your data
-- Request deletion of your data
-- Restrict processing of your data
-- Withdraw consent for data usage
+## 5. Your Rights  
 
-To exercise your rights, please contact us at privacy@folex.com.
+Depending on your location, you may have the following rights:  
 
-### Third-Party Links
+- **Access & Correction:** You can request access to, or correction of, the personal data we hold about you.  
+- **Deletion:** You can request that we delete your personal data.  
+- **Opt-Out of Analytics:** You can install the [Google Analytics Opt-out Browser Add-on](https://tools.google.com/dlpage/gaoptout/) if you do not wish to be tracked.  
 
-Our Website may contain links to third-party websites. We are not responsible for the privacy practices of these websites. We encourage you to review their privacy policies before providing any personal information.
+To exercise your rights, please contact us using the details below.  
 
-### Children's Privacy
+---
 
-Our Website is not intended for individuals under the age of 13. We do not knowingly collect personal information from children under 13. If you believe we have collected such information, please contact us immediately.
+## 6. Contact Us  
 
-### Changes to This Privacy Policy
+If you have any questions or concerns about this Privacy Policy, please contact us:  
 
-We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated "Effective Date." We encourage you to review this Privacy Policy periodically.
+**BVSWebDesign**  
+📧 [info@bvswebdesign.co.uk]  
+🌐 [www.bvswebdesign.co.uk]  
 
-### Contact Us
+---
 
-If you have any questions or concerns about this Privacy Policy, please contact us at:
-
-Folex
-Email: privacy@folex.com
-Address: 123 Folex Lane, Imaginary City, IC 12345, USA
-
-Thank you for trusting Folex with your personal information!
+⚖️ This policy is provided for informational purposes only and does not constitute legal advice.  
