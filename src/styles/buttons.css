@@ -197,3 +197,12 @@
     }
   }
 }
+
+.form-input {
+  border-color: white !important;
+  color: white !important;
+}
+
+.form-input span {
+  color: white !important;
+}

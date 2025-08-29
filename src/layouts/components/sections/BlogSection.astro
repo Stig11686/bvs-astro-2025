@@ -3,66 +3,78 @@ import type { Section } from "@/types";
 import BlogCard from "@/layouts/components/cards/BlogCard.astro";
 import overrideObjects from "@/lib/utils/overrideObjects.ts";
 import { markdownify } from "@/lib/utils/textConverter";
+import { getCollectionCTM } from "@/lib/contentParser.astro";
+import parseTomlToJson from "@/lib/utils/parseTomlToJson";
+import { getEntryCTM } from "@/lib/contentParser.astro";
 import { sortByDate } from "@/lib/utils/sortFunctions";
-import { sanity } from "@/lib/sanityClient";        // ✅ new
-import { blogQuery } from "@/lib/queries";         // ✅ new
+import type { CollectionEntry } from "astro:content";
+
+const config = parseTomlToJson("./src/config/config.toml");
+const { blogFolder }: { blogFolder: "blog" } = config.settings;
 
 // Type for this section data
 export type blogInterface = Section & {
-  options?: {
-    limit?: number;
-    appearance?: "light" | "dark";
-  };
+  options?: CollectionEntry<"blog">["data"]["options"];
 };
 
 type Props = {
   content?: blogInterface;
 };
 
-// Fetch default section content from local CMS
+// Fetching the default content for the this section
 let defaultContent = (
-  await import("@/lib/contentParser.astro").then((m) =>
-    m.getEntryCTM("sections", "blog-section", Astro.currentLocale)
-  )
+  await getEntryCTM("sections", "blog-section", Astro.currentLocale)
 )?.data as blogInterface;
 
-// Merge optional overrides from props
+// Enables content customization (e.g., title, description) with a fallback to 'defaultContent' if not provided.
+// The 'content' prop should match the structure of 'defaultContent'.
+// Allows using this section with different content across multiple pages.
+// If 'content' is missing, 'defaultContent' will be used.
 let actualContent = overrideObjects(
   { ...defaultContent },
   Astro.props.content,
 ) as blogInterface;
 
-let { enable = true, title, options } = actualContent;
+// Extracting required values from 'content' object
+let { enable = true, title, options } = actualContent as blogInterface;
 
-if (!enable) return null;
-
-// ✅ Fetch posts from Sanity instead of local collection
-let posts = await sanity.fetch(blogQuery);
+let posts = await getCollectionCTM(blogFolder, Astro.currentLocale);
 
 // Sort posts by date
 posts = sortByDate(posts);
 
-// Limit posts if options.limit is set
+// Limit the number of items to be displayed
 posts =
-  options?.limit && posts ? posts.slice(0, options.limit) : posts;
+  options?.limit && posts ? posts.slice(0, options?.limit as number) : posts;
 
 const isDarkAppearance = options?.appearance === "dark";
+
+if (!enable) {
+  return null;
+}
 ---
 
 <section>
   <div class:list={[isDarkAppearance && "bg-theme-darker py-20 md:py-32"]}>
     <div class="container space-y-8 md:space-y-16">
-      {title && (
-        <div class="mx-auto lg:max-w-3xl">
-          <h2
-            class:list={[
-              "text-h1-sm md:text-h1 text-center",
-              isDarkAppearance && "text-light",
-            ]}
-            set:html={markdownify(title)}
-          />
-        </div>
-      )}
-
+      {
+        title && (
+          <div class="mx-auto lg:max-w-3xl">
+            {
+              <h2
+                class:list={[
+                  "text-h1-sm md:text-h1 text-center",
+                  isDarkAppearance && "text-light",
+                ]}
+                set:html={markdownify(title)}
+              />
+            }
+          </div>
+        )
+      }
       <div class="grid gap-x-6 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
-        {posts?.map((post) => (
+        {posts?.map((post) => <BlogCard content={post} options={options} />)}
+      </div>
+    </div>
+  </div>
+</section>

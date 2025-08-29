@@ -7,8 +7,8 @@
       "testimonial": {
         "enable": true,
         "name": "TESTIMONIAL",
-        "image": "/images/customers/image.png",
-        "content": "Folex strategic planning helped us streamline operations and unlock new market opportunities. We've seen a remarkable 25% increase in revenue within the last year."
+        "image": "/images/testimonial/elizabeth.jpg",
+        "content": "Steven has gone over and above to deliver the most amazing website for me and I am absolutely thrilled with it. His patience through my numerous changes and his vision in getting it just right has been fantastic. I would highly recommend him to anyone looking for a new website and have already done so to colleagues and friends. Thank you Steven for everything!"
       },
       "services": {
         "enable": true,
@@ -17,13 +17,14 @@
     },
     {
       "enable": true,
-      "name": "Case Studies",
-      "url": "/case-studies/"
+      "name": "Projects",
+      "url": "/portfolio/"
     },
     {
       "name": "Blog",
       "enable": true,
-      "hasChildren": false
+      "hasChildren": false,
+      "url": "/blog/"
     },
     {
       "enable": true,
@@ -64,27 +65,17 @@
     {
       "enable": true,
       "name": "About",
-      "url": "/"
+      "url": "/about/"
     },
     {
       "enable": true,
-      "name": "Portfolios",
-      "url": "/"
+      "name": "Projects",
+      "url": "/portfolio/"
     },
     {
       "enable": true,
       "name": "Services",
-      "url": "/"
-    },
-    {
-      "enable": true,
-      "name": "Testimonials",
-      "url": "/"
-    },
-    {
-      "enable": true,
-      "name": "Careers",
-      "url": "/"
+      "url": "/services/"
     }
   ]
 }

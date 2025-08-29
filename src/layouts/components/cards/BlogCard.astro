@@ -30,7 +30,7 @@ let {
   ...rest
 } = Astro.props;
 
-let { collection, data: { title, image, date, categories } = {} } = content;
+let { collection, data: { title, image, date, categories, slug } = {} } = content;
 
 // Format categories
 const categoriesArray = categories?.map((category: string) => ({
@@ -38,7 +38,7 @@ const categoriesArray = categories?.map((category: string) => ({
   slug: slugifyyy(category),
 }));
 
-let slug = getLocaleUrlCTM(
+let slugs = getLocaleUrlCTM(
   extractSlug(content),
   Astro.currentLocale,
   collection,
@@ -65,7 +65,7 @@ const isBlogCreativeLayout = layout === "creative";
         )}
         <a
           data-post-link
-          href={slug}
+          href={slugs}
           class="absolute inset-0 z-30"
           title={toSentenceCase(t("common.learnMoreAbout") + " " + title)}
         />
@@ -77,7 +77,7 @@ const isBlogCreativeLayout = layout === "creative";
               data-post-link
               title={toSentenceCase(t("common.learnMoreAbout") + " " + title)}
               class="stretched-link text-inherit"
-              href={slug}
+              href={slugs}
               set:html={plainify(title)}
             />
           </h3>
@@ -111,7 +111,7 @@ const isBlogCreativeLayout = layout === "creative";
         <a
           data-post-link
           class="absolute inset-0 z-30"
-          href={slug}
+          href={slugs}
           title={toSentenceCase(t("common.learnMoreAbout") + " " + title)}
         />
       </div>
@@ -150,7 +150,7 @@ const isBlogCreativeLayout = layout === "creative";
         {title && (
           <h2 class="text-h4-sm md:text-h5 mt-2 mb-6 w-full font-medium text-inherit">
             <a
-              href={slug}
+              href={slugs}
               data-post-link
               class="inline-block"
               set:html={plainify(title)}
@@ -163,7 +163,7 @@ const isBlogCreativeLayout = layout === "creative";
           variant="text"
           label={t("common.readMore")}
           title={title}
-          url={slug}
+          url={slugs}
           class:list={[
             "text-base-sm border-inherit text-inherit uppercase md:text-base",
             isBlogDarkLayout ? "border-white" : "border-border-dark",
@@ -187,7 +187,7 @@ const isBlogCreativeLayout = layout === "creative";
         )}
         <a
           data-post-link
-          href={slug}
+          href={slugs}
           title={toSentenceCase(t("common.learnMoreAbout") + " " + title)}
           class="absolute inset-0 z-0"
         />
@@ -214,7 +214,7 @@ const isBlogCreativeLayout = layout === "creative";
           <h2 class="md:text-h5 text-h5-sm mb-6 font-medium text-inherit">
             <a
               data-post-link
-              href={slug}
+              href={slugs}
               set:html={plainify(title)}
               title={toSentenceCase(t("common.learnMoreAbout") + " " + title)}
             />
@@ -225,7 +225,7 @@ const isBlogCreativeLayout = layout === "creative";
           variant="text"
           label={t("common.readMore")}
           title={title}
-          url={slug}
+          url={slugs}
           class="text-base-sm border-border-light text-inherit uppercase md:text-base"
         />
       </div>

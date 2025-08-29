@@ -53,7 +53,7 @@ if (!enable) return null;
   )
 }
 <StackedSplit map={map} image={image} direction={imagePosition}>
-  {title && <h2 class="text-h1-sm md:text-h1" set:html={markdownify(title)} />}
-  {description && <p class="text-lg" set:html={markdownify(description)} />}
-  {form && <ContactForm class={"mb-0"} form={form} />}
+  {title && <h2 class="text-h1-sm md:text-h1 text-white" set:html={markdownify(title)} />}
+  {description && <p class="text-lg text-white" set:html={markdownify(description)} />}
+  {form && <ContactForm class={"mb-0 text-white"} form={form} />}
 </StackedSplit>

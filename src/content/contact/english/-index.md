@@ -5,14 +5,14 @@ draft: false
 
 contactSection:
   contactInformation:
-    - title: "Headquarters"
+    - title: "Book a Meeting"
       icon: "/images/icons/svg/location-filled.svg"
-      description: "27 Division St, New York, NY 10002, USA"
+      description: "Book a free 30 minute consultancy with me to talk about your website issues or obtain a no obligation quote"
       button:
         # Refer to the `sharedButton` schema in `src/sections.schema.ts` for all available configuration options (e.g., enable, label, url, hoverEffect, variant, icon, tag, rel, class, target, etc.)
         enable: true
-        label: "Get Direction"
-        url: "/"
+        label: "Book a Call"
+        url: "https://calendly.com/stevenmarks75/discovery-call"
         # hoverEffect: "" # Optional: text-flip | creative-fill | magnetic | magnetic-text-flip
         # variant: "" # Optional: fill | outline | text | circle
         # rel: "" # Optional
@@ -21,13 +21,13 @@ contactSection:
     - title: "Email Address"
       icon: "/images/icons/svg/message-filled.svg"
       description: |
-        folex.agency@mail.com  
-        folex.agency@support.com
+        info@bvswebdesign.co.uk 
+        steven.marks@bvswebdesign.co.uk
       button:
         # Refer to the `sharedButton` schema in `src/sections.schema.ts` for all available configuration options (e.g., enable, label, url, hoverEffect, variant, icon, tag, rel, class, target, etc.)
         enable: true
         label: "Send Message"
-        url: "mailto:folex.agency@mail.com"
+        url: "mailto:info@bvswebdesign.co.uk"
         # hoverEffect: "" # Optional: text-flip | creative-fill | magnetic | magnetic-text-flip
         # variant: "" # Optional: fill | outline | text | circle
         # rel: "" # Optional
@@ -36,13 +36,12 @@ contactSection:
     - title: "Phone Number"
       icon: "/images/icons/svg/phone-filled.svg"
       description: |
-        +1 800 123 654 987  
-        +1 800 223 984 002
+        07521 917508 
       button:
         # Refer to the `sharedButton` schema in `src/sections.schema.ts` for all available configuration options (e.g., enable, label, url, hoverEffect, variant, icon, tag, rel, class, target, etc.)
         enable: true
         label: "Call Anytime"
-        url: "tel:+1800123654987"
+        url: "tel:07521917508"
         # hoverEffect: "" # Optional: text-flip | creative-fill | magnetic | magnetic-text-flip
         # variant: "" # Optional: fill | outline | text | circle
         # rel: "" # Optional

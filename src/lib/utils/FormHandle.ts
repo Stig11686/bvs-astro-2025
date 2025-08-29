@@ -235,7 +235,7 @@ export const formspreeSubmit = async (
 ) => {
   try {
     await fetchWithTimeout(
-      "https://formspree.io/f/xwpkvjaa",
+      form.getAttribute('data-action'),
       data,
       new AbortController(),
       timeout,

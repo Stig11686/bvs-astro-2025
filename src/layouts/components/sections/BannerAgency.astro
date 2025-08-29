@@ -31,7 +31,7 @@ let actualContent = overrideObjects(
 ) as bannerAgency;
 
 // Extracting required values from 'content' object
-let { title, titleSize, description, button, badge } =
+let { title, titleSize, description, button, button2, badge } =
   actualContent as bannerAgency;
 
 // Font sizes for the heading (useful if you have a long heading)
@@ -86,6 +86,7 @@ const fontSize = fontSizeMap[titleSize ?? "display-1"];
             <p class="font-medium" set:html={markdownify(description)} />
           )
         }
+        <div class="flex items-center gap-6">
         {
           button && button.enable && (
             <CustomButton
@@ -95,6 +96,16 @@ const fontSize = fontSizeMap[titleSize ?? "display-1"];
             />
           )
         }
+
+        {
+          button2 && button.enable && (
+            <CustomButton
+              class="effect-color-accent h-full"
+              {...button2}
+            />
+          )
+        }
+        </div>
       </div>
       {
         badge && (

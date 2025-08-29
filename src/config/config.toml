@@ -64,7 +64,7 @@
 
   # docs - https://formspree.io/ | https://formsubmit.co/ | https://docs.netlify.com/forms/setup/
   # Form action URL for the contact form (For more settings related to form see "src/content/sections/contact-section.md")
-  contactFormAction = "https://formsubmit.co/temp.gats@gmail.com" # https://formspree.io/f/kweoweo | https://formsubmit.co/your@email.com | "/"
+  contactFormAction = "https://formsubmit.co/74a69feaf4b8979bf5f8bbe463d7070d " # https://formspree.io/f/kweoweo | https://formsubmit.co/your@email.com | "/"
   # formspree | formsubmit.co | netlify (default is formsubmit.co)
   contactFormProvider = "formsubmit.co"
 
@@ -90,22 +90,22 @@
   [settings.multilingual]
     # Set `enable` to `true` for enabling the multilingual feature or `false` for disabling it.
     # Run `npm run remove-multilingual` for removing multilingual content files after disabling the feature.
-    enable                   = true
+    enable                   = false
     defaultLanguage         = "en"
     disableLanguages        = [""] # List of languages to disable (eg: ["fr", "es"])
     showDefaultLangInUrl = false # Show default language in URL (eg: https://getastrothemes.com/en/)
 
   # Global Contact Information
   [settings.contactInfo]
-    address = "27 Division St, New York, <br /> NY 10002, USA"
-    email = "[folex.agency@mail.com](mailto:folex.agency@mail.com)"
-    phone = "[+1 800 123 654 987](tel:+1800123654987)"
+    address = ""
+    email = "[info@bvswebdesign.co.uk](mailto:info@bvswebdesign.co.uk)"
+    phone = "[+44 7521917508](tel:+447521917508)"
 
   # Header Offcanvas Configuration
   # Update social links in `src/config/social.json`
   [settings.headerOffcanvas]
     enable = true
-    logo = "/images/logo-light.svg"
+    logo = ""
     description = "" # Check src/i18n/en.json and src/i18n/fr.json for changing the description in different languages or directly add value here if you are not using internationalization feature. This is also used in footer of personal-portfolio homepage
     
     # Call To Action Button

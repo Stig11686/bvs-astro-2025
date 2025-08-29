@@ -65,6 +65,7 @@ const combineRadio = (list: z.infer<typeof inputFieldSchema>[]) => {
 };
 
 let { form } = Astro.props;
+
 form = {
   ...form,
   inputs: combineRadio(form.inputs),
@@ -88,12 +89,13 @@ const noteStyles = {
     action: contactFormProvider === "netlify" ? contactFormAction : undefined,
   }}
   method="post"
-  class:list={["grid grid-cols-2 gap-x-4 gap-y-6", Astro.props.class]}>
+  class:list={["grid grid-cols-2 gap-x-4 gap-y-6 !text-white !placeholder-white", Astro.props.class]}>
   {/* Some Hidden Inputs For Provider Like Netlify, Formspree Etc. */}
   {
     form.emailSubject && (
       <input
         type="hidden"
+        class="placeholder-white"
         name={
           ["formsubmit.co", "formspree"].includes(contactFormProvider)
             ? "_subject"
@@ -115,7 +117,7 @@ const noteStyles = {
       <div
         input-wrapper
         class:list={[
-          "flex flex-col",
+          "flex flex-col !text-white !placeholder-white",
           input.halfWidth ? "max-sm:col-span-2" : "col-span-2",
           input.parentClass,
         ]}>
@@ -123,7 +125,7 @@ const noteStyles = {
           input.type !== "checkbox" &&
           input.type !== "radio" &&
           (input.groupLabel || input.label) && (
-            <label for="name" class="form-label">
+            <label for="name" class="form-label !text-white !placeholder-white">
               {input.groupLabel || input.label || "Please set label"}
               {input.required && <span class="text-primary">*</span>}
             </label>
@@ -162,7 +164,7 @@ const noteStyles = {
             rows={input.rows || "4"}
             name={input.name || input.label || "Please set name value"}
             placeholder={input.placeholder || "Please set placeholder"}
-            class="form-input"
+            class="form-input !text-white !placeholder-white !border-white"
             {...(input.required && { required: true })}
             set:html={input.defaultValue || ""}
           />
@@ -184,7 +186,7 @@ const noteStyles = {
                   }
                   id={input.id || genIdFromLabel(input.label || "example-id")}
                   class:list={[
-                    input.type === "radio" ? "form-radio" : "form-checkbox",
+                    input.type === "radio" ? "form-radio !bg-white" : "form-checkbox !bg-white",
                   ]}
                   {...(input.required && { required: true })}
                 />
@@ -197,7 +199,7 @@ const noteStyles = {
             ))}
           </div>
         ) : input.type === "checkbox" || input.type === "radio" ? (
-          <div class="form-check">
+          <div class="form-check !text-white">
             <input
               {...{
                 value:
@@ -211,13 +213,13 @@ const noteStyles = {
               id={input.id || genIdFromLabel(input.label || "example-id")}
               placeholder={input.placeholder || "Please set placeholder"}
               class:list={[
-                input.type === "radio" ? "form-radio" : "form-checkbox",
+                input.type === "radio" ? "form-radio !bg-white" : "form-checkbox !bg-white",
               ]}
               {...(input.required && { required: true })}
             />
             <label
               for={input.id || genIdFromLabel(input.label || "example-id")}
-              class="form-check-label"
+              class="form-check-label !text-white"
               set:html={
                 (input.label && markdownify(input.label)) ||
                 input.label ||
@@ -242,7 +244,7 @@ const noteStyles = {
             type={input.type || "text"}
             name={input.name || input.label || "Please set name value"}
             placeholder={input.placeholder || "Please set placeholder"}
-            class="form-input"
+            class="form-input !text-white !placeholder-white !border-white"
             {...(input.required && { required: true })}
           />
         )}

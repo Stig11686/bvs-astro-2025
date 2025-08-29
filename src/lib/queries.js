@@ -1,12 +1,12 @@
 // src/lib/queries.ts
 export const blogQuery = `
 *[_type == "blog" && !(_id in path("drafts.**"))]{
-  _id,
+  "id": _id,
   title,
   slug,
   excerpt,
-  mainImage,
-  publishedAt
+  "image": mainImage.asset->url,
+  "date": publishedAt
 } | order(publishedAt desc)
 `;
 

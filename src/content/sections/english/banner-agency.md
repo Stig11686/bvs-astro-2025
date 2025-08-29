@@ -4,7 +4,7 @@ enable: true # Control the visibility of this section across all pages where it 
 title:
   - BVSWebDesign
   - Digital Agency
-description: "Website Design and Development to power business growth"
+description: "I'm Steve, a freelance website developer and designer based in Skipton, North Yorkshire - get in touch to develop a powerful web presence for your business"
 
 button:
   # Refer to the `sharedButton` schema in `src/sections.schema.ts` for all available configuration options (e.g., enable, label, url, hoverEffect, variant, icon, tag, rel, class, target, etc.)
@@ -16,4 +16,9 @@ button:
   # rel: "" # Optional
   # target: "" # Optional
 
+button2:
+  enable: true
+  label: 'Book a Call'
+  url: "https://calendly.com/stevenmarks75/discovery-call"
+  variant: text
 ---

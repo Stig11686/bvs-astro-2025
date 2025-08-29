@@ -1,13 +1,13 @@
 ---
 enable: true # Control the visibility of this section across all pages where it is used
-title: "Have Any Project on Your Mind?"
+title: "Have A Project on Your Mind?"
 description: "Great! We're excited to hear from you and let's start something"
 
-# image: "/images/about-us/about-one.jpg"
+image: "/images/about-us/about-one.jpg"
 # imagePosition: "left" # Choose between "left" or "right"
 
 map:
-  enable: true
+  enable: false
   position: "right" # Choose between "left" or "right"
   title: "Map of New Work City"
   url: https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Street,%20Dublin,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed # Embed map iframe URL generated from https://www.maps.ie/create-google-map/
@@ -59,7 +59,7 @@ map:
 # Check config.toml file for form action related settings
 # this is also used in the footer of the personal portfolio homepage
 form:
-  emailSubject: "New form submission from folex website" # Customized email subject (applicable when anyone submit form, form submission may receive by email depend on provider)
+  emailSubject: "New form submission from BVS website" # Customized email subject (applicable when anyone submit form, form submission may receive by email depend on provider)
   submitButton:
     # Refer to the `sharedButton` schema in `src/sections.schema.ts` for all available configuration options (e.g., enable, label, url, hoverEffect, variant, icon, tag, rel, class, target, etc.)
     enable: true
