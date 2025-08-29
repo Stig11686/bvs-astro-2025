@@ -27,7 +27,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-secondary text-dark leading-tight font-semibold tracking-wide break-words;
+  @apply leading-tight font-semibold tracking-wide break-words;
 
   br {
     @apply max-md:hidden;
@@ -90,4 +90,12 @@ button:not(:disabled),
 button:not(:disabled),
 [role="button"]:not(:disabled) {
   cursor: pointer;
+}
+
+.about {
+  color: white !important;
+}
+
+.about .prose-styles {
+  color: white !important;
 }

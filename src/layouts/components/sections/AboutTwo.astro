@@ -46,16 +46,16 @@ if (!enable) {
 ---
 
 <StackedSplit image={image} direction={imagePosition}>
-  <div class="space-y-8">
+  <div class="space-y-8 !text-white about">
     {
       title && (
-        <h2 class="text-h1-sm md:text-h1" set:html={markdownify(title)} />
+        <h2 class="text-h1-sm md:text-h1 text-white" set:html={markdownify(title)} />
       )
     }
     {
       description && (
         <div
-          class="prose-styles prose-p:mt-4 prose-headings:mt-5 prose-headings:mb-0"
+          class="prose-p:mt-4 prose-headings:mt-5 prose-headings:mb-0 !text-white"
           set:html={markdownify(description, true)}
         />
       )
