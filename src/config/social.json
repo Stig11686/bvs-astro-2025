@@ -13,7 +13,7 @@
       "url": "https://twitter.com/folex"
     },
     {
-      "enable": true,
+      "enable": false,
       "label": "instagram",
       "icon": "FaInstagram",
       "url": "https://www.instagram.com/folex"
@@ -22,7 +22,7 @@
       "enable": true,
       "label": "linkedin",
       "icon": "FaLinkedin",
-      "url": "https://www.linkedin.com/folex"
+      "url": "https://www.linkedin.com/company/bvswebdesign/"
     }
   ]
 }
