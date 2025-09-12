@@ -5,7 +5,7 @@
    Form Styling
 ----------------------------- */
 form {
-  @apply prose-a:text-primary prose-a:underline prose-a:underline-offset-2;
+  @apply prose-a:underline prose-a:underline-offset-2;
 }
 
 /* Selected state style for Preline select component */

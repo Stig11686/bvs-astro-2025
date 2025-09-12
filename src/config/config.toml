@@ -112,7 +112,7 @@
     [settings.headerOffcanvas.button]
       enable = true
       label = "" # Check src/i18n/en.json and src/i18n/fr.json for changing the button label in different languages or directly add value here if you are not using internationalization feature
-      url = "/contact/"
+      url = "https://tidycal.com/bvswebdesign/30-minute-meeting"
             
   # Navigation Button In Header
   [settings.navigationButton]

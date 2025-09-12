@@ -101,7 +101,7 @@
       color: var(--color-light) !important;
     }
     &.effect-color-light,
-    &.effect-color-accent {
+    {
       color: var(--color-dark) !important;
     }
   }

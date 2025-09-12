@@ -9,8 +9,8 @@ description: "I'm Steve, a freelance website developer and designer based in Ski
 button:
   # Refer to the `sharedButton` schema in `src/sections.schema.ts` for all available configuration options (e.g., enable, label, url, hoverEffect, variant, icon, tag, rel, class, target, etc.)
   enable: true
-  label: "VIEW MY WORK"
-  url: "/portfolio/"
+  label: "Book a Call"
+  url: "https://tidycal.com/bvswebdesign/30-minute-meeting"
   hoverEffect: "creative-fill" # Optional: text-flip | creative-fill | magnetic | magnetic-text-flip
   # variant: "" # Optional: fill | outline | text | circle
   # rel: "" # Optional
@@ -18,7 +18,7 @@ button:
 
 button2:
   enable: true
-  label: 'Book a Call'
-  url: "https://calendly.com/stevenmarks75/discovery-call"
+  label: 'View My Work'
+  url: "/portfolio"
   variant: text
 ---

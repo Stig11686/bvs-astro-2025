@@ -5,6 +5,7 @@ import HomeBanner from "@/components/sections/BannerAgency.astro";
 import ServicesSection from "@/components/sections/ServicesSection.astro";
 import { generatePaths } from "@/lib/utils/languageParser.ts";
 import AboutOne from "@/components/sections/AboutOne.astro";
+import Offers from "@/components/sections/Offers.astro";
 import PortfolioSection from "@/components/sections/PortfolioSection.astro";
 import TeamSection from "@/components/sections/TeamSection.astro";
 import TestimonialCreative from "@/components/sections/TestimonialCreative.astro";
@@ -21,10 +22,11 @@ const page = await getEntryCTM("homepage", "-index", Astro.currentLocale);
 <Base {...page?.data} footerLayout="footer-1">
   <HomeBanner />
   <AboutOne />
+  <Offers />
   <ServicesSection />
   <PortfolioSection />
   <!-- <TeamSection /> -->
-  <TestimonialCreative />
+  <!-- <TestimonialCreative /> -->
   <BlogSection />
   <CallToAction content={page?.data.ctaSection} />
 </Base>

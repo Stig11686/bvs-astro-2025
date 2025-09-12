@@ -96,8 +96,8 @@ form:
         search: # if type is search then it will work
           placeholder: ""
         items:
-          - label: "General Inquiry"
-            value: "General Inquiry"
+          - label: "General Enquiry"
+            value: "General Enquiry"
             selected: false
           - label: "Partnership Opportunity"
             value: "Partnership Opportunity"
@@ -106,29 +106,24 @@ form:
             value: "Investment Opportunity"
             selected: false
     - label: ""
-      placeholder: "Subject With Search *"
-      name: "Subject With Search" # This is crucial. Its indicate under which name you want to receive this field data
+      placeholder: "Budget *"
+      name: "Budget" # This is crucial. Its indicate under which name you want to receive this field data
       required: false
       halfWidth: true
       dropdown:
-        type: "search" # select | search - default is select
-        search: # if type is search then it will work
-          placeholder: "Subject With Search"
+        type: "select" # select | search - default is select
         items:
-          - label: "General Inquiry"
-            value: "General Inquiry"
+          - label: "£500-£1000"
+            value: "5000-1000"
             selected: false
-          - label: "Partnership Opportunity"
-            value: "Partnership Opportunity"
+          - label: "£1000 - £2000"
+            value: "1000-2000"
             selected: false
-          - label: "Career Opportunity"
-            value: "Career Opportunity"
+          - label: "£2000 - £5000"
+            value: "2000-5000"
             selected: false
-          - label: "Investment Opportunity"
-            value: "Investment Opportunity"
-            selected: false
-          - label: "Media Inquiry"
-            value: "Media Inquiry"
+          - label: "£5000+"
+            value: "5000+"
             selected: false
     - label: ""
       tag: "textarea"

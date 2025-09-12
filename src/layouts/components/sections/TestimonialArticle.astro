@@ -1,0 +1,32 @@
+---
+import OptimizedImage from "../utilities/OptimizedImage.astro";
+---
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+            <blockquote 
+                itemprop="review" 
+                itemscope 
+                itemtype="https://schema.org/Review"
+            >
+                <p itemprop="reviewBody">
+                    Steve is fantastic! He created a beautiful website for my skin clinic. The finished result looks extremely professional, slick and stylish. Steve couldn’t have been more accommodating and helpful. He went out of his way to make sure my website was just as I wanted! Thank you.
+                </p>
+                <footer class="mt-4">
+                    <p class="font-bold">Rebecca Rennolds</p>
+                    <p class="text-sm text-gray-500">Clinic Owner</p>
+                </footer> 
+            </blockquote>
+        </div>
+        <div class="border-3 border-primary p-8 transform md:rotate-10 md:mt-36">
+            <OptimizedImage
+                src="/images/testimonial/rebecca-rennolds.webp"
+                alt="A great testimonial for BVSWebDesign!"
+                width={600}
+                height={800}
+                class="h-auto w-full object-cover mb-6"
+            />
+        </div>
+    </div>
+    
+
+    

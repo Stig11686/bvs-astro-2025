@@ -1,0 +1,97 @@
+---
+import CustomButton from "../CustomButton.astro"
+import StarIcon from "../icons/StarIcon.astro"
+---
+
+<section>
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white rounded-[30px] p-8 text-dark border border-secondary">
+                <div class="flex flex-col gap-6">
+                    <h2 class="text-2xl font-bold">Essential Business Websites – flexible and future-ready.</h2>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3">
+                            <StarIcon color="dark" />
+                            <span>Up to 10 bespoke pages tailored to your brand</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <StarIcon color="dark" />
+                            Blog setup for SEO and content marketing
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <StarIcon color="dark" />
+                            Integrated contact forms, galleries & testimonials
+
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <StarIcon color="dark" />
+                            Designed for growth with scalable structure
+
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <StarIcon color="dark" />
+                            Optional ongoing support and hosting packages
+                        </li>
+                    </ul>
+                    <div class="flex items-center gap-8">
+                        <div class="p-6">
+                            <p class="text-2xl font-bold"><span class="text-sm font-medium">from</span> £750 + VAT</p>
+                        </div>
+                        <div class="">
+                            <CustomButton
+                                class="btn-accent text-white"
+                                hoverEffect="creative-fill"
+                                label="Get Started"
+                                url="https://tidycal.com/bvswebdesign/30-minute-meeting"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="bg-secondary rounded-[30px] p-8 text-white border-1 border-primary">
+                <div class="flex flex-col gap-6">
+                    <h2 class="text-2xl font-bold">Ready to scale up? Bespoke solutions built around your business</h2>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3">
+                            <StarIcon />
+                            <span>ECommerce Solutions</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <StarIcon />
+                            <span>Web Applications</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <StarIcon />
+                            <span>Custom Development</span>
+
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <StarIcon />
+                            Automations and Integrations
+
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <StarIcon />
+                             Ongoing Support & Maintenance
+                        </li>
+                    </ul>
+                    <div class="flex items-center gap-8">
+                        <div class="p-6">
+                            <p class="text-2xl font-bold"><span class="text-sm font-medium">from</span> £1500 + VAT</p>
+                        </div>
+                        <div class="">
+                            <CustomButton
+                                variant="text"
+                                class="!text-white"
+                                label="Get Started"
+                                url="https://tidycal.com/bvswebdesign/30-minute-meeting"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
