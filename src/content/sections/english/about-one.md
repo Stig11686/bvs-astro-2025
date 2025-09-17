@@ -2,7 +2,7 @@
 enable: true # Control the visibility of this section across all pages where it is used
 title: "Unlock Revenue Growth for Your Business"
 
-image: "/images/about-us/about-one.jpg"
+image: "/images/steve-1.jpg"
 imagePosition: "left" # Choose between "left" or "right"
 
 description: |
