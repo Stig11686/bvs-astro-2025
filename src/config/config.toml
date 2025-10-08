@@ -31,7 +31,12 @@
     "website development",
     "website design",
     "web development",
-    "web design"
+    "web design",
+    "wordpress websites",
+    "website maintenance",
+    "website designer in skipton",
+    "website designer in yorkshire",
+    "help with my website"
   ]
   robots   = "index, follow" # Instructs search engines on how to crawl and index the pages.
 
@@ -64,7 +69,7 @@
 
   # docs - https://formspree.io/ | https://formsubmit.co/ | https://docs.netlify.com/forms/setup/
   # Form action URL for the contact form (For more settings related to form see "src/content/sections/contact-section.md")
-  contactFormAction = "https://formsubmit.co/74a69feaf4b8979bf5f8bbe463d7070d " # https://formspree.io/f/kweoweo | https://formsubmit.co/your@email.com | "/"
+  contactFormAction = "https://formsubmit.co/74a69feaf4b8979bf5f8bbe463d7070d "
   # formspree | formsubmit.co | netlify (default is formsubmit.co)
   contactFormProvider = "formsubmit.co"
 
