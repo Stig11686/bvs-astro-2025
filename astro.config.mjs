@@ -37,7 +37,7 @@ const locales = disableLanguages
 
 // https://astro.build/config
 export default defineConfig({
-  site: config.site.baseUrl ? config.site.baseUrl : "http://examplesite.com",
+  site: "https://www.bvswebdesign.co.uk",
   trailingSlash: config.site.trailingSlash ? "always" : "never",
   i18n: {
     locales: locales,
@@ -49,7 +49,7 @@ export default defineConfig({
   },
   integrations: [
     react(),
-    sitemapConfig.enable ? sitemap() : null,
+    sitemap(),
     AutoImport({
       imports: [
         "@/components/CustomButton.astro",
@@ -93,12 +93,19 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss(), reloadOnTomlChange()],
     define: {
-      'import.meta.env.GOOGLE_API_KEY': JSON.stringify(process.env.GOOGLE_API_KEY),
-      'import.meta.env.GOOGLE_PLACE_ID': JSON.stringify(process.env.GOOGLE_PLACE_ID),
-      'import.meta.env.SANITY_PROJECT_ID': JSON.stringify(process.env.SANITY_PROJECT_ID),
-      'import.meta.env.SANITY_DATASET': JSON.stringify(process.env.SANITY_DATASET)
-
-    }
+      "import.meta.env.GOOGLE_API_KEY": JSON.stringify(
+        process.env.GOOGLE_API_KEY,
+      ),
+      "import.meta.env.GOOGLE_PLACE_ID": JSON.stringify(
+        process.env.GOOGLE_PLACE_ID,
+      ),
+      "import.meta.env.SANITY_PROJECT_ID": JSON.stringify(
+        process.env.SANITY_PROJECT_ID,
+      ),
+      "import.meta.env.SANITY_DATASET": JSON.stringify(
+        process.env.SANITY_DATASET,
+      ),
+    },
   },
 });
 

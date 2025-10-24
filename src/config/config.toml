@@ -4,7 +4,7 @@
   description       = "A highly customizable creative agency & personal portfolio business theme built with Tailwind CSS and Astro Js" # Shared description for SEO and OpenGraph
   tagline           = "Website Design and Development for growing businesses"
   taglineSeparator = "" # default is " - " 
-  baseUrl          = "https://folex-astro.netlify.app" # Base URL for the site and used in OpenGraph meta tags.
+  baseUrl          = "https://www.bvswebdesign.co.uk" # Base URL for the site and used in OpenGraph meta tags.
   logo              = "/images/bvs-logo.png" # Path to the site's logo
   logoAlternate    = "" # Path to the site's logo
   logoText         = "" # Text displayed next to the logo
