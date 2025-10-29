@@ -1,7 +1,7 @@
 # Site Configuration
 [site]
   title             = "BVSWebDesign" # Shared title for SEO and OpenGraph
-  description       = "A highly customizable creative agency & personal portfolio business theme built with Tailwind CSS and Astro Js" # Shared description for SEO and OpenGraph
+  description       = "Website design and development in Wordpress, Wix and Squarespace - Website design for Small to Medium sized businesses based between Skipton and Keighley." # Shared description for SEO and OpenGraph
   tagline           = "Website Design and Development for growing businesses"
   taglineSeparator = "" # default is " - " 
   baseUrl          = "https://www.bvswebdesign.co.uk" # Base URL for the site and used in OpenGraph meta tags.
