@@ -1,32 +1,37 @@
 ---
 import OptimizedImage from "../utilities/OptimizedImage.astro";
----
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-            <blockquote 
-                itemprop="review" 
-                itemscope 
-                itemtype="https://schema.org/Review"
-            >
-                <p itemprop="reviewBody">
-                    Steve is fantastic! He created a beautiful website for my skin clinic. The finished result looks extremely professional, slick and stylish. Steve couldn’t have been more accommodating and helpful. He went out of his way to make sure my website was just as I wanted! Thank you.
-                </p>
-                <footer class="mt-4">
-                    <p class="font-bold">Rebecca Rennolds</p>
-                    <p class="text-sm text-gray-500">Clinic Owner</p>
-                </footer> 
-            </blockquote>
-        </div>
-        <div class="border-3 border-primary p-8 transform md:rotate-10 md:mt-36">
-            <OptimizedImage
-                src="/images/testimonial/rebecca-rennolds.webp"
-                alt="A great testimonial for BVSWebDesign!"
-                width={600}
-                height={800}
-                class="h-auto w-full object-cover mb-6"
-            />
-        </div>
-    </div>
-    
 
-    
+const {
+  image = "/images/testimonial/rebecca-rennolds.webp",
+  alt = "A Great testimonial for BVSWebDesign",
+  quote = "Steve is fantastic! He created a beautiful website for my skin clinic. The finished result looks extremely professional, slick and stylish. Steve couldn’t have been more accommodating and helpful. He went out of his way to make sure my website was just as I wanted! Thank you.",
+  author = "Rebecca Rennolds",
+  authorTitle = "Clinic Owner",
+} = Astro.props;
+---
+
+<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+  <div>
+    <blockquote
+      itemprop="review"
+      itemscope
+      itemtype="https://schema.org/Review">
+      <p itemprop="reviewBody">
+        {quote}
+      </p>
+      <footer class="mt-4">
+        <p class="font-bold">{author}</p>
+        <p class="text-sm text-gray-500">{authorTitle}</p>
+      </footer>
+    </blockquote>
+  </div>
+  <div class="border-primary transform border-3 p-8 md:mt-36 md:rotate-10">
+    <OptimizedImage
+      src={image}
+      alt={alt}
+      width={600}
+      height={800}
+      class="mb-6 h-auto w-full object-cover"
+    />
+  </div>
+</div>
