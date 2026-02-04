@@ -2,8 +2,8 @@
 enable: true # Control the visibility of this section across all pages where it is used
 # titleSize: "display-2" # If your title text is larger, use a smaller text size like "display-3", "display-2", or "display-1".
 title:
-  - BVSWebDesign
-  - Digital Agency
+  - WordPress Websites
+  - That Grow Your Business
 description: "I'm Steve, a freelance website developer and designer based in Skipton, North Yorkshire - get in touch to develop a powerful web presence for your business"
 
 button:
