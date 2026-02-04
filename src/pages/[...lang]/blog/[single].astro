@@ -51,7 +51,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 ---
 
-<Base {...post.data}>
+<Base {...post.data} ogType="article">
   <Breadcrumbs />
   <BlogLayout
     sidebar={{
