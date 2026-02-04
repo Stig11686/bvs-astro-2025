@@ -1,6 +1,7 @@
 ---
 title: ""
 metaDescription: "Website design and development in Wordpress, Wix and Squarespace - Based between Skipton and Keighley, I work on websites for small to medium businesses across the UK"
+includeLocalBusiness: true
 
 # Override Default Content of `/sections/services-section.md`
 # Uncomment key values that you wan to override
