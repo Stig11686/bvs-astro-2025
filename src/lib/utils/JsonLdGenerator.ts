@@ -19,6 +19,7 @@ export type JSONLDProps = {
   categories?: string[]; // Categories or tags for blog posts or case studies
   author?: string; // Author for blog posts or case studies
   pageType?: string; // Page type
+  date?: Date | string; // Publication date (blog posts)
 
   [key: string]: any;
 };
@@ -30,27 +31,54 @@ export default function JsonLdGenerator(content: JSONLDProps, Astro: any) {
     description = "",
     image = "",
     pageType = "",
+    date,
+    author,
     lang = "en", // Default language (should be dynamically set)
     alternateLangs = [], // Array of alternate language URLs
     config,
   } = content || {};
+
+  // Detect blog posts by the presence of a date field
+  const isBlogPost = !pageType && date;
 
   // Generate JSON-LD data dynamically based on page type
   let jsonLdData: Record<string, any> = {
     "@context": "https://schema.org",
   };
 
-  switch (pageType) {
-    default:
-      jsonLdData["@type"] = "WebPage";
-      jsonLdData.name = title;
-      jsonLdData.description = description;
-      jsonLdData.image = image;
-      jsonLdData.url = canonical;
+  if (isBlogPost) {
+    // BlogPosting schema for individual blog posts
+    const publishedDate =
+      date instanceof Date ? date.toISOString() : new Date(date).toISOString();
 
-      if (lang) {
-        jsonLdData.inLanguage = lang;
-      }
+    jsonLdData["@type"] = "BlogPosting";
+    jsonLdData.headline = title;
+    jsonLdData.description = description;
+    jsonLdData.image = image;
+    jsonLdData.url = canonical;
+    jsonLdData.datePublished = publishedDate;
+    jsonLdData.dateModified = publishedDate;
+    jsonLdData.author = {
+      "@type": "Person",
+      name: author || "Steve Marks",
+    };
+
+    if (lang) {
+      jsonLdData.inLanguage = lang;
+    }
+  } else {
+    switch (pageType) {
+      default:
+        jsonLdData["@type"] = "WebPage";
+        jsonLdData.name = title;
+        jsonLdData.description = description;
+        jsonLdData.image = image;
+        jsonLdData.url = canonical;
+
+        if (lang) {
+          jsonLdData.inLanguage = lang;
+        }
+    }
   }
 
   // Add site metadata to `isPartOf` of jsonLdData
@@ -80,7 +108,7 @@ export default function JsonLdGenerator(content: JSONLDProps, Astro: any) {
   // Add `publisher` to jsonLdData
   jsonLdData.publisher = {
     "@type": "Organization",
-    name: config.seo.author,
+    name: "BVS Web Design",
     url: trailingSlashChecker(Astro.url.origin),
     sameAs: social.main.filter((item) => item.enable).map((item) => item.url),
     logo: {
