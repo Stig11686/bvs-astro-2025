@@ -1,9 +1,9 @@
 # Site Configuration
 [site]
-  title             = "WordPress Web Designer | Skipton & Keighley | Modern Business Websites" # Shared title for SEO and OpenGraph
+  title             = "WordPress Web Designer in Skipton & Keighley | BVS Web Design" # Shared title for SEO and OpenGraph
   description       = "Website design and development in Wordpress, Wix and Squarespace - Website design for Small to Medium sized businesses based between Skipton and Keighley." # Shared description for SEO and OpenGraph
   tagline           = "Website Design and Development for growing businesses"
-  taglineSeparator = "" # default is " - " 
+  taglineSeparator = " - " # default is " - " 
   baseUrl          = "https://www.bvswebdesign.co.uk" # Base URL for the site and used in OpenGraph meta tags.
   logo              = "/images/bvs-logo.png" # Path to the site's logo
   logoAlternate    = "" # Path to the site's logo
@@ -138,7 +138,7 @@
 # -----------------------------------------------------------------------------------------------------------------------------------
 [opengraph]
   image        = "/images/og-image.jpg" # Image used in OpenGraph previews
-  ogLocale    = "en_US" # Locale setting for OpenGraph
+  ogLocale    = "en_GB" # Locale setting for OpenGraph
   ogType      = "website" # Type of content for OpenGraph protocol
   twitter      = "" # Twitter handle for Twitter Card meta tags
   twitterCard = "summary_large_image" # Type of Twitter Card to use in social sharing
