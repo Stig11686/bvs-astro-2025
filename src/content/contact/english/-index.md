@@ -1,5 +1,5 @@
 ---
-title: "Contact"
+title: "Contact BVS Web Design | Web Designer in Skipton & Keighley"
 description: "Get in touch with us! Reach out for inquiries, support, or feedback. "
 includeLocalBusiness: true
 draft: false

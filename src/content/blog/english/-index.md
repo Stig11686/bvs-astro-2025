@@ -1,5 +1,5 @@
 ---
-title: "Blog"
+title: "Web Design Blog | Tips, Case Studies & Insights"
 image: "/images/blog/blog-header.png"
 metaDescription: "Web design tips, WordPress advice, and case studies from BVS Web Design. Practical insights for small business owners in Yorkshire and beyond."
 draft: false
