@@ -51,7 +51,28 @@ export async function getStaticPaths() {
 }
 
 const { service } = Astro.props;
+
+// Generate Service schema
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: service.data.title,
+  description: service.data.metaDescription || service.data.description,
+  provider: {
+    "@type": "ProfessionalService",
+    name: "BVS Web Design",
+    url: "https://www.bvswebdesign.co.uk/",
+  },
+  areaServed: ["Skipton", "Keighley", "North Yorkshire", "Yorkshire", "United Kingdom"],
+  serviceType: "Web Design and Development",
+};
 ---
+
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(serviceSchema, null, 2)}
+/>
 
 <Base {...service.data} fitToScreen={false}>
   <Breadcrumbs />

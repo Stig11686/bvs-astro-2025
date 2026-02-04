@@ -57,7 +57,28 @@ if (breadcrumbExcludedPaths && breadcrumbExcludedPaths.length > 0) {
     };
   });
 }
+
+// Generate BreadcrumbList JSON-LD schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: breadcrumbParts
+    .filter((part) => part.href)
+    .map((part, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: part.label,
+      item: new URL(part.href, Astro.site).href,
+    })),
+};
 ---
+
+<!-- BreadcrumbList JSON-LD -->
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(breadcrumbSchema, null, 2)}
+/>
 
 <section class:list={["bg-theme-light pt-0", className]}>
   <div class="xl:container-12xl relative py-4 max-xl:container">
