@@ -19,6 +19,7 @@ let {
   lang,
   author = config.seo.author,
   structuredData,
+  includeLocalBusiness = false,
 } = content;
 
 title =
@@ -49,6 +50,35 @@ const jsonLdData = JsonLdGenerator(
   },
   Astro,
 );
+
+// LocalBusiness / ProfessionalService schema for homepage and contact pages
+const localBusinessSchema = includeLocalBusiness
+  ? {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      name: "BVS Web Design",
+      url: "https://www.bvswebdesign.co.uk/",
+      description:
+        "Freelance web designer and developer based in Skipton, North Yorkshire. WordPress websites, custom web applications, SEO audits and hosting.",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Skipton",
+        addressRegion: "North Yorkshire",
+        addressCountry: "GB",
+      },
+      areaServed: [
+        "Skipton",
+        "Keighley",
+        "Ilkley",
+        "North Yorkshire",
+        "Yorkshire",
+      ],
+      founder: {
+        "@type": "Person",
+        name: "Steve Marks",
+      },
+    }
+  : null;
 ---
 
 <!-- JSON-LD -->{
@@ -57,6 +87,15 @@ const jsonLdData = JsonLdGenerator(
       type="application/ld+json"
       is:inline
       set:html={JSON.stringify(jsonLdData, null, 2)}
+    />
+  ) : null
+}
+{
+  localBusinessSchema ? (
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(localBusinessSchema, null, 2)}
     />
   ) : null
 }
