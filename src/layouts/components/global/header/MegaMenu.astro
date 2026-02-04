@@ -182,7 +182,7 @@ const isMobile = Astro.props.isMobile;
                 <OptimizedImage
                   class="mx-auto block w-[80%]"
                   src={menu.testimonial.image}
-                  alt="customer"
+                  alt={menu.testimonial.name || "Client testimonial"}
                 />
               </div>
             </div>

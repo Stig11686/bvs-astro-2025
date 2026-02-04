@@ -80,3 +80,8 @@ if (
     <link rel="alternate" hreflang={tag.hreflang} href={tag.href} />
   ))
 }
+{
+  resolvedCanonical && alternateTags.length === 0 && (
+    <link rel="alternate" hreflang="en-gb" href={resolvedCanonical} />
+  )
+}
