@@ -49,3 +49,9 @@
  
 
 /blog/what-to-do-when-my-website-deisgner-scams-me/ /blog/what-to-do-when-my-website-designer-scams-me/ 301
+
+# 404 fixes - added 2026-02-06
+/case-studies/ /portfolio/ 301!
+/case-studies/* /portfolio/ 301!
+/work/ /portfolio/ 301!
+/work/* /portfolio/ 301!
