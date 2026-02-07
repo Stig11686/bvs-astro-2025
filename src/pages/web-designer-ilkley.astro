@@ -1,0 +1,76 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import CaseStudyCard from '../../components/CaseStudyCard.astro';
+import TestimonialCard from '../../components/TestimonialCard.astro';
+---
+
+<Layout title="Web Designer Ilkley - Bespoke Websites for Ilkley Businesses | BVS Web Design">
+  <Hero 
+    title="Web Designer Ilkley: Creating Professional Online Presences"
+    subtitle="Specialised web design and development for businesses in Ilkley. We deliver polished, high-performing websites that resonate with your target audience."
+    buttonText="View Our Services"
+    buttonLink="/services/website-design/"
+    imageUrl="/images/ilkley-banner.jpg" 
+    altText="Ilkley Moor with Cow and Calf rocks"
+  />
+
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-10">Your Dedicated Web Design Specialist in Ilkley</h2>
+      <p class="text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto text-center">
+        Ilkley is home to a diverse range of professional services and unique local businesses. BVS Web Design is proud to offer bespoke web design solutions that capture the essence of your brand and drive your business objectives. We focus on creating user-friendly, SEO-optimised websites that deliver tangible results for our Ilkley clients.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+        <div class="p-6 bg-white rounded-lg shadow-md">
+          <h3 class="text-xl font-semibold mb-3">Precision & Professionalism</h3>
+          <p class="text-gray-600">Crafting websites that reflect the high standards of Ilkley businesses.</p>
+        </div>
+        <div class="p-6 bg-white rounded-lg shadow-md">
+          <h3 class="text-xl font-semibold mb-3">Local Market Insight</h3>
+          <p class="text-gray-600">Understanding the local economy to build effective online strategies.</p>
+        </div>
+        <div class="p-6 bg-white rounded-lg shadow-md">
+          <h3 class="text-xl font-semibold mb-3">Support & Maintenance</h3>
+          <p class="text-gray-600">Ongoing support to ensure your website remains current and performs optimally.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-10">An Ilkley Success Story</h2>
+      <div class="grid grid-cols-1 md:grid-cols-1 gap-8">
+        <CaseStudyCard 
+          title="Ilkley Dental Care"
+          description="Developing a modern, patient-focused website for a leading dental practice."
+          link="/portfolio/ilkley-dental-care/"
+          imageUrl="/images/portfolio/ilkley-dental-care-thumb.jpg" 
+          altText="Ilkley Dental Care Website"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-16 bg-gray-100">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-10">What Our Ilkley Clients Say</h2>
+      <div class="max-w-3xl mx-auto">
+        <TestimonialCard 
+          quote="Placeholder for Jodie's testimonial text. She was very happy with the professional and functional website for Ilkley Dental Care."
+          author="Jodie"
+          role="Practice Manager, Ilkley Dental Care"
+        />
+      </div>
+    </div>
+  </section>
+
+  <CallToAction 
+    title="Elevate Your Ilkley Business with a Premium Website"
+    subtitle="Contact us today to discuss your project and receive a tailored proposal."
+    buttonText="Request a Proposal"
+    buttonLink="/contact"
+  />
+</Layout>
