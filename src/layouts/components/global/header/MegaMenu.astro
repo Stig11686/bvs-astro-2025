@@ -14,10 +14,13 @@ const config = parseTomlToJson("./src/config/config.toml");
 const menu = Astro.props.menu as NavigationLink;
 
 const t = await useTranslations(Astro.currentLocale as string);
-let services = await getCollectionCTM(
+let allServices = await getCollectionCTM(
   config.settings.servicesFolder as "services",
   Astro.currentLocale,
 );
+
+// Filter to only show services marked for menu display
+let services = allServices.filter((service: any) => service.data.showInMenu !== false);
 
 const has_enable_menu = menu.menus?.filter((menu) => menu.enable) || [];
 

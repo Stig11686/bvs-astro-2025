@@ -43,9 +43,12 @@ let {
   options: { layout = "accordion", appearance, limit = false, column = 2 } = {},
 } = actualContent as ServicesInterface;
 
-let services = (await getCollectionCTM("services", Astro.currentLocale)) as
+let allServices = (await getCollectionCTM("services", Astro.currentLocale)) as
   | Service[]
   | any[];
+
+// Filter to only show services marked for menu/homepage display
+let services = allServices.filter((service: any) => service.data.showInMenu !== false);
 
 if (layout === "accordion") {
   services = services.map((service) => {

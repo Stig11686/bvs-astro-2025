@@ -5,7 +5,7 @@ title: "What I Can Do for My Clients"
 
 options:
   layout: "accordion" # accordion | grid
-  limit: 6 # false / number
+  limit: false # false / number - now using showInMenu filter instead
   column: 3 # 1 / 2 / 3 - applicable only if layout is "grid"
   iconPlacement: "top" # top / right - applicable only if layout is "grid"
 ---
