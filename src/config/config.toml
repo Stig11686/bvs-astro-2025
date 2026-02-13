@@ -1,7 +1,7 @@
 # Site Configuration
 [site]
   title             = "WordPress Web Designer in Skipton & Keighley | BVS Web Design" # Shared title for SEO and OpenGraph
-  description       = "Website design and development in Wordpress, Wix and Squarespace - Website design for Small to Medium sized businesses based between Skipton and Keighley." # Shared description for SEO and OpenGraph
+  description       = "WordPress web design in Skipton & Keighley. Fast, affordable websites for small businesses. Free website audit. Serving Yorkshire and the UK." # Shared description for SEO and OpenGraph
   tagline           = "Website Design and Development for growing businesses"
   taglineSeparator = " - " # default is " - " 
   baseUrl          = "https://www.bvswebdesign.co.uk" # Base URL for the site and used in OpenGraph meta tags.
@@ -27,16 +27,16 @@
 [seo]
   author   = "Steve Marks"
   keywords = [
-    "digital agency", 
-    "website development",
-    "website design",
-    "web development",
-    "web design",
+    "web design skipton",
+    "web designer skipton",
+    "website design skipton",
+    "web design keighley",
+    "web designer keighley",
+    "wordpress web design yorkshire",
     "wordpress websites",
-    "website maintenance",
-    "website designer in skipton",
-    "website designer in yorkshire",
-    "help with my website"
+    "website design yorkshire",
+    "small business web design",
+    "websites in 7 days"
   ]
   robots   = "index, follow" # Instructs search engines on how to crawl and index the pages.
 

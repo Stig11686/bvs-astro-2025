@@ -1,6 +1,6 @@
 ---
 title: ""
-metaDescription: "Website design and development in Wordpress, Wix and Squarespace - Based between Skipton and Keighley, I work on websites for small to medium businesses across the UK"
+metaDescription: "Web design in Skipton & Keighley. Professional WordPress websites for local businesses — built fast, priced fairly, with ongoing support. Get a free website audit today."
 includeLocalBusiness: true
 
 # Override Default Content of `/sections/services-section.md`
