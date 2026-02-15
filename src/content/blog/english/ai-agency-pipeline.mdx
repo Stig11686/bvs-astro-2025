@@ -1,0 +1,148 @@
+---
+title: "How I'm Running a Web Agency with AI Agents — Real Tools, Real Workflows, and Where I Still Call the Shots"
+customSlug: running-web-agency-with-ai-agents
+image: "/images/blog/ai-agency-pipeline.png"
+date: 2026-02-15
+author: "Steve Marks"
+categories:
+  - AI & Automation
+tags:
+  - "AI Agents"
+  - "Web Agency"
+  - "Automation"
+  - "n8n"
+  - "Small Business"
+draft: true
+---
+
+There's a lot of noise about AI "doing everything for you." This isn't that kind of article.
+
+What I've actually built is a system where AI handles the repetitive, time-consuming work — research, drafting, sequencing, data wrangling — while I stay in the loop on anything that matters. The result is a web design agency that runs with processes you'd expect from a much larger team, without the headcount.
+
+I'm not going to tell you it was easy to set up, or that it runs perfectly with zero input. But I will show you exactly what it looks like, what tools are involved, and why I think this approach is more sustainable than just throwing prompts at ChatGPT and hoping for the best.
+
+---
+
+## The Setup
+
+I run [BVS Web Design](https://bvswebdesign.co.uk) alongside a full-time job as a technical trainer and coach. Time is the constraint. So instead of hiring, I've built a stack of AI agents to handle the operations side — lead outreach, follow-ups, content, CRM updates — while I focus on client work and strategy.
+
+The core tools:
+
+- **n8n** — open-source workflow automation, running on a VPS. This is the orchestration layer. Every automated process runs through here.
+- **Ollama** — runs open-source large language models locally on my machine. Free inference, no API costs, completely private.
+- **A custom Laravel CRM** — built specifically for this operation, with a full REST API so agents can read and write data programmatically.
+
+These three things working together is where most of the leverage comes from. n8n is the plumbing, Ollama is the brain, and the CRM is the single source of truth that everything reads from and writes to.
+
+{/* 📸 IMAGE: Screenshot of the n8n dashboard showing the full list of active workflows */}
+![n8n workflow dashboard](/images/blog/ai-pipeline-n8n-dashboard.png)
+
+---
+
+## The Workflows
+
+Here's what's actually running:
+
+### 1. Lead Research & Enrichment
+
+When a new lead enters the system, an n8n workflow fires automatically. It pulls business information, validates the data, scores the lead against my target niches — dentists, trades, beauticians, wedding boutiques — and populates the CRM with everything it finds. What used to take 20 minutes of manual research per lead now takes a few seconds, and the data is structured consistently every time.
+
+{/* 📸 IMAGE: Screenshot of the lead enrichment workflow in n8n */}
+![Lead enrichment workflow in n8n](/images/blog/ai-pipeline-lead-enrichment.png)
+
+### 2. Cold Outreach Pipeline
+
+This is the biggest piece. Seven workflows handle the full outreach sequence: sourcing leads, generating personalised email copy via Ollama, dispatching through Zoho, tracking opens and replies, and queuing follow-ups based on interaction data pulled from the CRM API.
+
+The email copy isn't generic — Ollama pulls context about the lead's niche, their likely pain points, and which case study is most relevant before it writes anything. A dentist gets a different email to a construction firm, and both feel written by a human who did their homework.
+
+The dispatch controller runs on a schedule. I don't touch it day-to-day.
+
+{/* 📸 IMAGE: Screenshot of the outreach dispatch workflow — the main sequence showing the email generation and send steps */}
+![Cold outreach dispatch workflow in n8n](/images/blog/ai-pipeline-outreach-dispatch.png)
+
+### 3. Follow-Up Sequencing
+
+Following up is where most solo operators fall down. Not because they forget — because remembering to follow up on 40 leads at exactly the right interval is genuinely hard to do manually.
+
+The follow-up workflow checks the CRM daily for any leads where a follow-up is due, pulls the interaction history, and either sends the next email in the sequence or flags the lead for manual review if something unusual has happened — like a reply that needs a human response.
+
+{/* 📸 IMAGE: Screenshot of the follow-up workflow, showing the CRM API call and conditional branching */}
+![Follow-up sequencing workflow in n8n](/images/blog/ai-pipeline-followup.png)
+
+### 4. Content Pipeline
+
+Blog posts, LinkedIn drafts, and a client newsletter all run through a content pipeline. A brief goes in — topic, target audience, key points — Ollama drafts the content, and it lands in a review queue. Nothing goes out without me reading it, but I'm reviewing and editing rather than staring at a blank page.
+
+For the blog specifically, approved posts are submitted as a GitHub pull request against the site repo. I merge when I'm happy, and Netlify deploys automatically. The whole thing from brief to live post can happen in under an hour when I'm not precious about it.
+
+{/* 📸 IMAGE: Screenshot of the content generation workflow in n8n */}
+![Content pipeline workflow in n8n](/images/blog/ai-pipeline-content.png)
+
+### 5. Call Prep
+
+Before any sales call, a workflow pulls the lead's full CRM history — every interaction, every email sent, any notes — and generates a briefing document. I walk into every call prepared, with context I'd otherwise have to manually dig out.
+
+---
+
+## The Human Checkpoints
+
+This is the part people skip over when they talk about AI automation, and it's probably the most important bit.
+
+Every workflow that touches a customer has a human gate.
+
+Email copy gets reviewed before the dispatch controller goes live. Blog posts go through a pull request — I merge when I'm happy with them. Newsletter drafts land in a review queue for approval. Leads that respond to outreach get flagged for me to handle personally.
+
+AI is fast and cheap at generating output. It's also confident when it's wrong. The checkpoints aren't a workaround for AI being bad — they're the design. The system makes my decision-making faster and better-informed. It doesn't replace my judgement.
+
+The other thing AI is genuinely useful for that doesn't get talked about enough: **ideation and working through problems**. When I'm trying to figure out how to approach a new niche, structure a campaign, or think through a data model, having a model to think out loud with is genuinely valuable. It'll surface angles I hadn't considered, push back on assumptions, and help me stress-test an approach before I build it. That's not a shortcut — it's a thinking tool.
+
+---
+
+## Choosing the Right Model for the Job
+
+Not all LLMs are equal, and this matters more than most people realise. Running everything through one model is like using the same tool for every job in a workshop.
+
+My current split:
+
+- **Qwen3:8b** — code tasks, data transformation, anything structural
+- **Mistral-nemo** — email copy, blog drafts, anything that needs to read like a human wrote it
+- **Llama3.1:8b** — general reasoning, classification, research summaries
+
+Getting this wrong produces obvious results. Early versions of the outreach emails, generated with the wrong model, read exactly like AI-generated content. Switching models made a bigger difference than any amount of prompt engineering.
+
+---
+
+## What This Actually Achieves
+
+Without this setup, a solo operator can realistically manage maybe 10–15 active leads before things start slipping. Emails don't get sent on time, follow-ups get missed, content doesn't get written. The business quietly stalls.
+
+With this stack, I can run a pipeline an order of magnitude larger, respond faster, produce more consistent output, and still have time to do the actual client work. The agency doesn't feel like a side project anymore. It feels like a properly structured business that happens to have a team of one.
+
+The honest answer to "is AI replacing people?" in my case is: it's replacing the version of me that was too stretched to do things properly. The strategic decisions, the client relationships, the quality control — that's still me. It's just that I'm not also drowning in admin.
+
+---
+
+## Technical Implementation
+
+*Not interested in the stack? [Skip to the next section.](#whats-next)*
+
+The local AI setup uses Ollama running on a MacBook Air (M-series), exposed over a private [Tailscale](https://tailscale.com) mesh network so the VPS running n8n can reach it without opening any public ports. The models run entirely on-device — no data leaves the machine, and inference costs nothing.
+
+The CRM is a custom Laravel application on the same VPS as n8n, with a Bearer-authenticated REST API that all the workflows talk to. Leads, interactions, follow-up schedules, content drafts — it all lives there, queryable and writable by any workflow that needs it.
+
+The website (this one) is built with Astro, hosted on Netlify. Blog content is markdown files in a GitHub repo — pushing a PR is how content moves from the n8n pipeline to the live site.
+
+{/* 📸 IMAGE: Screenshot of Tailscale dashboard showing the private network (Mac + VPS connected) */}
+![Tailscale private mesh network](/images/blog/ai-pipeline-tailscale.png)
+
+---
+
+## What's Next {#whats-next}
+
+The outreach system is in inbox warming right now — you need a few weeks of sending history before cold email lands reliably without hitting spam filters. Once that's done, the dispatch controller goes live and the full pipeline runs end-to-end without manual intervention.
+
+On the roadmap: a call prep agent that goes deeper, a weekly SEO report pulling data from Google Search Console, and a more sophisticated content brief workflow that uses real search data to decide what to write about.
+
+If you're building something similar, or you're curious how any part of this applies to your own business, the [contact form](/contact) is the right place to start.
