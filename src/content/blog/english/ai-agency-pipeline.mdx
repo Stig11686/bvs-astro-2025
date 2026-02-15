@@ -114,8 +114,6 @@ The honest answer to "is AI replacing people?" in my case is: it's replacing the
 
 ## Technical Implementation
 
-*Not interested in the stack? [Skip to the next section.](#whats-next)*
-
 The local AI setup uses Ollama running on a MacBook Air (M-series), exposed over a private [Tailscale](https://tailscale.com) mesh network so the VPS running n8n can reach it without opening any public ports. The models run entirely on-device — no data leaves the machine, and inference costs nothing.
 
 The CRM is a custom Laravel application on the same VPS as n8n, with a Bearer-authenticated REST API that all the workflows talk to. Leads, interactions, follow-up schedules, content drafts — it all lives there, queryable and writable by any workflow that needs it.
@@ -124,7 +122,7 @@ The website (this one) is built with Astro, hosted on Netlify. Blog content is m
 
 ---
 
-## What's Next {#whats-next}
+## What's Next
 
 The outreach system is in inbox warming right now — you need a few weeks of sending history before cold email lands reliably without hitting spam filters. Once that's done, the dispatch controller goes live and the full pipeline runs end-to-end without manual intervention.
 
