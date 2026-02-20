@@ -4,7 +4,8 @@
 # -------------------------------------------------------
 
 # Old service pages
-/web-design-and-development/          /services/web-design/                301!
+/services/web-design/                 /services/website-design/             301!
+/web-design-and-development/          /services/website-design/             301!
 /web-content-and-marketing/           /services/digital-marketing-and-seo/ 301!
 /shopify-design-and-development/      /services/web-development/            301!
 /shopify-design-and-development       /services/web-development/            301!
@@ -60,10 +61,10 @@
 
 # Old coverage area pages
 /coverage/wordpress-web-design-barnoldswick/  /services/website-design/ 301!
-/coverage/wordpress-web-design-gargrave/      /web-designer-gargrave/ 301!
+/coverage/wordpress-web-design-gargrave/      /services/website-design/ 301!
 /coverage/wordpress-web-design-skipton/       /web-designer-skipton/ 301!
 /coverage/wordpress-web-design-ilkley/        /web-designer-ilkley/ 301!
-/coverage/wordpress-web-design-otley/         /web-designer-otley/ 301!
+/coverage/wordpress-web-design-otley/         /services/website-design/ 301!
 /coverage/wordpress-web-design-york/          /web-designer-york/ 301!
 /coverage/wordpress-web-design-west-yorkshire/ /services/website-design/ 301!
 /coverage/                                    /                     301!
