@@ -33,6 +33,7 @@
     }
   ],
   "footerPrimary": [
+    { "title": "Vital Links" },
     {
       "enable": true,
       "name": "About BVSWebDesign",
@@ -50,6 +51,7 @@
     }
   ],
   "footerSecondary": [
+    { "title": "Policies" },
     {
       "enable": true,
       "name": "Privacy policy",
@@ -79,6 +81,7 @@
     }
   ],
   "footerNiches": [
+    { "title": "Industry Expertise" },
     {
       "enable": true,
       "name": "Beauty & Salon Websites",
@@ -111,6 +114,7 @@
     }
   ],
   "footerLocations": [
+    { "title": "Where we Serve" },
     {
       "enable": true,
       "name": "Web Designer Skipton",
