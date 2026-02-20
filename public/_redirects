@@ -62,10 +62,10 @@
 # Old coverage area pages
 /coverage/wordpress-web-design-barnoldswick/  /services/website-design/ 301!
 /coverage/wordpress-web-design-gargrave/      /services/website-design/ 301!
-/coverage/wordpress-web-design-skipton/       /services/website-design/ 301!
-/coverage/wordpress-web-design-ilkley/        /services/website-design/ 301!
+/coverage/wordpress-web-design-skipton/       /web-designer-skipton/ 301!
+/coverage/wordpress-web-design-ilkley/        /web-designer-ilkley/ 301!
 /coverage/wordpress-web-design-otley/         /services/website-design/ 301!
-/coverage/wordpress-web-design-york/          /services/website-design/ 301!
+/coverage/wordpress-web-design-york/          /web-designer-york/ 301!
 /coverage/wordpress-web-design-west-yorkshire/ /services/website-design/ 301!
 /coverage/                                    /                     301!
 
