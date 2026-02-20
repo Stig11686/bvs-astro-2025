@@ -127,16 +127,6 @@
     },
     {
       "enable": true,
-      "name": "Web Designer Gargrave",
-      "url": "/web-designer-gargrave/"
-    },
-    {
-      "enable": true,
-      "name": "Web Designer Otley",
-      "url": "/web-designer-otley/"
-    },
-    {
-      "enable": true,
       "name": "Web Designer York",
       "url": "/web-designer-york/"
     },
