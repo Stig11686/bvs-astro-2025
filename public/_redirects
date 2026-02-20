@@ -4,6 +4,7 @@
 # -------------------------------------------------------
 
 # Old service pages
+/services/web-design/                 /services/website-design/             301!
 /web-design-and-development/          /services/web-design/                301!
 /web-content-and-marketing/           /services/digital-marketing-and-seo/ 301!
 /shopify-design-and-development/      /services/web-development/            301!
