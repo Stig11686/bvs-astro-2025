@@ -77,5 +77,69 @@
       "name": "Services",
       "url": "/services/"
     }
+  ],
+  "footerNiches": [
+    {
+      "enable": true,
+      "name": "Beauty & Salon Websites",
+      "url": "/services/salon-website-design/"
+    },
+    {
+      "enable": true,
+      "name": "Dental Websites",
+      "url": "/services/dental-web-design/"
+    },
+    {
+      "enable": true,
+      "name": "Construction Websites",
+      "url": "/services/construction-website-design/"
+    },
+    {
+      "enable": true,
+      "name": "Bridal Websites",
+      "url": "/services/bridal-web-design/"
+    },
+    {
+      "enable": true,
+      "name": "Restaurant Websites",
+      "url": "/services/restaurant-website-design/"
+    },
+    {
+      "enable": true,
+      "name": "Hotel Websites",
+      "url": "/services/hotel-website-design/"
+    }
+  ],
+  "footerLocations": [
+    {
+      "enable": true,
+      "name": "Web Designer Skipton",
+      "url": "/web-designer-skipton/"
+    },
+    {
+      "enable": true,
+      "name": "Web Designer Ilkley",
+      "url": "/web-designer-ilkley/"
+    },
+    {
+      "enable": true,
+      "name": "Web Designer Gargrave",
+      "url": "/web-designer-gargrave/"
+    },
+    {
+      "enable": true,
+      "name": "Web Designer Otley",
+      "url": "/web-designer-otley/"
+    },
+    {
+      "enable": true,
+      "name": "Web Designer York",
+      "url": "/web-designer-york/"
+    },
+    {
+      "enable": true,
+      "name": "Web Designer Keighley",
+      "url": "/web-designer-keighley/"
+    }
   ]
 }
