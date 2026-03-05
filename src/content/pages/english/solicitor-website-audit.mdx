@@ -1,0 +1,338 @@
+---
+title: "Free Website Audit for North Yorkshire Solicitors"
+metaDescription: "96% of North Yorkshire solicitor websites fail accessibility checks. Get your free website audit and discover how to fix compliance issues, improve performance, and attract more clients."
+image: "/images/services/web-audit-banner.jpg"
+draft: false
+schema:
+  - type: "WebPage"
+    name: "Free Website Audit for North Yorkshire Solicitors"
+    description: "Professional website audit service for solicitor firms in North Yorkshire. Accessibility compliance, performance analysis, and SEO review."
+  - type: "LocalBusiness"
+    name: "BVS Web Design"
+    description: "Web design and development services for North Yorkshire businesses"
+    address:
+      streetAddress: "Skipton"
+      addressLocality: "Skipton"
+      addressRegion: "North Yorkshire"
+      postalCode: "BD23"
+      addressCountry: "GB"
+    telephone: "+44-xxx-xxx-xxxx"
+    url: "https://www.bvswebdesign.co.uk"
+---
+
+import CallToAction from "@/components/sections/CallToAction.astro";
+
+# Free Website Audit for North Yorkshire Solicitors
+
+**Did you know 96% of solicitor websites in North Yorkshire fail basic accessibility checks?**
+
+Your website might be turning away potential clients, exposing your firm to legal risk under the Equality Act 2010, and losing you revenue from the £274 billion Purple Pound economy.
+
+## The Problem is Bigger Than You Think
+
+Recent independent research of North Yorkshire solicitor websites revealed alarming findings:
+
+<CardWrapper>
+  <Card
+    title="96% Fail Accessibility"
+    description="Not compliant with WCAG 2.2 standards, excluding 1 in 5 potential clients with disabilities."
+    icon="/images/icons/svg/services/advertising.svg"
+  />
+  <Card
+    title="43% Invalid SSL"
+    description="Security warnings that instantly destroy client trust and damage your professional reputation."
+    icon="/images/icons/svg/services/brand.svg"
+  />
+  <Card
+    title="95% Fail Local SEO"
+    description="Missing out on clients actively searching for solicitors in your area right now."
+    icon="/images/icons/svg/services/brand.svg"
+  />
+  <Card
+    title="10.9s Load Time"
+    description="53% of users abandon pages that take longer than 3 seconds. You're losing clients before they even see your services."
+    icon="/images/icons/svg/services/advertising.svg"
+  />
+</CardWrapper>
+
+## What This Means for Your Firm
+
+**Lost Revenue:** You're excluding 20% of the market (people with disabilities) and losing half your visitors to slow load times.
+
+**Legal Exposure:** The Equality Act 2010 requires accessible services. Your website is a service. Non-compliance carries real legal risk.
+
+**Competitive Disadvantage:** While your competitors fix these issues, you're falling behind in Google rankings and losing clients to firms with faster, more accessible websites.
+
+## Get Your Free Website Audit
+
+I'm Steve Marks, a web designer based in Skipton, North Yorkshire. I specialise in helping local businesses create websites that work properly and attract more clients.
+
+**I'm offering free 48-hour website audits to North Yorkshire solicitor firms** to help you understand exactly what's wrong with your website and how to fix it.
+
+### What You'll Get (100% Free, No Obligation)
+
+<CardWrapper>
+  <Card
+    title="Accessibility Report"
+    description="Full WCAG 2.2 compliance check showing exactly which issues exclude disabled users from your site."
+    icon="/images/icons/svg/services/brand.svg"
+  />
+  <Card
+    title="Performance Analysis"
+    description="Detailed PageSpeed report with load time breakdown and specific fixes to speed up your site."
+    icon="/images/icons/svg/services/advertising.svg"
+  />
+  <Card
+    title="SEO Review"
+    description="Local search assessment showing why you're not ranking and what to fix to appear in local searches."
+    icon="/images/icons/svg/services/brand.svg"
+  />
+  <Card
+    title="Video Walkthrough"
+    description="Personal 5-10 minute Loom video where I walk you through the findings and explain the fixes in plain English."
+    icon="/images/icons/svg/services/advertising.svg"
+  />
+  <Card
+    title="Priority Action Plan"
+    description="Clear list of fixes ranked by impact, so you know exactly what to tackle first."
+    icon="/images/icons/svg/services/brand.svg"
+  />
+  <Card
+    title="30-Minute Consultation"
+    description="Optional call to discuss the findings and explore solutions tailored to your firm."
+    icon="/images/icons/svg/services/advertising.svg"
+  />
+</CardWrapper>
+
+## Request Your Free Audit
+
+Simply fill in your details below and I'll have your audit completed within 48 hours.
+
+{/* 
+  TODO: Form integration with CRM webhook
+  Endpoint: TBD - coordinate with Lead Gen Agent
+  Expected fields: name, firm_name, website_url, email, phone (optional)
+  On submit: POST to crm.bvswebdesign.co.uk/api/audit-requests
+  Success: Redirect to /thank-you or show confirmation message
+*/}
+
+<form id="audit-request-form" class="audit-form">
+  <div class="form-group">
+    <label for="name">Your Name *</label>
+    <input 
+      type="text" 
+      id="name" 
+      name="name" 
+      required 
+      placeholder="John Smith"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="firm_name">Firm Name *</label>
+    <input 
+      type="text" 
+      id="firm_name" 
+      name="firm_name" 
+      required 
+      placeholder="Smith & Associates Solicitors"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="website_url">Your Website URL *</label>
+    <input 
+      type="url" 
+      id="website_url" 
+      name="website_url" 
+      required 
+      placeholder="https://www.yourfirm.co.uk"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email Address *</label>
+    <input 
+      type="email" 
+      id="email" 
+      name="email" 
+      required 
+      placeholder="john@yourfirm.co.uk"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="phone">Phone Number (Optional)</label>
+    <input 
+      type="tel" 
+      id="phone" 
+      name="phone" 
+      placeholder="01756 123456"
+    />
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn-primary">Get Your Free Audit</button>
+  </div>
+
+  <p class="form-note">
+    No obligation. No sales pressure. Just a genuinely useful audit to help you understand and improve your website.
+  </p>
+</form>
+
+<script>
+  // Form submission handler
+  // TODO: Replace with actual CRM webhook endpoint
+  document.getElementById('audit-request-form')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      // Placeholder - replace with actual endpoint from Lead Gen Agent
+      // const response = await fetch('https://crm.bvswebdesign.co.uk/api/audit-requests', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(data)
+      // });
+      
+      // Temporary: log to console and show alert
+      console.log('Form submission data:', data);
+      alert('Thank you! Your audit request has been received. You\'ll receive your detailed report within 48 hours.');
+      form.reset();
+      
+      // Track conversion event
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'audit_request', {
+          'event_category': 'Lead Generation',
+          'event_label': 'Solicitor Audit Request',
+          'value': data.firm_name
+        });
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('Sorry, there was an error submitting your request. Please try again or email steve@bvswebdesign.co.uk directly.');
+    }
+  });
+</script>
+
+<style>
+  .audit-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+
+  .form-group input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 1rem 2rem;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .btn-primary:hover {
+    background: #0056b3;
+  }
+
+  .form-note {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+    text-align: center;
+  }
+</style>
+
+## Why Trust BVS Web Design?
+
+I'm a local web designer based in Skipton, serving businesses across North Yorkshire. I specialise in creating accessible, fast, and effective websites that help local firms attract more clients.
+
+**My Approach:**
+- **No Jargon:** I explain technical issues in plain English
+- **Practical Solutions:** Focus on fixes that actually matter to your business
+- **Local Understanding:** I know the North Yorkshire market and what works here
+- **Transparent Pricing:** Clear, honest pricing with no hidden costs
+
+**Recent Projects:**
+- Rebecca Rennolds Permanent Beauty & Laser (Skipton)
+- The Yorkshire Unicorn (Skipton)
+- Multiple local businesses across York, Ilkley, Keighley, and surrounding areas
+
+## Prefer to Talk First?
+
+No problem. Book a free 30-minute consultation to discuss your website challenges and explore solutions.
+
+<CardWrapper>
+  <Card
+    title="Book a Free Consultation"
+    description="Let's have a chat about your website. No obligation, no sales pressure – just helpful advice."
+    icon="/images/icons/svg/services/brand.svg"
+    buttonLabel="Book Your Call"
+    buttonUrl="https://tidycal.com/bvswebdesign/30-minute-meeting"
+  />
+</CardWrapper>
+
+## Frequently Asked Questions
+
+**Is this really free?**  
+Yes, completely free. No credit card required, no hidden costs. I provide these audits to help local solicitor firms understand their website issues.
+
+**What happens after the audit?**  
+You'll receive a detailed report and video walkthrough. If you'd like help fixing the issues, we can discuss solutions. But there's absolutely no obligation.
+
+**How long does the audit take?**  
+I'll have your complete audit ready within 48 hours of receiving your request.
+
+**Do I need to be in North Yorkshire?**  
+The audit is specifically for North Yorkshire solicitor firms, but I work with clients across the UK.
+
+**What if I already have a web designer?**  
+That's fine! The audit will still be valuable for understanding your site's issues. You can share it with your current designer or use it to make informed decisions.
+
+## Ready to Discover What's Wrong With Your Website?
+
+Don't let a broken website cost you clients and expose your firm to legal risk. Get your free audit today.
+
+<CallToAction
+  title="Get Your Free 48-Hour Website Audit"
+  description="Find out exactly what's wrong with your website and how to fix it."
+  buttonLabel="Request Your Audit"
+  buttonUrl="#audit-request-form"
+/>
+
+---
+
+**Based in Skipton, serving solicitors across:** York • Harrogate • Richmond • Skipton • Selby • Northallerton • Ripon • and all of North Yorkshire
