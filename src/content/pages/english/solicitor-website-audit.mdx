@@ -207,17 +207,24 @@ Simply fill in your details below and I'll have your audit completed within 48 h
       const result = await response.json();
 
       if (response.ok && result.success) {
-        // Success - show confirmation message
-        alert(result.message || 'Thank you! Your audit request has been received. You\'ll receive your detailed report within 48 hours.');
-        form.reset();
-        
-        // Track conversion event
+        // Track conversion event before redirect
         if (typeof gtag !== 'undefined') {
           gtag('event', 'audit_request', {
             'event_category': 'Lead Generation',
             'event_label': 'Solicitor Audit Request',
             'value': data.firm_name
           });
+        }
+        
+        // Redirect to thank you page
+        if (result.redirect) {
+          window.location.href = result.redirect;
+        } else {
+          // Fallback if no redirect URL provided
+          alert(result.message || 'Thank you! Your audit request has been received.');
+          form.reset();
+          submitButton.textContent = originalButtonText;
+          submitButton.disabled = false;
         }
       } else {
         // API returned error
@@ -227,17 +234,22 @@ Simply fill in your details below and I'll have your audit completed within 48 h
         alert(`Error: ${errorMsg}${errors ? '
 
 ' + errors : ''}`);
+        
+        // Reset button state
+        submitButton.textContent = originalButtonText;
+        submitButton.disabled = false;
       }
     } catch (error) {
       console.error('Form submission error:', error);
       alert('Sorry, there was an error submitting your request. Please try again or email steve@bvswebdesign.co.uk directly.');
-    } finally {
+      
       // Reset button state
       submitButton.textContent = originalButtonText;
       submitButton.disabled = false;
     }
   });
 </script>
+
 
 
 <style>

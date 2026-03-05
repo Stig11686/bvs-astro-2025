@@ -1,0 +1,110 @@
+---
+title: "Thank You for Your Audit Request"
+metaDescription: "Your free solicitor website audit is on the way. We'll have your comprehensive report ready within 48 hours."
+image: "/images/services/web-audit-banner.jpg"
+draft: false
+---
+
+import CallToAction from "@/components/sections/CallToAction.astro";
+
+<script>
+  // Extract name from URL parameter
+  const urlParams = new URLSearchParams(window.location.search);
+  const firstName = urlParams.get('name') || '';
+  
+  // Update heading with personalization
+  if (firstName) {
+    const heading = document.querySelector('h1');
+    if (heading) {
+      heading.textContent = `Thanks, ${firstName}! Your audit is on the way.`;
+    }
+  }
+</script>
+
+# Thank You! Your Audit is on the Way.
+
+## What Happens Next
+
+Your comprehensive website audit is being prepared. Here's what you can expect:
+
+<CardWrapper>
+  <Card
+    title="📧 Within 48 Hours"
+    description="You'll receive a detailed email with your complete website audit report."
+    icon="/images/icons/svg/services/brand.svg"
+  />
+  <Card
+    title="📊 Full Analysis"
+    description="PageSpeed performance report, WCAG accessibility check, SSL security scan, and local SEO review."
+    icon="/images/icons/svg/services/advertising.svg"
+  />
+  <Card
+    title="🎥 Video Walkthrough"
+    description="Personal 5-10 minute Loom video explaining the findings in plain English."
+    icon="/images/icons/svg/services/brand.svg"
+  />
+  <Card
+    title="📋 Priority Action Plan"
+    description="Clear list of fixes ranked by impact, so you know exactly what to tackle first."
+    icon="/images/icons/svg/services/advertising.svg"
+  />
+</CardWrapper>
+
+## Your Report Will Include:
+
+✅ **Accessibility Compliance Check** - WCAG 2.2 standards assessment  
+✅ **Performance Analysis** - Load time breakdown and optimization recommendations  
+✅ **SEO Review** - Local search visibility and ranking factors  
+✅ **Security Scan** - SSL certificate validation and security headers  
+✅ **Mobile Responsiveness** - How your site performs on phones and tablets  
+✅ **Actionable Recommendations** - Specific fixes prioritized by business impact
+
+## Want to Discuss Your Website Now?
+
+Don't wait for the audit. Book a free 30-minute consultation to discuss your website challenges and explore solutions.
+
+<CallToAction
+  title="Book Your Free 30-Minute Consultation"
+  description="Let's have a chat about your website. No obligation, no sales pressure – just helpful advice."
+  buttonLabel="Book Your Call"
+  buttonUrl="https://tidycal.com/bvswebdesign/30-minute-meeting"
+/>
+
+---
+
+## Why BVS Web Design?
+
+**I'm Steve Marks, a web designer based in Skipton, North Yorkshire.** I specialise in helping local businesses create websites that work properly and attract more clients.
+
+### My Approach
+
+- **No Jargon** - I explain technical issues in plain English
+- **Practical Solutions** - Focus on fixes that actually matter to your business  
+- **Local Understanding** - I know the North Yorkshire market and what works here
+- **Transparent Pricing** - Clear, honest pricing with no hidden costs
+
+### Recent Projects
+
+- Rebecca Rennolds Permanent Beauty & Laser (Skipton)
+- The Yorkshire Unicorn (Skipton)
+- Multiple local businesses across York, Ilkley, Keighley, and surrounding areas
+
+---
+
+## Questions?
+
+If you have any questions or need to discuss something urgently, feel free to email me directly at **steve@bvswebdesign.co.uk** or call **[your phone number]**.
+
+**I'm looking forward to helping you improve your website and attract more clients.**
+
+---
+
+<div style="text-align: center; margin: 3rem 0; padding: 2rem; background: #f9f9f9; border-radius: 8px;">
+  <h3 style="margin-bottom: 1rem;">📬 Check Your Inbox</h3>
+  <p style="font-size: 1.1rem; color: #666;">
+    Your audit report will arrive within <strong>48 hours</strong>.<br/>
+    In the meantime, feel free to explore our <a href="/services/">services</a> or read our <a href="/blog/">latest articles</a>.
+  </p>
+</div>
+
+**Based in Skipton, serving solicitors across:** York • Harrogate • Richmond • Skipton • Selby • Northallerton • Ripon • and all of North Yorkshire
