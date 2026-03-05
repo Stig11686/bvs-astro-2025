@@ -1,0 +1,341 @@
+---
+/**
+ * Solicitor Audit Form Component
+ * 
+ * Client-side form that submits audit requests to the CRM API.
+ * Handles validation, loading states, error messages, and success redirects.
+ * 
+ * Usage:
+ *   import SolicitorAuditForm from "@/components/forms/SolicitorAuditForm.astro";
+ *   <SolicitorAuditForm />
+ */
+---
+
+<form id="solicitor-audit-form" class="solicitor-audit-form">
+  <div class="form-group">
+    <label for="name">Your Name <span class="required">*</span></label>
+    <input 
+      type="text" 
+      id="name" 
+      name="name" 
+      required 
+      placeholder="John Smith"
+      class="form-input"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="firm_name">Firm Name <span class="required">*</span></label>
+    <input 
+      type="text" 
+      id="firm_name" 
+      name="firm_name" 
+      required 
+      placeholder="Smith & Associates Solicitors"
+      class="form-input"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="website_url">Your Website URL <span class="required">*</span></label>
+    <input 
+      type="url" 
+      id="website_url" 
+      name="website_url" 
+      required 
+      placeholder="https://www.yourfirm.co.uk"
+      class="form-input"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email Address <span class="required">*</span></label>
+    <input 
+      type="email" 
+      id="email" 
+      name="email" 
+      required 
+      placeholder="john@yourfirm.co.uk"
+      class="form-input"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="phone">Phone Number <span class="optional">(Optional)</span></label>
+    <input 
+      type="tel" 
+      id="phone" 
+      name="phone" 
+      placeholder="01756 123456"
+      class="form-input"
+    />
+  </div>
+
+  <div class="form-message" id="form-message" role="alert" aria-live="polite"></div>
+
+  <div class="form-actions">
+    <button type="submit" class="btn btn-primary" id="submit-btn">
+      <span class="btn-text">Get Your Free Audit</span>
+      <span class="btn-spinner" style="display: none;">
+        <svg class="spinner" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <circle class="spinner-circle" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none" />
+        </svg>
+        Submitting...
+      </span>
+    </button>
+  </div>
+
+  <p class="form-note">
+    No obligation. No sales pressure. Just a genuinely useful audit to help you understand and improve your website.
+  </p>
+</form>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('solicitor-audit-form') as HTMLFormElement;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const btnText = submitBtn.querySelector('.btn-text') as HTMLSpanElement;
+    const btnSpinner = submitBtn.querySelector('.btn-spinner') as HTMLSpanElement;
+    const messageEl = document.getElementById('form-message') as HTMLDivElement;
+
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Clear previous messages
+      messageEl.textContent = '';
+      messageEl.className = 'form-message';
+
+      // Get form data
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get('name') as string,
+        firm_name: formData.get('firm_name') as string,
+        website_url: formData.get('website_url') as string,
+        email: formData.get('email') as string,
+        phone: formData.get('phone') as string || null,
+      };
+
+      // Basic client-side validation
+      if (!data.name || !data.firm_name || !data.website_url || !data.email) {
+        showMessage('Please fill in all required fields.', 'error');
+        return;
+      }
+
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(data.email)) {
+        showMessage('Please enter a valid email address.', 'error');
+        return;
+      }
+
+      // URL validation
+      try {
+        new URL(data.website_url);
+      } catch {
+        showMessage('Please enter a valid website URL (e.g., https://www.yoursite.co.uk).', 'error');
+        return;
+      }
+
+      // Set loading state
+      setLoading(true);
+
+      try {
+        const response = await fetch('https://crm.bvswebdesign.co.uk/api/audit-requests', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          // Extract first name for personalization
+          const firstName = data.name.split(' ')[0];
+          
+          // Redirect to thank you page with name parameter
+          const redirectUrl = result.redirect || `/solicitor-audit-thank-you/?name=${encodeURIComponent(firstName)}`;
+          window.location.href = redirectUrl;
+        } else {
+          // Show error message from API or generic error
+          const errorMessage = result.message || 'Something went wrong. Please try again or contact us directly.';
+          showMessage(errorMessage, 'error');
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error('Form submission error:', error);
+        showMessage('Unable to submit your request. Please check your connection and try again, or email us directly at steve@bvswebdesign.co.uk.', 'error');
+        setLoading(false);
+      }
+    });
+
+    function setLoading(loading: boolean) {
+      submitBtn.disabled = loading;
+      if (loading) {
+        btnText.style.display = 'none';
+        btnSpinner.style.display = 'inline-flex';
+      } else {
+        btnText.style.display = 'inline';
+        btnSpinner.style.display = 'none';
+      }
+    }
+
+    function showMessage(message: string, type: 'success' | 'error') {
+      messageEl.textContent = message;
+      messageEl.className = `form-message form-message-${type}`;
+      messageEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  });
+</script>
+
+<style>
+  .solicitor-audit-form {
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 2.5rem;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95rem;
+  }
+
+  .required {
+    color: #dc2626;
+  }
+
+  .optional {
+    font-weight: 400;
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background: #ffffff;
+    color: #333 !important;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--color-primary, #2563eb);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
+
+  .form-input::placeholder {
+    color: #9ca3af;
+  }
+
+  .form-message {
+    margin: 1rem 0;
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    display: none;
+  }
+
+  .form-message:not(:empty) {
+    display: block;
+  }
+
+  .form-message-success {
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #6ee7b7;
+  }
+
+  .form-message-error {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+  }
+
+  .form-actions {
+    margin: 2rem 0 1rem;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+    position: relative;
+    min-height: 56px;
+  }
+
+  .btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .btn-spinner {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .spinner {
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+  }
+
+  .spinner-circle {
+    stroke-dasharray: 50;
+    stroke-dashoffset: 25;
+    animation: spinner-dash 1.5s ease-in-out infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spinner-dash {
+    0% {
+      stroke-dasharray: 1, 150;
+      stroke-dashoffset: 0;
+    }
+    50% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -35;
+    }
+    100% {
+      stroke-dasharray: 90, 150;
+      stroke-dashoffset: -124;
+    }
+  }
+
+  .form-note {
+    text-align: center;
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    font-style: italic;
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .solicitor-audit-form {
+      padding: 1.5rem;
+      margin: 2rem 1rem;
+    }
+  }
+</style>

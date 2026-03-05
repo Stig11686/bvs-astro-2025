@@ -1,0 +1,44 @@
+---
+/**
+ * Personalized Heading Component
+ * 
+ * Extracts the 'name' parameter from the URL query string and displays a personalized heading.
+ * Falls back to generic heading if no name is provided.
+ * 
+ * Usage:
+ *   import PersonalizedHeading from "@/components/PersonalizedHeading.astro";
+ *   <PersonalizedHeading fallback="Thank You" />
+ */
+
+interface Props {
+  fallback?: string;
+}
+
+const { fallback = "Thank You" } = Astro.props;
+---
+
+<h1 id="personalized-heading" class="personalized-heading">{fallback}</h1>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const heading = document.getElementById('personalized-heading');
+    if (!heading) return;
+
+    // Extract name from URL query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name');
+
+    if (name) {
+      // Capitalize first letter if needed
+      const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
+      heading.textContent = `Thank You, ${capitalizedName}!`;
+    }
+  });
+</script>
+
+<style>
+  .personalized-heading {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+</style>
