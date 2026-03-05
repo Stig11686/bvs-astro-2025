@@ -1,25 +1,12 @@
 ---
 title: "Thank You for Your Audit Request"
 metaDescription: "Your free solicitor website audit is on the way. We'll have your comprehensive report ready within 48 hours."
-image: "/images/services/web-audit-banner.jpg"
+image: ""
 draft: false
 ---
 
 import CallToAction from "@/components/sections/CallToAction.astro";
 
-<script>
-  // Extract name from URL parameter
-  const urlParams = new URLSearchParams(window.location.search);
-  const firstName = urlParams.get('name') || '';
-  
-  // Update heading with personalization
-  if (firstName) {
-    const heading = document.querySelector('h1');
-    if (heading) {
-      heading.textContent = `Thanks, ${firstName}! Your audit is on the way.`;
-    }
-  }
-</script>
 
 # Thank You! Your Audit is on the Way.
 
