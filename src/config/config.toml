@@ -69,9 +69,9 @@
 
   # docs - https://formspree.io/ | https://formsubmit.co/ | https://docs.netlify.com/forms/setup/
   # Form action URL for the contact form (For more settings related to form see "src/content/sections/contact-section.md")
-  contactFormAction = "https://formsubmit.co/74a69feaf4b8979bf5f8bbe463d7070d "
+  contactFormAction = "https://crm.bvswebdesign.co.uk/api/integrations/website-enquiry"
   # formspree | formsubmit.co | netlify (default is formsubmit.co)
-  contactFormProvider = "formsubmit.co"
+  contactFormProvider = "custom"
 
   footerDescription = "" # Check src/i18n/en.json and src/i18n/fr.json for changing the footer description in different languages or directly add value here if you are not using internationalization feature
 

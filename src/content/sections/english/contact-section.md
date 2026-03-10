@@ -1,184 +1,177 @@
 ---
-enable: true # Control the visibility of this section across all pages where it is used
+enable: true
 title: "Have A Project on Your Mind?"
 description: "Great! We're excited to hear from you and let's start something"
 
 image: "/images/about-us/about-one.jpg"
-# imagePosition: "left" # Choose between "left" or "right"
 
 map:
   enable: false
-  position: "right" # Choose between "left" or "right"
+  position: "right"
   title: "Map of New Work City"
-  url: https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Street,%20Dublin,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed # Embed map iframe URL generated from https://www.maps.ie/create-google-map/
+  url: https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Street,%20Dublin,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed
 
-# contactInformation:
-#   - title: "Headquarters"
-#     icon: "/images/icons/svg/location-filled.svg"
-#     description: "27 Division St, New York, NY 10002, USA"
-#     button:
-#       # Refer to the `sharedButton` schema in `src/sections.schema.ts` for all available configuration options (e.g., enable, label, url, hoverEffect, variant, icon, tag, rel, class, target, etc.)
-#       enable: true
-#       label: "Get Direction"
-#       url: "/"
-#       # hoverEffect: "" # Optional: text-flip | creative-fill | magnetic | magnetic-text-flip
-#       # variant: "" # Optional: fill | outline | text | circle
-#       # rel: "" # Optional
-#       # target: "" # Optional
-#
-#   - title: "Email Address"
-#     icon: "/images/icons/svg/message-filled.svg"
-#     description: |
-#       folex.agency@mail.com
-#       folex.agency@support.com
-#     button:
-#       # Refer to the `sharedButton` schema in `src/sections.schema.ts` for all available configuration options (e.g., enable, label, url, hoverEffect, variant, icon, tag, rel, class, target, etc.)
-#       enable: true
-#       label: "Send Message"
-#       url: "mailto:folex.agency@mail.com"
-#       # hoverEffect: "" # Optional: text-flip | creative-fill | magnetic | magnetic-text-flip
-#       # variant: "" # Optional: fill | outline | text | circle
-#       # rel: "" # Optional
-#       # target: "" # Optional
-#
-#   - title: "Phone Number"
-#     icon: "/images/icons/svg/phone-filled.svg"
-#     description: |
-#       +1 800 123 654 987
-#       +1 800 223 984 002
-#     button:
-#       # Refer to the `sharedButton` schema in `src/sections.schema.ts` for all available configuration options (e.g., enable, label, url, hoverEffect, variant, icon, tag, rel, class, target, etc.)
-#       enable: true
-#       label: "Call Anytime"
-#       url: "tel:+1800123654987"
-#       # hoverEffect: "" # Optional: text-flip | creative-fill | magnetic | magnetic-text-flip
-#       # variant: "" # Optional: fill | outline | text | circle
-#       # rel: "" # Optional
-#       # target: "" # Optional
-
-# Check config.toml file for form action related settings
-# this is also used in the footer of the personal portfolio homepage
 form:
-  emailSubject: "New form submission from BVS website" # Customized email subject (applicable when anyone submit form, form submission may receive by email depend on provider)
+  emailSubject: "New enquiry from BVS website"
   submitButton:
-    # Refer to the `sharedButton` schema in `src/sections.schema.ts` for all available configuration options (e.g., enable, label, url, hoverEffect, variant, icon, tag, rel, class, target, etc.)
     enable: true
     label: "SEND MESSAGE"
-    # hoverEffect: "" # Optional: text-flip | creative-fill | magnetic | magnetic-text-flip
-    # variant: "" # Optional: fill | outline | text | circle
-    # rel: "" # Optional
-    # target: "" # Optional
 
-  # This note will show at the end of form
-  # note: |
-  #   Your data is safe with us. We respect your privacy and never share your information. <br /> Read our [Privacy Policy](/privacy-policy/).
   inputs:
     - label: ""
-      placeholder: "Full Name *"
-      name: "Full Name" # This is crucial. Its indicate under which name you want to receive this field data
+      placeholder: "First Name *"
+      name: "first_name"
       required: true
       halfWidth: true
       defaultValue: ""
+      
+    - label: ""
+      placeholder: "Last Name *"
+      name: "last_name"
+      required: true
+      halfWidth: true
+      defaultValue: ""
+      
     - label: ""
       placeholder: "Email Address *"
-      name: "Email Address" # This is crucial. Its indicate under which name you want to receive this field data
+      name: "email"
       required: true
       type: "email"
       halfWidth: true
       defaultValue: ""
+      
     - label: ""
-      placeholder: "Subject *"
-      name: "Subject" # This is crucial. Its indicate under which name you want to receive this field data
+      placeholder: "Phone Number"
+      name: "phone"
+      required: false
+      type: "tel"
+      halfWidth: true
+      defaultValue: ""
+      
+    - label: ""
+      placeholder: "Company Name"
+      name: "company"
+      required: false
+      halfWidth: true
+      defaultValue: ""
+      
+    - label: ""
+      placeholder: "Company Website"
+      name: "website"
+      required: false
+      type: "url"
+      halfWidth: true
+      defaultValue: ""
+      
+    - label: ""
+      placeholder: "Project Type"
+      name: "project_type"
       required: false
       halfWidth: true
       dropdown:
-        type: "" # select | search - default is select
-        search: # if type is search then it will work
-          placeholder: ""
+        type: "select"
         items:
-          - label: "General Enquiry"
-            value: "General Enquiry"
+          - label: "New Website"
+            value: "New Website"
             selected: false
-          - label: "Partnership Opportunity"
-            value: "Partnership Opportunity"
+          - label: "Website Redesign"
+            value: "Website Redesign"
             selected: false
-          - label: "Investment Opportunity"
-            value: "Investment Opportunity"
+          - label: "Website Maintenance"
+            value: "Website Maintenance"
             selected: false
+          - label: "SEO Services"
+            value: "SEO Services"
+            selected: false
+          - label: "E-commerce Website"
+            value: "E-commerce Website"
+            selected: false
+          - label: "Other"
+            value: "Other"
+            selected: false
+            
     - label: ""
       placeholder: "Budget *"
-      name: "Budget" # This is crucial. Its indicate under which name you want to receive this field data
+      name: "budget_range"
+      required: true
+      halfWidth: true
+      dropdown:
+        type: "select"
+        items:
+          - label: "Under £500"
+            value: "under_500"
+            selected: false
+          - label: "£500 - £1,000"
+            value: "500_to_1000"
+            selected: false
+          - label: "£1,000 - £2,500"
+            value: "1000_to_2500"
+            selected: false
+          - label: "£2,500 - £5,000"
+            value: "2500_to_5000"
+            selected: false
+          - label: "£5,000+"
+            value: "5000_plus"
+            selected: false
+          - label: "Not sure yet"
+            value: "unknown"
+            selected: true
+            
+    - label: ""
+      placeholder: "Timeline"
+      name: "timeline"
       required: false
       halfWidth: true
       dropdown:
-        type: "select" # select | search - default is select
+        type: "select"
         items:
-          - label: "£500-£1000"
-            value: "5000-1000"
+          - label: "ASAP"
+            value: "ASAP"
             selected: false
-          - label: "£1000 - £2000"
-            value: "1000-2000"
+          - label: "1-3 months"
+            value: "1-3 months"
             selected: false
-          - label: "£2000 - £5000"
-            value: "2000-5000"
+          - label: "3-6 months"
+            value: "3-6 months"
             selected: false
-          - label: "£5000+"
-            value: "5000+"
+          - label: "6+ months"
+            value: "6+ months"
             selected: false
+          - label: "Just exploring"
+            value: "Just exploring"
+            selected: true
+            
+    - label: ""
+      placeholder: "Referred by (optional)"
+      name: "referrer_name"
+      required: false
+      halfWidth: true
+      defaultValue: ""
+      
     - label: ""
       tag: "textarea"
       defaultValue: ""
-      rows: "2" # Only work if tag is textarea
-      placeholder: "How can we help you *"
-      name: "Message" # This is crucial. Its indicate under which name you want to receive this field data
+      rows: "3"
+      placeholder: "Tell us about your project *"
+      name: "message"
       required: true
       halfWidth: false
-    - label: "Google Search" # only valid for type="checkbox" & type === "radio"
-      checked: false # only valid for type="checkbox" & type === "radio"
-      name: "User Source" # This is crucial. Its indicate under which name you want to receive this field data
-      required: true
-      groupLabel: "How did you hear about us?" # Radio Inputs Label
-      group: "source" # when you add group then it will omit space between the same group radio input
-      type: "radio"
-      halfWidth: true
-      defaultValue: ""
-    - label: "Social Media" # only valid for type="checkbox" & type === "radio"
-      name: "User Source" # This is crucial. Its indicate under which name you want to receive this field data
-      required: true
-      groupLabel: "" # Radio Inputs Label
-      group: "source" # when you add group then it will omit space between the same group radio input
-      type: "radio"
-      halfWidth: true
-      defaultValue: ""
-    # - label: "Referral" # only valid for type="checkbox" & type === "radio"
-    #   name: "User Source" # This is crucial. Its indicate under which name you want to receive this field data
-    #   required: true
-    #   groupLabel: "" # Radio Inputs Label
-    #   group: "source" # when you add group then it will omit space between the same group radio input
-    #   type: "radio"
-    #   halfWidth: true
-    #   defaultValue: ""
-    # - label: "Other" # only valid for type="checkbox" & type === "radio"
-    #   name: "User Source" # This is crucial. Its indicate under which name you want to receive this field data
-    #   required: true
-    #   groupLabel: "" # Radio Inputs Label
-    #   group: "source" # when you add group then it will omit space between the same group radio input
-    #   type: "radio"
-    #   halfWidth: true
-    #   defaultValue: ""
-    - label: "I agree to the terms and conditions and [privacy policy](/contact/)." # only valid for type="checkbox" & type === "radio"
+      
+    - label: "I agree to the terms and conditions and [privacy policy](/contact/)."
       id: "privacy-policy"
-      name: "Agreed Privacy" # This is crucial. Its indicate under which name you want to receive this field data
-      value: "Agreed" # Value that will be submit (applicable for type="checkbox" & type === "radio")
-      checked: false # only valid for type="checkbox" & type === "radio"
+      name: "privacy_agreed"
+      value: "Agreed"
+      checked: false
       required: true
       type: "checkbox"
       halfWidth: false
       defaultValue: ""
-    - note: success # info | warning | success | deprecated | hint
+      
+    - note: success
       parentClass: "hidden text-sm message success"
-      content: We have received your message! We'll get back to you as soon as possible.
-    - note: deprecated # info | warning | success | deprecated | hint
+      content: Thank you for your enquiry! We'll get back to you within 24 hours.
+      
+    - note: deprecated
       parentClass: "hidden text-sm message error"
-      content: Something went wrong! please use this mail - [folex-astro-theme@gmail.com](mailto:folex-astro-theme@gmail.com) to submit a ticket!
+      content: Something went wrong! Please email us directly at [info@bvswebdesign.co.uk](mailto:info@bvswebdesign.co.uk)
 ---

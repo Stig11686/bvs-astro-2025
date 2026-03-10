@@ -280,3 +280,43 @@ export const netlifySubmit = async (form: HTMLFormElement, action: string) => {
     throw error;
   }
 };
+
+/**
+ * Submits form data to custom CRM API
+ *
+ * @param form - The form element.
+ * @param action - The API endpoint URL.
+ */
+export const customApiSubmit = async (form: HTMLFormElement, action: string) => {
+  const formData = new FormData(form);
+  const data: Record<string, any> = {};
+  
+  // Convert FormData to JSON object
+  formData.forEach((value, key) => {
+    data[key] = value;
+  });
+  
+  try {
+    const response = await fetch(action, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    
+    const result = await response.json();
+    
+    if (response.ok && result.success) {
+      setMessage("default", true, false, form);
+      formReset(form);
+    } else {
+      const errorMessage = result.message || "Something went wrong!";
+      setMessage(errorMessage, false, false, form);
+    }
+  } catch (error) {
+    setMessage("Failed to submit form. Please try again or email us directly.", false, false, form);
+    console.error("Form submission error:", error);
+  }
+};

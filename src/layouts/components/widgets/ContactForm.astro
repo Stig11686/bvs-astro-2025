@@ -281,7 +281,7 @@ const noteStyles = {
     formspreeSubmit,
     netlifySubmit,
     formSubmit,
-    isFormFilled,
+    customApiSubmit,    isFormFilled,
     setMessage,
     validateSelectTag,
   } from "@/lib/utils/FormHandle";
@@ -363,13 +363,16 @@ const noteStyles = {
                 form,
               );
               break;
+            case "custom":
+              await customApiSubmit(form, action);
+              break;
             default:
               throw new Error("Unknown form provider.");
           }
         } catch (error) {
           setMessage(
             error +
-              "! Please use this mail - [folex-astro-theme@gmail.com](mailto:folex-astro-theme@gmail.com) to submit a ticket!",
+              "! Please use this mail - [info@bvswebdesign.co.uk](mailto:info@bvswebdesign.co.uk) to submit a ticket!",
             false,
             false,
             form,
