@@ -3,7 +3,7 @@
   title             = "WordPress Web Designer in Skipton & Keighley | BVS Web Design" # Shared title for SEO and OpenGraph
   description       = "WordPress web design in Skipton & Keighley. Fast, affordable websites for small businesses. Free website audit. Serving Yorkshire and the UK." # Shared description for SEO and OpenGraph
   tagline           = "Website Design and Development for growing businesses"
-  taglineSeparator = " - " # default is " - " 
+  taglineSeparator = " - " # default is " - "
   baseUrl          = "https://www.bvswebdesign.co.uk" # Base URL for the site and used in OpenGraph meta tags.
   logo              = "/images/bvs-logo.png" # Path to the site's logo
   logoAlternate    = "" # Path to the site's logo
@@ -83,12 +83,12 @@
 
   # Mailchimp Subscription Form located in footer
   [settings.subscription]
-    enable      = true # Enables or disable the subscription form
+    enable      = false # Enables or disable the subscription form
     title       = "" # Check src/i18n/en.json and src/i18n/fr.json for changing the title in different languages or directly add value here if you are not using internationalization feature
     note       = "" # Check src/i18n/en.json and src/i18n/fr.json for changing the note in different languages or directly add value here if you are not using internationalization feature
     formAction = "https://bvswebdesign.us14.list-manage.com/subscribe/post?u=5b7b7e7aff1160aa664dc2bc7&amp;id=3c09550cc7&amp;f_id=00119fe0f0"
     mailchimpTagValue = ""
-    
+
 
   # Multilingual settings (check src/config/language.json for changing the languages)
   # NOTE: Manually restart your server when you change the following multilingual table values
@@ -112,13 +112,13 @@
     enable = true
     logo = ""
     description = "" # Check src/i18n/en.json and src/i18n/fr.json for changing the description in different languages or directly add value here if you are not using internationalization feature. This is also used in footer of personal-portfolio homepage
-    
+
     # Call To Action Button
     [settings.headerOffcanvas.button]
       enable = true
       label = "" # Check src/i18n/en.json and src/i18n/fr.json for changing the button label in different languages or directly add value here if you are not using internationalization feature
       url = "https://tidycal.com/bvswebdesign/30-minute-meeting"
-            
+
   # Navigation Button In Header
   [settings.navigationButton]
     enable = true
