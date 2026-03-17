@@ -3,7 +3,7 @@ enable: true
 title: "Have A Project on Your Mind?"
 description: "Great! We're excited to hear from you and let's start something"
 
-image: "/images/about-us/about-one.jpg"
+image: "/images/computer-website.jpg"
 
 map:
   enable: false
@@ -24,14 +24,14 @@ form:
       required: true
       halfWidth: true
       defaultValue: ""
-      
+
     - label: ""
       placeholder: "Last Name *"
       name: "last_name"
       required: true
       halfWidth: true
       defaultValue: ""
-      
+
     - label: ""
       placeholder: "Email Address *"
       name: "email"
@@ -39,7 +39,7 @@ form:
       type: "email"
       halfWidth: true
       defaultValue: ""
-      
+
     - label: ""
       placeholder: "Phone Number"
       name: "phone"
@@ -47,14 +47,14 @@ form:
       type: "tel"
       halfWidth: true
       defaultValue: ""
-      
+
     - label: ""
       placeholder: "Company Name"
       name: "company"
       required: false
       halfWidth: true
       defaultValue: ""
-      
+
     - label: ""
       placeholder: "Company Website"
       name: "website"
@@ -62,7 +62,7 @@ form:
       type: "url"
       halfWidth: true
       defaultValue: ""
-      
+
     - label: ""
       placeholder: "Project Type"
       name: "project_type"
@@ -89,7 +89,7 @@ form:
           - label: "Other"
             value: "Other"
             selected: false
-            
+
     - label: ""
       placeholder: "Budget *"
       name: "budget_range"
@@ -116,7 +116,7 @@ form:
           - label: "Not sure yet"
             value: "unknown"
             selected: true
-            
+
     - label: ""
       placeholder: "Timeline"
       name: "timeline"
@@ -140,14 +140,14 @@ form:
           - label: "Just exploring"
             value: "Just exploring"
             selected: true
-            
+
     - label: ""
       placeholder: "Referred by (optional)"
       name: "referrer_name"
       required: false
       halfWidth: true
       defaultValue: ""
-      
+
     - label: ""
       tag: "textarea"
       defaultValue: ""
@@ -156,7 +156,7 @@ form:
       name: "message"
       required: true
       halfWidth: false
-      
+
     - label: "I agree to the terms and conditions and [privacy policy](/contact/)."
       id: "privacy-policy"
       name: "privacy_agreed"
@@ -166,11 +166,11 @@ form:
       type: "checkbox"
       halfWidth: false
       defaultValue: ""
-      
+
     - note: success
       parentClass: "hidden text-sm message success"
       content: Thank you for your enquiry! We'll get back to you within 24 hours.
-      
+
     - note: deprecated
       parentClass: "hidden text-sm message error"
       content: Something went wrong! Please email us directly at [info@bvswebdesign.co.uk](mailto:info@bvswebdesign.co.uk)
