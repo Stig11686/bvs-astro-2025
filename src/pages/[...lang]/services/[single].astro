@@ -8,6 +8,7 @@ import ServicesSingle from "@/components/ServicesSingle.astro";
 import Features from "@/components/sections/Features.astro";
 import Breadcrumbs from "@/components/widgets/Breadcrumbs.astro";
 import extractSlug from "@/lib/utils/extractSlug";
+import ContactSection from "@/components/sections/ContactSection.astro";
 
 export async function getStaticPaths() {
   const paths = await Promise.all(
@@ -77,5 +78,5 @@ const serviceSchema = {
 <Base {...service.data} fitToScreen={false}>
   <Breadcrumbs />
   <ServicesSingle content={service} />
-  <!-- <Features /> -->
+  <ContactSection />
 </Base>

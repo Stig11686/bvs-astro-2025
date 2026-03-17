@@ -90,6 +90,7 @@ export type Section = {
   button?: Button;
   image?: string;
   limit?: false | number;
+  showInMenu: boolean;
 };
 
 export type SocialLink = {

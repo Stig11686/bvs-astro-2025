@@ -28,6 +28,7 @@ export const page = z.object({
   canonical: z.string().optional(),
   keywords: z.array(z.string()).optional(),
   disableTagline: z.boolean().optional(),
+  showInMenu: z.boolean().optional(), // Controls whether item appears in navigation menus
   ...sectionsSchema,
 });
 

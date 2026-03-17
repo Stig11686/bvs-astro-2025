@@ -6,9 +6,7 @@ image: "/images/steve-1.jpg"
 imagePosition: "left" # Choose between "left" or "right"
 
 description: |
-  If you ask our clients what it’s like working with BVSWebDesign, they’ll talk about how much I care about their success. For me, real relationships fuel real success. I love building businesses. <br /><br />
-
-  I am a creative agency working with brands building insightful strategy, creating unique designs and crafting value
+  Clients who work with me know I care about the outcome, not just the design. I take the time to understand your business and focus on what will actually help your website perform. <br><br>The result is a clear, effective website that supports your growth.
 
 button:
   # Refer to the `sharedButton` schema in `src/sections.schema.ts` for all available configuration options (e.g., enable, label, url, hoverEffect, variant, icon, tag, rel, class, target, etc.)

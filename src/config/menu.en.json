@@ -94,18 +94,8 @@
     },
     {
       "enable": true,
-      "name": "Construction Websites",
-      "url": "/services/construction-website-design/"
-    },
-    {
-      "enable": true,
       "name": "Bridal Websites",
       "url": "/services/bridal-web-design/"
-    },
-    {
-      "enable": true,
-      "name": "Restaurant Websites",
-      "url": "/services/restaurant-website-design/"
     },
     {
       "enable": true,

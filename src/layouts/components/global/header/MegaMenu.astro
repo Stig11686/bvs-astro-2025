@@ -20,11 +20,8 @@ let allServices = await getCollectionCTM(
 );
 
 // Filter to only show services marked for menu display
-let services = allServices.filter((service: any) => !service.data.showInMenu);
+let services = allServices.filter((service: any) => service.data.showInMenu === true);
 
-services.map((service: any) => {
-  console.log(service.data);
-});
 
 const has_enable_menu = menu.menus?.filter((menu) => menu.enable) || [];
 
