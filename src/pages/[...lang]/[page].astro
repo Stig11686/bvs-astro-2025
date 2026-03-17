@@ -4,7 +4,7 @@ import { getCollectionCTM } from "@/lib/contentParser.astro";
 import { supportedLanguages } from "@/lib/utils/languageParser.ts";
 import parseTomlToJson from "@/lib/utils/parseTomlToJson";
 import SinglePageLayout from "@/components/SinglePageLayout.astro";
-import Features from "@/components/sections/Features.astro";
+import ContactSection from "@/components/sections/ContactSection.astro";
 import extractSlug from "@/lib/utils/extractSlug";
 
 // get static paths for all pages
@@ -41,6 +41,5 @@ const { page } = Astro.props;
 
 <Base {...page.data}>
   <SinglePageLayout content={{ ...page.data, ...page }} />
-  <Features />
-  <!-- <CallToAction sectionSpaceTop={false} /> -->
+  {page.data.showContactForm && <ContactSection />}
 </Base>

@@ -29,6 +29,7 @@ export const page = z.object({
   keywords: z.array(z.string()).optional(),
   disableTagline: z.boolean().optional(),
   showInMenu: z.boolean().optional(), // Controls whether item appears in navigation menus
+  showContactForm: z.boolean().optional(), // Shows contact form section at bottom of page
   ...sectionsSchema,
 });
 
