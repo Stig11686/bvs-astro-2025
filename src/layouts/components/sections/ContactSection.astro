@@ -13,7 +13,10 @@ type ContactSection = Section & z.infer<typeof contactSectionSchema>;
 
 type Props = {
   content?: ContactSection;
+  noPaddingBottom?: boolean;
 };
+
+const { noPaddingBottom = false } = Astro.props;
 
 let defaultContent = (
   await getEntryCTM("sections", "contact-section", Astro.currentLocale)
@@ -52,7 +55,7 @@ if (!enable) return null;
     </section>
   )
 }
-<StackedSplit map={map} image={image} direction={imagePosition}>
+<StackedSplit map={map} image={image} direction={imagePosition} noPaddingBottom={noPaddingBottom}>
   {title && <h2 class="text-h1-sm md:text-h1 text-white" set:html={markdownify(title)} />}
   {description && <p class="text-lg text-white" set:html={markdownify(description)} />}
   {form && <ContactForm class={"mb-0 text-white"} form={form} />}

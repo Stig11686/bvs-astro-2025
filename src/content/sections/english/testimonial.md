@@ -1,57 +1,15 @@
 ---
-enable: true # Control the visibility of this section across all pages where it is used
-title: "Testimonials"
+enable: true
+title: "What Clients Say"
 
-image: "/images/testimonial/main.jpg"
-imagePosition: "right" # Choose between "left" or "right"
+image: "/images/testimonial/rebecca-rennolds.webp"
+imagePosition: "right"
 
 list:
   - enable: true
     content: |
-      Your strategic planning process helped us identify new market opportunities and develop a clear roadmap for growth. We've seen a significant increase in sales and market share within the past year.
+      Steve is fantastic! He created a beautiful website for my skin clinic. The finished result looks extremely professional, slick and stylish. Steve couldn't have been more accommodating and helpful. He went out of his way to make sure my website was just as I wanted!
     customer:
-      name: "James Wilson"
-      role: "CEO"
-  - enable: true
-    content: |
-      We were facing operational inefficiencies that were hindering our productivity. Your team's analysis and recommendations streamlined our processes, leading to cost savings and improved efficiency.
-    customer:
-      name: "David Lee"
-      role: "VP of Operations"
-  - enable: true
-    content: |
-      Your strategic planning helped us streamline operations and unlock new market opportunities. We've seen a remarkable 25% increase in revenue within the last year.
-    customer:
-      name: "Michael Thompson"
-      role: "CEO"
-  - enable: true
-    content: |
-      The data-driven approach of your team was instrumental in optimizing our production processes. We've achieved significant cost savings while maintaining sustainability goals
-    customer:
-      name: "Sarah Jones"
-      role: "Head of Engineering"
-  - enable: true
-    content: |
-      Your strategic planning process helped us identify new market opportunities and develop a clear roadmap for growth. We've seen a significant increase in sales and market share within the past year.
-    customer:
-      name: "James Wilson"
-      role: "CEO"
-  - enable: true
-    content: |
-      We were facing operational inefficiencies that were hindering our productivity. Your team's analysis and recommendations streamlined our processes, leading to cost savings and improved efficiency.
-    customer:
-      name: "David Lee"
-      role: "VP of Operations"
-  - enable: true
-    content: |
-      Your strategic planning helped us streamline operations and unlock new market opportunities. We've seen a remarkable 25% increase in revenue within the last year.
-    customer:
-      name: "Michael Thompson"
-      role: "CEO"
-  - enable: true
-    content: |
-      The data-driven approach of your team was instrumental in optimizing our production processes. We've achieved significant cost savings while maintaining sustainability goals
-    customer:
-      name: "Sarah Jones"
-      role: "Head of Engineering"
+      name: "Rebecca Rennolds"
+      role: "Owner, Rebecca Rennolds Permanent Beauty & Laser"
 ---

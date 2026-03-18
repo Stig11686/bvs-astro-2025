@@ -9,16 +9,17 @@ interface Props {
     title: string;
     url: string;
   };
+  noPaddingBottom?: boolean;
 }
 
-const { image, map, direction = "left" } = Astro.props;
+const { image, map, direction = "left", noPaddingBottom = false } = Astro.props;
 const isRight = direction === "right";
 
 const isMapEnabled = map?.enable && map?.url;
 ---
 
 <section>
-  <div class="bg-accent relative py-16 md:py-20 lg:mt-28 lg:py-28">
+  <div class:list={["bg-accent relative py-16 md:py-20 lg:mt-28 lg:py-28", noPaddingBottom && "pb-0 md:pb-0 lg:pb-0"]}>
     <div class="container">
       <div class="grid grid-cols-1 gap-10 lg:grid-cols-5 lg:gap-36">
         {
