@@ -19,15 +19,8 @@ form:
 
   inputs:
     - label: ""
-      placeholder: "First Name *"
-      name: "first_name"
-      required: true
-      halfWidth: true
-      defaultValue: ""
-
-    - label: ""
-      placeholder: "Last Name *"
-      name: "last_name"
+      placeholder: "Name *"
+      name: "name"
       required: true
       halfWidth: true
       defaultValue: ""
@@ -64,33 +57,6 @@ form:
       defaultValue: ""
 
     - label: ""
-      placeholder: "Project Type"
-      name: "project_type"
-      required: false
-      halfWidth: true
-      dropdown:
-        type: "select"
-        items:
-          - label: "New Website"
-            value: "New Website"
-            selected: false
-          - label: "Website Redesign"
-            value: "Website Redesign"
-            selected: false
-          - label: "Website Maintenance"
-            value: "Website Maintenance"
-            selected: false
-          - label: "SEO Services"
-            value: "SEO Services"
-            selected: false
-          - label: "E-commerce Website"
-            value: "E-commerce Website"
-            selected: false
-          - label: "Other"
-            value: "Other"
-            selected: false
-
-    - label: ""
       placeholder: "Budget *"
       name: "budget_range"
       required: true
@@ -98,12 +64,6 @@ form:
       dropdown:
         type: "select"
         items:
-          - label: "Under £500"
-            value: "under_500"
-            selected: false
-          - label: "£500 - £1,000"
-            value: "500_to_1000"
-            selected: false
           - label: "£1,000 - £2,500"
             value: "1000_to_2500"
             selected: false
@@ -142,17 +102,10 @@ form:
             selected: true
 
     - label: ""
-      placeholder: "Referred by (optional)"
-      name: "referrer_name"
-      required: false
-      halfWidth: true
-      defaultValue: ""
-
-    - label: ""
       tag: "textarea"
       defaultValue: ""
       rows: "3"
-      placeholder: "Tell us about your project *"
+      placeholder: "How can I help? *"
       name: "message"
       required: true
       halfWidth: false
