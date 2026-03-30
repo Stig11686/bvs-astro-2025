@@ -1,0 +1,308 @@
+---
+title: "Blog Traffic Means Nothing If Nobody Enquires. Here's How I Fix That."
+description: "Getting someone to read an article is the easy part. Getting them to enquire requires a deliberate process that most websites simply don't have."
+metaTitle: "How I Turn Blog Traffic Into Actual Enquiries | BVS Web Design"
+metaDescription: "Most business blogs get traffic and nothing else. Here's the exact process I use to turn blog readers into real enquiries — without more content or more traffic."
+image: "/images/blog/web-analytics.jpg"
+keywords:
+  [
+    "blog traffic",
+    "turn blog traffic into leads",
+    "content strategy",
+    "internal linking",
+    "contextual CTA",
+    "SEO for small business",
+    "website conversion",
+    "lead generation",
+  ]
+customSlug: how-to-turn-blog-traffic-into-enquiries
+date: 2026-04-05
+author: "Steve Marks"
+categories:
+  - SEO
+  - Content Strategy
+tags:
+  - "SEO"
+  - "Content"
+  - "Conversion"
+  - "Best Practices"
+draft: true
+---
+
+import ContactForm from "@/components/widgets/ContactForm.astro";
+
+export const form = {
+  emailSubject: "New enquiry from BVS website",
+  submitButton: {
+    enable: true,
+    label: "SEND MESSAGE",
+  },
+  inputs: [
+    {
+      label: "",
+      placeholder: "Name *",
+      name: "name",
+      required: true,
+      halfWidth: true,
+      defaultValue: "",
+    },
+    {
+      label: "",
+      placeholder: "Email Address *",
+      name: "email",
+      required: true,
+      type: "email",
+      halfWidth: true,
+      defaultValue: "",
+    },
+    {
+      label: "",
+      placeholder: "Phone Number",
+      name: "phone",
+      required: false,
+      type: "tel",
+      halfWidth: true,
+      defaultValue: "",
+    },
+    {
+      label: "",
+      placeholder: "Company Name",
+      name: "company",
+      required: false,
+      halfWidth: true,
+      defaultValue: "",
+    },
+    {
+      label: "",
+      placeholder: "Company Website",
+      name: "website",
+      required: false,
+      type: "url",
+      halfWidth: true,
+      defaultValue: "",
+    },
+    {
+      label: "",
+      placeholder: "Budget *",
+      name: "budget_range",
+      required: true,
+      halfWidth: true,
+      dropdown: {
+        type: "select",
+        items: [
+          { label: "£1,000 - £2,500", value: "1000_to_2500", selected: false },
+          { label: "£2,500 - £5,000", value: "2500_to_5000", selected: false },
+          { label: "£5,000+", value: "5000_plus", selected: false },
+          { label: "Not sure yet", value: "unknown", selected: true },
+        ],
+      },
+    },
+    {
+      label: "",
+      placeholder: "Timeline",
+      name: "timeline",
+      required: false,
+      halfWidth: true,
+      dropdown: {
+        type: "select",
+        items: [
+          { label: "ASAP", value: "ASAP", selected: false },
+          { label: "1-3 months", value: "1-3 months", selected: false },
+          { label: "3-6 months", value: "3-6 months", selected: false },
+          { label: "6+ months", value: "6+ months", selected: false },
+          { label: "Just exploring", value: "Just exploring", selected: true },
+        ],
+      },
+    },
+    {
+      label: "",
+      tag: "textarea",
+      defaultValue: "",
+      rows: "3",
+      placeholder: "How can I help? *",
+      name: "message",
+      required: true,
+      halfWidth: false,
+    },
+    {
+      label:
+        "I agree to the terms and conditions and [privacy policy](/contact/).",
+      id: "privacy-policy",
+      name: "privacy_agreed",
+      value: "Agreed",
+      checked: false,
+      required: true,
+      type: "checkbox",
+      halfWidth: false,
+      defaultValue: "",
+    },
+    {
+      note: "success",
+      parentClass: "hidden text-sm message success",
+      content:
+        "Thank you for your enquiry! We'll get back to you within 24 hours.",
+    },
+    {
+      note: "deprecated",
+      parentClass: "hidden text-sm message error",
+      content:
+        "Something went wrong! Please email us directly at [info@bvswebdesign.co.uk](mailto:info@bvswebdesign.co.uk)",
+    },
+  ],
+};
+
+# Blog Traffic Means Nothing If Nobody Enquires. Here's How I Fix That.
+
+Most businesses treat their blog as a box-ticking exercise. Post something, share it on social media, watch the traffic trickle in, and move on.
+
+The traffic arrives. Nothing happens. Repeat.
+
+The problem isn't the writing. It's that the blog was never designed to do anything beyond exist. Getting someone to read an article is the easy part. Getting them to take the next step — to actually get in touch — requires a deliberate process that most websites simply don't have.
+
+Here's how I approach it differently.
+
+---
+
+## Step 1: Write for the Problem, Not the Topic
+
+Most blog posts are written around topics. Mine are written around problems.
+
+There's a meaningful difference.
+
+A topic-led post might be: _"5 Things to Know About SEO."_ Informative, perhaps. But it doesn't attract anyone in particular, and it doesn't speak to anyone's specific situation.
+
+A problem-led post targets someone at a specific moment — someone who has just Googled _"why isn't my website bringing in enquiries"_ or _"how do I get more leads from my website."_ That person isn't browsing. They have a real problem and they're actively looking for someone who understands it.
+
+That's the reader worth writing for. And when the post speaks directly to their situation, something shifts: they don't just read it and leave. They start wondering whether you're the person who can help them.
+
+---
+
+## Step 2: Write About What You Actually Sell
+
+This sounds obvious. It rarely happens in practice.
+
+Most business blogs drift. Posts get written because someone had an idea, or because a competitor wrote something similar, or because "we need to post something this month." The connection between what gets published and what the business actually does becomes loose and accidental.
+
+Every post should have a clear line back to a service you offer.
+
+If you do SEO — write about why websites lose rankings, what good technical foundations look like, and what happens when meta descriptions are ignored. If you do web design — write about conversion, page structure, and why some websites generate enquiries and others don't.
+
+This matters for two reasons. First, you're attracting readers who have a problem you can actually solve — not just general traffic with no commercial relevance. Second, when someone reads the post and wants to go further, the natural next step is one of your service pages. The content and the offer are already aligned.
+
+A blog that isn't mapped to your services is just a publishing exercise. One that is becomes a quiet, consistent source of warm leads.
+
+---
+
+## Step 3: Earn the Click Before They Even Land
+
+Getting someone to your blog post starts in the search results — and that's where most content loses before it even begins.
+
+A generic title gets a generic result. If your post looks identical to the nine others on the same page, there's no reason to choose yours.
+
+I write titles and meta descriptions that are specific, direct, and framed around what the reader is actually trying to solve. Not clever for the sake of it. Just clearly relevant to the person searching.
+
+A realistic example of what this shift looks like in practice:
+
+|        | Title                                                               | CTR     |
+| ------ | ------------------------------------------------------------------- | ------- |
+| Before | "SEO Tips for Small Businesses"                                     | ~0.8%   |
+| After  | "Why Your Website Has Traffic But No Enquiries (And How to Fix It)" | ~2.5–3% |
+
+Same ranking position. Meaningfully more clicks.
+
+---
+
+## Step 4: Structure the Post to Build Trust, Then Create Intent
+
+Once someone is reading, the job shifts. You're no longer trying to earn the click — you're trying to earn credibility.
+
+The structure I use follows a simple logic:
+
+1. **Open with the problem** — make it clear immediately that you understand their situation
+2. **Explain why it happens** — demonstrate that you know the subject deeply
+3. **Show what good looks like** — give them something genuinely useful
+4. **Close with the implication** — make it natural to wonder whether this applies to them
+
+That final step is where most blogs fall flat. They end with nothing. No next thought, no direction, no reason to do anything other than close the tab.
+
+A post that earns trust but gives the reader nowhere to go has done half the job.
+
+Think of it this way: someone lands on your blog unaware of you, reads something that speaks directly to their situation, and finishes the post believing you know what you're talking about. That's a significant shift in their relationship with your business — but only if there's a clear path to take it further.
+
+---
+
+## Step 5: Use CTAs That Match the Moment
+
+Every post I write includes calls to action — but not the same one dropped in at the end as an afterthought.
+
+Contextual CTAs work because they meet the reader where they are in the post. Someone halfway through an article about conversion rates isn't ready to hand over their budget. But they might be ready to learn more about how a service page audit works. Someone at the end of a detailed, trust-building post is in a very different position — and the CTA should reflect that.
+
+In practice this means:
+
+- **Early in the post** — a soft, low-commitment nudge: _"If this sounds familiar, it might be worth reading how we approached it here."_
+- **Mid-post** — a relevant internal link to a service or related article
+- **End of post** — a direct, specific ask: _"If your blog is generating traffic but not enquiries, I offer a free audit that shows you exactly where you're losing people."_
+
+The key word throughout is _specific_. A vague CTA — _"get in touch if you need help with your website"_ — requires the reader to do mental work. A specific one removes that friction entirely.
+
+Illustrative numbers that reflect what this process produces:
+
+|        | Monthly Blog Visitors | Avg. Time on Page | Enquiries from Blog |
+| ------ | --------------------- | ----------------- | ------------------- |
+| Before | 800                   | 0:42              | 1–2                 |
+| After  | 800                   | 2:30              | 8–12                |
+
+The traffic didn't change. The process around it did.
+
+---
+
+## Step 6: Build Internal Links With Purpose
+
+Internal linking is one of the most underused tools on most business websites — and one of the most valuable when done deliberately.
+
+The goal isn't to link for the sake of it. It's to create a logical path from a blog post to the thing you want the reader to do next.
+
+In practice, every post should link to at least one relevant service page — not tucked away at the bottom, but placed naturally at the point in the article where the reader is most likely to want more. If you're writing about why websites don't convert and you offer conversion audits, the link to that service belongs in the section where the reader is most engaged with that problem.
+
+Done consistently, this does two things. It keeps readers on your site longer, moving from content into your services at their own pace. And it signals to Google that your blog and your service pages are topically connected — which strengthens the rankings of both.
+
+A post that earns attention but doesn't direct it anywhere is a missed opportunity. Internal links are how you make sure that attention goes somewhere useful.
+
+---
+
+## Step 7: Use the Content Beyond the Post
+
+A well-written blog post isn't a one-time asset. It's the foundation for everything else.
+
+Each post gets repurposed across:
+
+- **LinkedIn** — broken into 3–5 standalone posts that each make a single, sharp point
+- **Email** — summarised for a nurture sequence that keeps past visitors warm over time
+- **Search** — optimised to attract new readers months and years after it was first published
+
+This matters because most people who read your blog aren't ready to enquire today. They're researching, building a picture of who they might work with. Staying present across multiple channels means that when they are ready, you're the name they think of first.
+
+---
+
+## What This Looks Like in Practice
+
+This isn't a content strategy built on volume. It's built on precision.
+
+One well-structured post, written around a real problem your services solve, with deliberate internal links and contextual CTAs — will consistently outperform ten generic posts that exist purely to fill a content calendar.
+
+The businesses I work with aren't publishing for the sake of it. Every piece of content is doing a specific job: attracting the right reader, building the right impression, and making it easy to take the next step.
+
+---
+
+## Want Your Blog to Actually Work?
+
+If you're producing content but not seeing enquiries come from it, the issue is almost certainly structural — not the quality of your writing.
+
+I work with small businesses to audit what's already there, identify exactly where the process breaks down, and put in place the changes that turn readers into leads.
+
+If that sounds like a conversation worth having, get in touch below — I'll take a look at your current setup and tell you honestly where the gaps are.
+
+<div class="p-6 mt-8 bg-accent rounded-xl md:p-10">
+  <h3 class="mb-6 text-2xl font-semibold text-white">Get In Touch</h3>
+  <ContactForm form={form} />
+</div>

@@ -1,7 +1,7 @@
 ---
 enable: true
 title: "Have A Project on Your Mind?"
-description: "Great! We're excited to hear from you and let's start something"
+description: "Ready to turn your website into your best salesperson? Tell me a bit about your project and I’ll get back to you within one working day."
 
 image: "/images/computer-website.jpg"
 

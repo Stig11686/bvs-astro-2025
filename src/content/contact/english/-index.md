@@ -1,14 +1,14 @@
 ---
 title: "Contact BVS Web Design | Web Designer in Skipton & Keighley"
-description: "Get in touch with us! Reach out for inquiries, support, or feedback. "
+description: "Ready to turn your website into your best salesperson? Tell me a bit about your project and I’ll get back to you within one working day."
 includeLocalBusiness: true
 draft: false
 
 contactSection:
   contactInformation:
-    - title: "Book a Meeting"
+    - title: "Get Your Free Website Review"
       icon: "/images/icons/svg/location-filled.svg"
-      description: "Book a free 30 minute consultancy with me to talk about your website issues or obtain a no obligation quote"
+      description: "Ready to turn your website into your best salesperson? Tell me a bit about your project and I’ll get back to you within one working day."
       button:
         # Refer to the `sharedButton` schema in `src/sections.schema.ts` for all available configuration options (e.g., enable, label, url, hoverEffect, variant, icon, tag, rel, class, target, etc.)
         enable: true
@@ -37,7 +37,7 @@ contactSection:
     - title: "Phone Number"
       icon: "/images/icons/svg/phone-filled.svg"
       description: |
-        07521 917508 
+        07521 917508
       button:
         # Refer to the `sharedButton` schema in `src/sections.schema.ts` for all available configuration options (e.g., enable, label, url, hoverEffect, variant, icon, tag, rel, class, target, etc.)
         enable: true

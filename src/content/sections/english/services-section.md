@@ -1,6 +1,6 @@
 ---
 enable: true
-title: "What I Can Do for My Clients"
+title: "How I Can Help"
 # sectionDirection: "horizontal" # horizontal | vertical
 
 options:

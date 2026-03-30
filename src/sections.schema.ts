@@ -278,7 +278,9 @@ export const bannerAgencySchema = z
 export const bannerAgencySectionSchema = z
   .object({
     enable: z.boolean().default(false).optional(),
-    titleSize: z.enum(["display-1", "display-2", "display-3"]).optional(),
+    titleSize: z
+      .enum(["display-1", "display-2", "display-3", "display-4"])
+      .optional(),
     title: z.array(z.string()).optional(),
     badge: z
       .object({

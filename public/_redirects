@@ -4,6 +4,7 @@
 # -------------------------------------------------------
 
 # Old service pages
+/services/websites-in-a-week/           /services/                           301!
 /services/hosting-and-email/            /services/website-support/           301!
 /services/hosting-and-email             /services/website-support/           301!
 /services/construction-website-design/  /services/                           301!

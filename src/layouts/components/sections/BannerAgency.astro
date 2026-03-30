@@ -38,9 +38,12 @@ let { title, titleSize, description, button, button2, badge } =
 const fontSizeMap: Record<NonNullable<typeof titleSize>, string> = {
   "display-1":
     "text-display-6 sm:text-display-5 md:text-display-3 lg:text-display-2 xl:text-display-1",
-  "display-2": "text-display-6 sm:text-display-5 md:text-display-3 xl:text-display-2",
+  "display-2":
+    "text-display-6 sm:text-display-5 md:text-display-3 xl:text-display-2",
   "display-3":
     "text-display-6 xs:text-display-5 md:text-display-4 xl:text-display-3",
+  "display-4":
+    "text-display-4 sm:text-display-3 md:text-display-2 xl:text-display-1",
 };
 
 const fontSize = fontSizeMap[titleSize ?? "display-1"];
@@ -75,7 +78,7 @@ const fontSize = fontSizeMap[titleSize ?? "display-1"];
       }
     </div>
     <div
-      class="mt-12 ms-auto items-end space-y-10 lg:flex lg:justify-between lg:space-y-0">
+      class="items-end mt-12 space-y-10 ms-auto lg:flex lg:justify-between lg:space-y-0">
       <div
         data-aos="reveal-anim-right"
         data-aos-offset="0"
@@ -87,24 +90,21 @@ const fontSize = fontSizeMap[titleSize ?? "display-1"];
           )
         }
         <div class="flex items-center gap-6">
-        {
-          button && button.enable && (
-            <CustomButton
-              hoverEffect="creative-fill"
-              class="effect-color-accent"
-              {...button}
-            />
-          )
-        }
+          {
+            button && button.enable && (
+              <CustomButton
+                hoverEffect="creative-fill"
+                class="effect-color-accent"
+                {...button}
+              />
+            )
+          }
 
-        {
-          button2 && button2.enable && (
-            <CustomButton
-              class="effect-color-accent h-full"
-              {...button2}
-            />
-          )
-        }
+          {
+            button2 && button2.enable && (
+              <CustomButton class="h-full effect-color-accent" {...button2} />
+            )
+          }
         </div>
       </div>
       {
@@ -113,7 +113,7 @@ const fontSize = fontSizeMap[titleSize ?? "display-1"];
             data-aos="reveal-anim-left"
             data-aos-offset="0"
             data-aos-delay="400"
-            class="font-secondary flex items-center gap-4 text-xs/normal md:text-sm/normal xl:ms-28">
+            class="flex items-center gap-4 font-secondary text-xs/normal md:text-sm/normal xl:ms-28">
             {badge.icon && (
               <OptimizedImage
                 width={32}
