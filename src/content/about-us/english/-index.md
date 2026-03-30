@@ -1,6 +1,6 @@
 ---
-title: "About Steve Marks | Freelance Web Designer in Skipton"
-metaDescription: "Meet Steve Marks — freelance web designer in Skipton, North Yorkshire. I build WordPress websites that look great and deliver real results for small businesses."
+title: "About Steve Marks | Yorkshire Web Designer Focused on Lead Generation | BVS Web Design"
+metaDescription: "I'm Steve — a freelance web designer based in Skipton helping Yorkshire service businesses get more leads from their websites. Here's how I work and why it matters."
 image: "/images/about-us/page-header.png"
 draft: false
 ---

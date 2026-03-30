@@ -2,14 +2,8 @@
 import Base from "@/layouts/Base.astro";
 import { getEntryCTM } from "@/lib/contentParser.astro";
 import { generatePaths } from "@/lib/utils/languageParser.ts";
-import Clients from "@/components/sections/Clients.astro";
-import Features from "@/components/sections/Features.astro";
-import Awards from "@/components/sections/Awards.astro";
-import Stats from "@/components/sections/StatsSection.astro";
-import ContactSection from "@/components/sections/ContactSection.astro";
-import TeamSection from "@/components/sections/TeamSection.astro";
-import AboutTwo from "@/components/sections/AboutTwo.astro";
-import PageHeader from "@/components/widgets/PageHeader.astro";
+import CustomButton from "@/components/CustomButton.astro";
+import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
 
 export function getStaticPaths() {
   return generatePaths();
@@ -19,13 +13,231 @@ const page = await getEntryCTM("about-us", "-index", Astro.currentLocale);
 ---
 
 <Base {...page?.data} footerLayout={"footer-2"} hideOffcanvas={true}>
-  <PageHeader content={page?.data} />
-  <Stats />
-  <AboutTwo />
-  <!-- <Awards />
-  <TeamSection /> -->
-  <ContactSection />
-  <!-- <Clients /> -->
-  <!-- <Features /> -->
-  <!-- <CallToAction sectionSpaceTop={false} /> -->
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-16 md:pt-48 md:pb-24 after:absolute after:inset-0 after:z-0 after:size-full after:bg-theme-dark/25">
+    <OptimizedImage
+      class="absolute inset-0 -z-10 h-full w-full object-cover"
+      src="/images/about-us/page-header.png"
+      alt="About Steve Marks"
+    />
+    <div class="container relative z-10">
+      <div class="max-w-4xl">
+        <h1 class="text-display-6 xs:text-display-5 md:text-display-4 xl:text-display-3 text-white mb-6">
+          Hi, I'm Steve. I Build Websites That Actually Win You Customers.
+        </h1>
+        <p class="text-xl md:text-2xl text-white/90 mb-8 max-w-3xl">
+          I'm a freelance web designer based in Skipton, North Yorkshire. I work with local service businesses whose websites look fine on the surface — but aren't generating the enquiries their owners deserve.
+        </p>
+        <CustomButton
+          label="Book a Free Website Review"
+          url="https://tidycal.com/bvswebdesign/30-minute-meeting"
+          variant="fill"
+          hoverEffect="creative-fill"
+          class="uppercase"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Section -->
+  <section class="py-16 md:py-24 lg:py-32">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-h2-sm md:text-h2 mb-8">
+          Most Web Designers Build Websites. I Build Lead Generators.
+        </h2>
+        <div class="prose prose-lg max-w-none space-y-6 text-lg">
+          <p>
+            There's no shortage of web designers in Yorkshire. Most of them will build you something that looks good, hand you the login details, and wish you luck.
+          </p>
+          <p>
+            <strong>That's not how I work.</strong>
+          </p>
+          <p>
+            I got into this because I kept seeing the same problem: business owners investing in a website, then wondering why nobody was getting in touch. The design looked fine. The branding was nice. But the phone wasn't ringing.
+          </p>
+          <p>
+            The issue was almost never the design. It was the strategy behind it. Unclear calls to action. No thought given to what a visitor needs to see before they trust you. Contact forms that went nowhere. Phone numbers buried at the bottom of the page.
+          </p>
+          <p>
+            So I started building websites differently — starting with the outcome (more enquiries) and working backwards to the design.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proof Section -->
+  <section class="bg-theme-light py-16 md:py-24 lg:py-32">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-h2-sm md:text-h2 mb-10">
+          Here's What That Looks Like in Practice
+        </h2>
+
+        <!-- Featured Case Study Callout -->
+        <div class="bg-accent p-8 md:p-12 mb-10">
+          <p class="text-xl md:text-2xl text-white leading-relaxed">
+            <strong>Ilkley Dental Care</strong> had a website that looked decent but was silently losing them patients. The contact form was broken. The phone number was buried. Visitors couldn't find what they needed. After a rebuild focused on getting people to make contact, they went from almost no online enquiries to <strong>30+ per month</strong> — from exactly the same traffic.
+          </p>
+        </div>
+
+        <p class="text-lg mb-8">
+          That's what I mean by a website that works. Not just one that looks good — one that earns its place in your business.
+        </p>
+
+        <CustomButton
+          label="Read the full Ilkley Dental story"
+          url="/portfolio/ilkley-dental-care/"
+          variant="text"
+          class="uppercase"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- How I Work Section -->
+  <section class="py-16 md:py-24 lg:py-32">
+    <div class="container">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-h2-sm md:text-h2 mb-12">
+          What Working With Me Looks Like
+        </h2>
+
+        <div class="space-y-12">
+          <!-- Step 1 -->
+          <div class="flex gap-6 md:gap-8">
+            <div class="flex-shrink-0">
+              <span class="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-accent text-white text-xl md:text-2xl font-bold rounded-full">1</span>
+            </div>
+            <div>
+              <h3 class="text-h4-sm md:text-h4 mb-3">We talk about your business, not just your website.</h3>
+              <p class="text-lg text-dark/80">
+                Before I touch any design, I want to understand who your customers are, what they need to see before they trust you, and what's currently getting in the way of them getting in touch.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="flex gap-6 md:gap-8">
+            <div class="flex-shrink-0">
+              <span class="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-accent text-white text-xl md:text-2xl font-bold rounded-full">2</span>
+            </div>
+            <div>
+              <h3 class="text-h4-sm md:text-h4 mb-3">I build around conversion, not just aesthetics.</h3>
+              <p class="text-lg text-dark/80">
+                Every decision — layout, copy, calls to action, page structure — is made with one question in mind: will this help a visitor take the next step?
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="flex gap-6 md:gap-8">
+            <div class="flex-shrink-0">
+              <span class="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 bg-accent text-white text-xl md:text-2xl font-bold rounded-full">3</span>
+            </div>
+            <div>
+              <h3 class="text-h4-sm md:text-h4 mb-3">You get a website you're proud of and a business that benefits from it.</h3>
+              <p class="text-lg text-dark/80">
+                Most of my clients tell me they didn't realise how much their old website was costing them until they saw what a new one could do. The goal is always the same: more enquiries, better clients, less time wondering why the phone isn't ringing.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Steve Section -->
+  <section class="bg-accent py-16 md:py-24 lg:py-32">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div class="order-2 lg:order-1">
+          <OptimizedImage
+            src="/images/steve-1.jpg"
+            alt="Steve Marks, freelance web designer based in Skipton"
+            class="w-full h-auto"
+          />
+        </div>
+        <div class="order-1 lg:order-2 text-white">
+          <h2 class="text-h2-sm md:text-h2 text-white mb-8">
+            A Bit About Me
+          </h2>
+          <div class="space-y-6 text-lg text-white/90">
+            <p>
+              I'm Steve Marks. I've been designing and building websites for years, and I'm based in Skipton in the Yorkshire Dales. I work with service businesses across Yorkshire — from Ilkley and Keighley to York and beyond.
+            </p>
+            <p>
+              I work as a freelancer, which means you deal directly with me from the first conversation to launch day and beyond. No account managers, no handoffs, no surprises.
+            </p>
+            <p>
+              When a project calls for specialist skills — copywriting, photography, SEO — I bring in trusted collaborators from my network. But I'm always your main point of contact and always responsible for the outcome.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-16 md:py-24">
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:divide-x-2 divide-border-dark">
+        <div class="text-center md:px-6">
+          <p class="text-display-6 sm:text-display-5 md:text-display-4 font-secondary font-medium text-dark mb-4">
+            20+
+          </p>
+          <h3 class="text-h5-sm md:text-h5 font-semibold mb-3">Yorkshire businesses helped</h3>
+          <p class="text-lg">Local service businesses getting real results from their websites.</p>
+        </div>
+        <div class="text-center md:px-6">
+          <p class="text-display-6 sm:text-display-5 md:text-display-4 font-secondary font-medium text-dark mb-4">
+            90%+
+          </p>
+          <h3 class="text-h5-sm md:text-h5 font-semibold mb-3">Report increased enquiries</h3>
+          <p class="text-lg">Clients who see more leads after their website rebuild.</p>
+        </div>
+        <div class="text-center md:px-6">
+          <p class="text-display-6 sm:text-display-5 md:text-display-4 font-secondary font-medium text-dark mb-4">
+            Direct
+          </p>
+          <h3 class="text-h5-sm md:text-h5 font-semibold mb-3">Communication always</h3>
+          <p class="text-lg">You work with me directly — no account managers or handoffs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing CTA Section -->
+  <section class="bg-theme-light py-16 md:py-24 lg:py-32">
+    <div class="container">
+      <div class="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+        <div>
+          <h2 class="text-display-6 xs:text-display-5 md:text-display-4 xl:text-display-3 mb-6">
+            Ready to Find Out What Your Website Could Be Doing?
+          </h2>
+        </div>
+        <div class="space-y-8">
+          <p class="text-lg">
+            Start with a free website review. I'll take a look at your current site and tell you the three most important things holding it back — whether you end up working with me or not.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <CustomButton
+              label="Book a Free Website Review"
+              url="https://tidycal.com/bvswebdesign/30-minute-meeting"
+              variant="fill"
+              hoverEffect="creative-fill"
+              class="uppercase effect-color-accent"
+            />
+            <CustomButton
+              label="See My Work"
+              url="/portfolio/"
+              variant="outline"
+              class="uppercase"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </Base>
