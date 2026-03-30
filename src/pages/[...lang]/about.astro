@@ -33,7 +33,7 @@ const page = await getEntryCTM("about-us", "-index", Astro.currentLocale);
           url="https://tidycal.com/bvswebdesign/30-minute-meeting"
           variant="fill"
           hoverEffect="creative-fill"
-          class="uppercase"
+          class="uppercase w-full sm:w-auto text-center"
         />
       </div>
     </div>
@@ -221,19 +221,19 @@ const page = await getEntryCTM("about-us", "-index", Astro.currentLocale);
           <p class="text-lg">
             Start with a free website review. I'll take a look at your current site and tell you the three most important things holding it back — whether you end up working with me or not.
           </p>
-          <div class="flex flex-wrap gap-4">
+          <div class="flex flex-col sm:flex-row gap-4">
             <CustomButton
               label="Book a Free Website Review"
               url="https://tidycal.com/bvswebdesign/30-minute-meeting"
               variant="fill"
               hoverEffect="creative-fill"
-              class="uppercase effect-color-accent"
+              class="uppercase effect-color-accent w-full sm:w-auto text-center"
             />
             <CustomButton
               label="See My Work"
               url="/portfolio/"
               variant="outline"
-              class="uppercase"
+              class="uppercase w-full sm:w-auto text-center"
             />
           </div>
         </div>

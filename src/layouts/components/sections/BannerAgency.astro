@@ -89,7 +89,7 @@ const fontSize = fontSizeMap[titleSize ?? "display-1"];
             <p class="font-medium" set:html={markdownify(description)} />
           )
         }
-        <div class="flex items-center gap-6">
+        <div class="flex flex-col items-center gap-6 md:flex-row">
           {
             button && button.enable && (
               <CustomButton
