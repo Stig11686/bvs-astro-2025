@@ -2,7 +2,7 @@
 enable: true # Control the visibility of this section across all pages where it is used
 title: "Your Website Should Be Working Harder Than It Is"
 
-image: "/images/results/headshot_6.jpg"
+image: "/images/results/headshot_19.jpg"
 imagePosition: "left" # Choose between "left" or "right"
 
 description: |

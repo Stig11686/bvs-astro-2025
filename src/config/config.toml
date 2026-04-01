@@ -1,7 +1,7 @@
 # Site Configuration
 [site]
   title             = "Websites That Generate Leads for Growing Businesses – Skipton, Keighley and across Yorkshire | BVS Web Design" # Shared title for SEO and OpenGraph
-  description       = "We build, optimise, and redesign WordPress websites that actually generate enquiries. Free clarity audit to uncover what’s stopping your site from converting. Serving Yorkshire and across the UK." # Shared description for SEO and OpenGraph
+  description       = "Websites that turn visitors into enquiries. WordPress design, copy and strategy for UK businesses. Book a free website audit today." # Shared description for SEO and OpenGraph
   tagline           = "Website Design and Development for growing businesses"
   taglineSeparator = " - " # default is " - "
   baseUrl          = "https://www.bvswebdesign.co.uk" # Base URL for the site and used in OpenGraph meta tags.

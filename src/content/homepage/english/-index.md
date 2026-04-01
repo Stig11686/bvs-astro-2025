@@ -1,6 +1,6 @@
 ---
-title: ""
-metaDescription: "Web design in Skipton & Keighley. Professional WordPress websites for local businesses — built fast, priced fairly, with ongoing support. Get a free website audit today."
+title: "Websites That Generate Leads — Not Just Look Good"
+metaDescription: "For Yorkshire businesses tired of having a “nice” website that does nothing. I design and build WordPress sites that turn visitors into real enquiries."
 includeLocalBusiness: true
 
 # Override Default Content of `/sections/services-section.md`
