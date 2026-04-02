@@ -1,0 +1,232 @@
+---
+// Cookie Consent Component using vanilla-cookieconsent
+// GDPR compliant - Analytics only loads after user consent
+---
+
+<script>
+  import "vanilla-cookieconsent/dist/cookieconsent.css";
+  import * as CookieConsent from "vanilla-cookieconsent";
+
+  // Google Analytics ID
+  const GA_ID = "G-S0ZN2D7XG4";
+
+  // Function to load Google Analytics
+  function loadGoogleAnalytics() {
+    // Check if already loaded
+    if (document.querySelector(`script[src*="googletagmanager.com/gtag/js"]`)) {
+      return;
+    }
+
+    // Load gtag.js
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+    document.head.appendChild(script);
+
+    // Initialize gtag
+    window.dataLayer = window.dataLayer || [];
+    function gtag(...args: any[]) {
+      window.dataLayer.push(args);
+    }
+    (window as any).gtag = gtag;
+    gtag("js", new Date());
+    gtag("config", GA_ID);
+  }
+
+  // Function to load Apollo.io tracker
+  function loadApollo() {
+    // Check if already loaded
+    if ((window as any).trackingFunctions) {
+      return;
+    }
+
+    const n = Math.random().toString(36).substring(7);
+    const script = document.createElement("script");
+    script.src = `https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=${n}`;
+    script.async = true;
+    script.defer = true;
+    script.onload = function () {
+      (window as any).trackingFunctions?.onLoad({
+        appId: "68e677a6f5e6ec001d41b6ed",
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  // Function to disable analytics (revoke consent)
+  function disableAnalytics() {
+    // Disable GA tracking
+    (window as any)[`ga-disable-${GA_ID}`] = true;
+
+    // Remove GA cookies
+    const cookies = document.cookie.split(";");
+    for (let cookie of cookies) {
+      const name = cookie.split("=")[0].trim();
+      if (name.startsWith("_ga") || name.startsWith("_gid")) {
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname}`;
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${window.location.hostname}`;
+      }
+    }
+  }
+
+  // Initialize Cookie Consent
+  CookieConsent.run({
+    guiOptions: {
+      consentModal: {
+        layout: "box inline",
+        position: "bottom right",
+      },
+      preferencesModal: {
+        layout: "box",
+      },
+    },
+
+    categories: {
+      necessary: {
+        enabled: true,
+        readOnly: true,
+      },
+      analytics: {
+        enabled: false,
+        autoClear: {
+          cookies: [
+            { name: /^_ga/ },
+            { name: /^_gid/ },
+            { name: /^_gcl/ },
+          ],
+        },
+      },
+    },
+
+    language: {
+      default: "en",
+      translations: {
+        en: {
+          consentModal: {
+            title: "We value your privacy",
+            description:
+              "We use cookies to enhance your browsing experience and analyse our traffic. By clicking \"Accept all\", you consent to our use of cookies.",
+            acceptAllBtn: "Accept all",
+            acceptNecessaryBtn: "Reject all",
+            showPreferencesBtn: "Manage preferences",
+          },
+          preferencesModal: {
+            title: "Cookie Preferences",
+            acceptAllBtn: "Accept all",
+            acceptNecessaryBtn: "Reject all",
+            savePreferencesBtn: "Save preferences",
+            sections: [
+              {
+                title: "Cookie Usage",
+                description:
+                  "We use cookies to ensure the basic functionality of the website and to enhance your online experience. You can choose to opt in or out of each category whenever you want.",
+              },
+              {
+                title: "Strictly Necessary Cookies",
+                description:
+                  "These cookies are essential for the website to function properly. They cannot be disabled.",
+                linkedCategory: "necessary",
+              },
+              {
+                title: "Analytics Cookies",
+                description:
+                  "These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. This includes Google Analytics and other tracking tools.",
+                linkedCategory: "analytics",
+                cookieTable: {
+                  headers: {
+                    name: "Name",
+                    domain: "Domain",
+                    description: "Description",
+                    expiration: "Expiration",
+                  },
+                  body: [
+                    {
+                      name: "_ga",
+                      domain: window.location.hostname,
+                      description: "Google Analytics - Used to distinguish users",
+                      expiration: "2 years",
+                    },
+                    {
+                      name: "_gid",
+                      domain: window.location.hostname,
+                      description: "Google Analytics - Used to distinguish users",
+                      expiration: "24 hours",
+                    },
+                  ],
+                },
+              },
+              {
+                title: "More Information",
+                description:
+                  'For any questions regarding our cookie policy, please <a href="/contact">contact us</a>.',
+              },
+            ],
+          },
+        },
+      },
+    },
+
+    onFirstConsent: ({ cookie }) => {
+      if (cookie.categories.includes("analytics")) {
+        loadGoogleAnalytics();
+        loadApollo();
+      }
+    },
+
+    onConsent: ({ cookie }) => {
+      if (cookie.categories.includes("analytics")) {
+        loadGoogleAnalytics();
+        loadApollo();
+      }
+    },
+
+    onChange: ({ cookie, changedCategories }) => {
+      if (changedCategories.includes("analytics")) {
+        if (cookie.categories.includes("analytics")) {
+          loadGoogleAnalytics();
+          loadApollo();
+        } else {
+          disableAnalytics();
+        }
+      }
+    },
+  });
+</script>
+
+<style is:global>
+  /* Custom styling to match site theme */
+  :root {
+    --cc-bg: #fff;
+    --cc-primary-color: #2e2e2e;
+    --cc-secondary-color: #5a5a5a;
+    --cc-btn-primary-bg: #172238;
+    --cc-btn-primary-color: #fff;
+    --cc-btn-primary-hover-bg: #5f0041;
+    --cc-btn-secondary-bg: #f6f5f3;
+    --cc-btn-secondary-color: #172238;
+    --cc-btn-secondary-hover-bg: #e5e5e5;
+    --cc-toggle-on-bg: #172238;
+    --cc-cookie-category-block-bg: #f6f5f3;
+    --cc-cookie-table-border: #e5e5e5;
+    --cc-separator-border-color: #e5e5e5;
+    --cc-modal-border-radius: 0.5rem;
+    --cc-btn-border-radius: 0.375rem;
+  }
+
+  #cc-main {
+    font-family: inherit;
+  }
+
+  .cm {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .cm__btn {
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .cm__title {
+    font-weight: 600;
+  }
+</style>

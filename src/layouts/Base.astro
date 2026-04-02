@@ -7,6 +7,7 @@ import removeEmptyKeys from "@/lib/utils/removeEmptyKeys";
 import Header from "@/components/global/header/Header.astro";
 import type { JSONLDProps } from "@/lib/utils/JsonLdGenerator";import FooterTwo from "@/components/global/FooterTwo.astro";
 import BreakpointIndicator from "@/components/widgets/BreakpointIndicator.astro";
+import CookieConsent from "@/components/global/CookieConsent.astro";
 import FooterThree from "@/components/global/FooterThree.astro";
 
 interface Props extends JSONLDProps {
@@ -196,5 +197,6 @@ className = fitToScreen
       });
     </script>
     <BreakpointIndicator />
+    <CookieConsent />
   </body>
 </html>
