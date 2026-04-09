@@ -1,6 +1,7 @@
 ---
 // Cookie Consent Component using vanilla-cookieconsent
-// GDPR compliant - Analytics only loads after user consent
+// GDPR compliant with GA Consent Mode v2
+// Analytics loads immediately but respects consent state
 ---
 
 <script>
@@ -10,27 +11,44 @@
   // Google Analytics ID
   const GA_ID = "G-S0ZN2D7XG4";
 
-  // Function to load Google Analytics
-  function loadGoogleAnalytics() {
-    // Check if already loaded
-    if (document.querySelector(`script[src*="googletagmanager.com/gtag/js"]`)) {
-      return;
-    }
+  // Initialize dataLayer and gtag function immediately
+  window.dataLayer = window.dataLayer || [];
+  function gtag(...args: any[]) {
+    window.dataLayer.push(args);
+  }
+  (window as any).gtag = gtag;
 
-    // Load gtag.js
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
-    document.head.appendChild(script);
+  // Set default consent state BEFORE loading GA (required for Consent Mode)
+  gtag("consent", "default", {
+    analytics_storage: "denied",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+    wait_for_update: 500, // Wait up to 500ms for consent update
+  });
 
-    // Initialize gtag
-    window.dataLayer = window.dataLayer || [];
-    function gtag(...args: any[]) {
-      window.dataLayer.push(args);
-    }
-    (window as any).gtag = gtag;
-    gtag("js", new Date());
-    gtag("config", GA_ID);
+  // Load GA immediately
+  const gaScript = document.createElement("script");
+  gaScript.async = true;
+  gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+  document.head.appendChild(gaScript);
+
+  // Initialize GA
+  gtag("js", new Date());
+  gtag("config", GA_ID);
+
+  // Function to grant analytics consent
+  function grantAnalyticsConsent() {
+    gtag("consent", "update", {
+      analytics_storage: "granted",
+    });
+  }
+
+  // Function to revoke analytics consent
+  function revokeAnalyticsConsent() {
+    gtag("consent", "update", {
+      analytics_storage: "denied",
+    });
   }
 
   // Function to load Apollo.io tracker
@@ -53,20 +71,11 @@
     document.head.appendChild(script);
   }
 
-  // Function to disable analytics (revoke consent)
-  function disableAnalytics() {
-    // Disable GA tracking
-    (window as any)[`ga-disable-${GA_ID}`] = true;
-
-    // Remove GA cookies
-    const cookies = document.cookie.split(";");
-    for (let cookie of cookies) {
-      const name = cookie.split("=")[0].trim();
-      if (name.startsWith("_ga") || name.startsWith("_gid")) {
-        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=${window.location.hostname}`;
-        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${window.location.hostname}`;
-      }
-    }
+  // Check if user has already consented (from previous visit)
+  const existingConsent = CookieConsent.getCookie();
+  if (existingConsent && existingConsent.categories?.includes("analytics")) {
+    grantAnalyticsConsent();
+    loadApollo();
   }
 
   // Initialize Cookie Consent
@@ -168,14 +177,14 @@
 
     onFirstConsent: ({ cookie }) => {
       if (cookie.categories.includes("analytics")) {
-        loadGoogleAnalytics();
+        grantAnalyticsConsent();
         loadApollo();
       }
     },
 
     onConsent: ({ cookie }) => {
       if (cookie.categories.includes("analytics")) {
-        loadGoogleAnalytics();
+        grantAnalyticsConsent();
         loadApollo();
       }
     },
@@ -183,10 +192,10 @@
     onChange: ({ cookie, changedCategories }) => {
       if (changedCategories.includes("analytics")) {
         if (cookie.categories.includes("analytics")) {
-          loadGoogleAnalytics();
+          grantAnalyticsConsent();
           loadApollo();
         } else {
-          disableAnalytics();
+          revokeAnalyticsConsent();
         }
       }
     },
