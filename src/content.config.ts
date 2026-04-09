@@ -86,6 +86,7 @@ const portfolioCollection = defineCollection({
   loader: glob({ base: "./src/content/portfolio", pattern: "**/*.{md,mdx}" }),
   schema: page.merge(
     z.object({
+      featured: z.boolean().optional(), // Controls whether item appears on homepage
       images: z.array(z.string()).min(1).optional(),
       options: z
         .object({

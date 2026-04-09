@@ -52,6 +52,12 @@ let projects = await getCollectionCTM(
 
 const isDarkAppearance = appearance === "dark";
 
+// Filter to only featured projects if any exist, otherwise show all
+const featuredProjects = projects.filter((p) => p.data.featured === true);
+if (featuredProjects.length > 0) {
+  projects = featuredProjects;
+}
+
 // Limiting the number of projects to be displayed
 projects = limit ? projects.slice(0, limit as number) : projects;
 
