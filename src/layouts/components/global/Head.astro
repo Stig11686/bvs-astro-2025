@@ -42,21 +42,28 @@ const config = parseTomlToJson("./src/config/config.toml");
 
   <!------------------------ Google Analytics with Consent Mode v2 ------------------------>
   <script is:inline>
-    // Initialize dataLayer and gtag BEFORE loading GA script
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    // Skip GA on localhost
+    if (location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
 
-    // Set default consent to denied (GDPR compliant)
-    gtag('consent', 'default', {
-      'analytics_storage': 'denied',
-      'ad_storage': 'denied',
-      'ad_user_data': 'denied',
-      'ad_personalization': 'denied',
-      'wait_for_update': 500
-    });
+      // Set default consent to denied (GDPR compliant)
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500
+      });
 
-    gtag('js', new Date());
-    gtag('config', 'G-S0ZN2D7XG4');
+      gtag('js', new Date());
+      gtag('config', 'G-S0ZN2D7XG4');
+
+      // Load GA script
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-S0ZN2D7XG4';
+      document.head.appendChild(s);
+    }
   </script>
-  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-S0ZN2D7XG4"></script>
 </head>
