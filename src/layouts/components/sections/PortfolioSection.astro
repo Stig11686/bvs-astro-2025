@@ -52,14 +52,14 @@ let projects = await getCollectionCTM(
 
 const isDarkAppearance = appearance === "dark";
 
-// Filter to only featured projects if any exist, otherwise show all
-const featuredProjects = projects.filter((p) => p.data.featured === true);
-if (featuredProjects.length > 0) {
-  projects = featuredProjects;
+// Only filter by featured when a limit is set (i.e., on homepage, not full portfolio page)
+if (limit) {
+  const featuredProjects = projects.filter((p) => p.data.featured === true);
+  if (featuredProjects.length > 0) {
+    projects = featuredProjects;
+  }
+  projects = projects.slice(0, limit as number);
 }
-
-// Limiting the number of projects to be displayed
-projects = limit ? projects.slice(0, limit as number) : projects;
 
 if (!enable) {
   return null;
