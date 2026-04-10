@@ -1,62 +1,34 @@
 ---
 // Cookie Consent Component using vanilla-cookieconsent
 // GDPR compliant with GA Consent Mode v2
-// Analytics loads immediately but respects consent state
+// GA is loaded in Head.astro with inline script - this handles consent updates
 ---
 
 <script>
   import "vanilla-cookieconsent/dist/cookieconsent.css";
   import * as CookieConsent from "vanilla-cookieconsent";
 
-  // Google Analytics ID
-  const GA_ID = "G-S0ZN2D7XG4";
-
-  // Initialize dataLayer and gtag function immediately
-  window.dataLayer = window.dataLayer || [];
-  function gtag(...args: any[]) {
-    window.dataLayer.push(args);
-  }
-  (window as any).gtag = gtag;
-
-  // Set default consent state BEFORE loading GA (required for Consent Mode)
-  gtag("consent", "default", {
-    analytics_storage: "denied",
-    ad_storage: "denied",
-    ad_user_data: "denied",
-    ad_personalization: "denied",
-    wait_for_update: 500, // Wait up to 500ms for consent update
-  });
-
-  // Load GA immediately
-  const gaScript = document.createElement("script");
-  gaScript.async = true;
-  gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
-  document.head.appendChild(gaScript);
-
-  // Initialize GA
-  gtag("js", new Date());
-  gtag("config", GA_ID);
-
-  // Function to grant analytics consent
+  // Function to grant analytics consent (updates GA consent mode)
   function grantAnalyticsConsent() {
-    gtag("consent", "update", {
-      analytics_storage: "granted",
-    });
+    if (typeof gtag === "function") {
+      gtag("consent", "update", {
+        analytics_storage: "granted",
+      });
+    }
   }
 
   // Function to revoke analytics consent
   function revokeAnalyticsConsent() {
-    gtag("consent", "update", {
-      analytics_storage: "denied",
-    });
+    if (typeof gtag === "function") {
+      gtag("consent", "update", {
+        analytics_storage: "denied",
+      });
+    }
   }
 
-  // Function to load Apollo.io tracker
+  // Function to load Apollo.io tracker (only after consent)
   function loadApollo() {
-    // Check if already loaded
-    if ((window as any).trackingFunctions) {
-      return;
-    }
+    if ((window as any).trackingFunctions) return;
 
     const n = Math.random().toString(36).substring(7);
     const script = document.createElement("script");
@@ -98,11 +70,7 @@
       analytics: {
         enabled: false,
         autoClear: {
-          cookies: [
-            { name: /^_ga/ },
-            { name: /^_gid/ },
-            { name: /^_gcl/ },
-          ],
+          cookies: [{ name: /^_ga/ }, { name: /^_gid/ }, { name: /^_gcl/ }],
         },
       },
     },
@@ -114,7 +82,7 @@
           consentModal: {
             title: "We value your privacy",
             description:
-              "We use cookies to enhance your browsing experience and analyse our traffic. By clicking \"Accept all\", you consent to our use of cookies.",
+              'We use cookies to enhance your browsing experience and analyse our traffic. By clicking "Accept all", you consent to our use of cookies.',
             acceptAllBtn: "Accept all",
             acceptNecessaryBtn: "Reject all",
             showPreferencesBtn: "Manage preferences",
@@ -152,13 +120,15 @@
                     {
                       name: "_ga",
                       domain: window.location.hostname,
-                      description: "Google Analytics - Used to distinguish users",
+                      description:
+                        "Google Analytics - Used to distinguish users",
                       expiration: "2 years",
                     },
                     {
                       name: "_gid",
                       domain: window.location.hostname,
-                      description: "Google Analytics - Used to distinguish users",
+                      description:
+                        "Google Analytics - Used to distinguish users",
                       expiration: "24 hours",
                     },
                   ],
@@ -183,8 +153,14 @@
     },
 
     onConsent: ({ cookie }) => {
+      console.log("onConsent fired", cookie.categories);
       if (cookie.categories.includes("analytics")) {
+        console.log("Granting analytics consent...");
         grantAnalyticsConsent();
+        console.log(
+          "Analytics granted - checking dataLayer:",
+          window.dataLayer,
+        );
         loadApollo();
       }
     },
