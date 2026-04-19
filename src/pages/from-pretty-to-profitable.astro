@@ -1,0 +1,270 @@
+---
+/**
+ * From Pretty to Profitable - Landing Page
+ *
+ * Campaign landing page for bridal boutique outreach.
+ * Captures email signups for the website rebuild case study series.
+ */
+
+import Base from "@/layouts/Base.astro";
+
+const pageTitle = "From Pretty to Profitable | BVS Web Design";
+const pageDescription = "Follow a real bridal boutique website rebuild — from discovery to launch. Get behind-the-scenes updates as we transform a beautiful but underperforming site into one that actually converts.";
+
+const calendlyUrl = import.meta.env.CALENDLY_URL || "https://tidycal.com/bvswebdesign/30-minute-meeting";
+---
+
+<Base
+  metaTitle={pageTitle}
+  metaDescription={pageDescription}
+  robots="noindex, nofollow"
+  footerSpaceTop={false}
+>
+  <!-- Hero Section -->
+  <section class="bg-primary text-white py-20 md:py-32">
+    <div class="container mx-auto px-4 text-center">
+      <span class="inline-block text-xs tracking-widest uppercase text-white/90 mb-4 font-medium">
+        A BVS Web Design Case Study
+      </span>
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-secondary font-bold mb-6 leading-tight">
+        From Pretty to Profitable
+      </h1>
+      <p class="text-lg md:text-xl text-white/80 max-w-xl mx-auto mb-8">
+        Follow a real bridal boutique website rebuild — from discovery to launch
+      </p>
+      <a href="#signup" class="btn btn-accent inline-flex items-center gap-2 text-white">
+        Follow the journey
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Problem Section -->
+  <section class="py-16 md:py-24 bg-light">
+    <div class="container mx-auto px-4 max-w-3xl text-center">
+      <p class="text-2xl md:text-3xl leading-relaxed mb-6">
+        A beautiful website should be your best salesperson.
+      </p>
+      <p class="text-2xl md:text-3xl leading-relaxed mb-6">
+        For too many boutique owners, it isn't.
+      </p>
+      <p class="text-xl text-text-default/70 mb-6">
+        The site looks stunning. You're proud of it. But the enquiries aren't coming in the way they should, and you're not sure why.
+      </p>
+      <p class="text-xl text-accent font-medium italic">
+        Sound familiar?
+      </p>
+    </div>
+  </section>
+
+  <!-- Story Section -->
+  <section class="py-16 md:py-24">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+        <div>
+          <p class="text-2xl font-secondary font-semibold mb-6">
+            We audited a bridal boutique with exactly this problem.
+          </p>
+          <p class="text-lg text-text-default/70 mb-4">
+            Great design. Real traffic. Almost no leads.
+          </p>
+          <p class="text-lg text-text-default/70 mb-4">
+            What we found surprised even us — £18,000 a year in unnecessary spend across hosting, management and ads, while the site quietly failed to convert the visitors it was already getting.
+          </p>
+          <p class="text-lg text-text-default/70">
+            So we're rebuilding it. Properly. And we're documenting every decision along the way.
+          </p>
+        </div>
+        <div class="text-center">
+          <span class="block text-7xl md:text-8xl lg:text-9xl font-secondary font-bold text-accent leading-none">
+            £18k
+          </span>
+          <span class="text-sm tracking-widest uppercase text-text-default/60 mt-2 block">
+            wasted per year
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What You'll Get Section -->
+  <section class="py-16 md:py-24 bg-light">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-secondary font-bold text-center mb-4">
+        What You'll Get
+      </h2>
+      <p class="text-center text-text-default/70 mb-12 max-w-xl mx-auto">
+        Behind-the-scenes access to every stage of the rebuild
+      </p>
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="bg-white p-8 rounded-lg shadow-sm text-center">
+          <div class="text-4xl mb-4">🔍</div>
+          <h3 class="text-xl font-secondary font-semibold mb-3">The Discovery</h3>
+          <p class="text-text-default/70">
+            What the audit uncovered and why it matters
+          </p>
+        </div>
+        <div class="bg-white p-8 rounded-lg shadow-sm text-center">
+          <div class="text-4xl mb-4">🛠️</div>
+          <h3 class="text-xl font-secondary font-semibold mb-3">The Rebuild</h3>
+          <p class="text-text-default/70">
+            Every key decision explained in plain English
+          </p>
+        </div>
+        <div class="bg-white p-8 rounded-lg shadow-sm text-center">
+          <div class="text-4xl mb-4">📈</div>
+          <h3 class="text-xl font-secondary font-semibold mb-3">The Results</h3>
+          <p class="text-text-default/70">
+            What happens when a website is actually built to convert
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Email Capture Form -->
+  <section class="py-16 md:py-24" id="signup">
+    <div class="container mx-auto px-4 max-w-xl text-center">
+      <h2 class="text-3xl md:text-4xl font-secondary font-bold mb-4">
+        Follow the build. It's free.
+      </h2>
+      <p class="text-text-default/70 mb-8">
+        Get behind-the-scenes updates as the rebuild progresses — honest insights from a real project, no jargon.
+      </p>
+
+      <div id="form-container">
+        <form class="space-y-4" id="signup-form">
+          <div id="form-error" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm"></div>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <input
+              type="text"
+              name="firstName"
+              placeholder="First name"
+              required
+              autocomplete="given-name"
+              class="flex-1 px-4 py-3 border border-border-light rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email address"
+              required
+              autocomplete="email"
+              class="flex-1 px-4 py-3 border border-border-light rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary w-full justify-center" id="submit-btn">
+            <span id="btn-text">Join the journey</span>
+            <span id="btn-spinner" class="hidden">
+              <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Submitting...
+            </span>
+          </button>
+        </form>
+        <p class="text-sm text-text-default/60 mt-4">
+          No spam. Unsubscribe any time.
+        </p>
+      </div>
+
+      <div id="success-message" class="hidden">
+        <div class="bg-green-50 border border-green-200 rounded-lg p-8">
+          <h3 class="text-2xl font-secondary font-bold text-green-800 mb-2">You're in.</h3>
+          <p class="text-green-700">First email is on its way.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Secondary CTA -->
+  <section class="py-16 md:py-20 mb-16 md:mb-24 bg-theme-light">
+    <div class="container mx-auto px-4 text-center max-w-2xl">
+      <h2 class="text-2xl md:text-3xl font-secondary font-bold mb-4">
+        Already know your website has a problem?
+      </h2>
+      <p class="text-text-default/70 mb-6">
+        Skip the journey — book a free 30-minute audit call and let's take a look together.
+      </p>
+      <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" class="btn btn-outline text-dark border-dark hover:bg-dark hover:text-white">
+        Book a free call
+      </a>
+    </div>
+  </section>
+</Base>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('signup-form') as HTMLFormElement;
+    const formContainer = document.getElementById('form-container') as HTMLDivElement;
+    const successMessage = document.getElementById('success-message') as HTMLDivElement;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const btnText = document.getElementById('btn-text') as HTMLSpanElement;
+    const btnSpinner = document.getElementById('btn-spinner') as HTMLSpanElement;
+    const errorDiv = document.getElementById('form-error') as HTMLDivElement;
+
+    if (!form) return;
+
+    function showError(message: string) {
+      errorDiv.textContent = message;
+      errorDiv.classList.remove('hidden');
+    }
+
+    function clearError() {
+      errorDiv.classList.add('hidden');
+    }
+
+    function setLoading(loading: boolean) {
+      submitBtn.disabled = loading;
+      btnText.classList.toggle('hidden', loading);
+      btnSpinner.classList.toggle('hidden', !loading);
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      clearError();
+
+      const formData = new FormData(form);
+      const firstName = (formData.get('firstName') as string)?.trim();
+      const email = (formData.get('email') as string)?.trim();
+
+      if (!firstName || !email) {
+        showError('Please fill in all fields.');
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showError('Please enter a valid email address.');
+        return;
+      }
+
+      setLoading(true);
+
+      try {
+        const response = await fetch('/.netlify/functions/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ firstName, email }),
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          formContainer.classList.add('hidden');
+          successMessage.classList.remove('hidden');
+        } else {
+          showError(result.error || 'Something went wrong. Please try again.');
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error('Form submission error:', error);
+        showError('Unable to submit. Please check your connection and try again.');
+        setLoading(false);
+      }
+    });
+  });
+</script>
