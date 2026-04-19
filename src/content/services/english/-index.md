@@ -1,6 +1,6 @@
 ---
 title: "Services"
-metaDescription: "This is a example description"
+metaDescription: "WordPress web design services for Yorkshire businesses — from new builds to audits, care plans and conversion optimisation."
 draft: false
 image: "/images/page-header/services-page.jpg"
 
