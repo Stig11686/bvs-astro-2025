@@ -1,6 +1,6 @@
 ---
-title: "Websites That Generate Leads — Not Just Look Good"
-metaDescription: "For Yorkshire businesses tired of having a “nice” website that does nothing. I design and build WordPress sites that turn visitors into real enquiries."
+title: "More Leads. Better Websites. Built for Yorkshire Businesses."
+metaDescription: "If you're a business in Yorkshire or the UK, and you're not sure what your website is bringing you - I can help"
 includeLocalBusiness: true
 
 # Override Default Content of `/sections/services-section.md`

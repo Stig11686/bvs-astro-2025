@@ -2,8 +2,8 @@
 enable: true # Control the visibility of this section across all pages where it is used
 titleSize: "display-1" # If your title text is larger, use a smaller text size like "display-3", "display-2", or "display-1".
 title:
-  - Websites That Generate Leads
-  - and Look Great!
+  - More Leads. Better Websites.
+  - Built for Yorkshire Businesses.
 description: "For Yorkshire businesses tired of having a “nice” website that does nothing. I design and build WordPress sites that turn visitors into real enquiries."
 
 button:
