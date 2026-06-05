@@ -1,0 +1,248 @@
+---
+title: "Who Actually Owns Your Website? What Every Small Business Owner Needs to Know"
+description: "If your web designer registered your domain, you may not own your website at all. Here's what to check, what to watch out for, and how a good designer should work."
+metaTitle: "Who Owns My Website? What Small Business Owners Need to Know | BVS Web Design"
+metaDescription: "Think you own your website? If your designer registered your domain, you might not. Here's what to check and what good looks like — from a Leeds web designer."
+image: "/images/blog/domain.jpg"
+keywords:
+  [
+    "who owns my website",
+    "who owns my domain name",
+    "web designer holding domain hostage",
+    "web designer registered domain in their name",
+    "domain transfer fee web designer",
+    "do I own my website",
+    "web designer Leeds",
+    "transparent web design",
+    "ethical web designer Leeds",
+  ]
+customSlug: who-owns-my-website
+date: 2026-06-05
+author: "Steve Marks"
+categories:
+  - Web Design
+  - Small Business
+tags:
+  - "Domain Ownership"
+  - "Web Design"
+  - "Transparency"
+  - "Small Business"
+draft: false
+---
+
+import ContactForm from "@/components/widgets/ContactForm.astro";
+
+export const form = {
+  emailSubject: "New enquiry from BVS website",
+  submitButton: {
+    enable: true,
+    label: "SEND MESSAGE",
+  },
+  inputs: [
+    {
+      label: "",
+      placeholder: "Name *",
+      name: "name",
+      required: true,
+      halfWidth: true,
+      defaultValue: "",
+    },
+    {
+      label: "",
+      placeholder: "Email Address *",
+      name: "email",
+      required: true,
+      type: "email",
+      halfWidth: true,
+      defaultValue: "",
+    },
+    {
+      label: "",
+      placeholder: "Phone Number",
+      name: "phone",
+      required: false,
+      type: "tel",
+      halfWidth: true,
+      defaultValue: "",
+    },
+    {
+      label: "",
+      placeholder: "Company Name",
+      name: "company",
+      required: false,
+      halfWidth: true,
+      defaultValue: "",
+    },
+    {
+      label: "",
+      placeholder: "Company Website",
+      name: "website",
+      required: false,
+      type: "url",
+      halfWidth: true,
+      defaultValue: "",
+    },
+    {
+      label: "",
+      placeholder: "Budget *",
+      name: "budget_range",
+      required: true,
+      halfWidth: true,
+      dropdown: {
+        type: "select",
+        items: [
+          { label: "£1,000 - £2,500", value: "1000_to_2500", selected: false },
+          { label: "£2,500 - £5,000", value: "2500_to_5000", selected: false },
+          { label: "£5,000+", value: "5000_plus", selected: false },
+          { label: "Not sure yet", value: "unknown", selected: true },
+        ],
+      },
+    },
+    {
+      label: "",
+      placeholder: "Timeline",
+      name: "timeline",
+      required: false,
+      halfWidth: true,
+      dropdown: {
+        type: "select",
+        items: [
+          { label: "ASAP", value: "ASAP", selected: false },
+          { label: "1-3 months", value: "1-3 months", selected: false },
+          { label: "3-6 months", value: "3-6 months", selected: false },
+          { label: "6+ months", value: "6+ months", selected: false },
+          { label: "Just exploring", value: "Just exploring", selected: true },
+        ],
+      },
+    },
+    {
+      label: "",
+      tag: "textarea",
+      defaultValue: "",
+      rows: "3",
+      placeholder: "How can I help? *",
+      name: "message",
+      required: true,
+      halfWidth: false,
+    },
+    {
+      label:
+        "I agree to the terms and conditions and [privacy policy](/contact/).",
+      id: "privacy-policy",
+      name: "privacy_agreed",
+      value: "Agreed",
+      checked: false,
+      required: true,
+      type: "checkbox",
+      halfWidth: false,
+      defaultValue: "",
+    },
+    {
+      note: "success",
+      parentClass: "hidden text-sm message success",
+      content:
+        "Thank you for your enquiry! We'll get back to you within 24 hours.",
+    },
+    {
+      note: "deprecated",
+      parentClass: "hidden text-sm message error",
+      content:
+        "Something went wrong! Please email us directly at [info@bvswebdesign.co.uk](mailto:info@bvswebdesign.co.uk)",
+    },
+  ],
+};
+
+# Who Actually Owns Your Website? What Every Small Business Owner Needs to Know
+
+I was speaking to a client recently — repeat business, always a good sign — and she told me something that made my stomach turn.
+
+A friend of hers had been paying up to £300 a month for basic website edits. On a side hustle. When she finally said enough is enough and told the agency she didn't need any more work done, they quietly renewed her domain without asking. Then quoted her £250 to transfer it out.
+
+I've asked to be put in touch.
+
+That story isn't as unusual as it should be. The web design industry has a reputation problem, and situations like this are a big part of why. So I want to explain exactly what you should own, what you should have access to, and what to watch out for — whether you're looking for a designer now or already working with one.
+
+---
+
+## What Does "Owning Your Website" Actually Mean?
+
+Your website is made up of several separate things, and each one can be controlled by a different person. Most clients don't realise this until something goes wrong.
+
+**Your domain** (e.g. yourbusiness.co.uk) is your address on the internet. It should be registered in your name, with login credentials only you hold. If your designer registered it in their own account, they legally control it — not you. And as the story above shows, that matters enormously the moment the relationship ends.
+
+**Your hosting** is where your website's files actually live. You should either have your own hosting account, or at minimum have login access to wherever your site is hosted.
+
+**Your website files** — the code, images, database, everything that makes it work — should be available to you on request. Always.
+
+**Your admin login** to WordPress (or whatever platform you're on) should be yours from day one.
+
+If you don't have access to all of the above, you don't fully own your website.
+
+---
+
+## The Tactics That Trap People
+
+Some of this happens deliberately. Some of it is carelessness that conveniently benefits the designer. Either way, here's what to watch out for.
+
+**Domain registered in the agency's name.** The most common issue — and the most damaging. If the domain is in their account, they control it. Transferring it away requires their cooperation, and some make that very expensive indeed.
+
+**No client access to hosting.** If you can't log in to where your site lives, you're dependent on them for everything — updates, changes, backups, and eventually leaving.
+
+**Auto-renewing services without telling you.** Renewing a domain or hosting plan without asking, then using that renewal as leverage, is not an admin oversight. It's a tactic.
+
+**Charging to leave.** Domain transfers take minutes. File handovers take minutes. A £250 exit fee isn't a service charge. It's a penalty for having the nerve to go elsewhere.
+
+---
+
+## How I Work — and Why It's Different
+
+I'm not going to pretend every designer does this badly. But I do think it's worth being specific about how I work, because transparency is easy to claim and harder to demonstrate.
+
+**Your domain is yours.** I'll store it for you or walk you through buying it yourself — either way, it's in your name and you hold the credentials.
+
+**The contract you sign protects you.** Not just me. It sets out exactly what you're paying, what you get, and what happens if either of us wants to move on. It's written to be readable, not to bury things in small print — and it protects you from the kind of practices described above.
+
+**My pricing is straightforward.** A yearly fee covers hosting and updates. Anything else is agreed and quoted separately before any work starts. No surprises on the invoice.
+
+**Leaving is easy.** One month's notice. I'll make sure your new supplier has everything they need to keep you up and running without missing a beat. The goal is to do work good enough that you want to stay — not to make leaving difficult enough that you feel you have to.
+
+It's not difficult to behave ethically. It can just be difficult to find someone who does.
+
+---
+
+## Questions Worth Asking Any Designer
+
+Before you sign anything, ask these. How a designer answers will tell you a lot about how they'll treat you as a client.
+
+- Who will the domain be registered to?
+- Will I have my own hosting login?
+- What does the handover process look like if I want to leave?
+- Are there any ongoing costs beyond the initial build?
+- Can I edit the site myself, or does everything have to go through you?
+
+A good designer will answer all of these without hesitation. A bad one will stall, deflect, or make them sound more complicated than they are.
+
+---
+
+## If You're Already in This Situation
+
+If you're not sure who controls your domain or hosting right now, here's where to start.
+
+Check your emails for the original domain registration confirmation — it'll show whose account it was registered to. Ask your designer directly for your login credentials. If they stall or make it complicated, that's your answer.
+
+For .co.uk domains, you can check registrant details via [Nominet's WHOIS tool](https://www.nominet.uk/whois/). If the registrant isn't you or your business, you'll want to address that sooner rather than later.
+
+If you're being charged to access something you've already paid for, you don't have to accept it. Get a second opinion — and if necessary, seek advice from Trading Standards.
+
+---
+
+## Final Thought
+
+The best client relationships in this industry are built on trust, not dependency. A client who feels looked after and in control comes back. A client who feels trapped leaves the moment they can — and tells people about it.
+
+If you're not sure whether you actually own your website, I'm happy to take a look and give you a straight answer. No catch.
+
+<div class="bg-accent mt-8 rounded-xl p-6 md:p-10">
+  <h3 class="mb-6 text-2xl font-semibold text-white">Get In Touch</h3>
+  <ContactForm form={form} />
+</div>

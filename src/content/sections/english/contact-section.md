@@ -57,9 +57,30 @@ form:
       defaultValue: ""
 
     - label: ""
-      placeholder: "Budget *"
-      name: "budget_range"
+      placeholder: "What are you looking for? *"
+      name: "service_type"
       required: true
+      halfWidth: true
+      dropdown:
+        type: "select"
+        items:
+          - label: "New website"
+            value: "new_website"
+            selected: false
+          - label: "Site audit"
+            value: "site_audit"
+            selected: false
+          - label: "Support & care plan"
+            value: "support_care"
+            selected: false
+          - label: "Not sure yet"
+            value: "not_sure"
+            selected: true
+
+    - label: ""
+      placeholder: "Budget"
+      name: "budget_range"
+      required: false
       halfWidth: true
       dropdown:
         type: "select"
