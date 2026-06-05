@@ -34,21 +34,6 @@ form:
       defaultValue: ""
 
     - label: ""
-      placeholder: "Phone Number"
-      name: "phone"
-      required: false
-      type: "tel"
-      halfWidth: true
-      defaultValue: ""
-
-    - label: ""
-      placeholder: "Company Name"
-      name: "company"
-      required: false
-      halfWidth: true
-      defaultValue: ""
-
-    - label: ""
       placeholder: "Company Website"
       name: "website"
       required: false
@@ -57,7 +42,7 @@ form:
       defaultValue: ""
 
     - label: ""
-      placeholder: "What are you looking for? *"
+      placeholder: "How can I help? *"
       name: "service_type"
       required: true
       halfWidth: true
@@ -67,60 +52,15 @@ form:
           - label: "New website"
             value: "new_website"
             selected: false
+          - label: "Help with my current site"
+            value: "support_care"
+            selected: false
           - label: "Site audit"
             value: "site_audit"
             selected: false
-          - label: "Support & care plan"
-            value: "support_care"
-            selected: false
           - label: "Not sure yet"
             value: "not_sure"
-            selected: true
-
-    - label: ""
-      placeholder: "Budget"
-      name: "budget_range"
-      required: false
-      halfWidth: true
-      dropdown:
-        type: "select"
-        items:
-          - label: "£1,000 - £2,500"
-            value: "1000_to_2500"
             selected: false
-          - label: "£2,500 - £5,000"
-            value: "2500_to_5000"
-            selected: false
-          - label: "£5,000+"
-            value: "5000_plus"
-            selected: false
-          - label: "Not sure yet"
-            value: "unknown"
-            selected: true
-
-    - label: ""
-      placeholder: "Timeline"
-      name: "timeline"
-      required: false
-      halfWidth: true
-      dropdown:
-        type: "select"
-        items:
-          - label: "ASAP"
-            value: "ASAP"
-            selected: false
-          - label: "1-3 months"
-            value: "1-3 months"
-            selected: false
-          - label: "3-6 months"
-            value: "3-6 months"
-            selected: false
-          - label: "6+ months"
-            value: "6+ months"
-            selected: false
-          - label: "Just exploring"
-            value: "Just exploring"
-            selected: true
 
     - label: ""
       tag: "textarea"
