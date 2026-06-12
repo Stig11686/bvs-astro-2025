@@ -77,7 +77,7 @@ const t = await useTranslations(Astro.currentLocale as string);
         )
       }
     </ul>
-    {title && <h1 class="text-h2-sm md:text-h2" set:html={title} />}
+    {title && <h1 class="font-primary font-normal tracking-tight text-3xl md:text-4xl lg:text-5xl leading-tight" set:html={title} />}
     {tocEnabled && tocHeadings && <TOC toc={tocHeadings} marker={false} />}
     {
       Content && (

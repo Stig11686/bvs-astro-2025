@@ -1,0 +1,193 @@
+---
+import Base from "@/layouts/Base.astro";
+import { generatePaths } from "@/lib/utils/languageParser.ts";
+import CustomButton from "@/components/CustomButton.astro";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+const pageData = {
+  title: "Website Rescue",
+  metaDescription: "Developer gone? Wrong platform? Locked out? I take it over and sort it out. Get back control of your website.",
+};
+
+const RESCUE_CARDS = [
+  {
+    title: 'Developer gone quiet',
+    body: "You've sent the emails. Maybe you've even called. Nothing. Your website is sitting on someone else's server, you don't have the login details, and you're not sure what you even own. I'll get you back in control.",
+  },
+  {
+    title: 'Locked out of your own site',
+    body: "Some developers — intentionally or not — leave businesses with no access to their own domain, hosting, or files. I've helped businesses recover 30 years of content from a locked-down server. Whatever the situation, there's usually a way through.",
+  },
+  {
+    title: 'Wrong platform, wrong price',
+    body: 'Proprietary website builders and closed CMS platforms charge a premium for the privilege of keeping you stuck. I move businesses onto WordPress — reducing ongoing costs and giving you something you actually own and can take anywhere.',
+  },
+];
+
+const RESCUE_STORIES = [
+  {
+    client: 'Ilkley Harriers',
+    body: "A running club with 30 years of history on their website — and a developer who'd become unreliable and unresponsive, with everything locked on a server nobody else could access. I built a new site while they worked to recover the existing content, managed the migration, and handed them full control of their own domain for the first time. Their website, their domain, their call.",
+  },
+  {
+    client: 'Climate Action Silsden',
+    body: "A community organisation whose developer communicated sporadically via WhatsApp and had left them with no ownership of their own domain. I built them a new site and made sure they walked away with full control — so they could go elsewhere in future if they wanted to. That's how it should work.",
+  },
+];
+---
+
+<Base {...pageData} footerLayout="footer-1">
+  <!-- Hero -->
+  <section class="py-16 lg:py-20">
+    <div class="container">
+      <div class="label text-accent mb-4">— Website Rescue</div>
+      <h1 class="font-primary font-normal text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.98] tracking-tight max-w-[20ch]">
+        Your website shouldn't be someone else's <em class="italic text-accent">hostage</em>.
+      </h1>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-8 max-w-5xl">
+        <p class="font-primary text-lg leading-relaxed text-ink-2">
+          A surprising number of small businesses are stuck with a website they can't access, can't update, or can't afford to keep — because of a developer who's gone quiet, a platform that's bleeding money, or someone who handed over a half-finished job and disappeared.
+        </p>
+        <p class="font-primary text-lg leading-relaxed text-ink-2">
+          I take those situations over and sort them out. You get a website that works, hosting you control, and a domain that's actually yours.
+        </p>
+      </div>
+      <div class="mt-8">
+        <CustomButton
+          label="Start a Project →"
+          url="https://tidycal.com/bvswebdesign/start-a-project"
+          hoverEffect="creative-fill"
+          class="effect-color-accent"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Sound familiar? -->
+  <section class="py-12 border-t border-border-light">
+    <div class="container">
+      <h2 class="font-primary text-3xl md:text-4xl font-normal tracking-tight leading-tight mb-8">
+        Sound <em class="italic">familiar?</em>
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-border-light">
+        {RESCUE_CARDS.map((card, i) => (
+          <div class:list={[
+            "py-6 md:py-8",
+            i > 0 && "md:border-l border-border-light md:pl-7",
+            i < RESCUE_CARDS.length - 1 && "border-b md:border-b-0 border-border-light"
+          ]}>
+            <h3 class="font-primary text-xl md:text-2xl font-normal tracking-tight leading-snug mb-3">
+              <span class="text-accent">·</span> {card.title}
+            </h3>
+            <p class="text-sm text-ink-2 leading-relaxed">{card.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent rescues - dark section -->
+  <section class="py-14 bg-theme-dark text-white">
+    <div class="container">
+      <div class="label text-accent mb-4">— Recent rescues</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-6">
+        {RESCUE_STORIES.map((story) => (
+          <div class="pt-6 border-t border-white/20">
+            <h3 class="font-primary text-2xl md:text-3xl font-normal tracking-tight mb-3">
+              {story.client}
+            </h3>
+            <p class="font-primary text-base leading-relaxed text-white/75">{story.body}</p>
+          </div>
+        ))}
+      </div>
+      <p class="font-primary italic text-sm text-white/50 mt-8 max-w-3xl">
+        Jayne's Bridalwear case study coming soon — platform migration from a proprietary CMS, saving significant annual platform fees.
+      </p>
+    </div>
+  </section>
+
+  <!-- What happens when you get in touch -->
+  <section class="py-14">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 items-start">
+        <h2 class="font-primary text-3xl md:text-4xl font-normal tracking-tight leading-tight">
+          What happens when you <em class="italic text-accent">get in touch</em>
+        </h2>
+        <div>
+          <p class="font-primary text-lg leading-relaxed text-ink-2 max-w-2xl">
+            You don't need to have everything figured out before contacting me. Most people in this situation don't know exactly what they have or what they're missing — that's part of the problem.
+          </p>
+          <p class="font-primary text-lg leading-relaxed text-ink-2 mt-5 mb-8 max-w-2xl">
+            Tell me what's going on and I'll tell you honestly what's possible, what it'll take, and whether I'm the right person to help.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer CTA -->
+  <section class="py-20 md:py-28 bg-theme-dark text-white">
+    <div class="container">
+      <div class="label text-accent mb-4">— Currently booking · 2 project slots left</div>
+      <h2 class="font-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight leading-[0.94] text-white max-w-[16ch] mb-10">
+        Stuck? Let's get you <em class="italic text-accent">back in control</em>.
+      </h2>
+      <div class="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-14 items-end">
+        <p class="font-primary text-lg md:text-xl leading-relaxed text-white/75 max-w-[52ch]">
+          You don't need it all figured out. Tell me what's going on and I'll tell you what's possible.
+        </p>
+        <div class="flex flex-col gap-3 items-start">
+          <CustomButton
+            label="Start a Project →"
+            url="https://tidycal.com/bvswebdesign/start-a-project"
+            hoverEffect="creative-fill"
+            variant="fill"
+            class="bg-accent text-white hover:bg-accent/90"
+          />
+          <a
+            href="/contact/"
+            class="ghost-dark-btn"
+          >
+            Send a Message
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .label {
+    font-family: var(--font-secondary);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .text-ink-2 {
+    color: var(--color-ink-2, #44403c);
+  }
+  .bg-stone-2 {
+    background-color: var(--color-stone-2, #e7e5e3);
+  }
+  .ghost-dark-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-secondary);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: white;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: background-color 0.2s ease;
+  }
+  .ghost-dark-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+</style>

@@ -1,0 +1,68 @@
+---
+import type { Section } from "@/types";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import overrideObjects from "@/lib/utils/overrideObjects.ts";
+
+type ProofStat = {
+  value: string;
+  label: string;
+  sub: string;
+};
+
+type ProofStripSection = Section & {
+  stats?: ProofStat[];
+};
+
+type Props = {
+  content?: ProofStripSection;
+};
+
+// Fetching the default content for this section
+let defaultContent = (
+  await getEntryCTM("sections", "proof-strip", Astro.currentLocale)
+)?.data as ProofStripSection;
+
+// Enables content customization with fallback to defaultContent
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as ProofStripSection;
+
+let { stats } = actualContent;
+---
+
+<section class="pb-4">
+  <div class="container">
+    <div class="grid grid-cols-1 md:grid-cols-3 border border-border-light">
+      {stats && stats.map((stat, index) => (
+        <div
+          class:list={[
+            "p-7 md:p-8",
+            index < stats.length - 1 && "border-b md:border-b-0 md:border-r border-border-light"
+          ]}
+        >
+          <div class="font-primary text-5xl md:text-6xl italic leading-none text-accent">
+            {stat.value}
+          </div>
+          <div class="font-primary text-lg md:text-xl mt-3 tracking-tight">
+            {stat.label}
+          </div>
+          <div class="label mt-2">
+            {stat.sub}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .label {
+    font-family: var(--font-secondary);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-ink-2, #44403c);
+  }
+</style>

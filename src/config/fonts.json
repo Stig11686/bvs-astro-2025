@@ -1,25 +1,7 @@
 {
   "fontFamily": [
     {
-      "name": "Poppins",
-      "src": [
-        {
-          "weight": "400"
-        },
-        {
-          "weight": "500"
-        }
-      ],
-      "preload": false,
-      "provider": "google-fonts",
-      "display": "swap",
-      "cssVariable": "font-primary",
-      "fallback": "sans-serif",
-      "locallyHosted": true,
-      "__comment": "set locallyHosted: true if you want to download google fonts and hosted them locally automatically"
-    },
-    {
-      "name": "Unbounded",
+      "name": "Newsreader",
       "src": [
         {
           "style": "normal",
@@ -32,10 +14,30 @@
         {
           "style": "normal",
           "weight": "600"
+        }
+      ],
+      "preload": false,
+      "provider": "google-fonts",
+      "display": "swap",
+      "cssVariable": "font-primary",
+      "fallback": "serif",
+      "locallyHosted": true,
+      "__comment": "Newsreader serif for headlines and editorial text"
+    },
+    {
+      "name": "Geist",
+      "src": [
+        {
+          "style": "normal",
+          "weight": "400"
         },
         {
           "style": "normal",
-          "weight": "700"
+          "weight": "500"
+        },
+        {
+          "style": "normal",
+          "weight": "600"
         }
       ],
       "preload": false,
@@ -44,7 +46,7 @@
       "provider": "google-fonts",
       "fallback": "sans-serif",
       "locallyHosted": true,
-      "__comment": "set locallyHosted: true if you want to download google fonts and hosted them locally automatically"
+      "__comment": "Geist sans-serif for body text and UI"
     }
   ]
 }

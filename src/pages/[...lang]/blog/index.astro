@@ -1,12 +1,11 @@
 ---
-import { getEntryCTM } from "@/lib/contentParser.astro";
 import Base from "@/layouts/Base.astro";
-import parseTomlToJson from "@/lib/utils/parseTomlToJson";
-import handleDraftPage from "@/lib/utils/handleDraftPage";
-import PageHeader from "@/components/widgets/PageHeader.astro";
 import { generatePaths } from "@/lib/utils/languageParser.ts";
-import BlogLayout from "@/components/BlogLayout.astro";
-import Features from "@/components/sections/Features.astro";
+import { getCollectionCTM } from "@/lib/contentParser.astro";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import { slugifyyy } from "@/lib/utils/textConverter";
+import { Image } from "astro:assets";
+import parseTomlToJson from "@/lib/utils/parseTomlToJson";
 
 export function getStaticPaths() {
   return generatePaths();
@@ -15,27 +14,223 @@ export function getStaticPaths() {
 const config = parseTomlToJson("./src/config/config.toml");
 const { blogFolder }: { blogFolder: "blog" } = config.settings;
 
-const postIndex = await getEntryCTM(blogFolder, "-index", Astro.currentLocale);
+// Get all blog posts
+let posts = await getCollectionCTM(blogFolder, Astro.currentLocale);
+posts = sortByDate(posts);
 
-// Remove drafts pages in production
-const response = handleDraftPage(postIndex?.data);
-if (response) return response;
+// Filter out draft posts in production
+if (import.meta.env.PROD) {
+  posts = posts?.filter((post) => !post.data.draft);
+}
+
+// Get unique categories from all posts
+const allCategories = posts?.flatMap((post) => post.data.categories || []) || [];
+const uniqueCategories = [...new Set(allCategories)];
+
+// Featured post is the latest
+const featuredPost = posts?.[0];
+const remainingPosts = posts?.slice(1);
+
+// Count posts
+const postCount = posts?.length || 0;
+
+const pageData = {
+  title: "The Journal | Web Design Blog",
+  metaDescription: "Web design tips, WordPress advice, and case studies from BVS Web Design. Practical insights for small business owners in Yorkshire and beyond.",
+};
+
+// Helper to format date
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat('en-GB', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric'
+  }).format(new Date(date));
+};
+
+// Helper to get post URL
+const getPostUrl = (post: any) => {
+  const slug = post.data.customSlug || post.id.replace(/^english\//, '').replace(/\.mdx?$/, '');
+  return `/blog/${slug}/`;
+};
 ---
 
-<Base {...postIndex?.data} fitToScreen={false}>
-  <PageHeader content={postIndex?.data} />
-  <BlogLayout
-    pageType="list"
-    sidebar={{
-      enable: true,
-      sticky: true,
-    }}
-    contentList={{
-      options: postIndex?.data.options,
-      pagination: { enable: true, currentPage: 1 },
-    }}
-    content={{ ...postIndex, ...postIndex?.data }}
-  />
-  <!-- <Features /> -->
-  <!-- <CallToAction sectionSpaceTop={false} /> -->
+<Base {...pageData} footerLayout="footer-1">
+  <!-- Hero -->
+  <section class="py-16 lg:py-20 border-b border-border-light">
+    <div class="container">
+      <div class="label text-accent mb-4">— Issue № {postCount}</div>
+      <h1 class="font-primary font-normal text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.98] tracking-tight max-w-[16ch]">
+        The <em class="italic text-accent">Journal</em>
+      </h1>
+      <p class="font-primary text-lg md:text-xl leading-relaxed text-ink-2 mt-6 max-w-[52ch]">
+        Thoughts on web design, WordPress, and building websites that actually work for small businesses.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filter Tabs -->
+  <section class="py-6 border-b border-border-light">
+    <div class="container">
+      <nav class="flex flex-wrap gap-2" aria-label="Blog categories">
+        <a
+          href="/blog/"
+          class="filter-tab active"
+          data-category="all"
+        >
+          All
+        </a>
+        {uniqueCategories.map((category) => (
+          <a
+            href={`/blog/category/${slugifyyy(category)}/`}
+            class="filter-tab"
+            data-category={slugifyyy(category)}
+          >
+            {category}
+          </a>
+        ))}
+      </nav>
+    </div>
+  </section>
+
+  <!-- Featured Post -->
+  {featuredPost && (
+    <section class="py-12 md:py-16 border-b border-border-light">
+      <div class="container">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <!-- Image -->
+          <a href={getPostUrl(featuredPost)} class="block overflow-hidden bg-stone-2">
+            {featuredPost.data.image ? (
+              <img
+                src={featuredPost.data.image}
+                alt={featuredPost.data.title}
+                class="w-full aspect-[4/3] object-cover hover:scale-105 transition-transform duration-500"
+                loading="eager"
+              />
+            ) : (
+              <div class="w-full aspect-[4/3] flex items-center justify-center bg-stone-2 text-dark/60 font-primary text-lg italic px-6 text-center">
+                {featuredPost.data.title}
+              </div>
+            )}
+          </a>
+
+          <!-- Content -->
+          <div>
+            <div class="flex items-center gap-3 mb-4">
+              <span class="label text-accent">Featured</span>
+              {featuredPost.data.categories?.[0] && (
+                <span class="label text-ink-2">· {featuredPost.data.categories[0]}</span>
+              )}
+            </div>
+            <h2 class="font-primary text-2xl md:text-3xl lg:text-4xl font-normal tracking-tight leading-tight">
+              <a href={getPostUrl(featuredPost)} class="hover:text-accent transition-colors">
+                {featuredPost.data.title}
+              </a>
+            </h2>
+            <p class="font-primary text-base md:text-lg leading-relaxed text-ink-2 mt-4 line-clamp-3">
+              {featuredPost.body?.substring(0, 200).replace(/[#*_\[\]]/g, '').trim()}...
+            </p>
+            <div class="flex items-center gap-4 mt-6">
+              <span class="text-sm text-ink-2">{formatDate(featuredPost.data.date)}</span>
+              <a
+                href={getPostUrl(featuredPost)}
+                class="font-primary italic text-dark border-b border-dark hover:text-accent hover:border-accent transition-colors"
+              >
+                Read more →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Post Grid -->
+  <section class="py-12 md:py-16">
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
+        {remainingPosts?.map((post) => (
+          <article class="group">
+            <!-- Image -->
+            <a href={getPostUrl(post)} class="block overflow-hidden bg-stone-2 mb-5">
+              {post.data.image ? (
+                <img
+                  src={post.data.image}
+                  alt={post.data.title}
+                  class="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              ) : (
+                <div class="w-full aspect-[16/10] flex items-center justify-center bg-stone-2 text-dark/60 font-primary text-lg italic px-6 text-center">
+                  {post.data.title}
+                </div>
+              )}
+            </a>
+
+            <!-- Content -->
+            <div class="flex items-center gap-3 mb-3">
+              {post.data.categories?.[0] && (
+                <span class="label text-accent">{post.data.categories[0]}</span>
+              )}
+              <span class="text-sm text-ink-2">{formatDate(post.data.date)}</span>
+            </div>
+            <h3 class="font-primary text-xl md:text-2xl font-normal tracking-tight leading-snug">
+              <a href={getPostUrl(post)} class="hover:text-accent transition-colors">
+                {post.data.title}
+              </a>
+            </h3>
+            <a
+              href={getPostUrl(post)}
+              class="inline-block mt-3 font-primary italic text-sm text-dark border-b border-dark hover:text-accent hover:border-accent transition-colors"
+            >
+              Read article →
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
 </Base>
+
+<style>
+  .label {
+    font-family: var(--font-secondary);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .text-ink-2 {
+    color: var(--color-ink-2, #44403c);
+  }
+  .bg-stone-2 {
+    background-color: var(--color-stone-2, #e7e5e3);
+  }
+
+  .filter-tab {
+    padding: 0.5rem 1rem;
+    font-family: var(--font-secondary);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid var(--color-border-light);
+    color: var(--color-ink-2, #44403c);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .filter-tab:hover {
+    border-color: var(--color-dark);
+    color: var(--color-dark);
+  }
+  .filter-tab.active {
+    background-color: var(--color-dark);
+    color: white;
+    border-color: var(--color-dark);
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

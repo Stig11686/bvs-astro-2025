@@ -3,7 +3,7 @@ title: "Blog Traffic Means Nothing If Nobody Enquires. Here's How I Fix That."
 description: "Getting someone to read an article is the easy part. Getting them to enquire requires a deliberate process that most websites simply don't have."
 metaTitle: "How I Turn Blog Traffic Into Actual Enquiries | BVS Web Design"
 metaDescription: "Most business blogs get traffic and nothing else. Here's the exact process I use to turn blog readers into real enquiries — without more content or more traffic."
-image: "/images/blog/web-analytics.jpg"
+image: "/src/assets/images/blog/web-analytics.jpg"
 keywords:
   [
     "blog traffic",
@@ -28,128 +28,6 @@ tags:
   - "Best Practices"
 draft: false
 ---
-
-import ContactForm from "@/components/widgets/ContactForm.astro";
-
-export const form = {
-  emailSubject: "New enquiry from BVS website",
-  submitButton: {
-    enable: true,
-    label: "SEND MESSAGE",
-  },
-  inputs: [
-    {
-      label: "",
-      placeholder: "Name *",
-      name: "name",
-      required: true,
-      halfWidth: true,
-      defaultValue: "",
-    },
-    {
-      label: "",
-      placeholder: "Email Address *",
-      name: "email",
-      required: true,
-      type: "email",
-      halfWidth: true,
-      defaultValue: "",
-    },
-    {
-      label: "",
-      placeholder: "Phone Number",
-      name: "phone",
-      required: false,
-      type: "tel",
-      halfWidth: true,
-      defaultValue: "",
-    },
-    {
-      label: "",
-      placeholder: "Company Name",
-      name: "company",
-      required: false,
-      halfWidth: true,
-      defaultValue: "",
-    },
-    {
-      label: "",
-      placeholder: "Company Website",
-      name: "website",
-      required: false,
-      type: "url",
-      halfWidth: true,
-      defaultValue: "",
-    },
-    {
-      label: "",
-      placeholder: "Budget *",
-      name: "budget_range",
-      required: true,
-      halfWidth: true,
-      dropdown: {
-        type: "select",
-        items: [
-          { label: "£1,000 - £2,500", value: "1000_to_2500", selected: false },
-          { label: "£2,500 - £5,000", value: "2500_to_5000", selected: false },
-          { label: "£5,000+", value: "5000_plus", selected: false },
-          { label: "Not sure yet", value: "unknown", selected: true },
-        ],
-      },
-    },
-    {
-      label: "",
-      placeholder: "Timeline",
-      name: "timeline",
-      required: false,
-      halfWidth: true,
-      dropdown: {
-        type: "select",
-        items: [
-          { label: "ASAP", value: "ASAP", selected: false },
-          { label: "1-3 months", value: "1-3 months", selected: false },
-          { label: "3-6 months", value: "3-6 months", selected: false },
-          { label: "6+ months", value: "6+ months", selected: false },
-          { label: "Just exploring", value: "Just exploring", selected: true },
-        ],
-      },
-    },
-    {
-      label: "",
-      tag: "textarea",
-      defaultValue: "",
-      rows: "3",
-      placeholder: "How can I help? *",
-      name: "message",
-      required: true,
-      halfWidth: false,
-    },
-    {
-      label:
-        "I agree to the terms and conditions and [privacy policy](/contact/).",
-      id: "privacy-policy",
-      name: "privacy_agreed",
-      value: "Agreed",
-      checked: false,
-      required: true,
-      type: "checkbox",
-      halfWidth: false,
-      defaultValue: "",
-    },
-    {
-      note: "success",
-      parentClass: "hidden text-sm message success",
-      content:
-        "Thank you for your enquiry! We'll get back to you within 24 hours.",
-    },
-    {
-      note: "deprecated",
-      parentClass: "hidden text-sm message error",
-      content:
-        "Something went wrong! Please email us directly at [info@bvswebdesign.co.uk](mailto:info@bvswebdesign.co.uk)",
-    },
-  ],
-};
 
 # Blog Traffic Means Nothing If Nobody Enquires. Here's How I Fix That.
 
@@ -302,7 +180,4 @@ I work with small businesses to audit what's already there, identify exactly whe
 
 If that sounds like a conversation worth having, get in touch below — I'll take a look at your current setup and tell you honestly where the gaps are.
 
-<div class="p-6 mt-8 bg-accent rounded-xl md:p-10">
-  <h3 class="mb-6 text-2xl font-semibold text-white">Get In Touch</h3>
-  <ContactForm form={form} />
-</div>
+[Get in touch →](/contact/)

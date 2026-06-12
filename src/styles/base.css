@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  @apply bg-body font-primary text-text-default leading-body font-normal;
+  @apply bg-body font-secondary text-text-default leading-body font-normal;
 }
 
 /* Global Section Spacing */
@@ -27,7 +27,7 @@ h3,
 h4,
 h5,
 h6 {
-  @apply leading-tight font-semibold tracking-wide break-words;
+  @apply leading-tight font-primary font-normal tracking-tight break-words;
 
   br {
     @apply max-md:hidden;
@@ -98,4 +98,27 @@ button:not(:disabled),
 
 .about .prose-styles {
   color: white !important;
+}
+
+/* Editorial typography utilities */
+.serif {
+  font-family: var(--font-primary);
+}
+
+.italic-accent {
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+.label {
+  font-family: var(--font-secondary);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-2, #44403c);
+}
+
+.label--accent {
+  color: var(--color-accent);
 }

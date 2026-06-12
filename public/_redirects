@@ -70,6 +70,30 @@
 # Blog typo fix
 /blog/what-to-do-when-my-website-deisgner-scams-me/ /blog/what-to-do-when-my-website-designer-scams-me/ 301!
 
+# Old category URL format (categories → category)
+/blog/categories/                    /blog/                              301!
+/blog/categories/seo/                /blog/category/seo/                 301!
+/blog/categories/web-design/         /blog/category/web-design/          301!
+/blog/categories/case-studies/       /blog/category/case-studies/        301!
+/blog/categories/content-strategy/   /blog/category/content-strategy/    301!
+/blog/categories/ai-automation/      /blog/category/ai-automation/       301!
+/blog/categories/hints-and-tips/     /blog/category/hints-and-tips/      301!
+/blog/categories/small-business/     /blog/category/small-business/      301!
+/blog/categories/website-audit/      /blog/category/website-audit/       301!
+/blog/categories/insights/           /blog/category/insights/            301!
+/blog/categories/technology/         /blog/category/technology/          301!
+/blog/categories/business/           /blog/category/business/            301!
+/blog/categories/sales/              /blog/category/sales/               301!
+
+# Old category URLs with spaces (URL encoded)
+/blog/category/case%20studies/       /blog/category/case-studies/        301!
+/blog/category/web%20design/         /blog/category/web-design/          301!
+/blog/category/content%20strategy/   /blog/category/content-strategy/    301!
+/blog/category/ai%20automation/      /blog/category/ai-automation/       301!
+/blog/category/hints%20and%20tips/   /blog/category/hints-and-tips/      301!
+/blog/category/small%20business/     /blog/category/small-business/      301!
+/blog/category/website%20audit/      /blog/category/website-audit/       301!
+
 # Old coverage area pages
 /coverage/wordpress-web-design-barnoldswick/  /services/website-design/ 301!
 /coverage/wordpress-web-design-gargrave/      /services/website-design/ 301!

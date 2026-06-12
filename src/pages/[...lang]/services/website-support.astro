@@ -1,0 +1,178 @@
+---
+import Base from "@/layouts/Base.astro";
+import { generatePaths } from "@/lib/utils/languageParser.ts";
+import CustomButton from "@/components/CustomButton.astro";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+const pageData = {
+  title: "Website Support & Care Plans",
+  metaDescription: "Ongoing support, security and updates so your website keeps performing. Managed hosting, backups, updates, and a real person at the other end.",
+};
+
+const SUPPORT_PLANS = [
+  {
+    name: 'Essentials',
+    price: '£35',
+    cadence: '/ month',
+    blurb: 'The basics, properly handled — so nothing breaks while you get on with running the business.',
+    features: ['Managed WordPress hosting', 'Weekly off-site backups', 'Core, theme & plugin updates', 'Uptime monitoring', 'Email support'],
+    featured: false,
+  },
+  {
+    name: 'Active',
+    price: '£99',
+    cadence: '/ month',
+    blurb: 'Everything in Essentials, plus a real person making small improvements every month.',
+    features: ['Everything in Essentials', 'Same-day priority fixes', '1 hour of edits each month', 'Security hardening & malware scans', 'Quarterly performance check'],
+    featured: true,
+  },
+  {
+    name: 'Growth',
+    price: '£249',
+    cadence: '/ month',
+    blurb: 'For businesses treating the website as a channel that should keep getting better.',
+    features: ['Everything in Active', '3 hours of edits each month', 'Monthly SEO actions', 'Conversion improvements', 'Quarterly strategy call'],
+    featured: false,
+  },
+];
+---
+
+<Base {...pageData} footerLayout="footer-1">
+  <!-- Hero -->
+  <section class="py-16 lg:py-20">
+    <div class="container">
+      <div class="label text-accent mb-4">— Website Support & Care Plans</div>
+      <h1 class="font-primary font-normal text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.98] tracking-tight max-w-[20ch]">
+        Looked after, so it keeps <em class="italic text-accent">earning</em>.
+      </h1>
+      <p class="font-primary text-lg md:text-xl leading-relaxed text-ink-2 mt-6 max-w-[58ch]">
+        Security, updates, backups and hosting — all handled, so your site keeps working while you focus on running your business. A real person at the other end of the email, not a ticket queue.
+      </p>
+      <div class="mt-8">
+        <CustomButton
+          label="Get Peace of Mind →"
+          url="https://tidycal.com/bvswebdesign/start-a-project"
+          hoverEffect="creative-fill"
+          class="effect-color-accent"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Plans -->
+  <section class="py-10 border-t border-border-light">
+    <div class="container">
+      <div class="grid grid-cols-1 md:grid-cols-3 border border-border-light">
+        {SUPPORT_PLANS.map((plan, i) => (
+          <div class:list={[
+            "p-8 relative",
+            i < SUPPORT_PLANS.length - 1 && "border-b md:border-b-0 md:border-r border-border-light",
+            plan.featured && "bg-stone-2"
+          ]}>
+            {plan.featured && (
+              <div class="absolute top-0 right-0 font-secondary text-[10px] tracking-wider uppercase bg-accent text-white px-3 py-1">
+                Most popular
+              </div>
+            )}
+            <h3 class="font-primary text-2xl font-normal tracking-tight">{plan.name}</h3>
+            <div class="flex items-baseline gap-2 mt-3 mb-4">
+              <span class="font-primary text-5xl italic text-accent leading-none">{plan.price}</span>
+              <span class="label">{plan.cadence}</span>
+            </div>
+            <p class="text-sm text-ink-2 leading-relaxed mb-5 min-h-[4rem]">{plan.blurb}</p>
+            <div class="border-t border-border-light/50">
+              {plan.features.map((feature) => (
+                <div class="flex gap-3 py-2 text-sm text-ink-2 border-b border-border-light/50">
+                  <span class="text-accent">✓</span>
+                  <span>{feature}</span>
+                </div>
+              ))}
+            </div>
+            <a
+              href="https://tidycal.com/bvswebdesign/start-a-project"
+              target="_blank"
+              rel="noopener"
+              class:list={[
+                "mt-6 w-full flex items-center justify-center px-6 py-3 font-secondary text-sm uppercase tracking-wider transition-colors",
+                plan.featured
+                  ? "bg-accent text-white hover:bg-accent/90"
+                  : "border border-dark text-dark hover:bg-dark hover:text-white"
+              ]}
+            >
+              Choose {plan.name} →
+            </a>
+          </div>
+        ))}
+      </div>
+      <p class="label mt-4 text-ink-2">
+        All plans are month-to-month · cancel any time · no setup fee for sites I've built
+      </p>
+    </div>
+  </section>
+
+  <!-- Footer CTA -->
+  <section class="py-20 md:py-28 bg-theme-dark text-white">
+    <div class="container">
+      <div class="label text-accent mb-4">— Currently booking · 2 project slots left</div>
+      <h2 class="font-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight leading-[0.94] text-white max-w-[16ch] mb-10">
+        Hand the worry <em class="italic text-accent">over</em>.
+      </h2>
+      <div class="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-14 items-end">
+        <p class="font-primary text-lg md:text-xl leading-relaxed text-white/75 max-w-[52ch]">
+          Security, updates, backups and a real person at the other end of the email. Let's get your site looked after.
+        </p>
+        <div class="flex flex-col gap-3 items-start">
+          <CustomButton
+            label="Get in Touch →"
+            url="https://tidycal.com/bvswebdesign/start-a-project"
+            hoverEffect="creative-fill"
+            variant="fill"
+            class="bg-accent text-white hover:bg-accent/90"
+          />
+          <a
+            href="/contact/"
+            class="ghost-dark-btn"
+          >
+            Send a Message
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .label {
+    font-family: var(--font-secondary);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .text-ink-2 {
+    color: var(--color-ink-2, #44403c);
+  }
+  .bg-stone-2 {
+    background-color: var(--color-stone-2, #e7e5e3);
+  }
+  .ghost-dark-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-secondary);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: white;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: background-color 0.2s ease;
+  }
+  .ghost-dark-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+</style>

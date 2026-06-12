@@ -1,6 +1,6 @@
 ---
 enable: true # Control the visibility of this section across all pages where it is used
-title: "Read Our Articles and News"
+title: "Insights from your website developer"
 
 options:
   layout: "grid" # grid | overlay | horizontal

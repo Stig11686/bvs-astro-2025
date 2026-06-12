@@ -1,0 +1,89 @@
+---
+import type { Section } from "@/types";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import overrideObjects from "@/lib/utils/overrideObjects.ts";
+
+type HelpCard = {
+  title: string;
+  body: string;
+  target: string;
+};
+
+type HelpCardsSection = Section & {
+  heading?: string;
+  cards?: HelpCard[];
+};
+
+type Props = {
+  content?: HelpCardsSection;
+};
+
+// Fetching the default content for this section
+let defaultContent = (
+  await getEntryCTM("sections", "help-cards", Astro.currentLocale)
+)?.data as HelpCardsSection;
+
+// Enables content customization with fallback to defaultContent
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as HelpCardsSection;
+
+let { heading, cards } = actualContent;
+
+// Map targets to URLs
+const targetUrls: Record<string, string> = {
+  'audit': '/services/website-audit/',
+  'rescue': '/services/website-rescue/',
+  'design': '/services/website-design/',
+  'support': '/services/support-care-plans/',
+};
+---
+
+<section class="py-14">
+  <div class="container">
+    {heading && (
+      <h2 class="font-primary text-4xl md:text-5xl font-normal tracking-tight leading-none mb-8">
+        <Fragment set:html={heading} />
+      </h2>
+    )}
+
+    <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-border-light">
+      {cards && cards.map((card, index) => (
+        <a
+          href={targetUrls[card.target] || '#'}
+          class="help-card block p-8 md:p-9 border-r border-b border-border-light no-underline text-dark transition-colors hover:bg-stone-2"
+        >
+          <div class="flex items-baseline justify-between">
+            <span class="font-primary italic text-xl text-accent">
+              0{index + 1}
+            </span>
+            <span class="font-primary italic text-base text-accent">
+              &rarr;
+            </span>
+          </div>
+          <h3 class="font-primary text-2xl md:text-[1.7rem] font-normal tracking-tight leading-tight mt-3 mb-3 max-w-[20ch]">
+            {card.title}
+          </h3>
+          <p class="text-sm md:text-[0.9rem] text-ink-2 leading-relaxed m-0 max-w-[46ch]">
+            {card.body}
+          </p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .text-ink-2 {
+    color: var(--color-ink-2, #44403c);
+  }
+
+  .bg-stone-2 {
+    background-color: var(--color-stone-2, #e7e5e3);
+  }
+
+  .help-card {
+    text-decoration: none;
+  }
+</style>

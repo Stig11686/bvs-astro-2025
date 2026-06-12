@@ -1,0 +1,127 @@
+---
+import type { Section } from "@/types";
+import { markdownify } from "@/lib/utils/textConverter";
+import { getEntryCTM } from "@/lib/contentParser.astro";
+import CustomButton from "@/components/CustomButton.astro";
+import overrideObjects from "@/lib/utils/overrideObjects.ts";
+import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
+
+// Type for this section data
+type BannerEditorial = Section & {
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  image?: string;
+  button?: {
+    enable?: boolean;
+    label?: string;
+    url?: string;
+    hoverEffect?: string;
+    variant?: string;
+    icon?: string;
+  };
+  button2?: {
+    enable?: boolean;
+    label?: string;
+    url?: string;
+    variant?: string;
+  };
+};
+
+type Props = {
+  content?: BannerEditorial;
+};
+
+// Fetching the default content for this section
+let defaultContent = (
+  await getEntryCTM("sections", "banner-editorial", Astro.currentLocale)
+)?.data as BannerEditorial;
+
+// Enables content customization with fallback to defaultContent
+let actualContent = overrideObjects(
+  { ...defaultContent },
+  Astro.props.content,
+) as BannerEditorial;
+
+let { eyebrow, title, description, image, button, button2 } = actualContent;
+---
+
+<section class="py-16 lg:py-20">
+  <div class="container">
+    <div class="grid gap-12 lg:grid-cols-[1.55fr_1fr] lg:gap-14 items-center">
+      <!-- Content -->
+      <div>
+        {eyebrow && (
+          <div class="label text-accent mb-4">— {eyebrow}</div>
+        )}
+
+        {title && (
+          <h1
+            class="font-primary font-normal text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[0.98] tracking-tight"
+            set:html={markdownify(title)}
+          />
+        )}
+
+        {description && (
+          <p
+            class="font-primary text-lg md:text-xl leading-relaxed text-ink-2 mt-6 max-w-[46ch]"
+            set:html={markdownify(description)}
+          />
+        )}
+
+        <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center mt-8">
+          {button && button.enable && (
+            <CustomButton
+              hoverEffect="creative-fill"
+              class="effect-color-accent"
+              {...button}
+            />
+          )}
+
+          {button2 && button2.enable && (
+            <a
+              href={button2.url}
+              class="font-primary italic text-dark hover:text-accent transition-colors border-b border-current pb-0.5"
+            >
+              {button2.label}
+            </a>
+          )}
+        </div>
+      </div>
+
+      <!-- Image -->
+      {image && (
+        <div class="relative">
+          <OptimizedImage
+            src={image}
+            alt="Steve Marks - Web Designer"
+            class="w-full h-auto max-h-[440px] object-cover"
+            width={600}
+            height={440}
+          />
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .label {
+    font-family: var(--font-secondary);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .text-ink-2 {
+    color: var(--color-ink-2, #44403c);
+  }
+
+  /* Style for italic accent spans in title */
+  h1 :global(em),
+  h1 :global(i) {
+    font-style: italic;
+    color: var(--color-accent);
+  }
+</style>

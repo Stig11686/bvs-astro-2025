@@ -4,21 +4,25 @@
   --leading-body: 1.8;
   --leading-inherit: inherit;
 
-  /* Colors */
-  --color-primary: #172238;
-  --color-secondary: #5f0041;
-  --color-accent: #5f0041;
-  --color-accent-blue: #172238;
-  --color-body: #fff;
-  --color-body-dark: #070800;
-  --color-border-light: #e5e5e5;
-  --color-border-dark: #292525;
-  --color-theme-dark: #0e1118;
-  --color-theme-darker: #131312;
-  --color-theme-light: #f6f5f3;
-  --color-text-default: #2e2e2e;
-  --color-dark: #0a0c00;
-  --color-light: #f6f5f3;
+  /* Colors - Editorial palette with stone background */
+  --color-primary: #6e1a2c;      /* Claret */
+  --color-secondary: #1d3a5f;    /* Navy blue */
+  --color-accent: #6e1a2c;       /* Claret */
+  --color-accent-blue: #1d3a5f;  /* Navy blue */
+  --color-body: #f5f5f4;         /* Stone */
+  --color-body-dark: #1c1917;    /* Stone dark */
+  --color-border-light: rgba(28, 25, 23, 0.12);  /* Rule */
+  --color-border-dark: rgba(255, 255, 255, 0.12);
+  --color-theme-dark: #1c1917;   /* Stone dark */
+  --color-theme-darker: #0c0a09; /* Deep stone */
+  --color-theme-light: #f5f5f4;  /* Stone */
+  --color-text-default: #1c1917; /* Stone dark */
+  --color-dark: #1c1917;         /* Stone dark */
+  --color-light: #f5f5f4;        /* Stone */
+  --color-stone-2: #e7e5e3;      /* Secondary stone */
+  --color-ink-2: #44403c;        /* Secondary ink */
+  --color-claret-deep: #4f1220;  /* Deep claret */
+  --color-blue-deep: #0f2742;    /* Deep navy */
 
   /* Screen */
   --breakpoint-*: initial;

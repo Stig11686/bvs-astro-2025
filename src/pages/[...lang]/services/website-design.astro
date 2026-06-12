@@ -1,0 +1,204 @@
+---
+import Base from "@/layouts/Base.astro";
+import { generatePaths } from "@/lib/utils/languageParser.ts";
+import CustomButton from "@/components/CustomButton.astro";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+const pageData = {
+  title: "Website Design with WordPress",
+  metaDescription: "A new WordPress website built around generating enquiries — not just looking good. Strategy, copy guidance, design, build and launch.",
+};
+
+const DESIGN_INCLUDES = [
+  'Discovery & strategy session',
+  'Custom design in Figma',
+  'Hand-built WordPress (no page builders)',
+  'Copywriting guidance',
+  'On-page SEO foundations',
+  'Mobile-first, fast by default',
+  'Editor training video',
+  '30 days of post-launch fixes',
+];
+
+const DESIGN_PROCESS = [
+  ['01', 'Free call', 'A proper conversation about your business — not your colour scheme.'],
+  ['02', 'Discovery', 'Your customers, what they need to see, and what is getting in the way.'],
+  ['03', 'Design', 'Figma drafts you can mark up, built around the path to enquiry.'],
+  ['04', 'Build', 'Hand-built WordPress — no bloated page builders.'],
+  ['05', 'Launch + care', 'Live, trained, and looked after long after handover.'],
+];
+
+const CLIENT_RESULTS = [
+  ['Ilkley Dental Care', 'went from a broken contact form and zero web enquiries to 30+ enquiries per month after a full rebuild.'],
+  ['Rebecca Rennolds Permanent Beauty', 'built from scratch with no existing website; now generates 3–4k visits per month and ranks strongly for local search terms.'],
+  ['Maidens & Ravens Bridal Boutique', 'launched a distinctive WooCommerce site and gained 30 Google reviews in the first three months.'],
+];
+---
+
+<Base {...pageData} footerLayout="footer-1">
+  <!-- Hero -->
+  <section class="py-16 lg:py-20">
+    <div class="container">
+      <div class="label text-accent mb-4">— Website Design</div>
+      <h1 class="font-primary font-normal text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.98] tracking-tight max-w-[18ch]">
+        A website built around <em class="italic text-accent">enquiries</em>, not applause.
+      </h1>
+      <p class="font-primary text-lg md:text-xl leading-relaxed text-ink-2 mt-6 max-w-[58ch]">
+        A new WordPress website built around generating enquiries — not just looking good. I handle strategy, copy guidance, design, build and launch, then stay on to look after it.
+      </p>
+      <div class="mt-8">
+        <CustomButton
+          label="Start a Project →"
+          url="https://tidycal.com/bvswebdesign/start-a-project"
+          hoverEffect="creative-fill"
+          class="effect-color-accent"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- What's included + Process -->
+  <section class="py-10 border-t border-border-light">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- What's included -->
+        <div>
+          <div class="label mb-4">What's included</div>
+          <div class="border-t border-border-light">
+            {DESIGN_INCLUDES.map((item) => (
+              <div class="font-primary text-lg italic leading-relaxed py-3 border-b border-border-light/50 flex gap-3">
+                <span class="text-accent not-italic">—</span>
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- How it goes -->
+        <div>
+          <div class="label mb-4">How it goes</div>
+          <div class="border-t border-border-light">
+            {DESIGN_PROCESS.map(([num, title, desc]) => (
+              <div class="grid grid-cols-[auto_1fr] gap-5 py-4 border-b border-border-light/50">
+                <div class="font-primary italic text-2xl text-accent">{num}</div>
+                <div>
+                  <div class="font-primary text-xl tracking-tight">{title}</div>
+                  <div class="text-sm text-ink-2 leading-relaxed mt-1">{desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recently built -->
+  <section class="py-12 border-t border-border-light">
+    <div class="container">
+      <div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-8 items-center">
+        <h2 class="font-primary text-3xl md:text-4xl font-normal tracking-tight leading-tight">
+          Recently built
+        </h2>
+        <p class="font-primary text-lg leading-relaxed text-ink-2">
+          <strong class="text-dark">Rebecca Rennolds Permanent Beauty</strong> — built from scratch with no existing website; now generates <span class="text-accent">3–4k visits per month</span> and ranks strongly for local search terms.
+        </p>
+      </div>
+      <!-- 3 Portfolio Images -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+        <div class="bg-stone-2 aspect-[4/3] flex items-center justify-center text-ink-2 text-sm">
+          ⌐ Homepage — desktop
+        </div>
+        <div class="bg-stone-2 aspect-[4/3] flex items-center justify-center text-ink-2 text-sm">
+          ⌐ Services — mobile
+        </div>
+        <div class="bg-stone-2 aspect-[4/3] flex items-center justify-center text-ink-2 text-sm">
+          ⌐ Contact form
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What that looks like in practice -->
+  <section class="py-12 border-t border-border-light">
+    <div class="container">
+      <h2 class="font-primary text-3xl md:text-4xl font-normal tracking-tight leading-tight mb-8">
+        What that looks like <em class="italic">in practice</em>
+      </h2>
+      <div class="border-t border-border-light">
+        {CLIENT_RESULTS.map(([client, body]) => (
+          <div class="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-4 md:gap-8 py-6 border-b border-border-light/50">
+            <h3 class="font-primary text-xl md:text-2xl font-normal tracking-tight text-accent">{client}</h3>
+            <p class="font-primary text-lg leading-relaxed text-ink-2 max-w-[60ch]">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer CTA -->
+  <section class="py-20 md:py-28 bg-theme-dark text-white">
+    <div class="container">
+      <div class="label text-accent mb-4">— Currently booking · 2 project slots left</div>
+      <h2 class="font-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight leading-[0.94] text-white max-w-[16ch] mb-10">
+        Let's build something that <em class="italic text-accent">earns</em> its keep.
+      </h2>
+      <div class="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-14 items-end">
+        <p class="font-primary text-lg md:text-xl leading-relaxed text-white/75 max-w-[52ch]">
+          Start with a free 30-minute call. No deck, no questionnaire — just a proper conversation about your business.
+        </p>
+        <div class="flex flex-col gap-3 items-start">
+          <CustomButton
+            label="Start a Project →"
+            url="https://tidycal.com/bvswebdesign/start-a-project"
+            hoverEffect="creative-fill"
+            variant="fill"
+            class="bg-accent text-white hover:bg-accent/90"
+          />
+          <a
+            href="/contact/"
+            class="ghost-dark-btn"
+          >
+            Send a Message
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .label {
+    font-family: var(--font-secondary);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .text-ink-2 {
+    color: var(--color-ink-2, #44403c);
+  }
+  .bg-stone-2 {
+    background-color: var(--color-stone-2, #e7e5e3);
+  }
+  .ghost-dark-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-secondary);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: white;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: background-color 0.2s ease;
+  }
+  .ghost-dark-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+</style>

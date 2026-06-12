@@ -24,7 +24,7 @@ const copyrightParts = splitProtectedText(copyrightText);
     <!-- Niche & Location Footer Sections -->
 
     <div
-      class="mb-6 grid grid-cols-1 gap-8 border-y-2 border-black py-6 md:grid-cols-2 lg:grid-cols-4">
+      class="mb-6 grid grid-cols-1 gap-8 border-y border-border-light py-6 md:grid-cols-2 lg:grid-cols-4">
       {
         [
           t("footerPrimary"),
@@ -32,18 +32,18 @@ const copyrightParts = splitProtectedText(copyrightText);
           t("footerNiches"),
           t("footerLocations"),
         ].map((group) => (
-          <div class="font-secondary text-dark flex flex-col gap-x-10 text-sm">
-            <h3 class="font-secondary text-dark mb-3 text-sm font-bold uppercase">
+          <div class="text-dark flex flex-col gap-x-10 text-sm">
+            <h3 class="font-secondary text-dark/60 mb-3 text-xs font-medium uppercase tracking-widest">
               {group[0].title}
             </h3>
-            <ul class="space-y-2 text-sm">
+            <ul class="space-y-2">
               {group
                 .slice(1)
                 .map(({ name, url }: { name: string; url: string }) => (
                   <li>
                     <a
                       set:html={name}
-                      class="transition duration-300 hover:opacity-70"
+                      class="font-primary text-base italic transition duration-300 hover:text-accent"
                       href={getLocaleUrlCTM(url, Astro.currentLocale)}
                     />
                   </li>

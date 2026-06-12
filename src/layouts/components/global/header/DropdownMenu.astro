@@ -92,7 +92,12 @@ const { pathname } = Astro.url;
                     </>
                   )
                 ) : (
-                  child.name
+                  <>
+                    <span class="block">{child.name}</span>
+                    {child.description && (
+                      <span class="nav-dropdown-description">{child.description}</span>
+                    )}
+                  </>
                 )}
               </a>
             </li>

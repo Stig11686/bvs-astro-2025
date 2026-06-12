@@ -13,7 +13,7 @@
   /* Sticky Animation On Fixed Header */
   &.scroll-down.has-sticky-behavior:not(.has-dark-background),
   &.scroll-up.has-sticky-behavior:not(.has-dark-background) {
-    @apply bg-white/80 backdrop-blur-lg;
+    @apply bg-body/88 backdrop-blur-lg;
   }
 
   &.scroll-down.has-sticky-behavior.has-dark-background,
@@ -95,21 +95,27 @@
 
     .nav-link,
     .nav-dropdown-link {
-      @apply font-secondary text-text-default hover:bg-primary/5 hover:text-primary relative flex w-full items-center px-5 py-3 text-sm font-normal uppercase transition duration-300;
+      @apply font-primary text-text-default hover:text-accent relative flex w-full items-center px-5 py-3 text-base font-normal italic normal-case transition duration-300;
 
       &.nav-link-active {
-        @apply max-lg:text-accent;
+        @apply text-accent border-b border-accent;
       }
     }
   }
 
   /* Dropdown List Styles */
   .nav-dropdown-list {
-    @apply hs-dropdown-open:pointer-events-auto hs-dropdown-open:opacity-100 border-border-dark pointer-events-none absolute top-0 z-10 mt-4 hidden min-w-72 border bg-white p-1 opacity-0 transition-[opacity,margin] max-lg:!static max-lg:!transform-none lg:start-1/2 lg:!mx-2 lg:-translate-x-1/2;
+    @apply hs-dropdown-open:pointer-events-auto hs-dropdown-open:opacity-100 border-border-dark pointer-events-none absolute top-0 z-10 mt-4 hidden min-w-80 border bg-white p-2 opacity-0 transition-[opacity,margin] max-lg:!static max-lg:!transform-none lg:end-0 lg:start-auto;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.16);
   }
 
   .nav-dropdown-link {
-    @apply font-secondary hover:bg-primary/5 hover:text-primary px-2.5 py-2 text-inherit lg:px-5;
+    @apply font-primary hover:bg-stone-2 px-4 py-3.5 text-inherit not-italic lg:px-4 block;
+  }
+
+  .nav-dropdown-description {
+    @apply font-secondary text-xs block mt-0.5 not-italic font-normal;
+    color: var(--color-ink-2, #44403c);
   }
   
   .nav-dropdown .nav-toggle {

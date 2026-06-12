@@ -1,19 +1,35 @@
 {
   "headerPrimary": [
     {
-      "name": "Services",
+      "name": "How I can help",
       "enable": true,
-      "hasMegaMenu": true,
-      "testimonial": {
-        "enable": true,
-        "name": "TESTIMONIAL",
-        "image": "/images/testimonial/elizabeth.jpg",
-        "content": "Steven has gone over and above to deliver the most amazing website for me and I am absolutely thrilled with it. His patience through my numerous changes and his vision in getting it just right has been fantastic. I would highly recommend him to anyone looking for a new website and have already done so to colleagues and friends. Thank you Steven for everything!"
-      },
-      "services": {
-        "enable": true,
-        "name": "SERVICES"
-      }
+      "hasChildren": true,
+      "children": [
+        {
+          "name": "Website Design",
+          "description": "A new WordPress site built around generating enquiries",
+          "url": "/services/website-design/",
+          "enable": true
+        },
+        {
+          "name": "Website Rescue",
+          "description": "Developer gone? Wrong platform? I take it over and sort it out",
+          "url": "/services/website-rescue/",
+          "enable": true
+        },
+        {
+          "name": "Support & Care Plans",
+          "description": "Security, updates, backups and hosting — all handled",
+          "url": "/services/website-support/",
+          "enable": true
+        },
+        {
+          "name": "Website Audit",
+          "description": "Find out exactly what's holding your site back",
+          "url": "/services/website-audit/",
+          "enable": true
+        }
+      ]
     },
     {
       "enable": true,

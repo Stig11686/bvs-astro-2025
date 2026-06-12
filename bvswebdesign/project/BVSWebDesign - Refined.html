@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>BVSWebDesign — Refined direction</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  html, body { margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    font-family: "Geist", ui-sans-serif, system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :root {
+    /* Accent colours — claret + blue, swappable via Tweaks */
+    --claret: #6a1a2c;
+    --claret-deep: #4a0f1d;
+    --blue: #16365a;
+    --blue-deep: #0c2340;
+    --accent-a: var(--claret);
+    --accent-a-deep: var(--claret-deep);
+    --accent-b: var(--blue);
+    --accent-b-deep: var(--blue-deep);
+
+    /* Paper modes — set by data-bg on <html> */
+    --paper: #f4f3ee;        /* default: cool stone */
+    --paper-2: #ecebe4;
+    --paper-3: #e3e1d8;
+    --ink: #14130e;
+    --ink-2: #3a3830;
+    --ink-3: rgba(20,19,14,0.55);
+    --rule: rgba(20,19,14,0.16);
+    --rule-soft: rgba(20,19,14,0.09);
+    --dark-bg: #14130e;
+    --dark-paper: #f6f5f0;
+  }
+  [data-accent="blue"] {
+    --accent-a: var(--blue);
+    --accent-a-deep: var(--blue-deep);
+    --accent-b: var(--claret);
+    --accent-b-deep: var(--claret-deep);
+  }
+  [data-bg="stone"] {
+    --paper: #f4f3ee;
+    --paper-2: #ecebe4;
+    --paper-3: #e3e1d8;
+    --ink: #14130e;
+    --rule: rgba(20,19,14,0.16);
+    --rule-soft: rgba(20,19,14,0.09);
+  }
+  [data-bg="cool"] {
+    --paper: #f6f7f5;
+    --paper-2: #eef0ec;
+    --paper-3: #e4e7e1;
+    --ink: #0d1410;
+    --rule: rgba(13,20,16,0.14);
+    --rule-soft: rgba(13,20,16,0.08);
+  }
+  [data-bg="white"] {
+    --paper: #ffffff;
+    --paper-2: #f6f6f4;
+    --paper-3: #ededea;
+    --ink: #0a0a08;
+    --rule: rgba(10,10,8,0.14);
+    --rule-soft: rgba(10,10,8,0.08);
+  }
+  [data-bg="newsprint"] {
+    --paper: #e9e5db;
+    --paper-2: #dfdbcf;
+    --paper-3: #d4cfbf;
+    --ink: #14130e;
+    --rule: rgba(20,19,14,0.20);
+    --rule-soft: rgba(20,19,14,0.10);
+  }
+
+  /* Type defaults */
+  h1, h2, h3, h4, p { margin: 0; }
+  a { color: inherit; }
+  .serif { font-family: "Newsreader", "Iowan Old Style", Georgia, serif; }
+  .mono  { font-family: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+  /* Reusable bits */
+  .label {
+    font-family: "Geist Mono", ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .label--accent { color: var(--accent-a); font-weight: 600; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: "Geist"; font-size: 14px; font-weight: 500;
+    padding: 13px 22px; border-radius: 999px;
+    text-decoration: none; letter-spacing: 0.005em;
+    transition: transform .15s, box-shadow .15s, background .15s, color .15s;
+    cursor: pointer; border: none;
+  }
+  .btn--solid {
+    background: var(--ink); color: var(--paper);
+  }
+  .btn--solid:hover { transform: translateY(-1px); background: var(--accent-a); }
+  .btn--accent {
+    background: var(--accent-a); color: var(--dark-paper);
+  }
+  .btn--accent:hover { transform: translateY(-1px); background: var(--accent-a-deep); }
+  .btn--ghost {
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--ink);
+  }
+  .btn--ghost:hover { background: var(--ink); color: var(--paper); }
+  .btn--ghost-dark {
+    background: transparent; color: var(--dark-paper);
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  .btn--ghost-dark:hover { background: rgba(255,255,255,0.1); }
+
+  .underlink {
+    font-family: "Newsreader"; font-style: italic; font-size: 16px;
+    text-decoration: none; color: var(--ink);
+    border-bottom: 1px solid var(--accent-a);
+    padding-bottom: 2px;
+    transition: color .15s;
+  }
+  .underlink:hover { color: var(--accent-a); }
+
+  /* Edge gutters — site-wide horizontal padding */
+  .gutter { padding-left: 56px; padding-right: 56px; }
+
+  /* Dark sections — used for testimonials, CTA, footer */
+  .dark {
+    background: var(--dark-bg);
+    color: var(--dark-paper);
+  }
+  .dark .label { color: rgba(255,255,255,0.55); }
+  .dark .label--accent { color: var(--accent-a); }
+
+  /* Stripe placeholder */
+  .ph {
+    background: repeating-linear-gradient(135deg, rgba(20,19,14,0.05) 0 14px, rgba(20,19,14,0.10) 14px 28px);
+    border: 1px solid var(--rule);
+    display: flex; align-items: center; justify-content: center;
+    font-family: "Geist Mono"; font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(20,19,14,0.5);
+  }
+  .ph--dark {
+    background: repeating-linear-gradient(135deg, rgba(255,255,255,0.04) 0 14px, rgba(255,255,255,0.09) 14px 28px);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* Hide scrollbar on the body so the prototype reads clean */
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 6px; }
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="shared.jsx"></script>
+<script type="text/babel" src="refined.jsx"></script>
+</body>
+</html>

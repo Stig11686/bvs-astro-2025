@@ -2,16 +2,16 @@
 .prose-styles {
   @apply prose max-w-none;
 
-  /* Typography */
-  @apply prose-headings:scroll-mt-32 prose-headings:font-medium prose-headings:mb-[.6em] prose-headings:mt-8 prose-headings:text-dark;
+  /* Typography - Editorial serif headings */
+  @apply prose-headings:scroll-mt-32 prose-headings:font-primary prose-headings:font-normal prose-headings:tracking-tight prose-headings:mb-[.6em] prose-headings:mt-8 prose-headings:text-dark;
   @apply prose-h1:text-h1-sm;
   @apply prose-h2:text-h2-sm;
   @apply prose-h3:text-h3-sm;
   @apply prose-h4:text-h4-sm;
   @apply prose-h5:text-h5-sm;
   @apply prose-h6:text-h6-sm;
-  @apply prose-strong:text-black prose-strong:text-sm prose-strong:font-medium prose-strong:font-secondary;
-  @apply prose-a:underline prose-a:transition prose-a:duration-300 prose-a:text-primary hover:prose-a:text-primary/80 prose-a:font-normal;
+  @apply prose-strong:text-dark prose-strong:font-medium;
+  @apply prose-a:underline prose-a:transition prose-a:duration-300 prose-a:text-accent hover:prose-a:text-accent/80 prose-a:font-normal;
   @apply prose-p:text-text-default prose-p:mt-4 prose-p:mb-3;
 
   @apply prose-hr:mt-5 prose-hr:mb-10 prose-hr:border prose-hr:border-border-light/25;

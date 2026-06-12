@@ -1,6 +1,6 @@
 ---
 enable: true
-title: "Have A Project on Your Mind?"
+title: "Need help with your website?"
 description: "Ready to turn your website into your best salesperson? Tell me a bit about your project and I’ll get back to you within one working day."
 
 image: "/images/computer-website.jpg"
@@ -16,6 +16,7 @@ form:
   submitButton:
     enable: true
     label: "SEND MESSAGE"
+  note: "By submitting this form you agree to our [privacy policy](/privacy-policy/)."
 
   inputs:
     - label: ""
@@ -71,7 +72,7 @@ form:
       required: true
       halfWidth: false
 
-    - label: "I agree to the terms and conditions and [privacy policy](/contact/)."
+    - label: "I agree to the terms and conditions and [privacy policy](/privacy-policy/)."
       id: "privacy-policy"
       name: "privacy_agreed"
       value: "Agreed"
@@ -83,7 +84,7 @@ form:
 
     - note: success
       parentClass: "hidden text-sm message success"
-      content: Thank you for your enquiry! We'll get back to you within 24 hours.
+      content: Thank you for your enquiry! I'll get back to you within one working day.
 
     - note: deprecated
       parentClass: "hidden text-sm message error"

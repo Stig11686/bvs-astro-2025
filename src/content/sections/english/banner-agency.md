@@ -13,6 +13,7 @@ button:
   label: "Tell me about your project"
   url: "/contact/"
   hoverEffect: "creative-fill" # Optional: text-flip | creative-fill | magnetic | magnetic-text-flip
+  class: "min-w-fit"
   # variant: "" # Optional: fill | outline | text | circle
   # rel: "" # Optional
   # target: "" # Optional
@@ -22,4 +23,5 @@ button2:
   label: "Not sure what you need? Book a free review"
   url: "https://tidycal.com/bvswebdesign/30-minute-meeting"
   variant: text
+  class: "!overflow-visible shrink-0"
 ---

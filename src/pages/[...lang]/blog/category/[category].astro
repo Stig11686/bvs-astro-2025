@@ -1,13 +1,11 @@
 ---
 import Base from "@/layouts/Base.astro";
-import { getEntryCTM } from "@/lib/contentParser.astro";
-import PageHeader from "@/components/widgets/PageHeader.astro";
+import { getCollectionCTM } from "@/lib/contentParser.astro";
 import { getTaxonomy } from "@/lib/taxonomyParser.astro";
 import { supportedLanguages } from "@/lib/utils/languageParser.ts";
 import { slugifyyy, titleify } from "@/lib/utils/textConverter";
+import { sortByDate } from "@/lib/utils/sortFunctions";
 import parseTomlToJson from "@/lib/utils/parseTomlToJson";
-import BlogLayout from "@/components/BlogLayout.astro";
-import Features from "@/components/sections/Features.astro";
 
 export async function getStaticPaths() {
   const paths = await Promise.all(
@@ -18,11 +16,6 @@ export async function getStaticPaths() {
         multilingual: { defaultLanguage, showDefaultLangInUrl },
       } = config.settings;
 
-      const postIndex = await getEntryCTM(
-        blogFolder as "blog",
-        "-index",
-        lang.languageCode,
-      );
       const categories = await getTaxonomy(
         blogFolder as "blog",
         "categories",
@@ -37,13 +30,8 @@ export async function getStaticPaths() {
               ? undefined
               : lang.languageCode,
         },
-        props: { category, postIndex, blogFolder },
+        props: { category, blogFolder },
       }));
-
-      // If draft true in index.md file frontmatter don't include any page related to this page collection in production
-      if (postIndex?.data.draft && import.meta.env.PROD) {
-        return [];
-      }
 
       return paths;
     }),
@@ -52,43 +40,174 @@ export async function getStaticPaths() {
   return paths.flat();
 }
 
-const { category, blogFolder, postIndex } = Astro.props;
+const { category, blogFolder } = Astro.props;
+const config = parseTomlToJson("./src/config/config.toml");
 
-let post = await getEntryCTM(
-  blogFolder as "blog",
-  "post-1",
-  Astro.currentLocale,
-);
+// Get all blog posts
+let allPosts = await getCollectionCTM(blogFolder, Astro.currentLocale);
+allPosts = sortByDate(allPosts);
 
-let title = titleify(`${category.name} posts`);
-const description = post?.data.description || postIndex?.data.description;
+// Filter out draft posts in production
+if (import.meta.env.PROD) {
+  allPosts = allPosts?.filter((post) => !post.data.draft);
+}
+
+// Filter posts by current category
+const posts = allPosts?.filter((post) =>
+  post.data.categories?.some((cat: string) => slugifyyy(cat) === slugifyyy(category.name))
+) || [];
+
+// Get unique categories from all posts for the filter tabs
+const allCategories = allPosts?.flatMap((post) => post.data.categories || []) || [];
+const uniqueCategories = [...new Set(allCategories)];
+
+// Count posts
+const postCount = posts?.length || 0;
+
+const pageData = {
+  title: `${titleify(category.name)} | The Journal`,
+  metaDescription: `Articles about ${category.name.toLowerCase()} from BVS Web Design. Practical insights for small business owners.`,
+};
+
+// Helper to format date
+const formatDate = (date: Date) => {
+  return new Intl.DateTimeFormat('en-GB', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric'
+  }).format(new Date(date));
+};
+
+// Helper to get post URL
+const getPostUrl = (post: any) => {
+  const slug = post.data.customSlug || post.id.replace(/^english\//, '').replace(/\.mdx?$/, '');
+  return `/blog/${slug}/`;
+};
+
+const currentCategorySlug = slugifyyy(category.name);
 ---
 
-<Base
-  {...postIndex?.data}
-  title={title}
-  description={description}
-  disableTagline={true}>
-  <PageHeader
-    content={{
-      hiddenPaths: ["Category"],
-      title: `Category: ${titleify(category.name)}`,
-    }}
-  />
-  <BlogLayout
-    pageType="list"
-    sidebar={{
-      enable: true,
-      sticky: true,
-    }}
-    contentList={{
-      options: postIndex?.data.options,
-      filter: { category: category },
-      breadcrumb: true,
-      breadcrumbExcludedPaths: ["Category"],
-    }}
-    content={{ ...post, ...post?.data }}
-  />
-  <Features />
-  <!-- <CallToAction sectionSpaceTop={false} /> -->
+<Base {...pageData} footerLayout="footer-1">
+  <!-- Hero -->
+  <section class="py-16 lg:py-20 border-b border-border-light">
+    <div class="container">
+      <div class="label text-accent mb-4">— {postCount} {postCount === 1 ? 'article' : 'articles'}</div>
+      <h1 class="font-primary font-normal text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.98] tracking-tight max-w-[16ch]">
+        <em class="italic text-accent">{titleify(category.name)}</em>
+      </h1>
+      <p class="font-primary text-lg md:text-xl leading-relaxed text-ink-2 mt-6 max-w-[52ch]">
+        Articles and insights about {category.name.toLowerCase()}.
+      </p>
+    </div>
+  </section>
+
+  <!-- Filter Tabs -->
+  <section class="py-6 border-b border-border-light">
+    <div class="container">
+      <nav class="flex flex-wrap gap-2" aria-label="Blog categories">
+        <a
+          href="/blog/"
+          class="filter-tab"
+          data-category="all"
+        >
+          All
+        </a>
+        {uniqueCategories.map((cat) => (
+          <a
+            href={`/blog/category/${slugifyyy(cat)}/`}
+            class:list={["filter-tab", { active: slugifyyy(cat) === currentCategorySlug }]}
+            data-category={slugifyyy(cat)}
+          >
+            {cat}
+          </a>
+        ))}
+      </nav>
+    </div>
+  </section>
+
+  <!-- Post Grid -->
+  <section class="py-12 md:py-16">
+    <div class="container">
+      {posts.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
+          {posts.map((post) => (
+            <article class="group">
+              <!-- Image -->
+              <a href={getPostUrl(post)} class="block overflow-hidden bg-stone-2 mb-5">
+                {post.data.image ? (
+                  <img
+                    src={post.data.image}
+                    alt={post.data.title}
+                    class="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="w-full aspect-[16/10] flex items-center justify-center bg-stone-2 text-dark/60 font-primary text-lg italic px-6 text-center">
+                    {post.data.title}
+                  </div>
+                )}
+              </a>
+
+              <!-- Content -->
+              <div class="flex items-center gap-3 mb-3">
+                {post.data.categories?.[0] && (
+                  <span class="label text-accent">{post.data.categories[0]}</span>
+                )}
+                <span class="text-sm text-ink-2">{formatDate(post.data.date)}</span>
+              </div>
+              <h3 class="font-primary text-xl md:text-2xl font-normal tracking-tight leading-snug">
+                <a href={getPostUrl(post)} class="hover:text-accent transition-colors">
+                  {post.data.title}
+                </a>
+              </h3>
+              <a
+                href={getPostUrl(post)}
+                class="inline-block mt-3 font-primary italic text-sm text-dark border-b border-dark hover:text-accent hover:border-accent transition-colors"
+              >
+                Read article →
+              </a>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p class="font-primary text-lg text-ink-2">No articles found in this category.</p>
+      )}
+    </div>
+  </section>
 </Base>
+
+<style>
+  .label {
+    font-family: var(--font-secondary);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .text-ink-2 {
+    color: var(--color-ink-2, #44403c);
+  }
+  .bg-stone-2 {
+    background-color: var(--color-stone-2, #e7e5e3);
+  }
+
+  .filter-tab {
+    padding: 0.5rem 1rem;
+    font-family: var(--font-secondary);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid var(--color-border-light);
+    color: var(--color-ink-2, #44403c);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .filter-tab:hover {
+    border-color: var(--color-dark);
+    color: var(--color-dark);
+  }
+  .filter-tab.active {
+    background-color: var(--color-dark);
+    color: white;
+    border-color: var(--color-dark);
+  }
+</style>
