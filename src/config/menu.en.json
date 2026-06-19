@@ -123,11 +123,6 @@
     { "title": "Where we Serve" },
     {
       "enable": true,
-      "name": "Web Designer Skipton",
-      "url": "/web-designer-skipton/"
-    },
-    {
-      "enable": true,
       "name": "Web Designer Ilkley",
       "url": "/web-designer-ilkley/"
     },
