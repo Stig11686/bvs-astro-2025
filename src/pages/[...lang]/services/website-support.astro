@@ -203,18 +203,12 @@ const SUPPORT_PLANS = [
                   </div>
                 ))}
               </div>
-              <act
-                href="https://tidycal.com/bvswebdesign/30-minute-intro-call"
-                target="_blank"
-                rel="noopener"
-                class:list={[
-                  "font-secondary mt-6 flex w-full items-center justify-center px-6 py-3 text-sm tracking-wider uppercase transition-colors",
-                  plan.featured
-                    ? "bg-accent hover:bg-accent/90 text-white"
-                    : "border-dark text-dark hover:bg-dark border hover:text-white",
-                ]}>
-                Choose {plan.name} →
-              </act>
+              <CustomButton
+                label="Book a Quick Call →"
+                url="https://tidycal.com/bvswebdesign/30-minute-intro-call"
+                hoverEffect="creative-fill"
+                class="effect-color-accent mt-6"
+              />
             </div>
           ))
         }
