@@ -9,15 +9,31 @@ export function getStaticPaths() {
 
 const pageData = {
   title: "Free Website Audit",
-  metaDescription: "Free website audit — find out exactly what's holding your site back. SEO, conversion, speed, first impressions. Actionable recommendations.",
+  metaDescription:
+    "Free website audit — find out exactly what's holding your site back. SEO, conversion, speed, first impressions. Actionable recommendations.",
 };
 
 const AUDIT_ITEMS = [
-  { title: 'First impressions', body: 'Does it pass the five-second test? Is it immediately clear what you do and who for?' },
-  { title: 'SEO foundations', body: 'Are you showing up on Google for the right searches? Are there basic technical issues holding you back?' },
-  { title: 'Conversion blockers', body: "Why aren't visitors getting in touch? What's getting in the way between landing on the page and picking up the phone?" },
-  { title: 'Mobile experience', body: 'Over 60% of your visitors are on a phone. Does your site actually work for them?' },
-  { title: 'Technical health', body: 'Speed, security, broken links, Core Web Vitals — the unglamorous stuff that quietly kills performance.' },
+  {
+    title: "First impressions",
+    body: "Does it pass the five-second test? Is it immediately clear what you do and who for?",
+  },
+  {
+    title: "SEO foundations",
+    body: "Are you showing up on Google for the right searches? Are there basic technical issues holding you back?",
+  },
+  {
+    title: "Conversion blockers",
+    body: "Why aren't visitors getting in touch? What's getting in the way between landing on the page and picking up the phone?",
+  },
+  {
+    title: "Mobile experience",
+    body: "Over 60% of your visitors are on a phone. Does your site actually work for them?",
+  },
+  {
+    title: "Technical health",
+    body: "Speed, security, broken links, Core Web Vitals — the unglamorous stuff that quietly kills performance.",
+  },
 ];
 ---
 
@@ -26,18 +42,29 @@ const AUDIT_ITEMS = [
   <section class="py-16 lg:py-20">
     <div class="container">
       <div class="label text-accent mb-4">— Free Website Audit</div>
-      <h1 class="font-primary font-normal text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.98] tracking-tight max-w-[22ch]">
-        Free website audit — find out exactly what your site <em class="italic text-accent">is</em> and <em class="italic">isn't</em> doing.
+      <h1
+        class="font-primary max-w-[22ch] text-4xl leading-[0.98] font-normal tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+        Free website audit — find out exactly what your site <em
+          class="text-accent italic">
+          is
+        </em> and <em class="italic">isn't</em> doing.
       </h1>
       <div class="mt-8 max-w-3xl space-y-5">
-        <p class="font-primary text-lg leading-relaxed text-ink-2">
-          Most business owners have a nagging feeling their website could be doing more. They're just not sure what's wrong or where to start.
+        <p class="font-primary text-ink-2 text-lg leading-relaxed">
+          Most business owners have a nagging feeling their website could be
+          doing more. They're just not sure what's wrong or where to start.
         </p>
-        <p class="font-primary text-lg leading-relaxed text-ink-2">
-          A free audit gives you a clear answer. I'll look at your site properly — SEO, conversion, structure, speed, first impressions — and tell you exactly what's holding it back and what to fix first.
+        <p class="font-primary text-ink-2 text-lg leading-relaxed">
+          A free audit gives you a clear answer. I'll look at your site properly
+          — SEO, conversion, structure, speed, first impressions — and tell you
+          exactly what's holding it back and what to fix first.
         </p>
-        <p class="font-primary text-lg leading-relaxed text-dark">
-          There's no catch. This is how I start conversations with new clients. Some people take the findings away and fix things themselves. Others ask me to help. <em class="text-accent">Either way you leave with something useful.</em>
+        <p class="font-primary text-dark text-lg leading-relaxed">
+          There's no catch. This is how I start conversations with new clients.
+          Some people take the findings away and fix things themselves. Others
+          ask me to help. <em class="text-accent">
+            Either way you leave with something useful.
+          </em>
         </p>
       </div>
       <div class="mt-8">
@@ -52,46 +79,60 @@ const AUDIT_ITEMS = [
   </section>
 
   <!-- What I look at -->
-  <section class="py-12 border-t border-border-light">
+  <section class="border-border-light border-t py-12">
     <div class="container">
-      <h2 class="font-primary text-3xl md:text-4xl font-normal tracking-tight leading-tight mb-8">
-        What I <em class="italic text-accent">look at</em>
+      <h2
+        class="font-primary mb-8 text-3xl leading-tight font-normal tracking-tight md:text-4xl">
+        What I <em class="text-accent italic">look at</em>
       </h2>
-      <div class="border-t border-border-light">
-        {AUDIT_ITEMS.map((item, i) => (
-          <div class="grid grid-cols-1 md:grid-cols-[auto_1fr_2fr] gap-4 md:gap-8 items-baseline py-5 border-b border-border-light/50">
-            <div class="font-primary italic text-xl text-accent">0{i + 1}</div>
-            <h3 class="font-primary text-xl md:text-2xl font-normal tracking-tight">{item.title}</h3>
-            <p class="text-sm text-ink-2 leading-relaxed">{item.body}</p>
-          </div>
-        ))}
+      <div class="border-border-light border-t">
+        {
+          AUDIT_ITEMS.map((item, i) => (
+            <div class="border-border-light/50 grid grid-cols-1 items-baseline gap-4 border-b py-5 md:grid-cols-[auto_1fr_2fr] md:gap-8">
+              <div class="font-primary text-accent text-xl italic">
+                0{i + 1}
+              </div>
+              <h3 class="font-primary text-xl font-normal tracking-tight md:text-2xl">
+                {item.title}
+              </h3>
+              <p class="text-ink-2 text-sm leading-relaxed">{item.body}</p>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
 
   <!-- What you get - dark section -->
-  <section class="py-14 bg-theme-dark text-white">
+  <section class="bg-theme-dark py-14 text-white">
     <div class="container">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
+      <div class="grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
         <div>
           <div class="label text-accent mb-4">— What you get</div>
-          <h2 class="font-primary text-3xl md:text-4xl font-normal tracking-tight leading-tight">
-            A plain-English video walkthrough — and a <em class="italic text-accent">priority list</em> that's yours to keep.
+          <h2
+            class="font-primary text-3xl leading-tight font-normal tracking-tight md:text-4xl">
+            A plain-English pdf walkthrough — and a <em class="italic">
+              priority list
+            </em> that's yours to keep.
           </h2>
         </div>
         <div>
           <p class="font-primary text-lg leading-relaxed text-white/80">
-            A video walkthrough of your site where I talk you through everything I've found — in plain English, no jargon. Plus a written priority list so you know exactly what to tackle first.
+            A pdf walkthrough of your site where I talk you through everything
+            I've found — in plain English. Plus a written priority list so you
+            know exactly what to tackle first.
           </p>
-          <p class="font-primary text-lg leading-relaxed text-white/80 mt-5 mb-8">
-            The whole thing takes around 30 minutes of your time. The call is free. The findings are yours to keep.
+          <p
+            class="font-primary mt-5 mb-8 text-lg leading-relaxed text-white/80">
+            The whole thing takes around 30 minutes of your time. The call is
+            free. The findings are yours to keep.
           </p>
           <CustomButton
             label="Book Your Free Audit →"
             url="https://tidycal.com/bvswebdesign/30-minute-meeting"
             hoverEffect="creative-fill"
             variant="fill"
-            class="bg-accent text-white hover:bg-accent/90"
+            class="bg-accent hover:bg-accent/90 text-white"
           />
         </div>
       </div>
@@ -101,18 +142,27 @@ const AUDIT_ITEMS = [
   <!-- Real example -->
   <section class="py-14">
     <div class="container">
-      <div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 items-start">
-        <h2 class="font-primary text-3xl md:text-4xl font-normal tracking-tight leading-tight">
+      <div class="grid grid-cols-1 items-start gap-12 lg:grid-cols-[1fr_2fr]">
+        <h2
+          class="font-primary text-3xl leading-tight font-normal tracking-tight md:text-4xl">
           Real <em class="italic">example</em>
         </h2>
         <div>
-          <p class="font-primary text-lg md:text-xl leading-relaxed text-ink-2 max-w-2xl">
-            A dental practice came to me not knowing why their website wasn't generating enquiries despite reasonable traffic. The audit found a <span class="text-dark">broken contact form nobody knew about</span>, a phone number buried below the fold, and no clear call to action on any page. Issues they'd lived with for years — fixed in a few weeks. They now receive <span class="text-accent">30+ enquiries per month</span>.
+          <p
+            class="font-primary text-ink-2 max-w-2xl text-lg leading-relaxed md:text-xl">
+            A dental practice came to me not knowing why their website wasn't
+            generating enquiries despite reasonable traffic. The audit found a <span
+              class="text-dark">
+              broken contact form nobody knew about
+            </span>, a phone number buried below the fold, and no clear call to
+            action on any page. Issues they'd lived with for years — fixed in a
+            few weeks. They now receive <span class="text-accent">
+              30+ enquiries per month
+            </span>.
           </p>
           <a
             href="/portfolio/ilkley-dental-care/"
-            class="inline-block mt-6 font-primary italic text-dark border-b border-dark hover:text-accent hover:border-accent transition-colors"
-          >
+            class="font-primary text-dark border-dark hover:text-accent hover:border-accent mt-6 inline-block border-b italic transition-colors">
             See the full Ilkley Dental Care project →
           </a>
         </div>
@@ -121,30 +171,31 @@ const AUDIT_ITEMS = [
   </section>
 
   <!-- Footer CTA -->
-  <section class="py-20 md:py-28 bg-theme-dark text-white">
+  <section class="bg-theme-dark py-20 text-white md:py-28">
     <div class="container">
-      <div class="label text-accent mb-4">— Currently booking · 2 project slots left</div>
-      <h2 class="font-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight leading-[0.94] text-white max-w-[18ch] mb-10">
-        Find out what your site <em class="italic text-accent">is and isn't</em> doing.
+      <div class="label text-accent mb-4">
+        — Currently booking · 2 project slots left
+      </div>
+      <h2
+        class="font-primary mb-10 max-w-[18ch] text-4xl leading-[0.94] font-normal tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+        Find out what your site <em class="text-accent italic">is and isn't</em>
+        doing.
       </h2>
-      <div class="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-14 items-end">
-        <p class="font-primary text-lg md:text-xl leading-relaxed text-white/75 max-w-[52ch]">
-          A free, no-obligation audit. Around 30 minutes of your time, and the findings are yours to keep.
+      <div class="grid grid-cols-1 items-end gap-14 lg:grid-cols-[1.5fr_1fr]">
+        <p
+          class="font-primary max-w-[52ch] text-lg leading-relaxed text-white/75 md:text-xl">
+          A free, no-obligation audit. Around 30 minutes of your time, and the
+          findings are yours to keep.
         </p>
-        <div class="flex flex-col gap-3 items-start">
+        <div class="flex flex-col items-start gap-3">
           <CustomButton
             label="Book a Free Audit →"
             url="https://tidycal.com/bvswebdesign/30-minute-meeting"
             hoverEffect="creative-fill"
             variant="fill"
-            class="bg-accent text-white hover:bg-accent/90"
+            class="bg-accent hover:bg-accent/90 text-white"
           />
-          <a
-            href="/contact/"
-            class="ghost-dark-btn"
-          >
-            Send a Message
-          </a>
+          <a href="/contact/" class="ghost-dark-btn">Send a Message</a>
         </div>
       </div>
     </div>
