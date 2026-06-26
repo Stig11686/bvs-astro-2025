@@ -70,20 +70,20 @@
 # Blog typo fix
 /blog/what-to-do-when-my-website-deisgner-scams-me/ /blog/what-to-do-when-my-website-designer-scams-me/ 301!
 
-# Old category URL format (categories → category)
+# Old category URL format (categories → category, now standardized)
 /blog/categories/                    /blog/                              301!
-/blog/categories/seo/                /blog/category/seo/                 301!
-/blog/categories/web-design/         /blog/category/web-design/          301!
+/blog/categories/seo/                /blog/category/website-audit/       301!
+/blog/categories/web-design/         /blog/category/website-design/      301!
 /blog/categories/case-studies/       /blog/category/case-studies/        301!
-/blog/categories/content-strategy/   /blog/category/content-strategy/    301!
-/blog/categories/ai-automation/      /blog/category/ai-automation/       301!
-/blog/categories/hints-and-tips/     /blog/category/hints-and-tips/      301!
-/blog/categories/small-business/     /blog/category/small-business/      301!
+/blog/categories/content-strategy/   /blog/category/website-audit/       301!
+/blog/categories/ai-automation/      /blog/category/website-design/      301!
+/blog/categories/hints-and-tips/     /blog/category/website-design/      301!
+/blog/categories/small-business/     /blog/category/website-design/      301!
 /blog/categories/website-audit/      /blog/category/website-audit/       301!
-/blog/categories/insights/           /blog/category/insights/            301!
-/blog/categories/technology/         /blog/category/technology/          301!
-/blog/categories/business/           /blog/category/business/            301!
-/blog/categories/sales/              /blog/category/sales/               301!
+/blog/categories/insights/           /blog/category/website-design/      301!
+/blog/categories/technology/         /blog/category/website-design/      301!
+/blog/categories/business/           /blog/category/website-design/      301!
+/blog/categories/sales/              /blog/category/website-design/      301!
 
 # Old category URLs with spaces (URL encoded)
 /blog/category/case%20studies/       /blog/category/case-studies/        301!
@@ -112,7 +112,23 @@
 /terms                                /terms-conditions/            301!
 /terms-conditions/privacy-policy.md   /privacy-policy/             301!
 
+# Old category redirects (standardized to service categories)
+/blog/category/insights/             /blog/category/website-design/   301!
+/blog/category/technology/           /blog/category/website-design/   301!
+/blog/category/business/             /blog/category/website-design/   301!
+/blog/category/sales/                /blog/category/website-design/   301!
+/blog/category/seo/                  /blog/category/website-audit/    301!
+/blog/category/content-strategy/     /blog/category/website-audit/    301!
+/blog/category/hints-and-tips/       /blog/category/website-design/   301!
+/blog/category/web-design/           /blog/category/website-design/   301!
+/blog/category/small-business/       /blog/category/website-design/   301!
+/blog/category/ai-automation/        /blog/category/website-design/   301!
+
 # Old blog tag redirects
+/blog/tag/ai-agents/                 /blog/tag/website-design/      301!
+/blog/tag/web-agency/                /blog/tag/website-design/      301!
+/blog/tag/automation/                /blog/tag/website-design/      301!
+/blog/tag/n8n/                       /blog/tag/website-design/      301!
 /blog/tag/development/               /blog/tag/website-design/      301!
 /blog/tag/finance/                   /blog/tag/website-design/      301!
 /blog/tag/management/                /blog/tag/website-design/      301!
