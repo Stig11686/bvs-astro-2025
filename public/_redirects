@@ -112,6 +112,37 @@
 /terms                                /terms-conditions/            301!
 /terms-conditions/privacy-policy.md   /privacy-policy/             301!
 
+# Old blog tag redirects
+/blog/tag/development/               /blog/tag/website-design/      301!
+/blog/tag/finance/                   /blog/tag/website-design/      301!
+/blog/tag/management/                /blog/tag/website-design/      301!
+/blog/tag/design/                    /blog/tag/website-design/      301!
+/blog/tag/ecommerce/                 /blog/tag/website-design/      301!
+/blog/tag/strategy/                  /blog/tag/website-design/      301!
+/blog/tag/marketing/                 /blog/tag/website-design/      301!
+/blog/tag/dental-website-design/     /blog/tag/website-design/      301!
+/blog/tag/local-seo/                 /blog/tag/website-audit/       301!
+/blog/tag/client-success/            /blog/tag/case-studies/        301!
+/blog/tag/beauty-website-design/     /blog/tag/website-design/      301!
+/blog/tag/client-growth/             /blog/tag/case-studies/        301!
+/blog/tag/hospitality-websites/      /blog/tag/website-design/      301!
+/blog/tag/bridal-website-design/     /blog/tag/website-design/      301!
+/blog/tag/alternative-bridal/        /blog/tag/website-design/      301!
+/blog/tag/client-help/               /blog/tag/website-rescue/      301!
+/blog/tag/wordpress/                 /blog/tag/website-support/     301!
+/blog/tag/performance/               /blog/tag/website-support/     301!
+/blog/tag/best-practices/            /blog/tag/website-design/      301!
+/blog/tag/accessibility/             /blog/tag/website-design/      301!
+/blog/tag/seo/                       /blog/tag/website-audit/       301!
+/blog/tag/content/                   /blog/tag/website-design/      301!
+/blog/tag/conversion/                /blog/tag/website-audit/       301!
+/blog/tag/domain-ownership/          /blog/tag/website-rescue/      301!
+/blog/tag/web-design/                /blog/tag/website-design/      301!
+/blog/tag/transparency/              /blog/tag/website-rescue/      301!
+/blog/tag/small-business/            /blog/tag/website-design/      301!
+/blog/tag/insights/                  /blog/tag/website-design/      301!
+/blog/tag/bridal/                    /blog/tag/website-design/      301!
+
 # Common URL guesses
 /team/           /about/    301!
 /our-team/       /about/    301!
