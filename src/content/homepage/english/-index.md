@@ -1,6 +1,6 @@
 ---
-title: "More Leads. Better Websites. Built for Yorkshire Businesses."
-metaDescription: "If you're a business in Yorkshire or the UK, and you're not sure what your website is bringing you - I can help"
+title: "Web Design in Skipton & North Yorkshire | BVSWebDesign"
+metaDescription: "Website design for service businesses that get more enquiries, more bookings and found on google "
 includeLocalBusiness: true
 
 # Override Default Content of `/sections/services-section.md`

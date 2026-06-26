@@ -28,59 +28,88 @@ const relatedPosts = relatedSlugs
 
 const pageData = {
   title: "Website Maintenance Packages & Care Plans | BVS Web Design",
-  metaDescription: "Website maintenance packages for growing Yorkshire businesses — hosting, updates, backups and security, all handled by a real person, not a ticket queue. From £35/mo.",
+  metaDescription:
+    "Website maintenance packages for growing Yorkshire businesses — hosting, updates, backups and security, all handled by a real person, not a ticket queue. From £35/mo.",
 };
 
 const FAQ_ITEMS = [
   {
-    question: 'How much does website maintenance cost?',
-    answer: 'Plans start at £35/month for hosting, backups, updates and monitoring, rising to £99 and £249 for monthly edit time, security scans and ongoing improvements. The right plan depends on how much you lean on your site — a brochure site needs less than one that drives daily enquiries.',
+    question: "How much does website maintenance cost?",
+    answer:
+      "Plans start at £35/month for hosting, backups, updates and monitoring, rising to £99 and £249 for monthly edit time, security scans and ongoing improvements. The right plan depends on how much you lean on your site — a brochure site needs less than one that drives daily enquiries.",
   },
   {
     question: "What's included in a website care plan?",
-    answer: 'At minimum: managed hosting, regular WordPress updates, off-site backups, uptime monitoring and email support. Higher tiers add same-day fixes, monthly edits, malware scanning, SEO actions and a regular strategy call.',
+    answer:
+      "At minimum: managed hosting, regular WordPress updates, off-site backups, uptime monitoring and email support. Higher tiers add same-day fixes, monthly edits, malware scanning, SEO actions and a regular strategy call.",
   },
   {
-    question: 'Do I need a maintenance plan for a WordPress site?',
-    answer: "Realistically, yes. WordPress and its plugins release updates constantly — security patches, fixes, new features. A site left un-updated for months is the single most common way small business sites get hacked or break. A plan keeps on top of it so you don't have to.",
+    question: "Do I need a maintenance plan for a WordPress site?",
+    answer:
+      "Realistically, yes. WordPress and its plugins release updates constantly — security patches, fixes, new features. A site left un-updated for months is the single most common way small business sites get hacked or break. A plan keeps on top of it so you don't have to.",
   },
   {
-    question: 'I find updating my own site a hassle — can you just do it for me?',
-    answer: "That's exactly what the monthly edit time on Active and Growth is for. No wrestling with image sizes or odd file formats, no fighting the page builder — just send me the photos and words, and I'll put them on the site for you, looking right. Most small changes are done the same day.",
+    question:
+      "I find updating my own site a hassle — can you just do it for me?",
+    answer:
+      "That's exactly what the monthly edit time on Active and Growth is for. No wrestling with image sizes or odd file formats, no fighting the page builder — just send me the photos and words, and I'll put them on the site for you, looking right. Most small changes are done the same day.",
   },
   {
-    question: 'Do you only work with Yorkshire businesses?',
-    answer: "I'm based in Skipton and work with businesses right across Yorkshire — but maintenance is handled remotely, so location isn't a barrier. Plenty of clients I've never met in person; the site's looked after just the same.",
+    question: "Do you only work with Yorkshire businesses?",
+    answer:
+      "I'm based in Skipton and work with businesses right across Yorkshire — but maintenance is handled remotely, so location isn't a barrier. Plenty of clients I've never met in person; the site's looked after just the same.",
   },
   {
-    question: 'Can I cancel?',
-    answer: "Yes — every plan is month-to-month with no lock-in. No setup fee either, for sites I've built.",
+    question: "Can I cancel?",
+    answer:
+      "Yes — every plan is month-to-month with no lock-in. No setup fee either, for sites I've built.",
   },
 ];
 
 const SUPPORT_PLANS = [
   {
-    name: 'Essentials',
-    price: '£35',
-    cadence: '/ month',
-    blurb: 'The basics, properly handled — so nothing breaks while you get on with running the business.',
-    features: ['Managed WordPress hosting', 'Weekly off-site backups', 'Core, theme & plugin updates', 'Uptime monitoring', 'Email support'],
+    name: "Essentials",
+    price: "£35",
+    cadence: "/ month",
+    blurb:
+      "The basics, properly handled — so nothing breaks while you get on with running the business.",
+    features: [
+      "Managed WordPress hosting",
+      "Weekly off-site backups",
+      "1 hour of edits each month",
+      "Core, theme & plugin updates",
+      "Uptime monitoring",
+      "Email support",
+    ],
     featured: false,
   },
   {
-    name: 'Active',
-    price: '£99',
-    cadence: '/ month',
-    blurb: 'Everything in Essentials, plus a real person making small improvements every month.',
-    features: ['Everything in Essentials', 'Same-day priority fixes', '1 hour of edits each month', 'Security hardening & malware scans', 'Quarterly performance check'],
+    name: "Active",
+    price: "£99",
+    cadence: "/ month",
+    blurb:
+      "Everything in Essentials, plus a real person making small improvements every month.",
+    features: [
+      "Everything in Essentials",
+      "Same-day priority fixes",
+      "Security hardening & malware scans",
+      "Quarterly performance check",
+    ],
     featured: true,
   },
   {
-    name: 'Growth',
-    price: '£249',
-    cadence: '/ month',
-    blurb: 'For businesses treating the website as a channel that should keep getting better.',
-    features: ['Everything in Active', '3 hours of edits each month', 'Monthly SEO actions', 'Conversion improvements', 'Quarterly strategy call'],
+    name: "Growth",
+    price: "£249",
+    cadence: "/ month",
+    blurb:
+      "For businesses treating the website as a channel that should keep getting better.",
+    features: [
+      "Everything in Active",
+      "3 hours of edits each month",
+      "Monthly SEO actions",
+      "Conversion improvements",
+      "Quarterly strategy call",
+    ],
     featured: false,
   },
 ];
@@ -90,191 +119,310 @@ const SUPPORT_PLANS = [
   <!-- Hero -->
   <section class="py-16 lg:py-20">
     <div class="container">
-      <div class="label text-accent mb-4">— Website Maintenance & Care Plans</div>
-      <h1 class="font-primary font-normal text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.98] tracking-tight max-w-[20ch]">
-        Website maintenance plans that keep your site <em class="italic text-accent">earning</em>.
+      <div class="label text-accent mb-4">
+        — Website Maintenance & Care Plans
+      </div>
+      <h1
+        class="font-primary max-w-[20ch] text-4xl leading-[0.98] font-normal tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+        Website maintenance plans that keep your site <em
+          class="text-accent italic">
+          earning
+        </em>.
       </h1>
-      <p class="font-primary text-lg md:text-xl leading-relaxed text-ink-2 mt-6 max-w-[58ch]">
-        Security, updates, backups and hosting — all handled, so your site keeps working while you focus on running the business. Built for growing Yorkshire businesses that need their website looked after by a real person, not a ticket queue.
+      <p
+        class="font-primary text-ink-2 mt-6 max-w-[58ch] text-lg leading-relaxed md:text-xl">
+        Security, updates, backups and hosting — all handled, so your site keeps
+        working while you focus on running the business. Built for growing
+        Yorkshire businesses that need their website looked after by a real
+        person, not a ticket queue.
       </p>
-      <div class="mt-8 flex flex-wrap gap-4 items-center">
+      <div class="mt-8 flex flex-wrap items-center gap-4">
         <CustomButton
           label="Book a Quick Call →"
           url="https://tidycal.com/bvswebdesign/start-a-project"
           hoverEffect="creative-fill"
           class="effect-color-accent"
         />
-        <span class="text-ink-2 text-sm">Prefer to type it out? <a href="/contact/" class="underline hover:text-accent transition-colors">Send a Message →</a></span>
+        <span class="text-ink-2 text-sm">
+          Prefer to type it out? <a
+            href="/contact/"
+            class="hover:text-accent underline transition-colors">
+            Send a Message →
+          </a>
+        </span>
       </div>
     </div>
   </section>
 
   <!-- Plans -->
-  <section class="py-10 border-t border-border-light">
+  <section class="border-border-light border-t py-10">
     <div class="container">
-      <h2 class="font-primary text-3xl sm:text-4xl font-normal tracking-tight mb-4">Simple website maintenance packages, no jargon</h2>
-      <p class="font-primary text-lg text-ink-2 leading-relaxed max-w-[65ch] mb-10">
-        Every plan covers the essentials — hosting, backups, updates and security — handled quietly in the background. Step up a tier when you want a real person making improvements every month, not just keeping the lights on.
+      <h2
+        class="font-primary mb-4 text-3xl font-normal tracking-tight sm:text-5xl">
+        Simple website maintenance packages, no jargon
+      </h2>
+      <p
+        class="font-primary text-ink-2 mb-10 max-w-[65ch] text-lg leading-relaxed">
+        Every plan covers the essentials — hosting, backups, updates and
+        security — handled quietly in the background. Step up a tier when you
+        want a real person making improvements every month, not just keeping the
+        lights on.
       </p>
-      <div class="grid grid-cols-1 md:grid-cols-3 border border-border-light">
-        {SUPPORT_PLANS.map((plan, i) => (
-          <div class:list={[
-            "p-8 relative",
-            i < SUPPORT_PLANS.length - 1 && "border-b md:border-b-0 md:border-r border-border-light",
-            plan.featured && "bg-stone-2"
-          ]}>
-            {plan.featured && (
-              <div class="absolute top-0 right-0 font-secondary text-[10px] tracking-wider uppercase bg-accent text-white px-3 py-1">
-                Most popular
-              </div>
-            )}
-            <h3 class="font-primary text-2xl font-normal tracking-tight">{plan.name}</h3>
-            <div class="flex items-baseline gap-2 mt-3 mb-4">
-              <span class="font-primary text-5xl italic text-accent leading-none">{plan.price}</span>
-              <span class="label">{plan.cadence}</span>
-            </div>
-            <p class="text-sm text-ink-2 leading-relaxed mb-5 min-h-[4rem]">{plan.blurb}</p>
-            <div class="border-t border-border-light/50">
-              {plan.features.map((feature) => (
-                <div class="flex gap-3 py-2 text-sm text-ink-2 border-b border-border-light/50">
-                  <span class="text-accent">✓</span>
-                  <span>{feature}</span>
-                </div>
-              ))}
-            </div>
-            <a
-              href="https://tidycal.com/bvswebdesign/start-a-project"
-              target="_blank"
-              rel="noopener"
+      <div class="border-border-light grid grid-cols-1 border md:grid-cols-3">
+        {
+          SUPPORT_PLANS.map((plan, i) => (
+            <div
               class:list={[
-                "mt-6 w-full flex items-center justify-center px-6 py-3 font-secondary text-sm uppercase tracking-wider transition-colors",
-                plan.featured
-                  ? "bg-accent text-white hover:bg-accent/90"
-                  : "border border-dark text-dark hover:bg-dark hover:text-white"
-              ]}
-            >
-              Choose {plan.name} →
-            </a>
-          </div>
-        ))}
+                "relative p-8",
+                i < SUPPORT_PLANS.length - 1 &&
+                  "border-border-light border-b md:border-r md:border-b-0",
+                plan.featured && "bg-stone-2",
+              ]}>
+              {plan.featured && (
+                <div class="font-secondary bg-accent absolute top-0 right-0 px-3 py-1 text-[10px] tracking-wider text-white uppercase">
+                  Most popular
+                </div>
+              )}
+              <h3 class="font-primary text-2xl font-normal tracking-tight">
+                {plan.name}
+              </h3>
+              <div class="mt-3 mb-4 flex items-baseline gap-2">
+                <span class="font-primary text-accent text-5xl leading-none italic">
+                  {plan.price}
+                </span>
+                <span class="label">{plan.cadence}</span>
+              </div>
+              <p class="text-ink-2 mb-5 min-h-[4rem] text-sm leading-relaxed">
+                {plan.blurb}
+              </p>
+              <div class="border-border-light/50 border-t">
+                {plan.features.map((feature) => (
+                  <div class="text-ink-2 border-border-light/50 flex gap-3 border-b py-2 text-sm">
+                    <span class="text-accent">✓</span>
+                    <span>{feature}</span>
+                  </div>
+                ))}
+              </div>
+              <a
+                href="https://tidycal.com/bvswebdesign/start-a-project"
+                target="_blank"
+                rel="noopener"
+                class:list={[
+                  "font-secondary mt-6 flex w-full items-center justify-center px-6 py-3 text-sm tracking-wider uppercase transition-colors",
+                  plan.featured
+                    ? "bg-accent hover:bg-accent/90 text-white"
+                    : "border-dark text-dark hover:bg-dark border hover:text-white",
+                ]}>
+                Choose {plan.name} →
+              </a>
+            </div>
+          ))
+        }
       </div>
-      <p class="label mt-4 text-ink-2">
-        All plans are month-to-month · cancel any time · no setup fee for sites I've built
+      <p class="label text-ink-2 mt-4">
+        All plans are month-to-month · cancel any time · no setup fee for sites
+        I've built
       </p>
     </div>
   </section>
 
   <!-- What's Included -->
-  <section class="py-16 lg:py-20 border-t border-border-light">
+  <section class="border-border-light border-t py-16 lg:py-20">
     <div class="container">
-      <h2 class="font-primary text-3xl sm:text-4xl font-normal tracking-tight mb-4">What a website care plan actually covers</h2>
-      <p class="font-primary text-lg text-ink-2 leading-relaxed max-w-[65ch] mb-10">
-        A maintenance plan isn't just a backup running somewhere you'll never look. It's the ongoing work that keeps a site fast, secure and working — the stuff that quietly goes wrong when nobody's watching.
+      <h2
+        class="font-primary mb-4 text-3xl font-normal tracking-tight sm:text-5xl">
+        What a website care plan actually covers
+      </h2>
+      <p
+        class="font-primary text-ink-2 mb-10 max-w-[65ch] text-lg leading-relaxed">
+        A maintenance plan isn't just a backup running somewhere you'll never
+        look. It's the ongoing work that keeps a site fast, secure and working —
+        the stuff that quietly goes wrong when nobody's watching.
       </p>
-      <div class="grid grid-cols-1 md:grid-cols-2 border-t border-l border-border-light">
-        <div class="included-card p-8 md:p-9 border-r border-b border-border-light">
-          <span class="font-primary italic text-xl text-accent">01</span>
-          <h3 class="font-primary text-2xl md:text-[1.7rem] font-normal tracking-tight leading-tight mt-3 mb-3 max-w-[20ch]">Hosting that's actually managed.</h3>
-          <p class="text-sm md:text-[0.9rem] text-ink-2 leading-relaxed m-0 max-w-[46ch]">Your site lives on fast, secure WordPress hosting I look after directly — no separate hosting bill to chase, no support desk in another time zone.</p>
+      <div
+        class="border-border-light grid grid-cols-1 border-t border-l md:grid-cols-2">
+        <div
+          class="included-card border-border-light border-r border-b p-8 md:p-9">
+          <span class="font-primary text-accent text-xl italic">01</span>
+          <h3
+            class="font-primary mt-3 mb-3 max-w-[20ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+            Hosting that's actually managed.
+          </h3>
+          <p
+            class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
+            Your site lives on fast, secure WordPress hosting I look after
+            directly — no separate hosting bill to chase, no support desk in
+            another time zone.
+          </p>
         </div>
-        <div class="included-card p-8 md:p-9 border-r border-b border-border-light">
-          <span class="font-primary italic text-xl text-accent">02</span>
-          <h3 class="font-primary text-2xl md:text-[1.7rem] font-normal tracking-tight leading-tight mt-3 mb-3 max-w-[20ch]">Updates, done carefully.</h3>
-          <p class="text-sm md:text-[0.9rem] text-ink-2 leading-relaxed m-0 max-w-[46ch]">WordPress core, your theme and plugins all need regular updating. Skip it and you get broken layouts, security holes, or a site that simply stops loading. I handle updates and check nothing breaks afterwards.</p>
+        <div
+          class="included-card border-border-light border-r border-b p-8 md:p-9">
+          <span class="font-primary text-accent text-xl italic">02</span>
+          <h3
+            class="font-primary mt-3 mb-3 max-w-[20ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+            Updates, done carefully.
+          </h3>
+          <p
+            class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
+            WordPress core, your theme and plugins all need regular updating.
+            Skip it and you get broken layouts, security holes, or a site that
+            simply stops loading. I handle updates and check nothing breaks
+            afterwards.
+          </p>
         </div>
-        <div class="included-card p-8 md:p-9 border-r border-b border-border-light">
-          <span class="font-primary italic text-xl text-accent">03</span>
-          <h3 class="font-primary text-2xl md:text-[1.7rem] font-normal tracking-tight leading-tight mt-3 mb-3 max-w-[20ch]">Backups you'll never need to think about.</h3>
-          <p class="text-sm md:text-[0.9rem] text-ink-2 leading-relaxed m-0 max-w-[46ch]">Weekly off-site backups, so if the worst happens, your site comes back — not a month of lost work.</p>
+        <div
+          class="included-card border-border-light border-r border-b p-8 md:p-9">
+          <span class="font-primary text-accent text-xl italic">03</span>
+          <h3
+            class="font-primary mt-3 mb-3 max-w-[20ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+            Backups you'll never need to think about.
+          </h3>
+          <p
+            class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
+            Weekly off-site backups, so if the worst happens, your site comes
+            back — not a month of lost work.
+          </p>
         </div>
-        <div class="included-card p-8 md:p-9 border-r border-b border-border-light">
-          <span class="font-primary italic text-xl text-accent">04</span>
-          <h3 class="font-primary text-2xl md:text-[1.7rem] font-normal tracking-tight leading-tight mt-3 mb-3 max-w-[20ch]">Security and monitoring.</h3>
-          <p class="text-sm md:text-[0.9rem] text-ink-2 leading-relaxed m-0 max-w-[46ch]">Uptime monitoring on every plan, with security hardening and malware scans on Active and Growth. You hear from me if something's wrong, usually before you've noticed.</p>
+        <div
+          class="included-card border-border-light border-r border-b p-8 md:p-9">
+          <span class="font-primary text-accent text-xl italic">04</span>
+          <h3
+            class="font-primary mt-3 mb-3 max-w-[20ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+            Security and monitoring.
+          </h3>
+          <p
+            class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
+            Uptime monitoring on every plan, with security hardening and malware
+            scans on Active and Growth. You hear from me if something's wrong,
+            usually before you've noticed.
+          </p>
         </div>
-        <div class="included-card p-8 md:p-9 border-r border-b border-border-light md:col-span-2">
-          <span class="font-primary italic text-xl text-accent">05</span>
-          <h3 class="font-primary text-2xl md:text-[1.7rem] font-normal tracking-tight leading-tight mt-3 mb-3 max-w-[20ch]">You send it, I post it.</h3>
-          <p class="text-sm md:text-[0.9rem] text-ink-2 leading-relaxed m-0 max-w-[65ch]">Ever tried adding a photo to your own site and hit a wall — wrong size, wrong format, won't upload, comes out stretched? On Active and Growth, that's my job, not yours. Send me the photos and the words; I'll get them live, properly sized and looking right. The "can you just change this..." jobs come off your to-do list for good.</p>
+        <div
+          class="included-card border-border-light border-r border-b p-8 md:col-span-2 md:p-9">
+          <span class="font-primary text-accent text-xl italic">05</span>
+          <h3
+            class="font-primary mt-3 mb-3 max-w-[20ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+            You send it, I post it.
+          </h3>
+          <p
+            class="text-ink-2 m-0 max-w-[65ch] text-sm leading-relaxed md:text-[0.9rem]">
+            Ever tried adding a photo to your own site and hit a wall — wrong
+            size, wrong format, won't upload, comes out stretched? On Active and
+            Growth, that's my job, not yours. Send me the photos and the words;
+            I'll get them live, properly sized and looking right. The "can you
+            just change this..." jobs come off your to-do list for good.
+          </p>
         </div>
       </div>
-      <p class="font-primary text-lg text-ink-2 leading-relaxed max-w-[65ch] mt-10">
-        If you run a WordPress site for a growing business anywhere in Yorkshire, this is the website maintenance and support that keeps it off your plate.
+      <p
+        class="font-primary text-ink-2 mt-10 max-w-[65ch] text-lg leading-relaxed">
+        If you run a WordPress site for a growing business anywhere in
+        Yorkshire, this is the website maintenance and support that keeps it off
+        your plate.
       </p>
     </div>
   </section>
 
   <!-- Why It Matters -->
-  <section class="py-16 lg:py-20 border-t border-border-light bg-stone-2">
+  <section class="border-border-light bg-stone-2 border-t py-16 lg:py-20">
     <div class="container">
       <!-- Header row -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 mb-12">
+      <div class="mb-12 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
         <div>
-          <div class="label text-accent mb-4">— Why do I need a maintenance plan?</div>
-          <h2 class="font-primary text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight leading-tight">
-            A website isn't "finished" the day it launches — maintenance plans keep the good work going.
+          <div class="label text-accent mb-4">
+            — Why do I need a maintenance plan?
+          </div>
+          <h2
+            class="font-primary text-3xl leading-tight font-normal tracking-tight sm:text-5xl lg:text-5xl">
+            A website isn't "finished" the day it launches — maintenance plans
+            keep the good work going.
           </h2>
         </div>
         <div class="flex items-end">
-          <p class="font-primary text-lg text-ink-2 leading-relaxed">
-            A care plan takes the worry out of your website. Instead of reacting to problems after they've cost you customers, everything's handled quietly in the background — so your site keeps earning while you focus on running the business.
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            A care plan takes the worry out of your website. Instead of reacting
+            to problems after they've cost you customers, everything's handled
+            quietly in the background — so your site keeps earning while you
+            focus on running the business.
           </p>
         </div>
       </div>
 
       <!-- Comparison tables -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
         <!-- Left table - Left to Drift -->
-        <div class="p-8 md:p-10 border border-border-light bg-transparent">
-          <h3 class="font-secondary text-sm uppercase tracking-wider mb-6 text-ink-2">Left to Drift</h3>
+        <div class="border-border-light border bg-transparent p-8 md:p-10">
+          <h3
+            class="font-secondary text-ink-2 mb-6 text-sm tracking-wider uppercase">
+            Left to Drift
+          </h3>
           <ul>
-            <li class="flex gap-3 text-ink-2 py-3 border-t border-border-light/50">
-              <span class="text-red-600 font-medium">✕</span>
+            <li
+              class="text-ink-2 border-border-light/50 flex gap-3 border-t py-3">
+              <span class="font-medium text-red-600">✕</span>
               <span>Plugins fall out of date</span>
             </li>
-            <li class="flex gap-3 text-ink-2 py-3 border-t border-border-light/50">
-              <span class="text-red-600 font-medium">✕</span>
+            <li
+              class="text-ink-2 border-border-light/50 flex gap-3 border-t py-3">
+              <span class="font-medium text-red-600">✕</span>
               <span>Security gaps quietly open up</span>
             </li>
-            <li class="flex gap-3 text-ink-2 py-3 border-t border-border-light/50">
-              <span class="text-red-600 font-medium">✕</span>
+            <li
+              class="text-ink-2 border-border-light/50 flex gap-3 border-t py-3">
+              <span class="font-medium text-red-600">✕</span>
               <span>The contact form stops sending</span>
             </li>
-            <li class="flex gap-3 text-ink-2 py-3 border-t border-border-light/50">
-              <span class="text-red-600 font-medium">✕</span>
+            <li
+              class="text-ink-2 border-border-light/50 flex gap-3 border-t py-3">
+              <span class="font-medium text-red-600">✕</span>
               <span>You find out when a customer says the site is down</span>
             </li>
           </ul>
         </div>
 
         <!-- Right table - On a Care Plan -->
-        <div class="p-8 md:p-10 bg-theme-dark">
-          <h3 class="font-secondary text-sm uppercase tracking-wider mb-6 text-white/70">On a Care Plan</h3>
+        <div class="bg-theme-dark p-8 md:p-10">
+          <h3
+            class="font-secondary mb-6 text-sm tracking-wider text-white/70 uppercase">
+            On a Care Plan
+          </h3>
           <ul>
-            <li class="flex gap-3 py-3 border-t border-white/10">
+            <li class="flex gap-3 border-t border-white/10 py-3">
               <span class="text-accent font-medium">✓</span>
-              <span class="text-white">Updates applied and tested before they break</span>
+              <span class="text-white">
+                Updates applied and tested before they break
+              </span>
             </li>
-            <li class="flex gap-3 py-3 border-t border-white/10">
+            <li class="flex gap-3 border-t border-white/10 py-3">
               <span class="text-accent font-medium">✓</span>
-              <span class="text-white">Security monitored, hardened and patched</span>
+              <span class="text-white">
+                Security monitored, hardened and patched
+              </span>
             </li>
-            <li class="flex gap-3 py-3 border-t border-white/10">
+            <li class="flex gap-3 border-t border-white/10 py-3">
               <span class="text-accent font-medium">✓</span>
-              <span class="text-white">Forms checked — with an alert the moment one fails</span>
+              <span class="text-white">
+                Forms checked — with an alert the moment one fails
+              </span>
             </li>
-            <li class="flex gap-3 py-3 border-t border-white/10">
+            <li class="flex gap-3 border-t border-white/10 py-3">
               <span class="text-accent font-medium">✓</span>
-              <span class="text-white">You hear about it from me, usually already fixed</span>
+              <span class="text-white">
+                You hear about it from me, usually already fixed
+              </span>
             </li>
           </ul>
         </div>
       </div>
 
       <!-- CTA Banner -->
-      <div class="mt-8 p-8 md:p-10 border border-border-light flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        <p class="font-primary text-lg md:text-xl leading-relaxed max-w-[55ch]">
-          For most growing businesses, the peace of mind — and a site that stays fast and findable — <span class="text-accent font-medium">pays for itself the first time it saves you a lost weekend.</span>
+      <div
+        class="border-border-light mt-8 flex flex-col gap-6 border p-8 md:flex-row md:items-center md:justify-between md:p-10">
+        <p class="font-primary max-w-[55ch] text-lg leading-relaxed md:text-xl">
+          For most growing businesses, the peace of mind — and a site that stays
+          fast and findable — <span class="text-accent font-medium">
+            pays for itself the first time it saves you a lost weekend.
+          </span>
         </p>
         <CustomButton
           label="Get Peace of Mind →"
@@ -287,7 +435,7 @@ const SUPPORT_PLANS = [
   </section>
 
   <!-- Testimonial -->
-  <section class="py-16 lg:py-20 border-t border-border-light">
+  <section class="border-border-light border-t py-16 lg:py-20">
     <div class="container">
       <div class="prose-styles">
         <TestimonialArticle
@@ -301,88 +449,118 @@ const SUPPORT_PLANS = [
   </section>
 
   <!-- FAQ -->
-  <section class="py-16 lg:py-20 border-t border-border-light">
+  <section class="border-border-light border-t py-16 lg:py-20">
     <div class="container">
-      <h2 class="font-primary text-3xl sm:text-4xl font-normal tracking-tight mb-10">Everything you need to know about my website maintenance packages</h2>
-      <div class="hs-accordion-group mx-auto w-full max-w-4xl border-y border-border-light">
-        {FAQ_ITEMS.map((item, index) => (
-          <div
-            class:list={[
-              "hs-accordion border-b border-border-light",
-              index === 0 && "active",
-            ]}
-            id={`faq-accordion-${index}`}
-          >
-            <button
-              class="hs-accordion-toggle flex items-center justify-between w-full py-5 text-left font-primary text-lg font-medium text-dark hover:text-accent transition-colors"
-              aria-expanded={index === 0 ? "true" : "false"}
-              aria-controls={`faq-content-${index}`}
-            >
-              <span>{item.question}</span>
-              <svg class="hs-accordion-active:rotate-180 shrink-0 size-5 text-accent transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-            </button>
+      <h2
+        class="font-primary mb-10 text-3xl font-normal tracking-tight sm:text-5xl">
+        Everything you need to know about my website maintenance packages
+      </h2>
+      <div
+        class="hs-accordion-group border-border-light mx-auto w-full max-w-4xl border-y">
+        {
+          FAQ_ITEMS.map((item, index) => (
             <div
-              id={`faq-content-${index}`}
               class:list={[
-                "hs-accordion-content w-full overflow-hidden transition-[height] duration-300",
-                index !== 0 && "hidden",
+                "hs-accordion border-border-light border-b",
+                index === 0 && "active",
               ]}
-              role="region"
-              aria-labelledby={`faq-accordion-${index}`}
-            >
-              <p class="text-ink-2 leading-relaxed pb-5 pr-8">{item.answer}</p>
+              id={`faq-accordion-${index}`}>
+              <button
+                class="hs-accordion-toggle font-primary text-dark hover:text-accent flex w-full items-center justify-between py-5 text-left text-lg font-medium transition-colors"
+                aria-expanded={index === 0 ? "true" : "false"}
+                aria-controls={`faq-content-${index}`}>
+                <span>{item.question}</span>
+                <svg
+                  class="hs-accordion-active:rotate-180 text-accent size-5 shrink-0 transition-transform duration-300"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+              <div
+                id={`faq-content-${index}`}
+                class:list={[
+                  "hs-accordion-content w-full overflow-hidden transition-[height] duration-300",
+                  index !== 0 && "hidden",
+                ]}
+                role="region"
+                aria-labelledby={`faq-accordion-${index}`}>
+                <p class="text-ink-2 pr-8 pb-5 leading-relaxed">
+                  {item.answer}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
   </section>
 
   <!-- Not Quite Right Fork -->
-  <section class="py-16 lg:py-20 border-t border-border-light">
+  <section class="border-border-light border-t py-16 lg:py-20">
     <div class="container">
       <!-- Header row -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 mb-10">
+      <div class="mb-10 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
         <div>
-          <h2 class="font-primary text-3xl sm:text-4xl font-normal tracking-tight">Need more than website maintenance?</h2>
+          <h2
+            class="font-primary text-3xl font-normal tracking-tight sm:text-5xl">
+            Need more than website maintenance?
+          </h2>
         </div>
         <div class="flex items-end">
-          <p class="font-primary text-lg text-ink-2 leading-relaxed">
-            If that's not where you are right now, you probably need something else first — and I'd rather point you to the right thing than sell you the wrong one.
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            If that's not where you are right now, you probably need something
+            else first — and I'd rather point you to the right thing than sell
+            you the wrong one.
           </p>
         </div>
       </div>
 
       <!-- Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
         <a
           href="/services/website-rescue/"
-          class="fork-card block p-8 md:p-9 border border-border-light no-underline text-dark transition-colors hover:bg-stone-2"
-        >
+          class="fork-card border-border-light text-dark hover:bg-stone-2 block border p-8 no-underline transition-colors md:p-9">
           <div class="flex items-baseline justify-between">
             <span class="label text-accent">Website Rescue</span>
-            <span class="font-primary italic text-base text-accent">&rarr;</span>
+            <span class="font-primary text-accent text-base italic">
+              &rarr;
+            </span>
           </div>
-          <h3 class="font-primary text-2xl md:text-[1.7rem] font-normal tracking-tight leading-tight mt-3 mb-3 max-w-[24ch]">
+          <h3
+            class="font-primary mt-3 mb-3 max-w-[24ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
             Your site's already broken, inherited or your developer has vanished
           </h3>
-          <p class="text-sm md:text-[0.9rem] text-ink-2 leading-relaxed m-0 max-w-[46ch]">
-            That's a rescue job. I take it over, get you back in control of your own site, and sort out what's wrong.
+          <p
+            class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
+            That's a rescue job. I take it over, get you back in control of your
+            own site, and sort out what's wrong.
           </p>
         </a>
         <a
           href="/services/website-design/"
-          class="fork-card block p-8 md:p-9 border border-border-light no-underline text-dark transition-colors hover:bg-stone-2"
-        >
+          class="fork-card border-border-light text-dark hover:bg-stone-2 block border p-8 no-underline transition-colors md:p-9">
           <div class="flex items-baseline justify-between">
             <span class="label text-accent">Website Design</span>
-            <span class="font-primary italic text-base text-accent">&rarr;</span>
+            <span class="font-primary text-accent text-base italic">
+              &rarr;
+            </span>
           </div>
-          <h3 class="font-primary text-2xl md:text-[1.7rem] font-normal tracking-tight leading-tight mt-3 mb-3 max-w-[24ch]">
+          <h3
+            class="font-primary mt-3 mb-3 max-w-[24ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
             No site yet, or yours is well overdue a redesign?
           </h3>
-          <p class="text-sm md:text-[0.9rem] text-ink-2 leading-relaxed m-0 max-w-[46ch]">
-            Start from the ground up with a new WordPress site built around getting enquiries, then keep it on a care plan afterwards.
+          <p
+            class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
+            Start from the ground up with a new WordPress site built around
+            getting enquiries, then keep it on a care plan afterwards.
           </p>
         </a>
       </div>
@@ -390,41 +568,51 @@ const SUPPORT_PLANS = [
   </section>
 
   <!-- Related Reading -->
-  <section class="py-16 lg:py-20 border-t border-border-light">
+  <section class="border-border-light border-t py-16 lg:py-20">
     <div class="container">
-      <h2 class="font-primary text-3xl sm:text-4xl font-normal tracking-tight mb-10">Important things to know about website maintenance</h2>
+      <h2
+        class="font-primary mb-10 text-3xl font-normal tracking-tight sm:text-5xl">
+        Important things to know about website maintenance
+      </h2>
       <div class="grid gap-x-6 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
-        {relatedPosts.map((post) => {
-          const postUrl = getLocaleUrlCTM(extractSlug(post), Astro.currentLocale, "blog");
-          return (
-            <article class="group">
-              <a href={postUrl} class="block relative overflow-hidden">
-                {post.data.image && (
-                  <OptimizedImage
-                    src={post.data.image}
-                    alt={post.data.title}
-                    class="h-87.5! min-w-full object-cover transition duration-500 group-hover:scale-105"
-                    width={600}
-                    height={600}
-                  />
-                )}
-              </a>
-              <div class="mt-6">
-                <h3 class="text-h4-sm md:text-h5 mb-6 font-medium">
-                  <a href={postUrl} class="inline-block hover:text-accent transition-colors">
-                    {post.data.title}
-                  </a>
-                </h3>
-                <a
-                  href={postUrl}
-                  class="font-secondary text-sm uppercase tracking-wider border-b border-dark pb-1 hover:border-accent hover:text-accent transition-colors"
-                >
-                  Read More →
+        {
+          relatedPosts.map((post) => {
+            const postUrl = getLocaleUrlCTM(
+              extractSlug(post),
+              Astro.currentLocale,
+              "blog",
+            );
+            return (
+              <article class="group">
+                <a href={postUrl} class="relative block overflow-hidden">
+                  {post.data.image && (
+                    <OptimizedImage
+                      src={post.data.image}
+                      alt={post.data.title}
+                      class="h-87.5! min-w-full object-cover transition duration-500 group-hover:scale-105"
+                      width={600}
+                      height={600}
+                    />
+                  )}
                 </a>
-              </div>
-            </article>
-          );
-        })}
+                <div class="mt-6">
+                  <h3 class="text-h4-sm md:text-h5 mb-6 font-medium">
+                    <a
+                      href={postUrl}
+                      class="hover:text-accent inline-block transition-colors">
+                      {post.data.title}
+                    </a>
+                  </h3>
+                  <a
+                    href={postUrl}
+                    class="font-secondary border-dark hover:border-accent hover:text-accent border-b pb-1 text-sm tracking-wider uppercase transition-colors">
+                    Read More →
+                  </a>
+                </div>
+              </article>
+            );
+          })
+        }
       </div>
     </div>
   </section>
