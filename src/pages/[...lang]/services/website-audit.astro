@@ -2,37 +2,109 @@
 import Base from "@/layouts/Base.astro";
 import { generatePaths } from "@/lib/utils/languageParser.ts";
 import CustomButton from "@/components/CustomButton.astro";
+import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
+import { getCollectionCTM } from "@/lib/contentParser.astro";
+import { getLocaleUrlCTM } from "@/lib/utils/languageParser.ts";
+import extractSlug from "@/lib/utils/extractSlug";
+import ContactSection from "@/layouts/components/sections/ContactSection.astro";
+import TestimonialArticle from "@/layouts/components/sections/TestimonialArticle.astro";
 
 export function getStaticPaths() {
   return generatePaths();
 }
 
+// Fetch blog posts for related reading section - in specific order
+const allPosts = await getCollectionCTM("blog", Astro.currentLocale);
+const relatedSlugs = [
+  "why-is-my-website-traffic-not-bringing-leads",
+  "bridal-boutique-audit",
+  "how-to-turn-blog-traffic-into-enquiries",
+];
+
+// Get unique posts in the order specified
+const relatedPosts = relatedSlugs
+  .map((slug) => allPosts?.find((post) => post.data.customSlug === slug))
+  .filter((post) => post !== undefined);
+
 const pageData = {
-  title: "Free Website Audit",
+  title: "Free Website Review & Health Check | BVS Web Design",
   metaDescription:
-    "Free website audit — find out exactly what's holding your site back. SEO, conversion, speed, first impressions. Actionable recommendations.",
+    "Get a free, plain-English website review from a Yorkshire web designer. Find out why your site isn't getting enquiries — and what to fix first.",
 };
 
-const AUDIT_ITEMS = [
+const FAQ_ITEMS = [
   {
-    title: "First impressions",
-    body: "Does it pass the five-second test? Is it immediately clear what you do and who for?",
+    question: "Is it actually free? What's the catch?",
+    answer:
+      "It's genuinely free, and there's no catch. It's how I'd rather introduce myself than with a sales pitch — you see how I think, I see whether your site's the kind of thing I can help with. Plenty of people take the action list and run with it themselves, and that's completely fine.",
   },
   {
-    title: "SEO foundations",
-    body: "Are you showing up on Google for the right searches? Are there basic technical issues holding you back?",
+    question: "Will you just try to sell me a new website?",
+    answer:
+      "No. The whole point is to tell you the truth about your current site. Most of the time the answer isn't \"start again\" — it's a handful of specific fixes. If a rebuild genuinely is the better call, I'll say so and explain why, but that's the exception, not the goal.",
   },
   {
-    title: "Conversion blockers",
-    body: "Why aren't visitors getting in touch? What's getting in the way between landing on the page and picking up the phone?",
+    question: "What do I actually walk away with?",
+    answer:
+      "A prioritised list of what's wrong and what to do about it, in language you can act on — not a 40-page PDF of jargon. Enough to either fix things yourself or brief whoever does.",
   },
   {
-    title: "Mobile experience",
-    body: "Over 60% of your visitors are on a phone. Does your site actually work for them?",
+    question: "How long does it take?",
+    answer:
+      "The review itself is usually turned around within a few working days. Booking the slot takes a minute.",
   },
   {
-    title: "Technical health",
-    body: "Speed, security, broken links, Core Web Vitals — the unglamorous stuff that quietly kills performance.",
+    question: "Do I need to give you access to anything?",
+    answer:
+      "For the review, no — just your website address. If you've got Google Search Console or Analytics set up and you're happy to share read-only access, I can go deeper, but it's optional.",
+  },
+  {
+    question: "My site's only a year or two old — is it even worth it?",
+    answer:
+      "Often the newer ones are worth it most. A lot of sites are built to look nice and never set up to be found — so they quietly underperform from day one. A review tells you whether yours is one of them.",
+  },
+  {
+    question: "Do you only work with WordPress?",
+    answer:
+      "I work mostly with WordPress, but the review covers any platform — Wix, Squarespace, Shopify, the lot. The principles are the same wherever your site's built.",
+  },
+];
+
+const REVIEW_ITEMS = [
+  {
+    title: "Can Google find you and understand what you do?",
+    body: 'Whether your pages are properly indexed, whether Google actually knows what services you offer and the areas you cover, how you\'re showing up locally (Google Business Profile, maps, "near me" searches), and whether the technical groundwork — schema, sitemaps, structure — is doing its job or quietly missing.',
+  },
+  {
+    title: "Are the right people landing on your site at all?",
+    body: "Where you currently rank for the terms your customers actually search, the gaps where you should be visible and aren't, and an honest read on whether your real problem is traffic volume or something further down the funnel. (For most service businesses, it's traffic — and that's fixable.)",
+  },
+  {
+    title: "Does your site turn visitors into enquiries?",
+    body: 'Whether the path to contacting you is obvious, whether your pages answer the only question a prospect cares about — "why you?" — and whether your strongest pages are pulling their weight or leaking interested people. The best-ranking site in the world is worthless if visitors don\'t act.',
+  },
+  {
+    title: "Is anything actively broken?",
+    body: "The speed problems, mobile issues, broken links and technical faults that frustrate visitors and drag down rankings — flagged by severity, so you fix what matters first and ignore what doesn't.",
+  },
+];
+
+const PROCESS_STEPS = [
+  {
+    title: "You book a slot.",
+    body: "Pick a time and tell me your website address and what's been bugging you about it.",
+  },
+  {
+    title: "I review your site by hand.",
+    body: "Not a scheduled scan — actual time spent going through it properly, the way I would for a paying client.",
+  },
+  {
+    title: "You get a clear, prioritised action list.",
+    body: "The real issues, in order of impact, each with a plain-English explanation of why it matters and what fixing it involves. Yours to keep.",
+  },
+  {
+    title: "You decide what to do with it.",
+    body: "Plenty of the fixes you can do yourself — and I'll tell you which. Where you'd rather I handled it, I'll give you a straight quote. No pressure either way; the review stands on its own.",
   },
 ];
 ---
@@ -41,35 +113,176 @@ const AUDIT_ITEMS = [
   <!-- Hero -->
   <section class="py-16 lg:py-20">
     <div class="container">
-      <div class="label text-accent mb-4">— Free Website Audit</div>
+      <div class="label text-accent mb-4">— Free Website Review</div>
       <h1
         class="font-primary max-w-[22ch] text-4xl leading-[0.98] font-normal tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-        Free website audit — find out exactly what your site <em
-          class="text-accent italic">
-          is
-        </em> and <em class="italic">isn't</em> doing.
+        Find out exactly why your website <em class="text-accent italic">
+          isn't
+        </em> bringing in enquiries
       </h1>
-      <div class="mt-8 max-w-3xl space-y-5">
-        <p class="font-primary text-ink-2 text-lg leading-relaxed">
-          Most business owners have a nagging feeling their website could be
-          doing more. They're just not sure what's wrong or where to start.
-        </p>
-        <p class="font-primary text-ink-2 text-lg leading-relaxed">
-          A free audit gives you a clear answer. I'll look at your site properly
-          — SEO, conversion, structure, speed, first impressions — and tell you
-          exactly what's holding it back and what to fix first.
-        </p>
-        <p class="font-primary text-dark text-lg leading-relaxed">
-          There's no catch. This is how I start conversations with new clients.
-          Some people take the findings away and fix things themselves. Others
-          ask me to help. <em class="text-accent">
-            Either way you leave with something useful.
-          </em>
-        </p>
-      </div>
-      <div class="mt-8">
+      <p
+        class="font-primary text-ink-2 mt-6 max-w-[62ch] text-lg leading-relaxed md:text-xl">
+        A free, plain-English website review from someone who builds and ranks
+        sites for service businesses for a living. Real eyes on your site and
+        actionable advice on what to fix first.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center gap-4">
         <CustomButton
-          label="Book Your Free Audit →"
+          label="Book a Free Website Review →"
+          url="https://tidycal.com/bvswebdesign/30-minute-meeting"
+          hoverEffect="creative-fill"
+          class="effect-color-accent"
+        />
+        <span class="text-ink-2 text-sm">
+          <a
+            href="#what-it-covers"
+            class="hover:text-accent underline transition-colors">
+            See what the review covers ↓
+          </a>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why It Matters -->
+  <section class="border-border-light bg-stone-2 border-t py-16 lg:py-20">
+    <div class="container">
+      <!-- Header row -->
+      <div class="mb-12 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <div class="label text-accent mb-4">— Why this matters</div>
+          <h2
+            class="font-primary text-3xl leading-tight font-normal tracking-tight sm:text-5xl lg:text-5xl">
+            A good-looking website that doesn't bring in work is costing you
+            money every month
+          </h2>
+        </div>
+        <div class="flex items-end">
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            Most business owners only find out something's wrong when the
+            enquiries dry up. By then you've spent months wondering whether it's
+            the market, the season, or just bad luck — when usually it's
+            something on the site that's quietly turning people away or keeping
+            you invisible on Google.
+          </p>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div
+        class="border-border-light border p-8 md:grid md:grid-cols-2 md:gap-12 md:p-12">
+        <div>
+          <p class="font-primary text-ink-2 mb-6 text-lg leading-relaxed">
+            You've probably already run one of the free online scanners. They
+            spit out a score and a wall of red errors — missing alt tags, this,
+            that — and leave you exactly where you started: knowing <em
+              class="text-dark">
+              something's
+            </em> wrong, with no idea which bits actually matter or what to do about
+            them.
+          </p>
+        </div>
+        <div>
+          <p class="font-primary text-ink-2 mb-6 text-lg leading-relaxed">
+            That's the gap this review fills. I'm not a tool that grades 100
+            data points in twenty seconds. I look at your site the way a
+            potential customer does, then the way Google does, and I tell you
+            the handful of things that are actually holding back your enquiries
+            — <em class="text-accent">
+              in English, with a clear next step for each.
+            </em>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's Included -->
+  <section
+    id="what-it-covers"
+    class="border-border-light border-t py-16 lg:py-20">
+    <div class="container">
+      <h2
+        class="font-primary mb-4 text-3xl font-normal tracking-tight sm:text-5xl">
+        What the review covers
+      </h2>
+      <p
+        class="font-primary text-ink-2 mb-10 max-w-[65ch] text-lg leading-relaxed">
+        I go through your whole site by hand and report back on four things that
+        decide whether it brings you work:
+      </p>
+      <div
+        class="border-border-light grid grid-cols-1 border-t border-l md:grid-cols-2">
+        {
+          REVIEW_ITEMS.map((item, i) => (
+            <div class="included-card border-border-light border-r border-b p-8 md:p-9">
+              <span class="font-primary text-accent text-xl italic">
+                0{i + 1}
+              </span>
+              <h3 class="font-primary mt-3 mb-3 max-w-[24ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+                {item.title}
+              </h3>
+              <p class="text-ink-2 m-0 max-w-[50ch] text-sm leading-relaxed md:text-[0.9rem]">
+                {item.body}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+      <p
+        class="font-primary text-ink-2 mt-10 max-w-[65ch] text-lg leading-relaxed">
+        You come away knowing precisely what's wrong, why it's costing you, and
+        what to do about it.
+      </p>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="border-border-light border-t py-16 lg:py-20">
+    <div class="container">
+      <div class="prose-styles">
+        <TestimonialArticle
+          author="Phil & Owen"
+          authorTitle="Owners, Ilkley Dental Care"
+          image="/images/portfolio/ilkley-dental-care.png"
+          quote="Steve spotted in twenty minutes what two other 'experts' had missed in two years. Within a couple of months the enquiries were noticeably up — we now get over 30 enquiries a month through the website."
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- The Review & What Happens Next -->
+  <section class="border-border-light border-t py-16 lg:py-20">
+    <div class="container">
+      <h2
+        class="font-primary mb-4 text-3xl font-normal tracking-tight sm:text-5xl">
+        Simple, free, no obligation
+      </h2>
+      <p
+        class="font-primary text-ink-2 mb-10 max-w-[65ch] text-lg leading-relaxed">
+        Here's how the review works:
+      </p>
+      <div
+        class="border-border-light grid grid-cols-1 border-t border-l md:grid-cols-2">
+        {
+          PROCESS_STEPS.map((step, i) => (
+            <div class="process-card border-border-light hover:bg-stone-2 border-r border-b p-8 transition-colors md:p-9">
+              <span class="font-primary text-accent text-xl italic">
+                0{i + 1}
+              </span>
+              <h3 class="font-primary mt-3 mb-3 max-w-[20ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+                {step.title}
+              </h3>
+              <p class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
+                {step.body}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+      <div class="mt-10">
+        <CustomButton
+          label="Book a Free Website Review →"
           url="https://tidycal.com/bvswebdesign/30-minute-meeting"
           hoverEffect="creative-fill"
           class="effect-color-accent"
@@ -78,24 +291,54 @@ const AUDIT_ITEMS = [
     </div>
   </section>
 
-  <!-- What I look at -->
-  <section class="border-border-light border-t py-12">
+  <!-- FAQ -->
+  <section class="border-border-light border-t py-16 lg:py-20">
     <div class="container">
       <h2
-        class="font-primary mb-8 text-3xl leading-tight font-normal tracking-tight md:text-4xl">
-        What I <em class="text-accent italic">look at</em>
+        class="font-primary mb-10 text-3xl font-normal tracking-tight sm:text-5xl">
+        Common questions about the website review
       </h2>
-      <div class="border-border-light border-t">
+      <div
+        class="hs-accordion-group border-border-light mx-auto w-full max-w-4xl border-y">
         {
-          AUDIT_ITEMS.map((item, i) => (
-            <div class="border-border-light/50 grid grid-cols-1 items-baseline gap-4 border-b py-5 md:grid-cols-[auto_1fr_2fr] md:gap-8">
-              <div class="font-primary text-accent text-xl italic">
-                0{i + 1}
+          FAQ_ITEMS.map((item, index) => (
+            <div
+              class:list={[
+                "hs-accordion border-border-light border-b",
+                index === 0 && "active",
+              ]}
+              id={`faq-accordion-${index}`}>
+              <button
+                class="hs-accordion-toggle font-primary text-dark hover:text-accent flex w-full items-center justify-between py-5 text-left text-lg font-medium transition-colors"
+                aria-expanded={index === 0 ? "true" : "false"}
+                aria-controls={`faq-content-${index}`}>
+                <span>{item.question}</span>
+                <svg
+                  class="hs-accordion-active:rotate-180 text-accent size-5 shrink-0 transition-transform duration-300"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+              <div
+                id={`faq-content-${index}`}
+                class:list={[
+                  "hs-accordion-content w-full overflow-hidden transition-[height] duration-300",
+                  index !== 0 && "hidden",
+                ]}
+                role="region"
+                aria-labelledby={`faq-accordion-${index}`}>
+                <p class="text-ink-2 pr-8 pb-5 leading-relaxed">
+                  {item.answer}
+                </p>
               </div>
-              <h3 class="font-primary text-xl font-normal tracking-tight md:text-2xl">
-                {item.title}
-              </h3>
-              <p class="text-ink-2 text-sm leading-relaxed">{item.body}</p>
             </div>
           ))
         }
@@ -103,103 +346,150 @@ const AUDIT_ITEMS = [
     </div>
   </section>
 
-  <!-- What you get - dark section -->
-  <section class="bg-theme-dark py-14 text-white">
-    <div class="container">
-      <div class="grid grid-cols-1 items-center gap-14 lg:grid-cols-2">
-        <div>
-          <div class="label text-accent mb-4">— What you get</div>
-          <h2
-            class="font-primary text-3xl leading-tight font-normal tracking-tight md:text-4xl">
-            A plain-English pdf walkthrough — and a <em class="italic">
-              priority list
-            </em> that's yours to keep.
-          </h2>
-        </div>
-        <div>
-          <p class="font-primary text-lg leading-relaxed text-white/80">
-            A pdf walkthrough of your site where I talk you through everything
-            I've found — in plain English. Plus a written priority list so you
-            know exactly what to tackle first.
-          </p>
-          <p
-            class="font-primary mt-5 mb-8 text-lg leading-relaxed text-white/80">
-            The whole thing takes around 30 minutes of your time. The call is
-            free. The findings are yours to keep.
-          </p>
-          <CustomButton
-            label="Book Your Free Audit →"
-            url="https://tidycal.com/bvswebdesign/30-minute-meeting"
-            hoverEffect="creative-fill"
-            variant="fill"
-            class="bg-accent hover:bg-accent/90 text-white"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Real example -->
-  <section class="py-14">
-    <div class="container">
-      <div class="grid grid-cols-1 items-start gap-12 lg:grid-cols-[1fr_2fr]">
-        <h2
-          class="font-primary text-3xl leading-tight font-normal tracking-tight md:text-4xl">
-          Real <em class="italic">example</em>
-        </h2>
-        <div>
-          <p
-            class="font-primary text-ink-2 max-w-2xl text-lg leading-relaxed md:text-xl">
-            A dental practice came to me not knowing why their website wasn't
-            generating enquiries despite reasonable traffic. The audit found a <span
-              class="text-dark">
-              broken contact form nobody knew about
-            </span>, a phone number buried below the fold, and no clear call to
-            action on any page. Issues they'd lived with for years — fixed in a
-            few weeks. They now receive <span class="text-accent">
-              30+ enquiries per month
-            </span>.
-          </p>
-          <a
-            href="/portfolio/ilkley-dental-care/"
-            class="font-primary text-dark border-dark hover:text-accent hover:border-accent mt-6 inline-block border-b italic transition-colors">
-            See the full Ilkley Dental Care project →
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer CTA -->
+  <!-- Final CTA -->
   <section class="bg-theme-dark py-20 text-white md:py-28">
     <div class="container">
-      <div class="label text-accent mb-4">
-        — Currently booking · 2 project slots left
-      </div>
       <h2
-        class="font-primary mb-10 max-w-[18ch] text-4xl leading-[0.94] font-normal tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
-        Find out what your site <em class="text-accent italic">is and isn't</em>
-        doing.
+        class="font-primary mb-6 max-w-[18ch] text-4xl leading-[0.94] font-normal tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+        Stop guessing why your site <em class="text-accent italic">
+          isn't working
+        </em>
       </h2>
-      <div class="grid grid-cols-1 items-end gap-14 lg:grid-cols-[1.5fr_1fr]">
-        <p
-          class="font-primary max-w-[52ch] text-lg leading-relaxed text-white/75 md:text-xl">
-          A free, no-obligation audit. Around 30 minutes of your time, and the
-          findings are yours to keep.
-        </p>
-        <div class="flex flex-col items-start gap-3">
-          <CustomButton
-            label="Book a Free Audit →"
-            url="https://tidycal.com/bvswebdesign/30-minute-meeting"
-            hoverEffect="creative-fill"
-            variant="fill"
-            class="bg-accent hover:bg-accent/90 text-white"
-          />
-          <a href="/contact/" class="ghost-dark-btn">Send a Message</a>
-        </div>
+      <p
+        class="font-primary mb-10 max-w-[55ch] text-lg leading-relaxed text-white/75 md:text-xl">
+        Twenty minutes of someone who knows what they're looking at beats
+        another month of wondering. Book your free review and find out exactly
+        where you stand.
+      </p>
+      <CustomButton
+        label="Book a Free Website Review →"
+        url="https://tidycal.com/bvswebdesign/30-minute-meeting"
+        hoverEffect="creative-fill"
+        variant="fill"
+        class="bg-accent hover:bg-accent/90 text-white"
+      />
+    </div>
+  </section>
+
+  <!-- Related Reading -->
+  <section class="border-border-light border-t py-16 lg:py-20">
+    <div class="container">
+      <h2
+        class="font-primary mb-10 text-3xl font-normal tracking-tight sm:text-5xl">
+        Related reading
+      </h2>
+      <div class="grid gap-x-6 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
+        {
+          relatedPosts.map((post) => {
+            const postUrl = getLocaleUrlCTM(
+              extractSlug(post),
+              Astro.currentLocale,
+              "blog",
+            );
+            return (
+              <article class="group">
+                <a href={postUrl} class="relative block overflow-hidden">
+                  {post.data.image && (
+                    <OptimizedImage
+                      src={post.data.image}
+                      alt={post.data.title}
+                      class="h-87.5! min-w-full object-cover transition duration-500 group-hover:scale-105"
+                      width={600}
+                      height={600}
+                    />
+                  )}
+                </a>
+                <div class="mt-6">
+                  <h3 class="text-h4-sm md:text-h5 mb-6 font-medium">
+                    <a
+                      href={postUrl}
+                      class="hover:text-accent inline-block transition-colors">
+                      {post.data.title}
+                    </a>
+                  </h3>
+                  <a
+                    href={postUrl}
+                    class="font-secondary border-dark hover:border-accent hover:text-accent border-b pb-1 text-sm tracking-wider uppercase transition-colors">
+                    Read More →
+                  </a>
+                </div>
+              </article>
+            );
+          })
+        }
       </div>
     </div>
   </section>
+
+  <!-- Not Quite Right Fork -->
+  <section class="border-border-light border-t py-16 lg:py-20">
+    <div class="container">
+      <!-- Header row -->
+      <div class="mb-10 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <h2
+            class="font-primary text-3xl font-normal tracking-tight sm:text-5xl">
+            Not quite what you need?
+          </h2>
+        </div>
+        <div class="flex items-end">
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            If a review isn't the right starting point, you probably need
+            something else — and I'd rather point you to the right thing than
+            sell you the wrong one.
+          </p>
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <a
+          href="/services/website-design/"
+          class="fork-card border-border-light text-dark hover:bg-stone-2 block border p-8 no-underline transition-colors md:p-9">
+          <div class="flex items-baseline justify-between">
+            <span class="label text-accent">Website Design</span>
+            <span class="font-primary text-accent text-base italic">
+              &rarr;
+            </span>
+          </div>
+          <h3
+            class="font-primary mt-3 mb-3 max-w-[24ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+            Already know you need a fresh start?
+          </h3>
+          <p
+            class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
+            If your site's beyond patching up, a proper rebuild might be the
+            better starting point. Website design from £2,000.
+          </p>
+        </a>
+        <a
+          href="/services/website-support/"
+          class="fork-card border-border-light text-dark hover:bg-stone-2 block border p-8 no-underline transition-colors md:p-9">
+          <div class="flex items-baseline justify-between">
+            <span class="label text-accent">Website Support</span>
+            <span class="font-primary text-accent text-base italic">
+              &rarr;
+            </span>
+          </div>
+          <h3
+            class="font-primary mt-3 mb-3 max-w-[24ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+            Site's fine but you need it looked after?
+          </h3>
+          <p
+            class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
+            If it's upkeep, security and peace of mind you're after rather than
+            a diagnosis, that's a different job. Website support & care plans
+            from £35/month.
+          </p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <div id="contact">
+    <ContactSection noPaddingBottom={false} />
+  </div>
 </Base>
 
 <style>
@@ -216,21 +506,12 @@ const AUDIT_ITEMS = [
   .bg-stone-2 {
     background-color: var(--color-stone-2, #e7e5e3);
   }
-  .ghost-dark-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 1.5rem;
-    font-family: var(--font-secondary);
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+
+  /* Contact form privacy policy link */
+  #contact :global(a) {
     color: white;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: background-color 0.2s ease;
   }
-  .ghost-dark-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+  #contact :global(a:hover) {
+    color: var(--color-accent);
   }
 </style>
