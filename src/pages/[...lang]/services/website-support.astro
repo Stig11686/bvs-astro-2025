@@ -139,13 +139,13 @@ const SUPPORT_PLANS = [
       <div class="mt-8 flex flex-wrap items-center gap-4">
         <CustomButton
           label="Book a Quick Call →"
-          url="https://tidycal.com/bvswebdesign/start-a-project"
+          url="https://tidycal.com/bvswebdesign/30-minute-intro-call"
           hoverEffect="creative-fill"
           class="effect-color-accent"
         />
         <span class="text-ink-2 text-sm">
           Prefer to type it out? <a
-            href="/contact/"
+            href="/services/website-support/#contact"
             class="hover:text-accent underline transition-colors">
             Send a Message →
           </a>
@@ -203,8 +203,8 @@ const SUPPORT_PLANS = [
                   </div>
                 ))}
               </div>
-              <a
-                href="https://tidycal.com/bvswebdesign/start-a-project"
+              <act
+                href="https://tidycal.com/bvswebdesign/30-minute-intro-call"
                 target="_blank"
                 rel="noopener"
                 class:list={[
@@ -214,7 +214,7 @@ const SUPPORT_PLANS = [
                     : "border-dark text-dark hover:bg-dark border hover:text-white",
                 ]}>
                 Choose {plan.name} →
-              </a>
+              </act>
             </div>
           ))
         }
@@ -426,7 +426,7 @@ const SUPPORT_PLANS = [
         </p>
         <CustomButton
           label="Get Peace of Mind →"
-          url="#contact"
+          url="/services/website-support/#contact"
           hoverEffect="creative-fill"
           class="effect-color-accent shrink-0"
         />
@@ -619,7 +619,7 @@ const SUPPORT_PLANS = [
 
   <!-- Contact Section -->
   <div id="contact">
-    <ContactSection noPaddingBottom={true} />
+    <ContactSection noPaddingBottom={false} />
   </div>
 </Base>
 
