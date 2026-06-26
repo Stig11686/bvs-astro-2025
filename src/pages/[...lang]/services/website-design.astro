@@ -2,39 +2,171 @@
 import Base from "@/layouts/Base.astro";
 import { generatePaths } from "@/lib/utils/languageParser.ts";
 import CustomButton from "@/components/CustomButton.astro";
+import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
+import { getCollectionCTM } from "@/lib/contentParser.astro";
+import { getLocaleUrlCTM } from "@/lib/utils/languageParser.ts";
+import extractSlug from "@/lib/utils/extractSlug";
+import ContactSection from "@/layouts/components/sections/ContactSection.astro";
+import TestimonialArticle from "@/layouts/components/sections/TestimonialArticle.astro";
 
 export function getStaticPaths() {
   return generatePaths();
 }
 
+// Fetch blog posts for related reading section
+const allPosts = await getCollectionCTM("blog", Astro.currentLocale);
+const relatedSlugs = [
+  "when-should-you-update-or-invest-in-a-new-website",
+  "the-5-biggest-mistakes-small-business-owners-make-with-their-websites",
+  "5-essential-tips-for-building-a-successful-small-business-website",
+];
+
+const relatedPosts = relatedSlugs
+  .map((slug) => allPosts?.find((post) => post.data.customSlug === slug))
+  .filter((post) => post !== undefined);
+
 const pageData = {
-  title: "Website Design with WordPress",
-  metaDescription: "A new WordPress website built around generating enquiries — not just looking good. Strategy, copy guidance, design, build and launch.",
+  title: "Website Design in Skipton & Yorkshire | BVS Web Design",
+  metaDescription:
+    "A WordPress website built around enquiries, not applause. Web design in Skipton & across Yorkshire — strategy, design, build, launch. Projects from £2,000.",
 };
 
+const FAQ_ITEMS = [
+  {
+    question: "How much does a website cost?",
+    answer:
+      "Projects start at £2,000, and I quote every one properly once I understand what you need — so there's no surprise invoice and no day-rate meter ticking over. What moves the number is scope: how many pages, whether you're selling online, how much is built from scratch. You'll know the full price before I start a thing.",
+  },
+  {
+    question: "Why start at £2,000 when I've been quoted a few hundred?",
+    answer:
+      "Because a £300 website and a £2,000 website aren't the same product at different prices — they're different things. The cheap one is usually a template filled in fast, with no thought to whether it ranks or turns visitors into enquiries. Mine are designed around getting you work and built to last, so you're not paying someone else to redo it in a year. If your budget genuinely won't stretch, I'll tell you straight what's realistic rather than take your money for something that won't deliver.",
+  },
+  {
+    question: "How long does it take?",
+    answer:
+      "Most builds run a few weeks from our first call to launch — the variable is usually how quickly content and photos come together, not the build itself. I'll give you an honest timeline up front, and I'm known for getting it done without dragging it out.",
+  },
+  {
+    question: "Will I be able to update it myself?",
+    answer:
+      "Yes. I hand-build on WordPress partly so you're never held hostage for a simple text change. You get a training video and a site you can actually edit — swap images, change copy, add a page. I'm there when you want me, not because you're stuck.",
+  },
+  {
+    question: "Do you write the words and sort the photos too?",
+    answer:
+      "I guide the copy and the structure — what each page needs to say, and in what order, to lead someone to get in touch — and I'll steer you on photography. The best results come when we shape the content together: a beautiful site with weak words still won't convert, and I won't pretend otherwise.",
+  },
+  {
+    question: "WordPress, Wix or Squarespace — which should I be on?",
+    answer:
+      "For most growing service businesses, WordPress — it's flexible, you own it outright, and it scales with you. Wix and Squarespace are fine for the smallest, simplest sites, but you hit their ceiling quickly. I'll give you a straight recommendation for your situation, not a pitch for whatever's easiest for me.",
+  },
+  {
+    question: "Do you build online shops?",
+    answer:
+      "Yes — WooCommerce and Shopify builds, plus migrations off clunkier setups onto something that actually sells. Maidens & Ravens' WooCommerce store is a good example.",
+  },
+  {
+    question: "Do I need to be in Skipton?",
+    answer:
+      "No. I'm Skipton-based and work with businesses right across North Yorkshire and the wider county, but plenty of the work happens remotely. Where you are matters far less than whether we're a good fit.",
+  },
+  {
+    question: "What about hosting and domains — do I need to sort those myself?",
+    answer:
+      "No — I handle both. Your domain is your web address (like yourbusiness.co.uk), and hosting is the service that keeps your website online. I'll register or transfer your domain, set up fast, secure hosting, and manage renewals so nothing lapses. You own everything outright and can move it if you ever want to — but most people never need to think about it again.",
+  },
+];
+
 const DESIGN_INCLUDES = [
-  'Discovery & strategy session',
-  'Custom design in Figma',
-  'Hand-built WordPress (no page builders)',
-  'Copywriting guidance',
-  'On-page SEO foundations',
-  'Mobile-first, fast by default',
-  'Editor training video',
-  '30 days of post-launch fixes',
+  {
+    title: "Discovery & strategy session",
+    body: "We start with your business, not your colour scheme",
+  },
+  {
+    title: "Custom design",
+    body: "Drafts you can mark up, built around the path to enquiry",
+  },
+  {
+    title: "Built in WordPress",
+    body: "So you're not tied in",
+  },
+  {
+    title: "Copywriting guidance",
+    body: "Words that lead people to get in touch",
+  },
+  {
+    title: "On-page SEO foundations",
+    body: "Built to be found from day one",
+  },
+  {
+    title: "Mobile-first, fast by default",
+    body: "Because most of your visitors are on a phone",
+  },
+  {
+    title: "Editor training video",
+    body: "So you can run it yourself",
+  },
+  {
+    title: "Support after launch",
+    body: "I don't disappear at handover - website maintenance and care packages are available",
+  },
 ];
 
 const DESIGN_PROCESS = [
-  ['01', 'Free call', 'A proper conversation about your business — not your colour scheme.'],
-  ['02', 'Discovery', 'Your customers, what they need to see, and what is getting in the way.'],
-  ['03', 'Design', 'Figma drafts you can mark up, built around the path to enquiry.'],
-  ['04', 'Build', 'Hand-built WordPress — no bloated page builders.'],
-  ['05', 'Launch + care', 'Live, trained, and looked after long after handover.'],
+  {
+    num: "01",
+    title: "Free call",
+    body: "A proper conversation about your business, not your colour scheme.",
+  },
+  {
+    num: "02",
+    title: "Discovery",
+    body: "Your customers, what they need to see, and what's getting in the way.",
+  },
+  {
+    num: "03",
+    title: "Design",
+    body: "Drafts you can revise, built around the path to enquiry.",
+  },
+  {
+    num: "04",
+    title: "Build",
+    body: "Hand-built WordPress. No tie in.",
+  },
+  {
+    num: "05",
+    title: "Launch + care",
+    body: "Live, trained, and looked after long after handover.",
+  },
 ];
 
-const CLIENT_RESULTS = [
-  ['Ilkley Dental Care', 'went from a broken contact form and zero web enquiries to 30+ enquiries per month after a full rebuild.'],
-  ['Rebecca Rennolds Permanent Beauty', 'built from scratch with no existing website; now generates 3–4k visits per month and ranks strongly for local search terms.'],
-  ['Maidens & Ravens Bridal Boutique', 'launched a distinctive WooCommerce site and gained 30 Google reviews in the first three months.'],
+const PORTFOLIO_ITEMS = [
+  {
+    title: "Ilkley Dental Care",
+    category: "Dental & healthcare",
+    tagline: "Fixing what's quietly costing you",
+    body: "Went from a broken contact form and zero web enquiries to 30+ enquiries a month after a full rebuild. Trust-critical, compliance-heavy work where every detail counts.",
+    image: "/images/portfolio/ilkley-dental-care.png",
+    url: "/portfolio/ilkley-dental-care/",
+  },
+  {
+    title: "Rebecca Rennolds Permanent Beauty",
+    category: "Clinics & aesthetics",
+    tagline: "Built from nothing, ranking fast",
+    body: "Built from scratch with no existing website; now pulls 3–4k visits a month and ranks strongly for local search terms.",
+    image: "/images/portfolio/rebecca-rennolds-permanent-beauty-and-laser.png",
+    url: "/portfolio/rebecca-rennolds-permanent-beauty-and-laser/",
+  },
+  {
+    title: "Maidens & Ravens Bridal Boutique",
+    category: "Bridal & boutique retail",
+    tagline: "Distinctive, and selling",
+    body: "A distinctive WooCommerce site that picked up 30 Google reviews in its first three months — and ranks for genuinely competitive bridal terms well beyond its postcode.",
+    image: "/images/portfolio/maidens-and-ravens.png",
+    url: "/portfolio/maidens-and-ravens/",
+  },
 ];
 ---
 
@@ -42,14 +174,239 @@ const CLIENT_RESULTS = [
   <!-- Hero -->
   <section class="py-16 lg:py-20">
     <div class="container">
-      <div class="label text-accent mb-4">— Website Design</div>
-      <h1 class="font-primary font-normal text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.98] tracking-tight max-w-[18ch]">
-        A website built around <em class="italic text-accent">enquiries</em>, not applause.
+      <div class="label text-accent mb-4">
+        — Website Design · Skipton & Yorkshire
+      </div>
+      <h1
+        class="font-primary max-w-[18ch] text-4xl leading-[0.98] font-normal tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+        A website built around <em class="text-accent italic">enquiries</em>,
+        not applause.
       </h1>
-      <p class="font-primary text-lg md:text-xl leading-relaxed text-ink-2 mt-6 max-w-[58ch]">
-        A new WordPress website built around generating enquiries — not just looking good. I handle strategy, copy guidance, design, build and launch, then stay on to look after it.
+      <p
+        class="font-primary text-ink-2 mt-6 max-w-[58ch] text-lg leading-relaxed md:text-xl">
+        A new WordPress website built around generating enquiries — not just
+        looking good. I'm Steve: I handle strategy, copy guidance, design, build
+        and launch for service businesses across Skipton, North Yorkshire and
+        beyond — then stay on to look after it.
       </p>
-      <div class="mt-8">
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <CustomButton
+          label="Start a Project →"
+          url="https://tidycal.com/bvswebdesign/start-a-project"
+          hoverEffect="creative-fill"
+          class="effect-color-accent"
+        />
+        <span class="text-ink-2 text-sm">
+          <a
+            href="#the-work"
+            class="hover:text-accent underline transition-colors">
+            See the work ↓
+          </a>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why It Matters -->
+  <section class="border-border-light bg-stone-2 border-t py-16 lg:py-20">
+    <div class="container">
+      <!-- Header row -->
+      <div class="mb-12 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <div class="label text-accent mb-4">— Why this matters</div>
+          <h2
+            class="font-primary text-3xl leading-tight font-normal tracking-tight sm:text-5xl lg:text-5xl">
+            A cheap website is the most expensive kind
+          </h2>
+        </div>
+        <div class="flex items-end">
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            You can get a website for a few hundred pounds. Plenty of people
+            will knock one out from a template over a weekend. The problem turns
+            up later: it doesn't rank, it doesn't convert, it's a pain to
+            change, and inside a year you're paying someone else to start again.
+            The cheap site cost you twice — plus a year of enquiries you never
+            got.
+          </p>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div
+        class="border-border-light border p-8 md:grid md:grid-cols-2 md:gap-12 md:p-12">
+        <div>
+          <p class="font-primary text-ink-2 mb-6 text-lg leading-relaxed">
+            Your website is the hardest-working member of your team. It sells
+            while you sleep, qualifies people before they call, and decides
+            whether a stranger trusts you in the first five seconds. <em
+              class="text-dark">
+              Build it as an afterthought and it'll work like one.
+            </em>
+          </p>
+        </div>
+        <div>
+          <p class="font-primary text-ink-2 mb-6 text-lg leading-relaxed">
+            That's the difference in how I build. Every site starts with what
+            your business actually needs to achieve — the enquiries, the
+            bookings, the searches you want to be found for — and the design
+            follows from there. It looks great because it should. But looking
+            great is the floor, not the goal. <em class="text-accent">
+              The goal is a site that pays for itself.
+            </em>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's Included -->
+  <section class="border-border-light border-t py-16 lg:py-20">
+    <div class="container">
+      <h2
+        class="font-primary mb-4 text-3xl font-normal tracking-tight sm:text-5xl">
+        What every website design includes
+      </h2>
+      <p
+        class="font-primary text-ink-2 mb-10 max-w-[65ch] text-lg leading-relaxed">
+        No hidden extras. No "phase two" surprises. This is what you get:
+      </p>
+      <div
+        class="border-border-light grid grid-cols-1 border-t border-l md:grid-cols-2">
+        {
+          DESIGN_INCLUDES.map((item, i) => (
+            <div class="included-card border-border-light border-r border-b p-8 md:p-9">
+              <span class="font-primary text-accent text-xl italic">
+                0{i + 1}
+              </span>
+              <h3 class="font-primary mt-3 mb-2 max-w-[24ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+                {item.title}
+              </h3>
+              <p class="text-ink-2 m-0 max-w-[50ch] text-sm leading-relaxed md:text-[0.9rem]">
+                {item.body}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- The Work / Portfolio -->
+  <section id="the-work" class="border-border-light border-t py-16 lg:py-20">
+    <div class="container">
+      <h2
+        class="font-primary mb-4 text-3xl font-normal tracking-tight sm:text-5xl">
+        Different businesses, different jobs to do
+      </h2>
+      <p
+        class="font-primary text-ink-2 mb-10 max-w-[65ch] text-lg leading-relaxed">
+        I work with service businesses in the 3–30 person range, across Skipton,
+        North Yorkshire and the wider county — dental and healthcare, bridal and
+        boutique retail, clinics and aesthetics, hospitality, and the odd online
+        store. Here's what that looks like in practice.
+      </p>
+
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {
+          PORTFOLIO_ITEMS.map((item) => (
+            <a
+              href={item.url}
+              class="group block overflow-hidden no-underline transition-colors">
+              <div class="relative overflow-hidden">
+                <OptimizedImage
+                  src={item.image}
+                  alt={item.title}
+                  class="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-105"
+                  width={600}
+                  height={450}
+                />
+              </div>
+              <div class="mt-5">
+                <div class="label text-accent mb-2">{item.category}</div>
+                <h3 class="font-primary text-dark group-hover:text-accent mb-2 text-xl font-normal tracking-tight transition-colors md:text-2xl">
+                  {item.title}
+                </h3>
+                <p class="text-ink-2 text-sm leading-relaxed">{item.body}</p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="mt-10">
+        <a
+          href="/portfolio/"
+          class="font-secondary border-dark hover:border-accent hover:text-accent border-b pb-1 text-sm tracking-wider uppercase transition-colors">
+          See more work →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="border-border-light border-t py-16 lg:py-20">
+    <div class="container">
+      <div class="prose-styles">
+        <TestimonialArticle
+          author="Rebecca Rennolds"
+          authorTitle="Owner, Rebecca Rennolds Permanent Beauty & Laser"
+          image="/images/testimonial/rebecca-rennolds.webp"
+          quote="Steve is fantastic! He created a beautiful website for my skin clinic. The finished result looks extremely professional, slick and stylish. Steve couldn't have been more accommodating and helpful. He went out of his way to make sure my website was just as I wanted!"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- How I Work & What It Costs -->
+  <section class="border-border-light border-t py-16 lg:py-20">
+    <div class="container">
+      <h2
+        class="font-primary mb-4 text-3xl font-normal tracking-tight sm:text-5xl">
+        Clear process, clear price, no surprises
+      </h2>
+      <p
+        class="font-primary text-ink-2 mb-10 max-w-[65ch] text-lg leading-relaxed">
+        New website projects start at <span class="text-accent font-medium">
+          £2,000
+        </span>, and I quote every one properly once I understand what you
+        actually need — so you know exactly what you're spending and what you're
+        getting. No day-rate meter running, no scope creep, no surprise
+        invoices.
+      </p>
+      <div
+        class="border-border-light grid grid-cols-1 border-t border-l md:grid-cols-2">
+        {
+          DESIGN_PROCESS.slice(0, 4).map((step) => (
+            <div class="process-card border-border-light hover:bg-stone-2 border-r border-b p-8 transition-colors md:p-9">
+              <span class="font-primary text-accent text-xl italic">
+                {step.num}
+              </span>
+              <h3 class="font-primary mt-3 mb-3 max-w-[20ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+                {step.title}
+              </h3>
+              <p class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
+                {step.body}
+              </p>
+            </div>
+          ))
+        }
+        <!-- Final step spans full width -->
+        <div
+          class="process-card border-border-light hover:bg-stone-2 border-r border-b p-8 transition-colors md:col-span-2 md:p-9">
+          <span class="font-primary text-accent text-xl italic">
+            {DESIGN_PROCESS[4].num}
+          </span>
+          <h3
+            class="font-primary mt-3 mb-3 max-w-[20ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+            {DESIGN_PROCESS[4].title}
+          </h3>
+          <p
+            class="text-ink-2 m-0 max-w-[65ch] text-sm leading-relaxed md:text-[0.9rem]">
+            {DESIGN_PROCESS[4].body}
+          </p>
+        </div>
+      </div>
+      <div class="mt-10">
         <CustomButton
           label="Start a Project →"
           url="https://tidycal.com/bvswebdesign/start-a-project"
@@ -60,114 +417,227 @@ const CLIENT_RESULTS = [
     </div>
   </section>
 
-  <!-- What's included + Process -->
-  <section class="py-10 border-t border-border-light">
+  <!-- FAQ -->
+  <section class="border-border-light border-t py-16 lg:py-20">
     <div class="container">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <!-- What's included -->
-        <div>
-          <div class="label mb-4">What's included</div>
-          <div class="border-t border-border-light">
-            {DESIGN_INCLUDES.map((item) => (
-              <div class="font-primary text-lg italic leading-relaxed py-3 border-b border-border-light/50 flex gap-3">
-                <span class="text-accent not-italic">—</span>
-                <span>{item}</span>
+      <h2
+        class="font-primary mb-10 text-3xl font-normal tracking-tight sm:text-5xl">
+        Common questions about website design
+      </h2>
+      <div
+        class="hs-accordion-group border-border-light mx-auto w-full max-w-4xl border-y">
+        {
+          FAQ_ITEMS.map((item, index) => (
+            <div
+              class:list={[
+                "hs-accordion border-border-light border-b",
+                index === 0 && "active",
+              ]}
+              id={`faq-accordion-${index}`}>
+              <button
+                class="hs-accordion-toggle font-primary text-dark hover:text-accent flex w-full items-center justify-between py-5 text-left text-lg font-medium transition-colors"
+                aria-expanded={index === 0 ? "true" : "false"}
+                aria-controls={`faq-content-${index}`}>
+                <span>{item.question}</span>
+                <svg
+                  class="hs-accordion-active:rotate-180 text-accent size-5 shrink-0 transition-transform duration-300"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+              <div
+                id={`faq-content-${index}`}
+                class:list={[
+                  "hs-accordion-content w-full overflow-hidden transition-[height] duration-300",
+                  index !== 0 && "hidden",
+                ]}
+                role="region"
+                aria-labelledby={`faq-accordion-${index}`}>
+                <p class="text-ink-2 pr-8 pb-5 leading-relaxed">
+                  {item.answer}
+                </p>
               </div>
-            ))}
-          </div>
-        </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 
-        <!-- How it goes -->
-        <div>
-          <div class="label mb-4">How it goes</div>
-          <div class="border-t border-border-light">
-            {DESIGN_PROCESS.map(([num, title, desc]) => (
-              <div class="grid grid-cols-[auto_1fr] gap-5 py-4 border-b border-border-light/50">
-                <div class="font-primary italic text-2xl text-accent">{num}</div>
-                <div>
-                  <div class="font-primary text-xl tracking-tight">{title}</div>
-                  <div class="text-sm text-ink-2 leading-relaxed mt-1">{desc}</div>
+  <!-- Final CTA -->
+  <section class="bg-theme-dark py-20 text-white md:py-28">
+    <div class="container">
+      <div class="label text-accent mb-4">
+        — Currently booking · 2 project slots left
+      </div>
+      <h2
+        class="font-primary mb-6 max-w-[16ch] text-4xl leading-[0.94] font-normal tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+        Let's build something that <em class="text-accent italic">earns</em> its
+        keep.
+      </h2>
+      <p
+        class="font-primary mb-10 max-w-[52ch] text-lg leading-relaxed text-white/75 md:text-xl">
+        Start with a free 30-minute call. No deck, no questionnaire — just a
+        proper conversation about your business.
+      </p>
+      <div class="flex flex-col items-start gap-3">
+        <CustomButton
+          label="Start a Project →"
+          url="https://tidycal.com/bvswebdesign/start-a-project"
+          hoverEffect="creative-fill"
+          variant="fill"
+          class="bg-accent hover:bg-accent/90 text-white"
+        />
+        <a href="/contact/" class="ghost-dark-btn">Send a Message</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Reading -->
+  <section class="border-border-light border-t py-16 lg:py-20">
+    <div class="container">
+      <h2
+        class="font-primary mb-10 text-3xl font-normal tracking-tight sm:text-5xl">
+        Related reading
+      </h2>
+      <div class="grid gap-x-6 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
+        {
+          relatedPosts.map((post) => {
+            const postUrl = getLocaleUrlCTM(
+              extractSlug(post),
+              Astro.currentLocale,
+              "blog",
+            );
+            return (
+              <article class="group">
+                <a href={postUrl} class="relative block overflow-hidden">
+                  {post.data.image && (
+                    <OptimizedImage
+                      src={post.data.image}
+                      alt={post.data.title}
+                      class="h-87.5! min-w-full object-cover transition duration-500 group-hover:scale-105"
+                      width={600}
+                      height={600}
+                    />
+                  )}
+                </a>
+                <div class="mt-6">
+                  <h3 class="text-h4-sm md:text-h5 mb-6 font-medium">
+                    <a
+                      href={postUrl}
+                      class="hover:text-accent inline-block transition-colors">
+                      {post.data.title}
+                    </a>
+                  </h3>
+                  <a
+                    href={postUrl}
+                    class="font-secondary border-dark hover:border-accent hover:text-accent border-b pb-1 text-sm tracking-wider uppercase transition-colors">
+                    Read More →
+                  </a>
                 </div>
-              </div>
-            ))}
+              </article>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Not Quite Right Fork -->
+  <section class="border-border-light border-t py-16 lg:py-20">
+    <div class="container">
+      <!-- Header row -->
+      <div class="mb-10 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <h2
+            class="font-primary text-3xl font-normal tracking-tight sm:text-5xl">
+            Not quite what you need?
+          </h2>
+        </div>
+        <div class="flex items-end">
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            If a new website isn't the right starting point, you probably need
+            something else — and I'd rather point you to the right thing than
+            sell you the wrong one.
+          </p>
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <a
+          href="/services/website-audit/"
+          class="fork-card border-border-light text-dark hover:bg-stone-2 block border p-8 no-underline transition-colors md:p-9">
+          <div class="flex items-baseline justify-between">
+            <span class="label text-accent">Website Audit</span>
+            <span class="font-primary text-accent text-base italic">
+              &rarr;
+            </span>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Recently built -->
-  <section class="py-12 border-t border-border-light">
-    <div class="container">
-      <div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-8 items-center">
-        <h2 class="font-primary text-3xl md:text-4xl font-normal tracking-tight leading-tight">
-          Recently built
-        </h2>
-        <p class="font-primary text-lg leading-relaxed text-ink-2">
-          <strong class="text-dark">Rebecca Rennolds Permanent Beauty</strong> — built from scratch with no existing website; now generates <span class="text-accent">3–4k visits per month</span> and ranks strongly for local search terms.
-        </p>
-      </div>
-      <!-- 3 Portfolio Images -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
-        <div class="bg-stone-2 aspect-[4/3] flex items-center justify-center text-ink-2 text-sm">
-          ⌐ Homepage — desktop
-        </div>
-        <div class="bg-stone-2 aspect-[4/3] flex items-center justify-center text-ink-2 text-sm">
-          ⌐ Services — mobile
-        </div>
-        <div class="bg-stone-2 aspect-[4/3] flex items-center justify-center text-ink-2 text-sm">
-          ⌐ Contact form
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- What that looks like in practice -->
-  <section class="py-12 border-t border-border-light">
-    <div class="container">
-      <h2 class="font-primary text-3xl md:text-4xl font-normal tracking-tight leading-tight mb-8">
-        What that looks like <em class="italic">in practice</em>
-      </h2>
-      <div class="border-t border-border-light">
-        {CLIENT_RESULTS.map(([client, body]) => (
-          <div class="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-4 md:gap-8 py-6 border-b border-border-light/50">
-            <h3 class="font-primary text-xl md:text-2xl font-normal tracking-tight text-accent">{client}</h3>
-            <p class="font-primary text-lg leading-relaxed text-ink-2 max-w-[60ch]">{body}</p>
+          <h3
+            class="font-primary mt-3 mb-3 max-w-[24ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+            Already have a site that just needs to perform better?
+          </h3>
+          <p
+            class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
+            Start with a diagnosis, not a rebuild. A free review will tell you
+            what's actually holding it back.
+          </p>
+        </a>
+        <a
+          href="/services/website-rescue/"
+          class="fork-card border-border-light text-dark hover:bg-stone-2 block border p-8 no-underline transition-colors md:p-9">
+          <div class="flex items-baseline justify-between">
+            <span class="label text-accent">Website Rescue</span>
+            <span class="font-primary text-accent text-base italic">
+              &rarr;
+            </span>
           </div>
-        ))}
+          <h3
+            class="font-primary mt-3 mb-3 max-w-[24ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+            Site broken, hacked, or stuck with a vanished developer?
+          </h3>
+          <p
+            class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
+            That's a rescue job. I'll get you back in control and sort out
+            what's wrong.
+          </p>
+        </a>
+        <a
+          href="/services/website-support/"
+          class="fork-card border-border-light text-dark hover:bg-stone-2 block border p-8 no-underline transition-colors md:p-9">
+          <div class="flex items-baseline justify-between">
+            <span class="label text-accent">Website Support</span>
+            <span class="font-primary text-accent text-base italic">
+              &rarr;
+            </span>
+          </div>
+          <h3
+            class="font-primary mt-3 mb-3 max-w-[24ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+            Happy with your site but want it looked after?
+          </h3>
+          <p
+            class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
+            Security, updates, backups and hosting — all handled by a real
+            person, not a ticket queue.
+          </p>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Footer CTA -->
-  <section class="py-20 md:py-28 bg-theme-dark text-white">
-    <div class="container">
-      <div class="label text-accent mb-4">— Currently booking · 2 project slots left</div>
-      <h2 class="font-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight leading-[0.94] text-white max-w-[16ch] mb-10">
-        Let's build something that <em class="italic text-accent">earns</em> its keep.
-      </h2>
-      <div class="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-14 items-end">
-        <p class="font-primary text-lg md:text-xl leading-relaxed text-white/75 max-w-[52ch]">
-          Start with a free 30-minute call. No deck, no questionnaire — just a proper conversation about your business.
-        </p>
-        <div class="flex flex-col gap-3 items-start">
-          <CustomButton
-            label="Start a Project →"
-            url="https://tidycal.com/bvswebdesign/start-a-project"
-            hoverEffect="creative-fill"
-            variant="fill"
-            class="bg-accent text-white hover:bg-accent/90"
-          />
-          <a
-            href="/contact/"
-            class="ghost-dark-btn"
-          >
-            Send a Message
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Contact Section -->
+  <div id="contact">
+    <ContactSection noPaddingBottom={false} />
+  </div>
 </Base>
 
 <style>
@@ -200,5 +670,13 @@ const CLIENT_RESULTS = [
   }
   .ghost-dark-btn:hover {
     background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Contact form privacy policy link */
+  #contact :global(a) {
+    color: white;
+  }
+  #contact :global(a:hover) {
+    color: var(--color-accent);
   }
 </style>
