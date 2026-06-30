@@ -1,0 +1,528 @@
+---
+import Base from "@/layouts/Base.astro";
+import CustomButton from "@/components/CustomButton.astro";
+import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
+import ContactSection from "@/layouts/components/sections/ContactSection.astro";
+import HelpCards from "@/layouts/components/sections/HelpCards.astro";
+import { getCollectionCTM } from "@/lib/contentParser.astro";
+import { getLocaleUrlCTM } from "@/lib/utils/languageParser.ts";
+
+interface PortfolioItem {
+  image: string;
+  category: string;
+  name: string;
+  successStory: string;
+  url?: string;
+}
+
+interface Metric {
+  value: string;
+  label: string;
+}
+
+interface IncludesItem {
+  title: string;
+  body: string;
+}
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  // Page meta
+  title: string;
+  metaDescription?: string;
+
+  // Hero section
+  industry: string;
+  industryPlural?: string;
+  heroEyebrow?: string;
+  heroHeadline: string;
+  heroExcerpt: string;
+  heroImage: string;
+  heroImageAlt?: string;
+
+  // Why this industry section
+  whyIndustryEyebrow?: string;
+  whyIndustryHeadline?: string;
+  whyIndustryText: string;
+  whyIndustryPoints?: string[];
+
+  // What's included section
+  includesHeadline?: string;
+  includesText?: string;
+  includesItems?: IncludesItem[];
+
+  // Portfolio section
+  portfolioEyebrow?: string;
+  portfolioHeadline?: string;
+  portfolioText?: string;
+  portfolioSlugs?: string[];
+  portfolioItems?: PortfolioItem[];
+
+  // Success story section
+  successStoryEyebrow?: string;
+  successStoryBusiness: string;
+  successStoryLocation?: string;
+  successStoryText: string;
+  successStoryMetrics?: Metric[];
+
+  // Testimonial
+  testimonialQuote?: string;
+  testimonialAuthor?: string;
+  testimonialBusiness?: string;
+  testimonialAvatar?: string;
+
+  // FAQ section
+  faqHeadline?: string;
+  faqText?: string;
+  faqItems?: FAQItem[];
+
+  // Services section
+  servicesHeadline?: string;
+}
+
+const {
+  // Page meta
+  title,
+  metaDescription,
+
+  // Hero
+  industry,
+  industryPlural = `${industry}s`,
+  heroEyebrow = `${industry} Website Design`,
+  heroHeadline,
+  heroExcerpt,
+  heroImage,
+  heroImageAlt = `${industry} website design`,
+
+  // Why this industry
+  whyIndustryEyebrow = `Why ${industryPlural} choose me`,
+  whyIndustryHeadline = `I understand what ${industryPlural.toLowerCase()} need`,
+  whyIndustryText,
+  whyIndustryPoints = [],
+
+  // What's included
+  includesHeadline = `What every ${industry.toLowerCase()} website includes`,
+  includesText = "No hidden extras. No 'phase two' surprises. This is what you get:",
+  includesItems = [
+    { title: "Discovery & strategy session", body: "We start with your business, not your colour scheme" },
+    { title: "Custom design", body: "Drafts you can mark up, built around the path to enquiry" },
+    { title: "Built in WordPress", body: "So you're not tied in" },
+    { title: "Copywriting guidance", body: "Words that lead people to get in touch" },
+    { title: "On-page SEO foundations", body: "Built to be found from day one" },
+    { title: "Mobile-first, fast by default", body: "Because most of your visitors are on a phone" },
+    { title: "Editor training video", body: "So you can run it yourself" },
+    { title: "Support after launch", body: "I don't disappear at handover" },
+  ],
+
+  // Portfolio
+  portfolioEyebrow = `${industry} websites I've built`,
+  portfolioHeadline = `Real results for real ${industryPlural.toLowerCase()}`,
+  portfolioText,
+  portfolioSlugs = [],
+  portfolioItems: manualPortfolioItems = [],
+
+  // Success story
+  successStoryEyebrow = `${industry} Success Story`,
+  successStoryBusiness,
+  successStoryLocation,
+  successStoryText,
+  successStoryMetrics = [],
+
+  // Testimonial
+  testimonialQuote,
+  testimonialAuthor,
+  testimonialBusiness,
+  testimonialAvatar,
+
+  // FAQ
+  faqHeadline = `Common questions about ${industry.toLowerCase()} website design`,
+  faqText = "Answers to the questions I hear most often. If yours isn't here, just ask.",
+  faqItems = [],
+
+  // Services
+  servicesHeadline = "How I can help",
+} = Astro.props;
+
+// Fetch portfolio items from collection if slugs are provided
+let portfolioItems: PortfolioItem[] = manualPortfolioItems;
+
+if (portfolioSlugs && portfolioSlugs.length > 0) {
+  const allPortfolio = await getCollectionCTM("portfolio", Astro.currentLocale);
+
+  portfolioItems = portfolioSlugs
+    .map(slug => {
+      const item = allPortfolio?.find(p => p.data.customSlug === slug);
+      if (!item) return null;
+
+      const categories = item.data.categories || [];
+      const url = getLocaleUrlCTM(item.data.customSlug || item.id, Astro.currentLocale, "portfolio");
+
+      return {
+        image: item.data.image || "",
+        category: categories[0] || "",
+        name: item.data.title,
+        successStory: item.data.description || "",
+        url,
+      };
+    })
+    .filter((item): item is PortfolioItem => item !== null);
+}
+---
+
+<Base title={title} metaDescription={metaDescription} footerLayout="footer-1">
+
+  <!-- Hero Section -->
+  <section class="py-16 lg:py-20">
+    <div class="container">
+      <div class="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+        <!-- Content -->
+        <div>
+          <div class="label text-accent mb-4">
+            — {heroEyebrow}
+          </div>
+          <h1 class="font-primary max-w-[20ch] text-3xl leading-[0.98] font-normal tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+            <Fragment set:html={heroHeadline} />
+          </h1>
+          <p class="font-primary text-ink-2 mt-6 max-w-[52ch] text-lg leading-relaxed md:text-xl">
+            {heroExcerpt}
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center mt-8">
+            <CustomButton
+              label="Start a Project →"
+              url="https://tidycal.com/bvswebdesign/start-a-project"
+              hoverEffect="creative-fill"
+              class="effect-color-accent"
+            />
+            <a
+              href="#portfolio"
+              class="font-primary italic text-dark hover:text-accent transition-colors border-b border-current pb-0.5"
+            >
+              See the work
+            </a>
+          </div>
+        </div>
+
+        <!-- Image -->
+        <div class="relative">
+          <OptimizedImage
+            src={heroImage}
+            alt={heroImageAlt}
+            class="w-full h-auto max-h-[500px] object-cover"
+            width={600}
+            height={500}
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why This Industry Section -->
+  <section class="border-border-light border-y py-16 lg:py-20">
+    <div class="container">
+      <div class="grid gap-12 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <div class="label text-accent mb-4">
+            — {whyIndustryEyebrow}
+          </div>
+          <h2 class="font-primary text-3xl leading-tight font-normal tracking-tight sm:text-4xl lg:text-5xl">
+            {whyIndustryHeadline}
+          </h2>
+        </div>
+        <div class="flex flex-col justify-center">
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            {whyIndustryText}
+          </p>
+          {whyIndustryPoints && whyIndustryPoints.length > 0 && (
+            <ul class="mt-6 space-y-3">
+              {whyIndustryPoints.map((point) => (
+                <li class="flex items-start gap-3">
+                  <svg class="w-5 h-5 text-accent mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="text-ink-2">{point}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's Included Section -->
+  {includesItems && includesItems.length > 0 && (
+    <section class="py-16 lg:py-20">
+      <div class="container">
+        <h2 class="font-primary mb-4 text-3xl font-normal tracking-tight sm:text-4xl lg:text-5xl">
+          {includesHeadline}
+        </h2>
+        <p class="font-primary text-ink-2 mb-10 max-w-[65ch] text-lg leading-relaxed">
+          {includesText}
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 border border-border-light">
+          {includesItems.map((item, i) => (
+            <div class="p-8 md:p-9 border-b border-r border-border-light last:border-r-0 md:[&:nth-child(2n)]:border-r-0 md:[&:nth-last-child(-n+2)]:border-b-0">
+              <span class="font-primary text-accent text-xl italic">
+                0{i + 1}
+              </span>
+              <h3 class="font-primary mt-3 mb-2 max-w-[24ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+                {item.title}
+              </h3>
+              <p class="text-ink-2 m-0 max-w-[50ch] text-sm leading-relaxed md:text-[0.9rem]">
+                {item.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Portfolio Section -->
+  {portfolioItems && portfolioItems.length > 0 && (
+    <section id="portfolio" class="border-border-light border-t py-16 lg:py-20">
+      <div class="container">
+        <div class="grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-12">
+          <!-- Content -->
+          <div>
+            <div class="label text-accent mb-4">
+              — {portfolioEyebrow}
+            </div>
+            <h2 class="font-primary text-2xl leading-tight font-normal tracking-tight sm:text-3xl">
+              {portfolioHeadline}
+            </h2>
+            {portfolioText && (
+              <p class="font-primary text-ink-2 mt-4 text-base leading-relaxed">
+                {portfolioText}
+              </p>
+            )}
+            <div class="mt-6">
+              <a
+                href="/portfolio/"
+                class="font-secondary border-dark hover:border-accent hover:text-accent border-b pb-1 text-sm tracking-wider uppercase transition-colors"
+              >
+                See the full portfolio →
+              </a>
+            </div>
+          </div>
+
+          <!-- Portfolio Cards -->
+          <div class="grid gap-6 grid-cols-2 lg:grid-cols-3">
+            {portfolioItems.map((item) => (
+              <a
+                href={item.url || "/portfolio/"}
+                class="group block overflow-hidden no-underline transition-colors"
+              >
+                <div class="relative overflow-hidden">
+                  <OptimizedImage
+                    src={item.image}
+                    alt={item.name}
+                    class="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-105"
+                    width={240}
+                    height={180}
+                  />
+                </div>
+                <div class="mt-4">
+                  <div class="label text-accent mb-2">{item.category}</div>
+                  <h3 class="font-primary text-dark group-hover:text-accent text-xl font-normal tracking-tight transition-colors leading-tight mb-2">
+                    {item.name}
+                  </h3>
+                  <p class="text-ink-2 text-sm leading-relaxed">{item.successStory}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Success Story Section -->
+  {successStoryBusiness && (
+    <section class="border-border-light border-t bg-stone-2 py-16 lg:py-20">
+      <div class="container">
+        <div class="grid gap-8 lg:grid-cols-2 lg:gap-16 mb-12">
+          <div>
+            <div class="label text-accent mb-4">
+              — {successStoryEyebrow}
+            </div>
+            <h2 class="font-primary text-3xl leading-tight font-normal tracking-tight sm:text-4xl lg:text-5xl">
+              {successStoryBusiness}{successStoryLocation && `, ${successStoryLocation}`}
+            </h2>
+          </div>
+          <div class="flex items-end">
+            <p class="font-primary text-ink-2 text-lg leading-relaxed">
+              {successStoryText}
+            </p>
+          </div>
+        </div>
+
+        {successStoryMetrics && successStoryMetrics.length > 0 && (
+          <div class="grid grid-cols-1 md:grid-cols-3 border border-border-light bg-white">
+            {successStoryMetrics.map((metric) => (
+              <div class="text-center p-8 md:p-10 border-b md:border-b-0 md:border-r border-border-light last:border-r-0 last:border-b-0">
+                <div class="font-primary text-accent text-5xl md:text-6xl lg:text-7xl font-normal italic">
+                  {metric.value}
+                </div>
+                <p class="text-ink-2 text-sm mt-2 uppercase tracking-wider">
+                  {metric.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  )}
+
+  <!-- Testimonial Section -->
+  {testimonialQuote && (
+    <section class="bg-theme-dark py-16 lg:py-20">
+      <div class="container">
+        <div class="max-w-4xl mx-auto text-center">
+          <svg class="text-accent w-12 h-12 mx-auto mb-6" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+          </svg>
+          <blockquote class="font-primary text-xl md:text-2xl leading-relaxed text-white italic mb-8">
+            "{testimonialQuote}"
+          </blockquote>
+          <div class="flex items-center justify-center gap-4">
+            {testimonialAvatar && (
+              <OptimizedImage
+                src={testimonialAvatar}
+                alt={testimonialAuthor || ""}
+                class="w-14 h-14 rounded-full object-cover border-2 border-white/20"
+                width={56}
+                height={56}
+              />
+            )}
+            <div class="text-left">
+              <p class="font-secondary font-medium text-white">{testimonialAuthor}</p>
+              <p class="text-white/70 text-sm">{testimonialBusiness}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- FAQ Section -->
+  {faqItems && faqItems.length > 0 && (
+    <section class="border-border-light border-t py-16 lg:py-20">
+      <div class="container">
+        <div class="grid gap-12 lg:grid-cols-[1fr_1.5fr] lg:gap-16">
+          <!-- Content -->
+          <div>
+            <div class="label text-accent mb-4">
+              — Common questions
+            </div>
+            <h2 class="font-primary text-3xl leading-tight font-normal tracking-tight sm:text-4xl">
+              {faqHeadline}
+            </h2>
+            <p class="font-primary text-ink-2 mt-6 text-lg leading-relaxed">
+              {faqText}
+            </p>
+            <div class="mt-8">
+              <CustomButton
+                label="Start a Project →"
+                url="https://tidycal.com/bvswebdesign/start-a-project"
+                hoverEffect="creative-fill"
+                class="effect-color-accent"
+              />
+            </div>
+          </div>
+
+          <!-- FAQ Accordion -->
+          <div class="hs-accordion-group border-border-light border-y">
+            {faqItems.map((item, index) => (
+              <div
+                class:list={[
+                  "hs-accordion border-border-light border-b",
+                  index === 0 && "active",
+                ]}
+                id={`faq-accordion-${index}`}
+              >
+                <button
+                  class="hs-accordion-toggle font-primary text-dark hover:text-accent flex w-full items-center justify-between py-5 text-left text-lg font-medium transition-colors"
+                  aria-expanded={index === 0 ? "true" : "false"}
+                  aria-controls={`faq-content-${index}`}
+                >
+                  <span>{item.question}</span>
+                  <svg
+                    class="hs-accordion-active:rotate-180 text-accent size-5 shrink-0 transition-transform duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="m6 9 6 6 6-6" />
+                  </svg>
+                </button>
+                <div
+                  id={`faq-content-${index}`}
+                  class:list={[
+                    "hs-accordion-content w-full overflow-hidden transition-[height] duration-300",
+                    index !== 0 && "hidden",
+                  ]}
+                  role="region"
+                  aria-labelledby={`faq-accordion-${index}`}
+                >
+                  <p class="text-ink-2 pr-8 pb-5 leading-relaxed">
+                    {item.answer}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Services Section -->
+  <HelpCards content={{ heading: servicesHeadline }} />
+
+  <!-- Contact Section -->
+  <div id="contact">
+    <ContactSection noPaddingBottom={false} />
+  </div>
+</Base>
+
+<style>
+  .label {
+    font-family: var(--font-secondary);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .text-ink-2 {
+    color: var(--color-ink-2, #44403c);
+  }
+
+  .bg-stone-2 {
+    background-color: var(--color-stone-2, #e7e5e3);
+  }
+
+  /* Contact form styling */
+  #contact :global(a) {
+    color: white;
+  }
+  #contact :global(a:hover) {
+    color: var(--color-accent);
+  }
+</style>
+
+<script>
+  import "@preline/accordion";
+</script>

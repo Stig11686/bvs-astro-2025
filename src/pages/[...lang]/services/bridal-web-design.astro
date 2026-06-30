@@ -1,0 +1,138 @@
+---
+import IndustryPageLayout from "@/layouts/components/IndustryPageLayout.astro";
+import { generatePaths } from "@/lib/utils/languageParser.ts";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+// Page configuration
+const pageConfig = {
+  // Meta
+  title:
+    "Bridal Website Design | WordPress Websites for Bridal Boutiques | BVS Web Design",
+  metaDescription:
+    "WordPress websites for bridal boutiques. Built to book out your diary, showcase your dresses, and capture brides searching for 'the one'. Strategy, design, build and ongoing care.",
+
+  // Hero
+  industry: "Bridal Boutique",
+  industryPlural: "Bridal Boutiques",
+  heroEyebrow: "Bridal Website Design",
+  heroHeadline:
+    'Websites that get bridal boutiques <em class="text-accent italic">booked out</em> months in advance.',
+  heroExcerpt:
+    "I'm Steve — I design and build WordPress websites for bridal boutiques. Not a generic template. A site that captures the feeling of your boutique and turns browsing brides into appointment bookings. Strategy, design, build, launch, and ongoing care.",
+  heroImage: "/images/portfolio/maidens-and-ravens.png",
+  heroImageAlt: "Bridal website design example - Maidens and Ravens",
+
+  // Why this industry
+  whyIndustryText:
+    "Bridal boutiques sell an experience, not just dresses. Your website needs to capture that feeling — the excitement, the exclusivity, the sense that this is somewhere special. Generic web designers create generic sites. I build sites that book out your Saturdays.",
+  whyIndustryPoints: [
+    "Designs that capture your boutique's personality",
+    "Dress galleries that make brides fall in love",
+    "Appointment booking that actually works",
+    "SEO to capture brides searching in your area",
+    "Mobile-first — because brides browse everywhere",
+    "Fast, elegant, and built to impress",
+  ],
+
+  // What's included
+  includesItems: [
+    {
+      title: "Discovery & strategy session",
+      body: "We start with your boutique — your dresses, your brides, your unique selling point",
+    },
+    {
+      title: "Custom design",
+      body: "Not a bridal template. A site designed around your boutique's personality",
+    },
+    {
+      title: "Dress galleries",
+      body: "Beautiful showcases that make brides dream of their appointment",
+    },
+    {
+      title: "Designer pages",
+      body: "Proper introductions to your designers and collections",
+    },
+    {
+      title: "Appointment booking",
+      body: "Online booking that fills your diary without the phone tag",
+    },
+    {
+      title: "Local SEO foundations",
+      body: "Built to rank for 'bridal boutique [your town]' from day one",
+    },
+    {
+      title: "Editor training video",
+      body: "So you can add new dresses, update designers, and manage content yourself",
+    },
+    {
+      title: "Support after launch",
+      body: "I don't disappear at handover — ongoing care plans available",
+    },
+  ],
+
+  // Portfolio
+  portfolioText:
+    "Bridal boutiques I've helped book out their diaries and capture brides searching for something special.",
+  portfolioSlugs: ["maidens-and-ravens"],
+
+  // Success story
+  successStoryBusiness: "Maidens & Ravens",
+  successStoryLocation: "York",
+  successStoryText:
+    "A bridal boutique as distinctive as the dresses they sell. Elizabeth needed a website that matched her vision — gothic, sustainable, one-of-a-kind. We built it, and now she's booked out every Saturday for six months.",
+  successStoryMetrics: [
+    { value: "6", label: "Months booked out" },
+    { value: "1k+", label: "Monthly visitors" },
+    { value: "5★", label: "Google review rating" },
+  ],
+
+  // Testimonial
+  testimonialQuote:
+    "My contact form works really well for me, it's helped me book out my boutique for months in advance. Steve understood exactly what I wanted — something different, something that felt like my brand. The website captures everything Maidens & Ravens is about, and brides find us every week because of it.",
+  testimonialAuthor: "Elizabeth Matfin",
+  testimonialBusiness: "Maidens and Ravens, York",
+  testimonialAvatar: "/images/testimonial/elizabeth.jpg",
+
+  // FAQ
+  faqItems: [
+    {
+      question: "How much does a bridal website cost?",
+      answer:
+        "Bridal websites start at £2,000. I quote every project properly once I understand what you need — number of designers, dress galleries, and booking requirements. You'll know the full price before I start a thing.",
+    },
+    {
+      question: "Can you capture the feel of my boutique?",
+      answer:
+        "That's the whole point. Before I design anything, we talk about your boutique, your brides, and what makes you different. Whether you're romantic and traditional or edgy and alternative — the website should feel like walking through your door.",
+    },
+    {
+      question: "Will brides find us on Google?",
+      answer:
+        "The site is built with local SEO foundations from day one. Proper page structure, location targeting, and content strategy to help you rank for 'bridal boutique' searches in your area. Most of my clients see improvement within a few months.",
+    },
+    {
+      question: "How long does it take?",
+      answer:
+        "Most bridal builds take 3-5 weeks from our first call to launch. The variable is usually photography and dress content — not the build itself. I'll give you an honest timeline up front.",
+    },
+    {
+      question: "Will I be able to update it myself?",
+      answer:
+        "Yes. I build on WordPress so you can add new dresses, update designers, change photos, and manage content without calling me every time. You get a training video and a site you can actually run yourself.",
+    },
+    {
+      question: "What about hosting and domains?",
+      answer:
+        "I handle both. Your domain is registered in your name — you own it. Hosting is fast, secure, and managed. Everything is yours to take with you if you ever want to leave. No lock-in, no hostage fees.",
+    },
+  ],
+
+  // Services
+  servicesHeadline: "How I can help",
+};
+---
+
+<IndustryPageLayout {...pageConfig} />

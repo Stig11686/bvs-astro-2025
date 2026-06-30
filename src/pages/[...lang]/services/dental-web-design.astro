@@ -1,0 +1,138 @@
+---
+import IndustryPageLayout from "@/layouts/components/IndustryPageLayout.astro";
+import { generatePaths } from "@/lib/utils/languageParser.ts";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+// Page configuration
+const pageConfig = {
+  // Meta
+  title:
+    "Dental Website Design | WordPress Websites for Dentists | BVS Web Design",
+  metaDescription:
+    "WordPress websites for dental practices. Built to get new patient enquiries, build trust, and work while you're treating patients. Strategy, design, build and ongoing care.",
+
+  // Hero
+  industry: "Dental Practice",
+  industryPlural: "Dental Practices",
+  heroEyebrow: "Dental Website Design",
+  heroHeadline:
+    'Websites that get dental practices more <em class="text-accent italic">patient enquiries</em> and build trust before the first appointment.',
+  heroExcerpt:
+    "I'm Steve — I design and build WordPress websites for dental practices across Yorkshire. Not a template with stock photos of smiling models. Strategy, design, build, launch, and ongoing care. All from one person who understands what patients need to see.",
+  heroImage: "/images/portfolio/ilkley-dental-care.png",
+  heroImageAlt: "Dental website design example - Ilkley Dental Care",
+
+  // Why this industry
+  whyIndustryText:
+    "Dental websites need to build trust before a patient ever picks up the phone. They need to see your team, understand your approach, and feel confident they're making the right choice. Generic web designers miss this — I don't.",
+  whyIndustryPoints: [
+    "Trust-building design that converts nervous visitors",
+    "Team profiles and credentials front and centre",
+    "Treatment pages that educate and reassure",
+    "Online booking integration that works",
+    "GDC and CQC compliance considerations",
+    "Local SEO to capture 'dentist near me' searches",
+  ],
+
+  // What's included
+  includesItems: [
+    {
+      title: "Discovery & strategy session",
+      body: "We start with your practice — your patients, your treatments, your competitive landscape",
+    },
+    {
+      title: "Custom design",
+      body: "Not a dental template. A site designed around your practice and your patient journey",
+    },
+    {
+      title: "Treatment pages",
+      body: "Clear, educational pages for each service that build confidence",
+    },
+    {
+      title: "Team profiles",
+      body: "Proper introductions to your dentists and staff — because people choose people",
+    },
+    {
+      title: "Online booking integration",
+      body: "Appointment booking that works with your practice management software",
+    },
+    {
+      title: "Local SEO foundations",
+      body: "Built to rank for 'dentist in [your town]' from day one",
+    },
+    {
+      title: "Editor training video",
+      body: "So you can add new team members, update treatments, and manage content yourself",
+    },
+    {
+      title: "Support after launch",
+      body: "I don't disappear at handover — ongoing care plans available",
+    },
+  ],
+
+  // Portfolio
+  portfolioText:
+    "Dental practices I've helped build trust online and turn website visitors into new patient enquiries.",
+  portfolioSlugs: ["ilkley-dental-care"],
+
+  // Success story
+  successStoryBusiness: "Ilkley Dental Care",
+  successStoryLocation: "Ilkley",
+  successStoryText:
+    "A dental practice that went from a broken contact form and zero web enquiries to 30+ enquiries every month. Trust-critical, compliance-heavy work where every detail counts — rebuilt to actually generate business.",
+  successStoryMetrics: [
+    { value: "30+", label: "Enquiries per month" },
+    { value: "0→1", label: "From broken to working" },
+    { value: "5★", label: "Google review rating" },
+  ],
+
+  // Testimonial
+  testimonialQuote:
+    "I had to convince the owners to get a new website. They were so done with it and didn't see the benefit. But now we have one, we are getting more enquiries, have made it easier for patients to get in touch with us, and look more credible when people search for us.",
+  testimonialAuthor: "Jodie Marks",
+  testimonialBusiness: "Ilkley Dental Care",
+  testimonialAvatar: "/images/testimonial/jodie.jpg",
+
+  // FAQ
+  faqItems: [
+    {
+      question: "How much does a dental website cost?",
+      answer:
+        "Dental websites start at £2,000 due to the number of treatment pages and trust-building elements required. I quote every project properly once I understand what you need — number of treatments, team size, and booking integration requirements. You'll know the full price before I start.",
+    },
+    {
+      question: "Can you integrate with our practice management software?",
+      answer:
+        "Yes. I work with most dental practice management systems for online booking integration. Whether you use Dentally, Software of Excellence, Exact, or something else — we can integrate it properly so patients can book online.",
+    },
+    {
+      question: "Do you understand dental compliance requirements?",
+      answer:
+        "I've worked with dental practices before and understand the GDC and CQC considerations around dental websites. Treatment pages need accurate information, pricing needs to be clear, and certain claims need backing up. I'll guide you through what needs checking.",
+    },
+    {
+      question: "How long does it take?",
+      answer:
+        "Most dental builds take 4-6 weeks from our first call to launch. The variable is usually team photography, treatment content, and booking system setup — not the build itself. I'll give you an honest timeline up front.",
+    },
+    {
+      question: "Will we be able to update it ourselves?",
+      answer:
+        "Yes. I build on WordPress so you can add new team members, update treatment information, change photos, and manage content without calling me every time. You get a training video and a site your team can actually manage.",
+    },
+    {
+      question: "What about hosting and domains?",
+      answer:
+        "I handle both. Your domain is registered in your name — you own it. Hosting is fast, secure, and managed. Everything is yours to take with you if you ever want to leave. No lock-in, no hostage fees.",
+    },
+  ],
+
+  // Services
+  servicesHeadline: "How I can help",
+};
+---
+
+<IndustryPageLayout {...pageConfig} />

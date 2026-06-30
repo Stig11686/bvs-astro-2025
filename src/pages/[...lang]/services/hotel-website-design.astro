@@ -1,0 +1,137 @@
+---
+import IndustryPageLayout from "@/layouts/components/IndustryPageLayout.astro";
+import { generatePaths } from "@/lib/utils/languageParser.ts";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+// Page configuration
+const pageConfig = {
+  // Meta
+  title:
+    "Hotel & B&B Website Design | WordPress Websites for Hotels & B&Bs | BVS Web Design",
+  metaDescription:
+    "Hotel & B&B website design that drives direct bookings. Custom booking engines, room showcases, and SEO for hotels, B&Bs, and guest houses in Yorkshire.",
+
+  // Hero
+  industry: "Hotel",
+  industryPlural: "Hotels",
+  heroHeadline:
+    'Websites that get hotels more <em class="text-accent italic">direct bookings</em> and fewer OTA fees.',
+  heroExcerpt:
+    "I'm Steve — I design and build WordPress websites for hotels, B&Bs, and guest houses. Not a template with your logo slapped on. Strategy, design, build, launch, and ongoing care. All from one person who understands hospitality.",
+  heroImage: "/images/portfolio/the-coach-house-skipton.png",
+  heroImageAlt: "Hotel website design example - The Coach House Skipton",
+
+  // Why this industry
+  whyIndustryText:
+    "Hotels and B&Bs have specific needs that generic web designers don't understand. You need a site that drives direct bookings, integrates with your property management system, and competes with the OTAs that are eating your margins. I build websites that do exactly that.",
+  whyIndustryPoints: [
+    "Direct booking integration that actually works",
+    "Designed to compete with Booking.com and Expedia listings",
+    "Room galleries and availability that look professional",
+    "Local SEO to capture 'hotels near me' searches",
+    "Mobile-first — because most guests book on their phone",
+    "Fast, secure, and built to handle peak season traffic",
+  ],
+
+  // What's included
+  includesItems: [
+    {
+      title: "Discovery & strategy session",
+      body: "We start with your business — your rooms, your guests, your competitive landscape",
+    },
+    {
+      title: "Custom design",
+      body: "Not a hotel template. A site designed around your property and your booking flow",
+    },
+    {
+      title: "Booking integration",
+      body: "Direct booking functionality that works with your PMS or standalone",
+    },
+    {
+      title: "Room & gallery pages",
+      body: "Professional room showcases that convert browsers to bookers",
+    },
+    {
+      title: "Local SEO foundations",
+      body: "Built to rank for 'hotels in [your town]' from day one",
+    },
+    {
+      title: "Mobile-first, fast by default",
+      body: "Because 70% of hotel searches happen on mobile",
+    },
+    {
+      title: "Editor training video",
+      body: "So you can update rates, rooms, and content yourself",
+    },
+    {
+      title: "Support after launch",
+      body: "I don't disappear at handover — ongoing care plans available",
+    },
+  ],
+
+  // Portfolio
+  portfolioText:
+    "Hotels and hospitality businesses I've helped reduce OTA dependency and drive direct bookings.",
+  portfolioSlugs: ["the-coach-house-skipton", "the-yorkshire-unicorn"],
+
+  // Success story
+  successStoryBusiness: "The Coach House",
+  successStoryLocation: "Skipton",
+  successStoryText:
+    "A Skipton institution that had no website at all — every booking came through Booking.com and Expedia, each one taking a cut. We built a site that drives direct bookings weekly, cutting out the middleman and putting more money back in their pocket.",
+  successStoryMetrics: [
+    { value: "0→1", label: "From no website to direct bookings" },
+    { value: "15%", label: "OTA fees saved per booking" },
+    { value: "5★", label: "Google review rating" },
+  ],
+
+  // Testimonial
+  testimonialQuote:
+    "We'd been relying on Booking.com for years — it worked, but the fees were killing us. Steve built us a proper website and now we get direct bookings every week. Guests find us on Google, book direct, and we keep more of the money. Should have done it years ago.",
+  testimonialAuthor: "The Coach House",
+  testimonialBusiness: "Skipton",
+  testimonialAvatar: "",
+
+  // FAQ
+  faqItems: [
+    {
+      question: "How much does a hotel website cost?",
+      answer:
+        "Hotel websites start at £2,000 due to the complexity of booking integration and room showcases. I quote every project properly once I understand what you need — number of rooms, booking system requirements, and whether you need PMS integration. You'll know the full price before I start.",
+    },
+    {
+      question: "Can you integrate with my booking system?",
+      answer:
+        "Yes. I work with most major property management systems and booking engines. Whether you use Freetobook, eviivo, Little Hotelier, or something else — we can integrate it properly so guests can check availability and book direct.",
+    },
+    {
+      question: "Will it help me compete with Booking.com?",
+      answer:
+        "That's the whole point. Your website should appear alongside OTA listings in search results, and when guests land on your site, they should find it easier to book direct than go back to Booking.com. Proper local SEO, a smooth booking flow, and clear 'book direct' benefits all help.",
+    },
+    {
+      question: "How long does it take?",
+      answer:
+        "Most hotel builds take 4-6 weeks from our first call to launch. The variable is usually photography, content, and booking system setup — not the build itself. I'll give you an honest timeline up front.",
+    },
+    {
+      question: "Will I be able to update it myself?",
+      answer:
+        "Yes. I build on WordPress so you can update room rates, add seasonal offers, change photos, and manage content without calling me every time. You get a training video and a site you can actually run yourself.",
+    },
+    {
+      question: "What about hosting and domains?",
+      answer:
+        "I handle both. Your domain is registered in your name — you own it. Hosting is fast, secure, and managed. Everything is yours to take with you if you ever want to leave. No lock-in, no hostage fees.",
+    },
+  ],
+
+  // Services
+  servicesHeadline: "How I can help",
+};
+---
+
+<IndustryPageLayout {...pageConfig} />

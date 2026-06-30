@@ -1,0 +1,138 @@
+---
+import IndustryPageLayout from "@/layouts/components/IndustryPageLayout.astro";
+import { generatePaths } from "@/lib/utils/languageParser.ts";
+
+export function getStaticPaths() {
+  return generatePaths();
+}
+
+// Page configuration
+const pageConfig = {
+  // Meta
+  title:
+    "Salon & Beauty Website Design | WordPress Websites for Beauty Clinics | BVS Web Design",
+  metaDescription:
+    "WordPress websites for beauty clinics, aesthetics practices, and salons. Built to book appointments, showcase treatments, and build trust. Strategy, design, build and ongoing care.",
+
+  // Hero
+  industry: "Beauty Clinic",
+  industryPlural: "Beauty Clinics",
+  heroEyebrow: "Beauty & Salon Website Design",
+  heroHeadline:
+    'Websites that get beauty clinics more <em class="text-accent italic">bookings</em> and build client trust.',
+  heroExcerpt:
+    "I'm Steve — I design and build WordPress websites for beauty clinics, aesthetics practices, and salons. Not a template with generic stock photos. Strategy, design, build, launch, and ongoing care. All from one person who understands what clients need to see before they book.",
+  heroImage: "/images/portfolio/rebecca-rennolds-permanent-beauty-and-laser.png",
+  heroImageAlt: "Beauty website design example - Rebecca Rennolds Permanent Beauty & Laser",
+
+  // Why this industry
+  whyIndustryText:
+    "Beauty and aesthetics websites need to build trust before a client books. They need to see your work, understand your credentials, and feel confident in your expertise. Generic web designers create generic sites — I build sites that book out your calendar.",
+  whyIndustryPoints: [
+    "Trust-building design that converts browsers to bookers",
+    "Treatment galleries showcasing your best work",
+    "Clear pricing and treatment information",
+    "Online booking integration that works",
+    "Before/after galleries (with consent considerations)",
+    "Local SEO to capture clients searching in your area",
+  ],
+
+  // What's included
+  includesItems: [
+    {
+      title: "Discovery & strategy session",
+      body: "We start with your clinic — your treatments, your clients, your competitive landscape",
+    },
+    {
+      title: "Custom design",
+      body: "Not a beauty template. A site designed around your clinic and your brand",
+    },
+    {
+      title: "Treatment pages",
+      body: "Clear, informative pages for each service with pricing and expectations",
+    },
+    {
+      title: "Portfolio galleries",
+      body: "Showcase your work with beautiful before/after displays",
+    },
+    {
+      title: "Online booking integration",
+      body: "Appointment booking that works with your scheduling software",
+    },
+    {
+      title: "Local SEO foundations",
+      body: "Built to rank for beauty searches in your area from day one",
+    },
+    {
+      title: "Editor training video",
+      body: "So you can add new treatments, update prices, and manage content yourself",
+    },
+    {
+      title: "Support after launch",
+      body: "I don't disappear at handover — ongoing care plans available",
+    },
+  ],
+
+  // Portfolio
+  portfolioText:
+    "Beauty clinics and aesthetics practices I've helped book out their calendars and showcase their expertise online.",
+  portfolioSlugs: ["rebecca-rennolds-permanent-beauty-and-laser"],
+
+  // Success story
+  successStoryBusiness: "Rebecca Rennolds Permanent Beauty & Laser",
+  successStoryLocation: "York",
+  successStoryText:
+    "A permanent makeup and laser clinic that needed a website as professional as the treatments they offer. Clean, elegant design with clear treatment information and easy booking — built to convert browsers into bookings.",
+  successStoryMetrics: [
+    { value: "5★", label: "Google review rating" },
+    { value: "24/7", label: "Online booking available" },
+    { value: "100%", label: "Mobile responsive" },
+  ],
+
+  // Testimonial
+  testimonialQuote:
+    "Steve is fantastic! He created a beautiful website for my skin clinic. The finished result looks extremely professional, slick and stylish. He went out of his way to make sure my website was just as I wanted!",
+  testimonialAuthor: "Rebecca Rennolds",
+  testimonialBusiness: "Permanent Beauty & Laser, York",
+  testimonialAvatar: "/images/testimonial/rebecca-rennolds.webp",
+
+  // FAQ
+  faqItems: [
+    {
+      question: "How much does a beauty website cost?",
+      answer:
+        "Beauty websites start at £2,000. I quote every project properly once I understand what you need — number of treatments, gallery requirements, and booking integration. You'll know the full price before I start a thing.",
+    },
+    {
+      question: "Can you integrate with my booking system?",
+      answer:
+        "Yes. I work with most beauty and salon booking systems including Fresha, Timely, Booksy, and others. If you don't have one yet, I can recommend options that work well with WordPress.",
+    },
+    {
+      question: "Can I show before/after photos?",
+      answer:
+        "Absolutely — and I'll help you display them professionally. We'll discuss consent considerations and best practices for showcasing your work in a way that builds trust and follows industry guidelines.",
+    },
+    {
+      question: "How long does it take?",
+      answer:
+        "Most beauty builds take 3-5 weeks from our first call to launch. The variable is usually photography and treatment content — not the build itself. I'll give you an honest timeline up front.",
+    },
+    {
+      question: "Will I be able to update it myself?",
+      answer:
+        "Yes. I build on WordPress so you can add new treatments, update prices, change photos, and manage content without calling me every time. You get a training video and a site you can actually run yourself.",
+    },
+    {
+      question: "What about hosting and domains?",
+      answer:
+        "I handle both. Your domain is registered in your name — you own it. Hosting is fast, secure, and managed. Everything is yours to take with you if you ever want to leave. No lock-in, no hostage fees.",
+    },
+  ],
+
+  // Services
+  servicesHeadline: "How I can help",
+};
+---
+
+<IndustryPageLayout {...pageConfig} />
