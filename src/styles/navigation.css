@@ -1,6 +1,6 @@
 /* Header */
 .header {
-  @apply relative z-30 w-full;
+  @apply relative z-30 w-full border-b border-stone-200;
 
   &.has-sticky-behavior {
     @apply top-0 z-40 transition-[transform,_opacity,_0.3s_background] duration-500;

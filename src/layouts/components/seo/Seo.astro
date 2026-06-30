@@ -20,7 +20,6 @@ const {
   author = config.seo.author,
   robots = config.seo.robots,
 } = Astro.props;
-
 // Normalize title and description
 let resolvedTitle = plainify(metaTitle ?? title ?? config.site.title);
 let resolvedDescription = plainify(

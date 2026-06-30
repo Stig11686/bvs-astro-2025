@@ -2,39 +2,120 @@
 import Base from "@/layouts/Base.astro";
 import { generatePaths } from "@/lib/utils/languageParser.ts";
 import CustomButton from "@/components/CustomButton.astro";
+import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
+import { getCollectionCTM } from "@/lib/contentParser.astro";
+import { getLocaleUrlCTM } from "@/lib/utils/languageParser.ts";
+import extractSlug from "@/lib/utils/extractSlug";
+import ContactSection from "@/layouts/components/sections/ContactSection.astro";
+import TestimonialArticle from "@/layouts/components/sections/TestimonialArticle.astro";
 
 export function getStaticPaths() {
   return generatePaths();
 }
 
+// Fetch blog posts for related reading section - in specific order
+const allPosts = await getCollectionCTM("blog", Astro.currentLocale);
+const relatedSlugs = [
+  "what-to-do-when-my-website-designer-scams-me",
+  "who-owns-my-website",
+];
+
+// Get unique posts in the order specified
+const relatedPosts = relatedSlugs
+  .map((slug) => allPosts?.find((post) => post.data.customSlug === slug))
+  .filter((post) => post !== undefined);
+
 const pageData = {
-  title: "Website Rescue",
-  metaDescription: "Developer gone? Wrong platform? Locked out? I take it over and sort it out. Get back control of your website.",
+  title: "Website Rescue Service | BVS Web Design, Yorkshire",
+  metaDescription:
+    "Locked out, hacked, or left by your web developer? Fast, no-jargon website rescue from a Yorkshire web designer. Get back in control — get in touch today.",
 };
 
-const RESCUE_CARDS = [
+const FAQ_ITEMS = [
   {
-    title: 'Developer gone quiet',
-    body: "You've sent the emails. Maybe you've even called. Nothing. Your website is sitting on someone else's server, you don't have the login details, and you're not sure what you even own. I'll get you back in control.",
+    question: "Can you actually recover it, or is my situation too far gone?",
+    answer:
+      "Most situations are far more recoverable than they feel in the moment — vanished developers, lost logins, hacked sites, all routine. There are rare cases where starting fresh is the smarter call, and if that's yours I'll tell you honestly rather than charge you to chase a lost cause. Either way you'll know quickly.",
   },
   {
-    title: 'Locked out of your own site',
-    body: "Some developers — intentionally or not — leave businesses with no access to their own domain, hosting, or files. I've helped businesses recover 30 years of content from a locked-down server. Whatever the situation, there's usually a way through.",
+    question: "What if I don't have any of the logins?",
+    answer:
+      "That's one of the most common reasons people come to me. There are proper recovery routes through your domain registrar and host, and I'll walk you through reclaiming control even when you're starting with nothing.",
   },
   {
-    title: 'Wrong platform, wrong price',
-    body: 'Proprietary website builders and closed CMS platforms charge a premium for the privilege of keeping you stuck. I move businesses onto WordPress — reducing ongoing costs and giving you something you actually own and can take anywhere.',
+    question: "Will I have to prove the site is mine?",
+    answer:
+      "Yes — and that's a good thing. Verifying rightful ownership (through registrar records, invoices, or business documents) is what stops anyone reclaiming a site that isn't theirs. It protects you. It's standard, and I'll tell you exactly what's needed.",
+  },
+  {
+    question: "How fast can you start?",
+    answer:
+      "Quickly. Messages from the form come straight to me and I keep an eye on them through the day, so you won't be left waiting. If it's a genuine emergency — site down, hacked, business at a standstill — say so when you get in touch and I'll prioritise it. That's the whole point of a rescue.",
+  },
+  {
+    question: "What's it going to cost?",
+    answer:
+      "It depends on the situation, which is why the first conversation and assessment are free. You'll get a fixed price before any work starts, so there are no nasty surprises on top of an already stressful situation.",
+  },
+  {
+    question: "It's been hacked — is my data safe, and will it happen again?",
+    answer:
+      "First job is to clean the infection and get any Google warning lifted. Then I close the door that let it in — outdated plugins, weak passwords, no backups — and set things up so it doesn't recur. You'll leave more secure than before it happened.",
+  },
+  {
+    question: "Do you only work with WordPress?",
+    answer:
+      "WordPress is where most of these rescues land, and it's my home turf. But access recovery, ownership disputes and hosting problems aren't platform-specific — get in touch whatever your site's built on and I'll tell you if I can help.",
   },
 ];
 
-const RESCUE_STORIES = [
+const RESCUE_ITEMS = [
   {
-    client: 'Ilkley Harriers',
-    body: "A running club with 30 years of history on their website — and a developer who'd become unreliable and unresponsive, with everything locked on a server nobody else could access. I built a new site while they worked to recover the existing content, managed the migration, and handed them full control of their own domain for the first time. Their website, their domain, their call.",
+    title: "Your developer has vanished.",
+    body: "Gone quiet mid-build, stopped replying, left the project half-done. I'll pick it up and finish it — or recover what's there and move it somewhere safWhether they vanished mid-build or finished the site and walked off without handing anything over, I'll work out exactly what you've got and what can be done with it — picking up where they left off, or getting you set up properly somewhere you're in control.",
   },
   {
-    client: 'Climate Action Silsden',
-    body: "A community organisation whose developer communicated sporadically via WhatsApp and had left them with no ownership of their own domain. I built them a new site and made sure they walked away with full control — so they could go elsewhere in future if they wanted to. That's how it should work.",
+    title: "You're locked out.",
+    body: "Locked out with no logins and no idea who controls your domain or hosting? I'll work through the recovery routes, give you a straight answer on what's reclaimable, and handle the bits most agencies won't touch.",
+  },
+  {
+    title: "You've been hacked or flagged.",
+    body: "Malware, a defaced site, or that gut-punch \"this site may be dangerous\" warning on Google. I'll clean it up, get the warning lifted, and lock it down so it doesn't recur.",
+  },
+  {
+    title: "You've inherited a mess.",
+    body: "A half-finished, broken, or baffling site handed over by a previous owner or developer, with no documentation. I'll work out what you've actually got and make it usable.",
+  },
+  {
+    title: "You're being held hostage.",
+    body: "An agency holding your site, logins or domain hostage until you keep paying? I'll help you find out where you genuinely stand, push for a proper handover where it's yours to claim — and if it comes to it, get you rebuilt somewhere they can't hold over you. You're never as stuck as they want you to feel.",
+  },
+  {
+    title: "It's just… broken.",
+    body: "So slow, buggy or unstable that it's actively losing you customers. I'll find the cause and fix it.",
+  },
+];
+
+const PROCESS_STEPS = [
+  {
+    title: "Tell me what's happened.",
+    body: "Get in touch — no technical jargon needed, just the situation as you see it. The more I know, the faster I can help.",
+  },
+  {
+    title: "I assess what's recoverable.",
+    body: "I work out where your access and ownership actually stand, what's broken, and what it'll take to fix. Usually within a day or two — faster if you're genuinely stuck.",
+  },
+  {
+    title: "You get a straight plan and a fixed price.",
+    body: "Exactly what I'll do, what it costs, and how long it'll take. No open-ended bills, no surprises, no \"it depends.\"",
+  },
+  {
+    title: "I fix it.",
+    body: "Recover access, clean up, repair, stabilise — whatever your situation needs.",
+  },
+  {
+    title: "You're back in control — for good.",
+    body: "Everything documented and in your name: logins, domain, hosting. So you're never held hostage or left stranded again.",
   },
 ];
 ---
@@ -44,21 +125,193 @@ const RESCUE_STORIES = [
   <section class="py-16 lg:py-20">
     <div class="container">
       <div class="label text-accent mb-4">— Website Rescue</div>
-      <h1 class="font-primary font-normal text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.98] tracking-tight max-w-[20ch]">
-        Your website shouldn't be someone else's <em class="italic text-accent">hostage</em>.
+      <h1
+        class="font-primary max-w-[20ch] text-4xl leading-[0.98] font-normal tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+        Website rescue: get back in control — <em class="text-accent italic">
+          fast
+        </em>
       </h1>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-8 max-w-5xl">
-        <p class="font-primary text-lg leading-relaxed text-ink-2">
-          A surprising number of small businesses are stuck with a website they can't access, can't update, or can't afford to keep — because of a developer who's gone quiet, a platform that's bleeding money, or someone who handed over a half-finished job and disappeared.
-        </p>
-        <p class="font-primary text-lg leading-relaxed text-ink-2">
-          I take those situations over and sort them out. You get a website that works, hosting you control, and a domain that's actually yours.
-        </p>
-      </div>
-      <div class="mt-8">
+      <p
+        class="font-primary text-ink-2 mt-6 max-w-[62ch] text-lg leading-relaxed md:text-xl">
+        Locked out of your own site? Developer vanished? Hacked, broken, or
+        half-built and abandoned? Take a breath. Tell me what's happened and
+        I'll tell you straight what can be saved, what it'll take, and how
+        quickly we can put it right.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center gap-4">
         <CustomButton
-          label="Start a Project →"
-          url="https://tidycal.com/bvswebdesign/start-a-project"
+          label="Tell Me What's Happened →"
+          url="/services/website-rescue/#contact"
+          hoverEffect="creative-fill"
+          class="effect-color-accent"
+        />
+        <span class="text-ink-2 text-sm">
+          <a
+            href="#how-it-works"
+            class="hover:text-accent underline transition-colors">
+            How a rescue works ↓
+          </a>
+        </span>
+      </div>
+      <p class="font-primary text-ink-2 mt-4 text-sm italic">
+        Messages come straight through to me — I'll get back to you fast,
+        usually the same day.
+      </p>
+    </div>
+  </section>
+
+  <!-- Why It Matters -->
+  <section class="border-border-light bg-stone-2 border-t py-16 lg:py-20">
+    <div class="container">
+      <!-- Header row -->
+      <div class="mb-12 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <div class="label text-accent mb-4">— Why this matters</div>
+          <h2
+            class="font-primary text-3xl leading-tight font-normal tracking-tight sm:text-5xl lg:text-5xl">
+            When your website goes down — or out of your hands — every day costs
+            you
+          </h2>
+        </div>
+        <div class="flex items-end">
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            Your site is where enquiries come from, where customers check you're
+            real, often where bookings actually happen. So when it breaks, gets
+            hijacked, or the person who built it goes quiet — it's lost revenue,
+            every single day it drags on.
+          </p>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div
+        class="border-border-light border p-8 md:grid md:grid-cols-2 md:gap-12 md:p-12">
+        <div>
+          <p class="font-primary text-ink-2 mb-6 text-lg leading-relaxed">
+            And the worst part is the not knowing. Is it recoverable? Will you
+            lose everything? Do you even own your own domain? Most people who
+            end up here didn't do anything wrong — they trusted someone who cut
+            corners, overpromised, or disappeared. <em class="text-dark">
+              That's not your failure to fix. It's mine.
+            </em>
+          </p>
+        </div>
+        <div>
+          <p class="font-primary text-ink-2 mb-6 text-lg leading-relaxed">
+            Here's the reassuring bit: <em class="text-accent">
+              the large majority of these situations are recoverable.
+            </em> I've seen the lot, and most of the time it's far less catastrophic
+            than it feels at 11pm when you can't log in. The job is to get you back
+            in control, get the site working again, and make sure no one can leave
+            you stranded like this twice.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What I Can Rescue -->
+  <section
+    id="what-i-rescue"
+    class="border-border-light border-t py-16 lg:py-20">
+    <div class="container">
+      <h2
+        class="font-primary mb-4 text-3xl font-normal tracking-tight sm:text-5xl">
+        What I can rescue
+      </h2>
+      <p
+        class="font-primary text-ink-2 mb-10 max-w-[65ch] text-lg leading-relaxed">
+        If any of these is you, you're in the right place:
+      </p>
+      <div
+        class="border-border-light grid grid-cols-1 border-t border-l md:grid-cols-2">
+        {
+          RESCUE_ITEMS.map((item, i) => (
+            <div class="included-card border-border-light border-r border-b p-8 md:p-9">
+              <span class="font-primary text-accent text-xl italic">
+                0{i + 1}
+              </span>
+              <h3 class="font-primary mt-3 mb-3 max-w-[24ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+                {item.title}
+              </h3>
+              <p class="text-ink-2 m-0 max-w-[50ch] text-sm leading-relaxed md:text-[0.9rem]">
+                {item.body}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+      <p
+        class="font-primary text-ink-2 mt-10 max-w-[65ch] text-lg leading-relaxed">
+        Not sure which one fits? It doesn't matter — just tell me what's
+        happened in plain words and I'll take it from there.
+      </p>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="border-border-light border-t py-16 lg:py-20">
+    <div class="container">
+      <div class="prose-styles">
+        <TestimonialArticle
+          author="Elizabeth Matfin"
+          authorTitle="Owner, Maidens and Ravens Bridal Boutique, York"
+          image="/images/testimonial/elizabeth.jpg"
+          quote="I accidently went viral on TikTok and sent 5000 visitors to my site in one go - it crashed the site as we'd not prepared for such traffic! Steve had it sorted within the hour. That peace of mind is worth every penny. I don't have to think about the technical stuff anymore; I just know it's handled."
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- How a Rescue Works -->
+  <section
+    id="how-it-works"
+    class="border-border-light border-t py-16 lg:py-20">
+    <div class="container">
+      <h2
+        class="font-primary mb-4 text-3xl font-normal tracking-tight sm:text-5xl">
+        A clear path through a chaotic moment
+      </h2>
+      <p
+        class="font-primary text-ink-2 mb-10 max-w-[65ch] text-lg leading-relaxed">
+        The first conversation costs you nothing. You'll know where you stand
+        before you commit to anything.
+      </p>
+      <div
+        class="border-border-light grid grid-cols-1 border-t border-l md:grid-cols-2">
+        {
+          PROCESS_STEPS.slice(0, 4).map((step, i) => (
+            <div class="process-card border-border-light hover:bg-stone-2 border-r border-b p-8 transition-colors md:p-9">
+              <span class="font-primary text-accent text-xl italic">
+                0{i + 1}
+              </span>
+              <h3 class="font-primary mt-3 mb-3 max-w-[20ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+                {step.title}
+              </h3>
+              <p class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
+                {step.body}
+              </p>
+            </div>
+          ))
+        }
+        <!-- Final step spans full width -->
+        <div
+          class="process-card border-border-light hover:bg-stone-2 border-r border-b p-8 transition-colors md:col-span-2 md:p-9">
+          <span class="font-primary text-accent text-xl italic">05</span>
+          <h3
+            class="font-primary mt-3 mb-3 max-w-[20ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+            {PROCESS_STEPS[4].title}
+          </h3>
+          <p
+            class="text-ink-2 m-0 max-w-[65ch] text-sm leading-relaxed md:text-[0.9rem]">
+            {PROCESS_STEPS[4].body}
+          </p>
+        </div>
+      </div>
+      <div class="mt-10">
+        <CustomButton
+          label="Tell Me What's Happened →"
+          url="/services/website-rescue/#contact"
           hoverEffect="creative-fill"
           class="effect-color-accent"
         />
@@ -66,97 +319,227 @@ const RESCUE_STORIES = [
     </div>
   </section>
 
-  <!-- Sound familiar? -->
-  <section class="py-12 border-t border-border-light">
+  <!-- FAQ -->
+  <section class="border-border-light border-t py-16 lg:py-20">
     <div class="container">
-      <h2 class="font-primary text-3xl md:text-4xl font-normal tracking-tight leading-tight mb-8">
-        Sound <em class="italic">familiar?</em>
+      <h2
+        class="font-primary mb-10 text-3xl font-normal tracking-tight sm:text-5xl">
+        Common questions about website rescue
       </h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border-t border-border-light">
-        {RESCUE_CARDS.map((card, i) => (
-          <div class:list={[
-            "py-6 md:py-8",
-            i > 0 && "md:border-l border-border-light md:pl-7",
-            i < RESCUE_CARDS.length - 1 && "border-b md:border-b-0 border-border-light"
-          ]}>
-            <h3 class="font-primary text-xl md:text-2xl font-normal tracking-tight leading-snug mb-3">
-              <span class="text-accent">·</span> {card.title}
-            </h3>
-            <p class="text-sm text-ink-2 leading-relaxed">{card.body}</p>
-          </div>
-        ))}
+      <div
+        class="hs-accordion-group border-border-light mx-auto w-full max-w-4xl border-y">
+        {
+          FAQ_ITEMS.map((item, index) => (
+            <div
+              class:list={[
+                "hs-accordion border-border-light border-b",
+                index === 0 && "active",
+              ]}
+              id={`faq-accordion-${index}`}>
+              <button
+                class="hs-accordion-toggle font-primary text-dark hover:text-accent flex w-full items-center justify-between py-5 text-left text-lg font-medium transition-colors"
+                aria-expanded={index === 0 ? "true" : "false"}
+                aria-controls={`faq-content-${index}`}>
+                <span>{item.question}</span>
+                <svg
+                  class="hs-accordion-active:rotate-180 text-accent size-5 shrink-0 transition-transform duration-300"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </button>
+              <div
+                id={`faq-content-${index}`}
+                class:list={[
+                  "hs-accordion-content w-full overflow-hidden transition-[height] duration-300",
+                  index !== 0 && "hidden",
+                ]}
+                role="region"
+                aria-labelledby={`faq-accordion-${index}`}>
+                <p class="text-ink-2 pr-8 pb-5 leading-relaxed">
+                  {item.answer}
+                </p>
+              </div>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <!-- Recent rescues - dark section -->
-  <section class="py-14 bg-theme-dark text-white">
+  <!-- Final CTA -->
+  <section class="bg-theme-dark py-20 text-white md:py-28">
     <div class="container">
-      <div class="label text-accent mb-4">— Recent rescues</div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-6">
-        {RESCUE_STORIES.map((story) => (
-          <div class="pt-6 border-t border-white/20">
-            <h3 class="font-primary text-2xl md:text-3xl font-normal tracking-tight mb-3">
-              {story.client}
-            </h3>
-            <p class="font-primary text-base leading-relaxed text-white/75">{story.body}</p>
-          </div>
-        ))}
-      </div>
-      <p class="font-primary italic text-sm text-white/50 mt-8 max-w-3xl">
-        Jayne's Bridalwear case study coming soon — platform migration from a proprietary CMS, saving significant annual platform fees.
+      <h2
+        class="font-primary mb-6 max-w-[18ch] text-4xl leading-[0.94] font-normal tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+        The sooner you call, the sooner it's <em class="text-accent italic">
+          sorted
+        </em>
+      </h2>
+      <p
+        class="font-primary mb-4 max-w-[55ch] text-lg leading-relaxed text-white/75 md:text-xl">
+        Website emergencies don't fix themselves, and they rarely get cheaper by
+        waiting. Tell me what's happened — even if you're not sure how bad it is
+        — and I'll tell you straight where you stand.
       </p>
+      <p class="mb-10 text-sm text-white/50 italic">
+        Messages come straight through to me — I'll get back to you fast,
+        usually the same day.
+      </p>
+      <CustomButton
+        label="Tell Me What's Happened →"
+        url="/services/website-rescue/#contact"
+        hoverEffect="creative-fill"
+        variant="fill"
+        class="bg-accent hover:bg-accent/90 text-white"
+      />
     </div>
   </section>
 
-  <!-- What happens when you get in touch -->
-  <section class="py-14">
+  <!-- Related Reading -->
+  <section class="border-border-light border-t py-16 lg:py-20">
     <div class="container">
-      <div class="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 items-start">
-        <h2 class="font-primary text-3xl md:text-4xl font-normal tracking-tight leading-tight">
-          What happens when you <em class="italic text-accent">get in touch</em>
-        </h2>
-        <div>
-          <p class="font-primary text-lg leading-relaxed text-ink-2 max-w-2xl">
-            You don't need to have everything figured out before contacting me. Most people in this situation don't know exactly what they have or what they're missing — that's part of the problem.
-          </p>
-          <p class="font-primary text-lg leading-relaxed text-ink-2 mt-5 mb-8 max-w-2xl">
-            Tell me what's going on and I'll tell you honestly what's possible, what it'll take, and whether I'm the right person to help.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer CTA -->
-  <section class="py-20 md:py-28 bg-theme-dark text-white">
-    <div class="container">
-      <div class="label text-accent mb-4">— Currently booking · 2 project slots left</div>
-      <h2 class="font-primary text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal tracking-tight leading-[0.94] text-white max-w-[16ch] mb-10">
-        Stuck? Let's get you <em class="italic text-accent">back in control</em>.
+      <h2
+        class="font-primary mb-10 text-3xl font-normal tracking-tight sm:text-5xl">
+        Related reading
       </h2>
-      <div class="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-14 items-end">
-        <p class="font-primary text-lg md:text-xl leading-relaxed text-white/75 max-w-[52ch]">
-          You don't need it all figured out. Tell me what's going on and I'll tell you what's possible.
-        </p>
-        <div class="flex flex-col gap-3 items-start">
-          <CustomButton
-            label="Start a Project →"
-            url="https://tidycal.com/bvswebdesign/start-a-project"
-            hoverEffect="creative-fill"
-            variant="fill"
-            class="bg-accent text-white hover:bg-accent/90"
-          />
-          <a
-            href="/contact/"
-            class="ghost-dark-btn"
-          >
-            Send a Message
-          </a>
-        </div>
+      <div class="grid gap-x-6 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
+        {
+          relatedPosts.map((post) => {
+            const postUrl = getLocaleUrlCTM(
+              extractSlug(post),
+              Astro.currentLocale,
+              "blog",
+            );
+            return (
+              <article class="group">
+                <a href={postUrl} class="relative block overflow-hidden">
+                  {post.data.image && (
+                    <OptimizedImage
+                      src={post.data.image}
+                      alt={post.data.title}
+                      class="h-87.5! min-w-full object-cover transition duration-500 group-hover:scale-105"
+                      width={600}
+                      height={600}
+                    />
+                  )}
+                </a>
+                <div class="mt-6">
+                  <h3 class="text-h4-sm md:text-h5 mb-6 font-medium">
+                    <a
+                      href={postUrl}
+                      class="hover:text-accent inline-block transition-colors">
+                      {post.data.title}
+                    </a>
+                  </h3>
+                  <a
+                    href={postUrl}
+                    class="font-secondary border-dark hover:border-accent hover:text-accent border-b pb-1 text-sm tracking-wider uppercase transition-colors">
+                    Read More →
+                  </a>
+                </div>
+              </article>
+            );
+          })
+        }
       </div>
     </div>
   </section>
+
+  <!-- Not Quite Right Fork -->
+  <section class="border-border-light border-t py-16 lg:py-20">
+    <div class="container">
+      <!-- Header row -->
+      <div class="mb-10 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
+        <div>
+          <h2
+            class="font-primary text-3xl font-normal tracking-tight sm:text-5xl">
+            Not quite what you need?
+          </h2>
+        </div>
+        <div class="flex items-end">
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            If a rescue isn't what you're after, you probably need something
+            else — and I'd rather point you to the right thing than sell you the
+            wrong one.
+          </p>
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+        <a
+          href="/services/website-support/"
+          class="fork-card border-border-light text-dark hover:bg-stone-2 block border p-8 no-underline transition-colors md:p-9">
+          <div class="flex items-baseline justify-between">
+            <span class="label text-accent">Website Support</span>
+            <span class="font-primary text-accent text-base italic">
+              &rarr;
+            </span>
+          </div>
+          <h3
+            class="font-primary mt-3 mb-3 max-w-[24ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+            Not an emergency — you just want it looked after?
+          </h3>
+          <p
+            class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
+            If the site's fine and you want to stop worrying about updates,
+            security and backups, that's ongoing care, not a rescue.
+          </p>
+        </a>
+        <a
+          href="/services/website-design/"
+          class="fork-card border-border-light text-dark hover:bg-stone-2 block border p-8 no-underline transition-colors md:p-9">
+          <div class="flex items-baseline justify-between">
+            <span class="label text-accent">Website Design</span>
+            <span class="font-primary text-accent text-base italic">
+              &rarr;
+            </span>
+          </div>
+          <h3
+            class="font-primary mt-3 mb-3 max-w-[24ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+            Beyond saving — or you'd rather start fresh?
+          </h3>
+          <p
+            class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
+            Sometimes a clean rebuild is genuinely the better-value option.
+            Website design from £2,000.
+          </p>
+        </a>
+        <a
+          href="/services/website-audit/"
+          class="fork-card border-border-light text-dark hover:bg-stone-2 block border p-8 no-underline transition-colors md:p-9">
+          <div class="flex items-baseline justify-between">
+            <span class="label text-accent">Website Audit</span>
+            <span class="font-primary text-accent text-base italic">
+              &rarr;
+            </span>
+          </div>
+          <h3
+            class="font-primary mt-3 mb-3 max-w-[24ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
+            Nothing's broken, you just suspect something's off?
+          </h3>
+          <p
+            class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
+            If there's no emergency and you want to know why the site isn't
+            pulling its weight, start with a free review.
+          </p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <div id="contact">
+    <ContactSection noPaddingBottom={false} />
+  </div>
 </Base>
 
 <style>
@@ -173,21 +556,12 @@ const RESCUE_STORIES = [
   .bg-stone-2 {
     background-color: var(--color-stone-2, #e7e5e3);
   }
-  .ghost-dark-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.75rem 1.5rem;
-    font-family: var(--font-secondary);
-    font-size: 0.875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+
+  /* Contact form privacy policy link */
+  #contact :global(a) {
     color: white;
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: background-color 0.2s ease;
   }
-  .ghost-dark-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+  #contact :global(a:hover) {
+    color: var(--color-accent);
   }
 </style>
