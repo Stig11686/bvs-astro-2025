@@ -1,17 +1,14 @@
 ---
 import TOC from "./widgets/TableOfContents.astro";
-import ReactIcons from "@/helpers/ReactIcons.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import parseTomlToJson from "@/lib/utils/parseTomlToJson";
-import { useTranslations } from "@/lib/utils/languageParser";
 import OptimizedImage from "./utilities/OptimizedImage.astro";
-import PaginationForSingle from "./widgets/PaginationForSingle.astro";
 import { render } from "astro:content";
 import CustomButton from "@/components/CustomButton.astro";
+import HelpCards from "./sections/HelpCards.astro";
 
-let {
-  collection,
-  data: { title, description, images, information, categories, date },
+const {
+  data: { title, description, images, image, information, categories },
 }: {
   render: any;
   id: string;
@@ -19,7 +16,8 @@ let {
   data: {
     title: string;
     description?: string;
-    images: string[];
+    images?: string[];
+    image?: string;
     categories: string[];
     information: { label: string; value: string }[];
     date?: Date;
@@ -27,7 +25,6 @@ let {
 } = Astro.props.content;
 
 const config = parseTomlToJson("./src/config/config.toml");
-const t = await useTranslations(Astro.currentLocale as string);
 const tocHeadings = Astro.props.content.rendered?.metadata.headings;
 const { Content } = await render(Astro.props.content);
 
@@ -35,9 +32,11 @@ const tocEnabled = !!(
   config.settings.markup.tableOfContents?.enable && tocHeadings?.length
 );
 
-// Format date for eyebrow
-const year = date ? new Date(date).getFullYear() : new Date().getFullYear();
+// Get sector from categories
 const sector = categories?.[0] || 'Project';
+
+// Get hero image (support both single image and images array)
+const heroImage = image || (Array.isArray(images) && images.length > 0 ? images[0] : null);
 
 // Extract key stats from information
 const getResultStat = () => {
@@ -46,204 +45,223 @@ const getResultStat = () => {
   return result?.value || null;
 };
 
-if (Array.isArray(information)) {
-  information = information.map((item) => {
-    const newItem = { ...item };
-    switch (item.value) {
-      case "date":
-        if (Astro.props.content.data.date) {
-          newItem.value = new Date(
-            Astro.props.content.data.date,
-          ).toLocaleDateString(Astro.currentLocale, {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          });
-        }
-        break;
-      case "categories":
-        if (Astro.props.content.data.categories) {
-          newItem.value = Astro.props.content.data.categories.join(", ");
-        }
-        break;
-    }
-    return newItem;
-  });
-}
+// Filter out result from project details (we show it separately in hero)
+const projectDetails = information?.filter((i) => !i.label?.toLowerCase().includes('result')) || [];
 ---
 
-<section class="pt-16 lg:pt-20">
+<!-- Hero Section: 2 columns -->
+<section class="py-16 lg:py-20">
   <div class="container">
-    <!-- Hero -->
-    <div class="mb-12 md:mb-16">
-      <div class="label text-accent mb-4">
-        — Case Study · {year} · {sector}
-      </div>
-      <h1 class="font-primary font-normal text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.02] tracking-tight max-w-[22ch]">
-        {title}
-      </h1>
-
-      {/* Stats and Description Row */}
-      <div class="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-8 mt-8 items-end">
+    <div class="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+      <!-- Content -->
+      <div>
+        <div class="label text-accent mb-4">
+          — Case Study · {sector}
+        </div>
+        <h1 class="font-primary max-w-[20ch] text-3xl leading-[0.98] font-normal tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+          {title}
+        </h1>
         {description && (
-          <p class="font-primary text-lg md:text-xl leading-relaxed text-ink-2 max-w-[50ch]">
+          <p class="font-primary text-ink-2 mt-6 max-w-[52ch] text-lg leading-relaxed md:text-xl">
             {description}
           </p>
         )}
         {getResultStat() && (
-          <div class="border-l border-border-light pl-5">
-            <div class="font-primary italic text-4xl text-accent leading-none">{getResultStat()}</div>
-            <div class="label mt-2 text-ink-2">Key result</div>
+          <div class="mt-8 flex items-center gap-4">
+            <span class="label text-ink-2">Key result:</span>
+            <span class="font-primary italic text-2xl md:text-3xl text-accent">{getResultStat()}</span>
+          </div>
+        )}
+        <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center mt-8">
+          <CustomButton
+            label="Start a Project →"
+            url="https://tidycal.com/bvswebdesign/start-a-project"
+            hoverEffect="creative-fill"
+            class="effect-color-accent"
+          />
+          <a
+            href="#case-study"
+            class="font-primary italic text-dark hover:text-accent transition-colors border-b border-current pb-0.5"
+          >
+            Read the case study
+          </a>
+        </div>
+      </div>
+
+      <!-- Image -->
+      {heroImage && (
+        <div class="relative">
+          <OptimizedImage
+            src={heroImage}
+            alt={title}
+            class="w-full h-auto max-h-[500px] object-cover"
+            width={600}
+            height={500}
+          />
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<!-- Project Details Strip -->
+{projectDetails.length > 0 && (
+  <section class="border-border-light bg-stone-2 border-y py-12 lg:py-16">
+    <div class="container">
+      <div class="grid grid-cols-2 gap-6 md:grid-cols-4 lg:gap-12">
+        {projectDetails.map((item) => (
+          <div>
+            <div class="label text-ink-2 mb-2" set:html={item.label.replace(':', '')} />
+            <div class="font-primary text-lg md:text-xl font-normal" set:html={markdownify(item.value, true)} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- Main Content: 2 columns with sidebar -->
+<section id="case-study" class="py-16 lg:py-20">
+  <div class="container">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_3fr] gap-12">
+      <!-- Sidebar -->
+      <aside class="lg:sticky lg:top-24 lg:self-start">
+        <div class="label text-accent mb-4">— Project Details</div>
+        {information && Array.isArray(information) && (
+          <div class="border-t border-border-light">
+            {information.map((item) => (
+              <div class="py-3 border-b border-border-light/50">
+                {item.label && (
+                  <span class="label text-ink-2 block mb-1" set:html={item.label.replace(':', '')} />
+                )}
+                <span
+                  class="font-primary text-base"
+                  set:html={markdownify(item.value, true)}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+        <div class="mt-8">
+          <CustomButton
+            label="Start a Project →"
+            url="https://tidycal.com/bvswebdesign/start-a-project"
+            hoverEffect="creative-fill"
+            class="effect-color-accent text-sm"
+          />
+        </div>
+      </aside>
+
+      <!-- Body Content -->
+      <div>
+        {tocEnabled && tocHeadings && (
+          <div class="mb-10">
+            <TOC toc={tocHeadings} marker={false} />
+          </div>
+        )}
+        {Content && (
+          <div class="prose-styles editorial-content has-video-modal">
+            <Content />
           </div>
         )}
       </div>
     </div>
+  </div>
+</section>
 
-    {/* Hero Image */}
-    {
-      Array.isArray(images) && images.length > 0 && (
-        <div class="mb-12 md:mb-16">
-          {images.length > 1 ? (
-            <div
-              id="portfolio-slider"
-              class="swiper"
-              aria-label="Portfolio image slider">
-              <div class="swiper-wrapper">
-                {images.map((item: string, index: number) => (
-                  <div class="swiper-slide h-auto!">
-                    <OptimizedImage
-                      src={item}
-                      alt={`${title} image ${index + 1}`}
-                      class="w-full aspect-video object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-              {/* <!-- Left Arrow --> */}
-              <button
-                class="portfolio-slider-btn-prev hover:bg-accent hover:text-white absolute top-1/2 start-4 z-10 flex min-h-12 min-w-12 -translate-y-1/2 items-center justify-center bg-white border border-border-light transition duration-300"
-                aria-label="Previous slide">
-                <ReactIcons icon="FaArrowLeftLong" />
-              </button>
+<!-- Testimonial Section (populated by JS) -->
+<section id="testimonial-section" class="bg-theme-dark py-16 lg:py-20 hidden">
+  <div class="container">
+    <div id="testimonial-container" class="testimonial-dark"></div>
+  </div>
+</section>
 
-              {/* <!-- Right Arrow --> */}
-              <button
-                class="portfolio-slider-btn-next hover:bg-accent hover:text-white absolute top-1/2 end-4 z-10 flex min-h-12 min-w-12 -translate-y-1/2 items-center justify-center bg-white border border-border-light transition duration-300"
-                aria-label="Next slide">
-                <ReactIcons icon="FaArrowRightLong" />
-              </button>
-            </div>
-          ) : (
-            <OptimizedImage
-              src={images[0]}
-              alt={title}
-              class="w-full aspect-video object-cover"
-            />
-          )}
-        </div>
-      )
-    }
+<!-- How I Can Help Section -->
+<section class="border-border-light border-t">
+  <HelpCards content={{ heading: "How I can help" }} />
+</section>
 
-    {/* Main Content Grid */}
-    <div class="grid grid-cols-1 lg:grid-cols-[1fr_3fr] gap-12 border-t border-border-light pt-10">
-      {/* Sidebar */}
-      {
-        information && Array.isArray(information) && (
-          <aside>
-            <div class="label mb-4">Project</div>
-            <div class="border-t border-border-light">
-              {information.map((item) => (
-                <div class="grid grid-cols-2 gap-4 py-3 border-b border-border-light/50">
-                  {item.label && (
-                    <span class="label text-ink-2" set:html={item.label.replace(':', '')} />
-                  )}
-                  <span
-                    class="font-primary italic text-sm"
-                    set:html={markdownify(item.value, true)}
-                  />
-                </div>
-              ))}
-            </div>
-          </aside>
-        )
-      }
-
-      {/* Body Content */}
-      <div class="space-y-8">
-        {
-          tocEnabled && tocHeadings && (
-            <TOC toc={tocHeadings} marker={false} />
-          )
-        }
-        {
-          Content && (
-            <div class="prose-styles editorial-content has-video-modal">
-              <Content />
-            </div>
-          )
-        }
-      </div>
+<!-- CTA Section -->
+<section class="bg-theme-dark py-20 text-white md:py-28">
+  <div class="container">
+    <div class="label text-accent mb-4">
+      — Want similar results?
     </div>
-
-    {/* Next Project Navigation */}
-    <div class="mt-16 pt-10 border-t border-border-light bg-stone-2 py-10">
-      <div class="container">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-        <div>
-          <div class="label text-ink-2 mb-2">Browse more →</div>
-          <h3 class="font-primary text-2xl md:text-3xl font-normal tracking-tight">
-            See the rest of the <em class="italic text-accent">portfolio</em>.
-          </h3>
-        </div>
-        <CustomButton
-          label="All projects →"
-          url="/portfolio/"
-          hoverEffect="creative-fill"
-          class="effect-color-accent"
-        />
-        </div>
-      </div>
+    <h2 class="font-primary mb-6 max-w-[18ch] text-4xl leading-[0.94] font-normal tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+      Let's build something that <em class="text-accent italic">works</em> for your business.
+    </h2>
+    <p class="font-primary mb-10 max-w-[52ch] text-lg leading-relaxed text-white/75 md:text-xl">
+      Start with a free 30-minute call. No hard sell — just an honest conversation about your website.
+    </p>
+    <div class="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+      <CustomButton
+        label="Start a Project →"
+        url="https://tidycal.com/bvswebdesign/start-a-project"
+        hoverEffect="creative-fill"
+        variant="fill"
+        class="bg-accent hover:bg-accent/90 text-white"
+      />
+      <a href="/portfolio/" class="ghost-dark-btn">Browse More Projects</a>
     </div>
   </div>
-
-  <script>
-    if (typeof window !== "undefined") {
-      window.addEventListener("load", async function () {
-        await import("swiper/swiper-bundle.css");
-        const { Swiper } = await import("swiper");
-        const { Autoplay, Pagination, Navigation } = await import(
-          "swiper/modules"
-        );
-
-        // Initialize banner Swiper
-        const portfolioSlider = document.querySelector(
-          "#portfolio-slider",
-        ) as HTMLElement;
-
-        if (portfolioSlider) {
-          // Initialize content Swiper with navigation
-          new Swiper(portfolioSlider, {
-            modules: [Autoplay, Pagination, Navigation],
-            navigation: {
-              nextEl: ".portfolio-slider-btn-next",
-              prevEl: ".portfolio-slider-btn-prev",
-            },
-            speed: 800,
-            spaceBetween: 40,
-            slidesPerView: 1,
-            centeredSlides: true,
-            loopAdditionalSlides: 2,
-            autoplay: {
-              delay: 4000,
-              disableOnInteraction: true,
-            },
-            loop: true,
-          });
-        }
-      });
-    }
-  </script>
 </section>
+
+<script>
+  // Move testimonial to its own section and hide content after it
+  function initPortfolioLayout() {
+    const content = document.querySelector('.editorial-content');
+    const testimonialSection = document.getElementById('testimonial-section');
+    const testimonialContainer = document.getElementById('testimonial-container');
+
+    if (!content || !testimonialSection || !testimonialContainer) return;
+
+    // Find the testimonial - look for div.grid (without not-prose class) containing a blockquote
+    // CardWrapper has 'not-prose' class, TestimonialArticle doesn't
+    let testimonial = null;
+    const grids = content.querySelectorAll(':scope > div.grid:not(.not-prose)');
+    for (const grid of grids) {
+      if (grid.querySelector('blockquote')) {
+        testimonial = grid;
+        break;
+      }
+    }
+
+    if (testimonial) {
+      // Remove HR before testimonial
+      let prevElement = testimonial.previousElementSibling;
+      while (prevElement && prevElement.tagName === 'HR') {
+        const toRemove = prevElement;
+        prevElement = prevElement.previousElementSibling;
+        toRemove.remove();
+      }
+
+      // Also hide the "What the Client Says" heading
+      prevElement = testimonial.previousElementSibling;
+      if (prevElement && prevElement.tagName === 'H2') {
+        prevElement.style.display = 'none';
+      }
+
+      // Move testimonial to its section
+      testimonialContainer.appendChild(testimonial.cloneNode(true));
+      testimonialSection.classList.remove('hidden');
+
+      // Hide testimonial and everything after it in the original content
+      let currentElement = testimonial;
+      while (currentElement) {
+        const next = currentElement.nextElementSibling;
+        currentElement.style.display = 'none';
+        currentElement = next;
+      }
+    }
+  }
+
+  // Run on DOMContentLoaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPortfolioLayout);
+  } else {
+    initPortfolioLayout();
+  }
+</script>
 
 <style>
   .label {
@@ -253,22 +271,70 @@ if (Array.isArray(information)) {
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
+
   .text-ink-2 {
     color: var(--color-ink-2, #44403c);
   }
+
   .bg-stone-2 {
     background-color: var(--color-stone-2, #e7e5e3);
+  }
+
+  .ghost-dark-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    font-family: var(--font-secondary);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: white;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: background-color 0.2s ease;
+  }
+  .ghost-dark-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  /* Testimonial in dark section */
+  .testimonial-dark :global(.grid) {
+    gap: 2rem;
+  }
+  .testimonial-dark :global(blockquote p) {
+    color: white;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    font-style: italic;
+    font-family: var(--font-primary);
+  }
+  .testimonial-dark :global(footer p) {
+    color: white;
+  }
+  .testimonial-dark :global(footer .text-gray-500) {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .testimonial-dark :global(.border-primary) {
+    border-color: var(--color-accent);
+  }
+  .testimonial-dark :global(img) {
+    max-height: 450px;
+    object-fit: contain;
   }
 
   /* Editorial content styles */
   .editorial-content :global(h2) {
     font-family: var(--font-primary);
-    font-size: clamp(1.5rem, 4vw, 1.875rem);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
     font-weight: 400;
     letter-spacing: -0.025em;
-    line-height: 1.3;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
+    line-height: 1.2;
+    margin-top: 3rem;
+    margin-bottom: 1.25rem;
+  }
+  .editorial-content :global(h2:first-child) {
+    margin-top: 0;
   }
   .editorial-content :global(h3) {
     font-family: var(--font-primary);
@@ -276,24 +342,83 @@ if (Array.isArray(information)) {
     font-weight: 400;
     letter-spacing: -0.025em;
     line-height: 1.3;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     margin-bottom: 0.75rem;
   }
   .editorial-content :global(h2 em),
   .editorial-content :global(h3 em) {
     color: var(--color-accent);
-    font-style: normal;
+    font-style: italic;
   }
   .editorial-content :global(p) {
     font-family: var(--font-primary);
     font-size: 1.125rem;
     line-height: 1.75;
     color: var(--color-ink-2, #44403c);
-    margin-bottom: 1rem;
-    max-width: 60ch;
+    margin-bottom: 1.25rem;
   }
   .editorial-content :global(strong) {
     color: var(--color-dark);
     font-weight: 600;
+  }
+  .editorial-content :global(ul),
+  .editorial-content :global(ol) {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+  .editorial-content :global(li) {
+    font-family: var(--font-primary);
+    font-size: 1.125rem;
+    line-height: 1.75;
+    color: var(--color-ink-2, #44403c);
+    margin-bottom: 0.5rem;
+  }
+  .editorial-content :global(hr) {
+    border: none;
+    border-top: 1px solid var(--color-border-light);
+    margin: 3rem 0;
+  }
+  .editorial-content :global(a) {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: opacity 0.2s ease;
+  }
+  .editorial-content :global(a:hover) {
+    opacity: 0.8;
+  }
+
+  /* CardWrapper styling - match services page grid */
+  .editorial-content :global(.not-prose.grid) {
+    border: 1px solid var(--color-border-light);
+    gap: 0;
+    margin: 2.5rem 0;
+  }
+  .editorial-content :global(.not-prose.grid > div) {
+    border-right: 1px solid var(--color-border-light);
+    border-bottom: 1px solid var(--color-border-light);
+    background: white;
+  }
+  .editorial-content :global(.not-prose.grid > div:nth-child(2n)) {
+    border-right: none;
+  }
+  .editorial-content :global(.not-prose.grid > div:nth-last-child(-n+2)) {
+    border-bottom: none;
+  }
+  @media (max-width: 767px) {
+    .editorial-content :global(.not-prose.grid > div) {
+      border-right: none;
+    }
+    .editorial-content :global(.not-prose.grid > div:last-child) {
+      border-bottom: none;
+    }
+  }
+
+  /* Fix CTA button text color in content */
+  .editorial-content :global(.btn),
+  .editorial-content :global([class*="creative-fill"]),
+  .editorial-content :global(a[href*="tidycal"]) {
+    color: white !important;
+    text-decoration: none !important;
   }
 </style>
