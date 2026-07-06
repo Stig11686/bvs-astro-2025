@@ -54,7 +54,7 @@ const isDarkAppearance = options?.appearance === "dark";
         <a
           title={toSentenceCase(t("common.learnMoreAbout") + " " + title)}
           class:list={[
-            "order-1 inline-block w-full overflow-hidden",
+            "order-1 inline-block w-full overflow-hidden object-cover",
             layout === "grid" && "mb-8",
           ]}
           href={slug}
@@ -130,7 +130,7 @@ const isDarkAppearance = options?.appearance === "dark";
       {...rest}>
       {image && (
         <OptimizedImage
-          class="absolute top-0 start-0 -z-10 min-h-full min-w-[calc(100%+2rem)] -translate-x-8 object-cover duration-500 group-[.swiper-slide-active]/project-slide:-translate-x-4"
+          class="absolute start-0 top-0 -z-10 min-h-full min-w-[calc(100%+2rem)] -translate-x-8 object-cover duration-500 group-[.swiper-slide-active]/project-slide:-translate-x-4"
           src={image}
           alt={title || "Project image"}
         />
@@ -177,7 +177,7 @@ const isDarkAppearance = options?.appearance === "dark";
       {...rest}>
       {image && (
         <OptimizedImage
-          class="absolute top-0 start-0 z-20 h-full w-full -translate-x-8 scale-110 object-cover duration-500 group-hover:-translate-x-4"
+          class="absolute start-0 top-0 z-20 h-full w-full -translate-x-8 scale-110 object-cover duration-500 group-hover:-translate-x-4"
           src={image}
           alt={title || "Project image"}
         />
