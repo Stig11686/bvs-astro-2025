@@ -2,7 +2,7 @@
 enable: true
 eyebrow: "WordPress web design · Skipton, Yorkshire & the UK"
 title: "Websites that get service businesses *more enquiries*, more bookings, and *found on Google*."
-description: "WordPress web design — based in Skipton, working across Yorkshire and the UK."
+description: "WordPress web design, based in Skipton and working across Yorkshire and the UK."
 image: "/src/assets/images/steve.jpg"
 
 button:
