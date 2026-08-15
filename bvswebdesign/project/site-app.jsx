@@ -12,10 +12,11 @@ const CTA_CONFIG = {
   about:   { heading: <>Ready to talk about your <span style={{ fontStyle: 'italic', color: 'var(--accent-a)' }}>project</span>?</>, body: "Tell me what you're trying to achieve and I'll tell you honestly whether — and how — I can help.", primary: 'start' },
   design:  { heading: <>Let's build something that <span style={{ fontStyle: 'italic', color: 'var(--accent-a)' }}>earns</span> its keep.</>, body: "Start with a free 30-minute call. No deck, no questionnaire — just a proper conversation about your business.", primary: 'start' },
   rescue:  { heading: <>Stuck? Let's get you <span style={{ fontStyle: 'italic', color: 'var(--accent-a)' }}>back in control</span>.</>, body: "You don't need it all figured out. Tell me what's going on and I'll tell you what's possible.", primary: 'start' },
-  support: { heading: <>Hand the worry <span style={{ fontStyle: 'italic', color: 'var(--accent-a)' }}>over</span>.</>, body: "Security, updates, backups and a real person at the other end of the email. Let's get your site looked after.", primary: 'start' },
+  support: { heading: <>Hand the worry <span style={{ fontStyle: 'italic', color: 'var(--accent-a)' }}>over</span>.</>, body: "Tell me what your site does for the business and I'll tell you which plan fits — or that you don't need one yet.", primary: 'start' },
   audit:   { heading: <>Find out what your site <span style={{ fontStyle: 'italic', color: 'var(--accent-a)' }}>is and isn't</span> doing.</>, body: "A free, no-obligation audit. Around 30 minutes of your time, and the findings are yours to keep.", primary: 'audit' },
   portfolio:{ heading: <>Want results like <span style={{ fontStyle: 'italic', color: 'var(--accent-a)' }}>these</span>?</>, body: "Whether you know exactly what you need or you're not sure where to start — let's have a conversation.", primary: 'start' },
   case:    { heading: <>Want results like <span style={{ fontStyle: 'italic', color: 'var(--accent-a)' }}>these</span>?</>, body: "Whether you know exactly what you need or you're not sure where to start — let's have a conversation.", primary: 'start' },
+  york:    { heading: <>Ready to get more from your <span style={{ fontStyle: 'italic', color: 'var(--accent-a)' }}>York</span> website?</>, body: "Whether you're starting fresh or fixing what's there — let's have a conversation. A free website review takes about half an hour.", primary: 'audit' },
   blog:    { heading: <>Ready to get more from your <span style={{ fontStyle: 'italic', color: 'var(--accent-a)' }}>website</span>?</>, body: "Whether you know exactly what you need or you're not sure where to start — let's have a conversation.", primary: 'start' },
 };
 
@@ -48,6 +49,7 @@ function App() {
         {page === 'home'      && <HomePage setPage={setPage} />}
         {page === 'about'     && <AboutPage setPage={setPage} />}
         {page === 'design'    && <DesignPage setPage={setPage} />}
+        {page === 'york'      && <LocationPage setPage={setPage} />}
         {page === 'rescue'    && <RescuePage setPage={setPage} />}
         {page === 'support'   && <SupportPage setPage={setPage} />}
         {page === 'audit'     && <AuditPage setPage={setPage} />}
@@ -71,8 +73,9 @@ function App() {
             { value: 'home',      label: 'Home' },
             { value: 'about',     label: 'About' },
             { value: 'design',    label: 'Website Design' },
+            { value: 'york',      label: 'York (location)' },
             { value: 'rescue',    label: 'Website Rescue' },
-            { value: 'support',   label: 'Website Support' },
+            { value: 'support',   label: 'Website Care Plans' },
             { value: 'audit',     label: 'Website Audit' },
             { value: 'portfolio', label: 'Portfolio' },
             { value: 'case',      label: 'Case study' },

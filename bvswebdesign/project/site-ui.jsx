@@ -215,7 +215,7 @@ function Footer({ setPage }) {
             hello@bvswebdesign.co.uk
           </a>
         </div>
-        {col('Site', [['Home', 'home'], ['About', 'about'], ['Portfolio', 'portfolio'], ['Blog', 'blog'], ['Contact', 'contact']])}
+        {col('Site', [['Home', 'home'], ['About', 'about'], ['Portfolio', 'portfolio'], ['Web Design York', 'york'], ['Blog', 'blog'], ['Contact', 'contact']])}
         {col('Services', [['Website Design', 'design'], ['Website Rescue', 'rescue'], ['Support & Care', 'support'], ['Website Audit', 'audit']])}
         {col('Start', [['Start a Project', null, LINKS.start], ['Book a Free Audit', null, LINKS.audit]])}
       </div>

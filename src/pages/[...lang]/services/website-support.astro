@@ -2,10 +2,6 @@
 import Base from "@/layouts/Base.astro";
 import { generatePaths } from "@/lib/utils/languageParser.ts";
 import CustomButton from "@/components/CustomButton.astro";
-import OptimizedImage from "@/components/utilities/OptimizedImage.astro";
-import { getCollectionCTM } from "@/lib/contentParser.astro";
-import { getLocaleUrlCTM } from "@/lib/utils/languageParser.ts";
-import extractSlug from "@/lib/utils/extractSlug";
 import ContactSection from "@/layouts/components/sections/ContactSection.astro";
 import TestimonialArticle from "@/layouts/components/sections/TestimonialArticle.astro";
 
@@ -13,130 +9,181 @@ export function getStaticPaths() {
   return generatePaths();
 }
 
-// Fetch blog posts for related reading section - in specific order
-const allPosts = await getCollectionCTM("blog", Astro.currentLocale);
-const relatedSlugs = [
-  "why-your-business-website-needs-a-care-plan-and-what-happens-without-one",
-  "wordpress-isnt-slow-bad-builds-are",
-  "who-owns-my-website",
-];
-
-// Get unique posts in the order specified
-const relatedPosts = relatedSlugs
-  .map((slug) => allPosts?.find((post) => post.data.customSlug === slug))
-  .filter((post) => post !== undefined);
-
 const pageData = {
-  title: "Website Maintenance Packages & Care Plans | BVS Web Design",
+  title: "Website Care Plans & Maintenance Packages | BVS Web Design",
   metaDescription:
-    "Website maintenance packages for growing businesses — hosting, updates, backups and security, all handled by a real person based in Skipton, North Yorkshire, not a ticket queue. From £35/mo.",
+    "Website care plans for growing businesses — hosting, updates, backups and security, all handled by a real person in Skipton. From £35/month or £350/year.",
 };
 
-const FAQ_ITEMS = [
-  {
-    question: "How much does website maintenance cost?",
-    answer:
-      "Plans start at £35/month for hosting, backups, updates and monitoring, rising to £99 and £249 for monthly edit time, security scans and ongoing improvements. The right plan depends on how much you lean on your site — a brochure site needs less than one that drives daily enquiries.",
-  },
-  {
-    question: "What's included in a website care plan?",
-    answer:
-      "At minimum: managed hosting, regular WordPress updates, off-site backups, uptime monitoring and email support. Higher tiers add same-day fixes, monthly edits, malware scanning, SEO actions and a regular strategy call.",
-  },
-  {
-    question: "Do I need a maintenance plan for a WordPress site?",
-    answer:
-      "Realistically, yes. WordPress and its plugins release updates constantly — security patches, fixes, new features. A site left un-updated for months is the single most common way small business sites get hacked or break. A plan keeps on top of it so you don't have to.",
-  },
-  {
-    question:
-      "I find updating my own site a hassle — can you just do it for me?",
-    answer:
-      "That's exactly what the monthly edit time on Active and Growth is for. No wrestling with image sizes or odd file formats, no fighting the page builder — just send me the photos and words, and I'll put them on the site for you, looking right. Most small changes are done the same day.",
-  },
-  {
-    question: "Do you only work with Yorkshire businesses?",
-    answer:
-      "I'm based in Skipton and work with businesses right across Yorkshire — but maintenance is handled remotely, so location isn't a barrier. Plenty of clients I've never met in person; the site's looked after just the same.",
-  },
-  {
-    question: "Can I cancel?",
-    answer:
-      "Yes — every plan is month-to-month with no lock-in. No setup fee either, for sites I've built.",
-  },
+const CARE_LADDER = [
+  { name: "Essentials", promise: "I keep it running" },
+  { name: "Active", promise: "I keep it right" },
+  { name: "Growth", promise: "I keep it improving" },
 ];
 
-const SUPPORT_PLANS = [
+const CARE_PLANS = [
   {
     name: "Essentials",
-    price: "£35",
-    cadence: "/ month",
-    blurb:
-      "The basics, properly handled — so nothing breaks while you get on with running the business.",
+    monthlyPrice: "£35",
+    monthlyLabel: "per month",
+    annualPrice: "£350",
+    annualLabel: "per year",
+    annualNote: "two months free",
+    you: "your website does a small job, does it well, and you want it kept safe without thinking about it.",
     features: [
       "Managed WordPress hosting",
       "Weekly off-site backups",
-      "1 hour of edits each month",
-      "Core, theme & plugin updates",
+      "Core, theme and plugin updates",
       "Uptime monitoring",
+      "1 hour of edits a month",
       "Email support",
     ],
+    not: "your business changes through the year and the site has to keep up. Look at Active.",
     featured: false,
   },
   {
     name: "Active",
-    price: "£99",
-    cadence: "/ month",
-    blurb:
-      "Everything in Essentials, plus a real person making small improvements every month.",
+    featured: true,
+    monthlyPrice: "£99",
+    monthlyLabel: "per month",
+    annualPrice: "£990",
+    annualLabel: "per year",
+    annualNote: "two months free",
+    you: "your business changes through the year, your website has to keep up, and you would rather send it to someone than wrestle with it yourself.",
     features: [
       "Everything in Essentials",
+      "2 hours of edits a month, usually same day",
+      "Monthly accuracy check with a written summary",
       "Same-day priority fixes",
-      "Security hardening & malware scans",
+      "Security hardening and malware scans",
       "Quarterly performance check",
-      "2 hours of edits each month",
     ],
-    featured: true,
+    not: "you want the site growing enquiries month on month. That is Growth.",
   },
   {
     name: "Growth",
-    price: "£249",
-    cadence: "/ month",
-    blurb:
-      "For businesses treating the website as a channel that should keep getting better.",
+    monthlyPrice: "£249",
+    monthlyLabel: "per month",
+    annualPrice: "£2,490",
+    annualLabel: "per year",
+    annualNote: "two months free",
+    you: "your website is a main source of enquiries and you want more of them.",
     features: [
       "Everything in Active",
-      "3 hours of edits each month",
-      "Monthly SEO actions",
-      "Conversion improvements",
-      "Quarterly strategy call",
+      "Monthly review of your search and traffic data",
+      "One improvement chosen, built and shipped each month",
+      "A written report: what changed, what moved, what is next",
+      "Quarterly review of the quarter's work",
     ],
+    not: "your site gets under about 500 visits a month. There is not enough data to tell a real improvement from a fluke, and I would rather sell you Active plus a one-off piece of work to fix the traffic first.",
+    setup:
+      "Setup: £195 one-off to establish tracking and a baseline. Waived if I built the site.",
     featured: false,
   },
+];
+
+const CARE_COVERED = [
+  {
+    title: "Hosting that is managed.",
+    body: "Your site sits on fast, secure WordPress hosting I look after directly. No separate hosting bill to chase, no support desk in another time zone.",
+  },
+  {
+    title: "Updates, checked before they go live.",
+    body: "WordPress core, your theme and your plugins all need regular updating. Skip it and you get broken layouts, security holes, or a site that stops loading. I apply updates and check nothing breaks afterwards.",
+  },
+  {
+    title: "Backups you will not need to think about.",
+    body: "Weekly off-site backups, so if the worst happens your site comes back rather than a month of lost work.",
+  },
+  {
+    title: "Security and monitoring.",
+    body: "Uptime monitoring on every plan, with hardening and malware scans on Active and Growth. You hear from me if something is wrong, usually before you have noticed.",
+  },
+  {
+    title: "You send it, I post it.",
+    body: "Ever tried adding a photo to your own site and hit a wall? Wrong size, wrong format, will not upload, comes out stretched. On Active and Growth that is my job. Send me the photos and the words and I will get them live, at the right size and looking as they should.",
+  },
+];
+
+const FAQ_ITEMS = [
+  {
+    question: "Which plan do most businesses start on?",
+    answer:
+      "Active. It suits any business that changes through the year, which is most of them. Essentials suits sites doing a smaller, steadier job. Growth suits businesses ready to put real work into the site every month.",
+  },
+  {
+    question: "What is the difference between Active and Growth?",
+    answer:
+      "On Active you decide what changes and I make it happen, plus I check the site monthly for anything that has gone out of date. On Growth I look at your data, decide what should change, build it, and report on what it did.",
+  },
+  {
+    question: "What do I actually receive on Growth?",
+    answer:
+      "A report each month naming what I changed, what the numbers did, and what I am working on next. Plus the change itself, built and live.",
+  },
+  {
+    question: "How much does website maintenance cost?",
+    answer:
+      "Plans start at £35 a month, or £350 for the year. The right one depends on how much you lean on your site. A site doing a small job needs less than one bringing in daily enquiries.",
+  },
+  {
+    question: "Can I move between plans?",
+    answer:
+      "Yes, any month. Most people start on Essentials or Active and move up when the site starts mattering more to the business.",
+  },
+  {
+    question: "Why is there a setup fee on Growth?",
+    answer:
+      "Improvements only mean something if you can measure them, and on most sites I take over the tracking has gaps. Month one is spent fixing that and recording where you are starting from. If I built the site, that work is done and there is no fee.",
+  },
+  {
+    question: "Do I have to commit to a year?",
+    answer:
+      "No. Every plan runs month to month if you prefer. The annual option exists because it is cheaper for you, and because Growth needs time to show what it is doing.",
+  },
+  {
+    question: "Do I need a care plan for a WordPress site?",
+    answer:
+      "Yes. WordPress and its plugins release security patches constantly, and a site left un-updated for months is the most common way small business sites get hacked or break.",
+  },
+  {
+    question: "Do you only work with Yorkshire businesses?",
+    answer:
+      "I am based in Skipton and work with businesses across Yorkshire, but care plans are handled remotely so location is not a barrier. Plenty of clients I have never met in person, and their sites are looked after just the same.",
+  },
+];
+
+const LEFT_TO_DRIFT = [
+  "Plugins fall out of date",
+  "Security gaps open up",
+  "The contact form stops sending",
+  "You find out when a customer says the site is down",
+];
+
+const ON_CARE_PLAN = [
+  "Updates applied and tested before they break",
+  "Security monitored, hardened and patched",
+  "Forms checked, with an alert the moment one fails",
+  "You hear about it from me, usually already fixed",
 ];
 ---
 
 <Base {...pageData} footerLayout="footer-1">
-  <!-- Hero -->
+  <!-- 1 · Hero -->
   <section class="py-16 lg:py-20">
     <div class="container">
-      <div class="label text-accent mb-4">
-        — Website Maintenance & Care Plans
-      </div>
+      <div class="label text-accent mb-4">— Website Care Plans</div>
       <h1
-        class="font-primary max-w-[20ch] text-4xl leading-[0.98] font-normal tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
-        Website maintenance plans that keep your site <em
-          class="text-accent italic">
-          earning
+        class="font-primary max-w-[26ch] text-4xl leading-[0.99] font-normal tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+        Website care plans that keep your site <em class="text-accent italic">
+          working, accurate and improving
         </em>.
       </h1>
       <p
-        class="font-primary text-ink-2 mt-6 max-w-[58ch] text-lg leading-relaxed md:text-xl">
-        Security, updates, backups and hosting — all handled, so your site keeps
-        working while you focus on running the business. Built for growing
-        businesses that need their website looked after by a real person, not a
-        ticket queue. Based in Skipton, I work with businesses throughout North
-        Yorkshire, West Yorkshire and the wider Yorkshire region.
+        class="font-primary text-ink-2 mt-6 max-w-[62ch] text-lg leading-relaxed md:text-xl">
+        Website support and maintenance packages for busy businesses. From £35 a
+        month, or pay for the year and take two months off. No lock-in, and a
+        real person in Skipton on the other end.
       </p>
       <div class="mt-8 flex flex-wrap items-center gap-4">
         <CustomButton
@@ -145,228 +192,194 @@ const SUPPORT_PLANS = [
           hoverEffect="creative-fill"
           class="effect-color-accent"
         />
-        <span class="text-ink-2 text-sm">
-          <a
-            href="/services/website-support/#contact"
-            class="hover:text-accent underline transition-colors">
-            Send a Message →
-          </a>
-        </span>
+        <a
+          href="#enquiry"
+          class="btn-ghost inline-flex items-center justify-center px-6 py-3 text-sm font-medium tracking-wide uppercase transition-colors">
+          Send a Message →
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- Why It Matters -->
-  <section class="border-border-light bg-stone-2 border-t py-16 lg:py-20">
-    <div class="container">
-      <!-- Header row -->
-      <div class="mb-12 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
-        <div>
-          <div class="label text-accent mb-4">
-            — Why do I need a maintenance plan?
-          </div>
-          <h2
-            class="font-primary text-3xl leading-tight font-normal tracking-tight sm:text-5xl lg:text-5xl">
-            A website isn't "finished" the day it launches — maintenance plans
-            keep the good work going.
-          </h2>
-        </div>
-        <div class="flex items-end">
-          <p class="font-primary text-ink-2 text-lg leading-relaxed">
-            A care plan takes the worry out of your website. Instead of reacting
-            to problems after they've cost you customers, everything's handled
-            in the background — so your site keeps earning while you focus on
-            running the business.
-          </p>
-        </div>
-      </div>
-
-      <!-- Comparison tables -->
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-        <!-- Left table - Left to Drift -->
-        <div class="border-border-light border bg-transparent p-8 md:p-10">
-          <h3
-            class="font-secondary text-ink-2 mb-6 text-sm tracking-wider uppercase">
-            Left to Drift
-          </h3>
-          <ul>
-            <li
-              class="text-ink-2 border-border-light/50 flex gap-3 border-t py-3">
-              <span class="font-medium text-red-600">✕</span>
-              <span>Plugins fall out of date</span>
-            </li>
-            <li
-              class="text-ink-2 border-border-light/50 flex gap-3 border-t py-3">
-              <span class="font-medium text-red-600">✕</span>
-              <span>Security gaps open up</span>
-            </li>
-            <li
-              class="text-ink-2 border-border-light/50 flex gap-3 border-t py-3">
-              <span class="font-medium text-red-600">✕</span>
-              <span>The contact form stops sending</span>
-            </li>
-            <li
-              class="text-ink-2 border-border-light/50 flex gap-3 border-t py-3">
-              <span class="font-medium text-red-600">✕</span>
-              <span>You find out when a customer says the site is down</span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- Right table - On a Care Plan -->
-        <div class="bg-theme-dark p-8 md:p-10">
-          <h3
-            class="font-secondary mb-6 text-sm tracking-wider text-white/70 uppercase">
-            On a Care Plan
-          </h3>
-          <ul>
-            <li class="flex gap-3 border-t border-white/10 py-3">
-              <span class="text-accent font-medium">✓</span>
-              <span class="text-white">
-                Updates applied and tested before they break
-              </span>
-            </li>
-            <li class="flex gap-3 border-t border-white/10 py-3">
-              <span class="text-accent font-medium">✓</span>
-              <span class="text-white">
-                Security monitored, hardened and patched
-              </span>
-            </li>
-            <li class="flex gap-3 border-t border-white/10 py-3">
-              <span class="text-accent font-medium">✓</span>
-              <span class="text-white">
-                Forms checked — with an alert the moment one fails
-              </span>
-            </li>
-            <li class="flex gap-3 border-t border-white/10 py-3">
-              <span class="text-accent font-medium">✓</span>
-              <span class="text-white">
-                You hear about it from me, usually already fixed
-              </span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- CTA Banner -->
-      <div
-        class="border-border-light mt-8 flex flex-col gap-6 border p-8 md:flex-row md:items-center md:justify-between md:p-10">
-        <p
-          class="font-primary max-w-[55ch] text-lg leading-relaxed md:text-2xl">
-          For most growing businesses, the peace of mind — and a site that stays
-          fast and findable — <em class="text-accent font-medium">
-            pays for itself the first time it saves you a lost weekend.
-          </em>
-        </p>
-        <CustomButton
-          label="Get Peace of Mind →"
-          url="/services/website-support/#contact"
-          hoverEffect="creative-fill"
-          class="effect-color-accent shrink-0"
-        />
-      </div>
-    </div>
-  </section>
-
-  <!-- What's Included -->
+  <!-- 2 · Three Stages -->
   <section class="border-border-light border-t py-16 lg:py-20">
     <div class="container">
-      <h2
-        class="font-primary mb-4 text-3xl font-normal tracking-tight sm:text-5xl">
-        What a website care plan actually covers
-      </h2>
-      <p
-        class="font-primary text-ink-2 mb-10 max-w-[65ch] text-lg leading-relaxed">
-        A maintenance plan means someone is regularly checking the parts of your
-        website that actually matter to your business — can customers contact
-        you, are enquiries coming through, are your key pages working properly,
-        and is everything still doing its job?
-      </p>
-      <div
-        class="border-border-light grid grid-cols-1 border-t border-l md:grid-cols-2">
-        <div
-          class="included-card border-border-light border-r border-b p-8 md:p-9">
-          <span class="font-primary text-accent text-xl italic">01</span>
-          <h3
-            class="font-primary mt-3 mb-3 max-w-[20ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
-            Hosting that's actually managed.
-          </h3>
-          <p
-            class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
-            Your site lives on fast, secure WordPress hosting I look after
-            directly — no separate hosting bill to chase, no support desk in
-            another time zone.
-          </p>
+      <div class="grid grid-cols-1 items-start gap-14 lg:grid-cols-2">
+        <div>
+          <h2
+            class="font-primary text-3xl leading-[1.04] font-normal tracking-tight sm:text-4xl lg:text-[2.75rem]">
+            Three plans, and most businesses <span class="italic">
+              already know
+            </span> which one they need.
+          </h2>
+          <div class="border-border-light mt-8 border-t">
+            {
+              CARE_LADDER.map((item, i) => (
+                <div class="border-border-light/50 grid grid-cols-[auto_1fr] items-baseline gap-5 border-b py-4">
+                  <span class="font-primary text-accent text-lg italic">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <div class="font-primary text-2xl tracking-tight">
+                      {item.name}
+                    </div>
+                    <div class="font-secondary text-ink-3 mt-1 text-xs tracking-wider uppercase">
+                      {item.promise}
+                    </div>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
         </div>
-        <div
-          class="included-card border-border-light border-r border-b p-8 md:p-9">
-          <span class="font-primary text-accent text-xl italic">02</span>
-          <h3
-            class="font-primary mt-3 mb-3 max-w-[20ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
-            Updates, done carefully.
-          </h3>
-          <p
-            class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
-            WordPress core, your theme and plugins all need regular updating.
-            Skip it and you get broken layouts, security holes, or a site that
-            simply stops loading. I handle updates and check nothing breaks
-            afterwards.
+        <div class="space-y-5">
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            A website needs different things at different points in a business,
+            so website maintenance means different things too.
           </p>
-        </div>
-        <div
-          class="included-card border-border-light border-r border-b p-8 md:p-9">
-          <span class="font-primary text-accent text-xl italic">03</span>
-          <h3
-            class="font-primary mt-3 mb-3 max-w-[20ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
-            Backups you'll never need to think about.
-          </h3>
-          <p
-            class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
-            Weekly off-site backups, so if the worst happens, your site comes
-            back — not a month of lost work.
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            Some sites do a small job and do it well. The owner wants it safe,
+            updated and off their plate, and that is the whole requirement.
           </p>
-        </div>
-        <div
-          class="included-card border-border-light border-r border-b p-8 md:p-9">
-          <span class="font-primary text-accent text-xl italic">04</span>
-          <h3
-            class="font-primary mt-3 mb-3 max-w-[20ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
-            Security and monitoring.
-          </h3>
-          <p
-            class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
-            Uptime monitoring on every plan, with security hardening and malware
-            scans on Active and Growth. You hear from me if something's wrong,
-            usually before you've noticed.
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            Some sites carry the business. Prices change, services change, staff
+            change, and the site has to keep up or it starts telling customers
+            things that stopped being true months ago.
           </p>
-        </div>
-        <div
-          class="included-card border-border-light border-r border-b p-8 md:col-span-2 md:p-9">
-          <span class="font-primary text-accent text-xl italic">05</span>
-          <h3
-            class="font-primary mt-3 mb-3 max-w-[20ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
-            You send it, I post it.
-          </h3>
-          <p
-            class="text-ink-2 m-0 max-w-[65ch] text-sm leading-relaxed md:text-[0.9rem]">
-            Ever tried adding a photo to your own site and hit a wall — wrong
-            size, wrong format, won't upload, comes out stretched? On Active and
-            Growth, that's my job, not yours. Send me the photos and the words;
-            I'll get them live, properly sized and looking right. The "can you
-            just change this..." jobs come off your to-do list for good.
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            And some sites are a main source of enquiries. Those need work aimed
+            at something specific every month, measured afterwards, so you know
+            what your website responds to.
+          </p>
+          <p class="font-primary text-dark text-lg leading-relaxed">
+            Paying for the third when you need the first is waste. <em
+              class="text-accent">
+              I would rather tell you that than sell it to you.
+            </em>
           </p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- 3 · The Essentials Case -->
+  <section class="border-border-light border-t py-16 lg:py-20">
+    <div class="container">
+      <div
+        class="mb-10 grid grid-cols-1 items-end gap-8 lg:grid-cols-2 lg:gap-14">
+        <div>
+          <div class="label text-accent mb-4">— Essentials</div>
+          <h2
+            class="font-primary text-3xl leading-[1.04] font-normal tracking-tight sm:text-4xl lg:text-[2.75rem]">
+            A site left alone does not <span class="italic">stay still</span>
+          </h2>
+        </div>
+        <div class="space-y-4">
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            Nothing about a neglected website looks urgent until the morning it
+            stops working.
+          </p>
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            Plugins fall behind. Security gaps open up. The contact form stops
+            sending and you find out when a customer mentions they emailed
+            twice.
+          </p>
+        </div>
+      </div>
+
+      <!-- Comparison Tables -->
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+        <!-- Left to Drift -->
+        <div class="border-border-light border bg-transparent p-7 md:p-8">
+          <div class="label text-ink-2 mb-5">Left to drift</div>
+          {
+            LEFT_TO_DRIFT.map((item) => (
+              <div class="text-ink-2 border-border-light/50 flex items-start gap-4 border-t py-3 text-base leading-snug">
+                <span class="text-ink-3 flex-shrink-0 text-lg leading-none">
+                  ✕
+                </span>
+                <span>{item}</span>
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- On a Care Plan -->
+        <div class="bg-theme-dark border-theme-dark border p-7 md:p-8">
+          <div class="label text-accent mb-5">On a care plan</div>
+          {
+            ON_CARE_PLAN.map((item) => (
+              <div class="flex items-start gap-4 border-t border-white/15 py-3 text-base leading-snug text-white">
+                <span class="text-accent flex-shrink-0 text-lg leading-none">
+                  ✓
+                </span>
+                <span>{item}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
       <p
-        class="font-primary text-ink-2 mt-10 max-w-[65ch] text-lg leading-relaxed">
-        If you run a WordPress site for a growing business anywhere in
-        Yorkshire, this is the website maintenance and support that keeps it off
-        your plate.
+        class="font-primary mt-6 max-w-[62ch] text-xl leading-snug tracking-tight md:text-2xl">
+        That is Essentials. You stop thinking about the site and <span
+          class="text-accent italic">
+          it carries on working
+        </span>.
       </p>
     </div>
   </section>
 
-  <!-- Testimonial -->
+  <!-- 4 · The Active Case -->
+  <section class="border-border-light border-t py-16 lg:py-20">
+    <div class="container">
+      <div
+        class="grid grid-cols-1 items-start gap-14 lg:grid-cols-[1fr_1.25fr]">
+        <div>
+          <div class="label text-accent mb-4">— Active</div>
+          <h2
+            class="font-primary text-3xl leading-[1.04] font-normal tracking-tight sm:text-4xl lg:text-[2.75rem]">
+            The problem nobody <span class="italic">gets round to</span>
+          </h2>
+        </div>
+        <div class="max-w-[66ch] space-y-5">
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            Your website was accurate the day it launched. Then you put your
+            prices up in March, dropped a service, took on two new people and
+            changed your hours over the summer.
+          </p>
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            None of that breaks anything. No error, no downtime, no alert. The
+            site carries on telling customers what was true last year, and they
+            believe it, because why would they not.
+          </p>
+          <p class="font-primary text-dark text-lg leading-relaxed">
+            That is what Active is for.
+          </p>
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            Send me changes as they happen and I put them live, usually the same
+            day. No wrestling with image sizes, no fighting the page builder, no
+            adding it to a list you never get to.
+          </p>
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            Then once a month I go through the site against reality. Forms
+            tested end to end, key pages checked, contact details, opening
+            hours, prices, services, staff, broken links. I fix what I can fix
+            and send you a short note covering what I found, what I sorted, and
+            the handful of things only you can answer.
+          </p>
+          <p class="font-primary text-dark text-lg leading-relaxed">
+            Most business owners know their site has drifted without having a
+            list of what needs changing. <em class="text-accent">
+              Active hands you the list.
+            </em>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · Testimonial -->
   <section class="border-border-light border-t py-16 lg:py-20">
     <div class="container">
       <div class="prose-styles">
@@ -374,32 +387,118 @@ const SUPPORT_PLANS = [
           author="Elizabeth Matfin"
           authorTitle="Owner, Maidens and Ravens Bridal Boutique, York"
           image="/images/testimonial/elizabeth.jpg"
-          quote="I accidently went viral on TikTok and sent 5000 visitors to my site in one go - it crashed the site as we'd not prepared for such traffic!  Steve had it sorted within the hour. That peace of mind is worth every penny. I don't have to think about the technical stuff anymore; I just know it's handled."
+          quote="I have had poor experience in the past from other website designers — limited help, poor response times, and extortionate charging for small tasks. Steve is definitely the opposite of this and I have no plans to instruct anyone else any time soon."
         />
       </div>
     </div>
   </section>
 
-  <!-- Plans -->
-  <section class="border-border-light border-t py-10">
+  <!-- 6 · The Growth Case -->
+  <section class="border-border-light border-t py-16 lg:py-20">
     <div class="container">
-      <h2
-        class="font-primary mb-4 text-3xl font-normal tracking-tight sm:text-5xl">
-        Simple website maintenance packages
-      </h2>
+      <div
+        class="grid grid-cols-1 items-start gap-14 lg:grid-cols-[1fr_1.25fr]">
+        <div>
+          <div class="label text-accent mb-4">— Growth</div>
+          <h2
+            class="font-primary text-3xl leading-[1.04] font-normal tracking-tight sm:text-4xl lg:text-[2.75rem]">
+            What <span class="italic">"improving the site"</span> means in practice
+          </h2>
+        </div>
+        <div class="max-w-[66ch] space-y-5">
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            Most website support stops at keeping the lights on. Useful, and it
+            tells you nothing about whether your site brings in more work this
+            year than last.
+          </p>
+          <p class="font-primary text-dark text-lg leading-relaxed">
+            On Growth, one thing changes every month.
+          </p>
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            I look at what people search to find you, which pages they land on,
+            and where they leave. From that I pick the biggest single
+            opportunity. I build that change, then check the following month
+            what it did before choosing the next one.
+          </p>
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            At the end of each month you get a report naming three things: what
+            I changed, what moved, and what I am doing next.
+          </p>
+          <p class="font-primary text-ink-2 text-lg leading-relaxed">
+            After a quarter you have three changes, three sets of numbers, and a
+            view of what your website responds to. <em class="text-accent">
+              That is the part most business owners have not had before.
+            </em>
+          </p>
+          <div class="border-accent border-l-2 pl-5">
+            <p class="font-primary text-ink-2 text-base leading-relaxed italic">
+              Month one sets the baseline. On most sites the tracking has gaps,
+              so I fix that first. Reporting starts in month two, once the
+              numbers can be trusted.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Boundary Line -->
+  <section class="border-border-light bg-stone-2 border-t py-8">
+    <div class="container">
       <p
-        class="font-primary text-ink-2 mb-10 max-w-[65ch] text-lg leading-relaxed">
-        Every plan covers the essentials — hosting, backups, updates and
-        security — handled quietly in the background. Step up a tier when you
-        want real decision making, strategy and improvements every month.
+        class="font-primary max-w-[80ch] text-xl leading-snug tracking-tight md:text-2xl">
+        On <span class="italic">Active</span>, you decide what changes and I
+        make it happen. On <span class="italic">Growth</span>, I look at the
+        data, tell you what should change, <span class="text-accent">
+          and do it
+        </span>.
       </p>
+    </div>
+  </section>
+
+  <!-- 7 · Pricing Cards -->
+  <section class="border-border-light border-t py-10 lg:py-12">
+    <div class="container">
+      <!-- Pricing Toggle -->
+      <div class="mb-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4">
+        <div class="flex items-center gap-3">
+          <span
+            id="pricing-label-monthly"
+            class="font-primary text-dark text-base font-medium">
+            Monthly
+          </span>
+          <button
+            type="button"
+            id="pricing-toggle"
+            class="bg-border-light relative inline-flex h-7 w-12 shrink-0 cursor-pointer items-center rounded-full transition-colors duration-200 ease-in-out focus:outline-none"
+            role="switch"
+            aria-checked="false"
+            aria-label="Toggle yearly pricing">
+            <span
+              id="toggle-dot"
+              class="bg-dark pointer-events-none inline-block h-5 w-5 translate-x-1 transform rounded-full shadow ring-0 transition duration-200 ease-in-out">
+            </span>
+          </button>
+          <span
+            id="pricing-label-yearly"
+            class="font-primary text-ink-2 text-base font-medium">
+            Yearly
+          </span>
+        </div>
+        <span
+          id="yearly-prompt"
+          class="font-secondary text-accent text-xs tracking-wide uppercase">
+          ← Toggle for 2 months free
+        </span>
+      </div>
+
       <div class="border-border-light grid grid-cols-1 border md:grid-cols-3">
         {
-          SUPPORT_PLANS.map((plan, i) => (
+          CARE_PLANS.map((plan, i) => (
             <div
               class:list={[
-                "relative p-8",
-                i < SUPPORT_PLANS.length - 1 &&
+                "relative flex flex-col p-8",
+                i < CARE_PLANS.length - 1 &&
                   "border-border-light border-b md:border-r md:border-b-0",
                 plan.featured && "bg-stone-2",
               ]}>
@@ -411,167 +510,177 @@ const SUPPORT_PLANS = [
               <h3 class="font-primary text-2xl font-normal tracking-tight">
                 {plan.name}
               </h3>
-              <div class="mt-3 mb-4 flex items-baseline gap-2">
-                <span class="font-primary text-accent text-5xl leading-none italic">
-                  {plan.price}
-                </span>
-                <span class="label">{plan.cadence}</span>
+              <!-- Monthly price (shown by default) -->
+              <div class="price-monthly">
+                <div class="font-primary text-accent mt-3 text-4xl leading-none italic">
+                  {plan.monthlyPrice}
+                </div>
+                <div class="label text-ink-2 mt-2">{plan.monthlyLabel}</div>
               </div>
-              <p class="text-ink-2 mb-5 min-h-[4rem] text-sm leading-relaxed">
-                {plan.blurb}
+              <!-- Yearly price (hidden by default) -->
+              <div class="price-yearly hidden">
+                <div class="font-primary text-accent mt-3 text-4xl leading-none italic">
+                  {plan.annualPrice}
+                </div>
+                <div class="label text-accent mt-2">{plan.annualNote}</div>
+              </div>
+              <p class="text-ink-2 mt-5 mb-5 text-sm leading-relaxed">
+                <strong class="text-dark">This is you if:</strong> {plan.you}
               </p>
               <div class="border-border-light/50 border-t">
                 {plan.features.map((feature) => (
-                  <div class="text-ink-2 border-border-light/50 flex gap-3 border-b py-2 text-sm">
-                    <span class="text-accent">✓</span>
+                  <div class="text-ink-2 border-border-light/50 flex gap-3 border-b py-2 text-sm leading-snug">
+                    <span class="text-accent flex-shrink-0">✓</span>
                     <span>{feature}</span>
                   </div>
                 ))}
               </div>
-              <CustomButton
-                label="Book a Quick Call →"
-                url="https://tidycal.com/bvswebdesign/30-minute-intro-call"
-                hoverEffect="creative-fill"
-                class="effect-color-accent mt-6"
-              />
-            </div>
-          ))
-        }
-      </div>
-      <p class="label text-ink-2 mt-4">
-        All plans are month-to-month · cancel any time · no setup fee for sites
-        I've built
-      </p>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="border-border-light border-t py-16 lg:py-20">
-    <div class="container">
-      <h2
-        class="font-primary mb-10 text-3xl font-normal tracking-tight sm:text-5xl">
-        Everything you need to know about my website maintenance packages
-      </h2>
-      <div
-        class="hs-accordion-group border-border-light mx-auto w-full max-w-4xl border-y">
-        {
-          FAQ_ITEMS.map((item, index) => (
-            <div
-              class:list={[
-                "hs-accordion border-border-light border-b",
-                index === 0 && "active",
-              ]}
-              id={`faq-accordion-${index}`}>
-              <button
-                class="hs-accordion-toggle font-primary text-dark hover:text-accent flex w-full items-center justify-between py-5 text-left text-lg font-medium transition-colors"
-                aria-expanded={index === 0 ? "true" : "false"}
-                aria-controls={`faq-content-${index}`}>
-                <span>{item.question}</span>
-                <svg
-                  class="hs-accordion-active:rotate-180 text-accent size-5 shrink-0 transition-transform duration-300"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <path d="m6 9 6 6 6-6" />
-                </svg>
-              </button>
-              <div
-                id={`faq-content-${index}`}
-                class:list={[
-                  "hs-accordion-content w-full overflow-hidden transition-[height] duration-300",
-                  index !== 0 && "hidden",
-                ]}
-                role="region"
-                aria-labelledby={`faq-accordion-${index}`}>
-                <p class="text-ink-2 pr-8 pb-5 leading-relaxed">
-                  {item.answer}
+              <p class="text-ink-3 mt-4 text-sm leading-relaxed">
+                <strong class="text-ink-2">Not for you if:</strong> {plan.not}
+              </p>
+              {plan.setup && (
+                <p class="font-secondary text-ink-2 border-border-light/50 mt-4 border-t pt-4 text-xs leading-relaxed">
+                  {plan.setup}
                 </p>
+              )}
+              <div class="mt-auto pt-6">
+                <CustomButton
+                  label={`Choose ${plan.name} →`}
+                  url="https://tidycal.com/bvswebdesign/30-minute-intro-call"
+                  hoverEffect="creative-fill"
+                  class={
+                    plan.featured
+                      ? "effect-color-accent w-full justify-center"
+                      : "btn-ghost-style w-full justify-center"
+                  }
+                />
               </div>
             </div>
           ))
         }
       </div>
+      <p
+        class="font-primary text-ink-2 mt-5 max-w-[86ch] text-base leading-relaxed">
+        Pay monthly and cancel any time, or pay for the year and take two months
+        off. No lock-in either way. If you leave part way through a year, I
+        refund the months you have not used.
+      </p>
     </div>
   </section>
 
-  <!-- Related Reading -->
+  <!-- 8 · What Every Plan Covers -->
   <section class="border-border-light border-t py-16 lg:py-20">
     <div class="container">
       <h2
-        class="font-primary mb-10 text-3xl font-normal tracking-tight sm:text-5xl">
-        Important things to know about website maintenance
+        class="font-primary mb-8 text-3xl font-normal tracking-tight sm:text-4xl lg:text-[2.5rem]">
+        What <span class="italic">every plan</span> covers
       </h2>
-      <div class="grid gap-x-6 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
+      <div class="border-border-light border-t">
         {
-          relatedPosts.map((post) => {
-            const postUrl = getLocaleUrlCTM(
-              extractSlug(post),
-              Astro.currentLocale,
-              "blog",
-            );
-            return (
-              <article class="group">
-                <a href={postUrl} class="relative block overflow-hidden">
-                  {post.data.image && (
-                    <OptimizedImage
-                      src={post.data.image}
-                      alt={post.data.title}
-                      class="h-87.5! min-w-full object-cover transition duration-500 group-hover:scale-105"
-                      width={600}
-                      height={600}
-                    />
-                  )}
-                </a>
-                <div class="mt-6">
-                  <h3 class="text-h4-sm md:text-h5 mb-6 font-medium">
-                    <a
-                      href={postUrl}
-                      class="hover:text-accent inline-block transition-colors">
-                      {post.data.title}
-                    </a>
-                  </h3>
-                  <a
-                    href={postUrl}
-                    class="font-secondary border-dark hover:border-accent hover:text-accent border-b pb-1 text-sm tracking-wider uppercase transition-colors">
-                    Read More →
-                  </a>
-                </div>
-              </article>
-            );
-          })
+          CARE_COVERED.map((item, i) => (
+            <div class="border-border-light/50 grid grid-cols-1 items-baseline gap-4 border-b py-5 md:grid-cols-[auto_1fr_2fr] md:gap-7">
+              <span class="font-primary text-accent text-lg italic">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 class="font-primary text-xl leading-tight font-normal tracking-tight md:text-2xl">
+                {item.title}
+              </h3>
+              <p class="text-ink-2 text-sm leading-relaxed md:text-base">
+                {item.body}
+              </p>
+            </div>
+          ))
         }
       </div>
     </div>
   </section>
 
-  <!-- Not Quite Right Fork -->
+  <!-- 9 · FAQ -->
   <section class="border-border-light border-t py-16 lg:py-20">
     <div class="container">
-      <!-- Header row -->
-      <div class="mb-10 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
+      <div
+        class="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1fr_2.4fr] lg:gap-12">
         <div>
+          <div class="label text-accent mb-4">— Questions</div>
           <h2
-            class="font-primary text-3xl font-normal tracking-tight sm:text-5xl">
-            Need more than website maintenance?
+            class="font-primary text-3xl leading-[1.04] font-normal tracking-tight sm:text-4xl lg:text-[2.5rem]">
+            The things people <span class="italic">ask first</span>
           </h2>
         </div>
-        <div class="flex items-end">
-          <p class="font-primary text-ink-2 text-lg leading-relaxed">
-            If that's not where you are right now, you probably need something
-            else first — and I'd rather point you to the right thing than sell
-            you the wrong one.
-          </p>
+        <div
+          class="hs-accordion-group border-border-light w-full max-w-4xl border-y">
+          {
+            FAQ_ITEMS.map((item, index) => (
+              <div
+                class:list={[
+                  "hs-accordion border-border-light border-b",
+                  index === 0 && "active",
+                ]}
+                id={`faq-accordion-${index}`}>
+                <button
+                  class="hs-accordion-toggle font-primary text-dark hover:text-accent flex w-full items-center justify-between gap-4 py-5 text-left text-lg font-medium transition-colors"
+                  aria-expanded={index === 0 ? "true" : "false"}
+                  aria-controls={`faq-content-${index}`}>
+                  <div class="flex items-baseline gap-5">
+                    <span class="font-primary text-accent text-base italic">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span>{item.question}</span>
+                  </div>
+                  <svg
+                    class="hs-accordion-active:rotate-45 text-accent size-5 shrink-0 transition-transform duration-300"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                </button>
+                <div
+                  id={`faq-content-${index}`}
+                  class:list={[
+                    "hs-accordion-content w-full overflow-hidden transition-[height] duration-300",
+                    index !== 0 && "hidden",
+                  ]}
+                  role="region"
+                  aria-labelledby={`faq-accordion-${index}`}>
+                  <p class="text-ink-2 pr-8 pb-5 pl-11 leading-relaxed">
+                    {item.answer}
+                  </p>
+                </div>
+              </div>
+            ))
+          }
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Cards -->
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+  <!-- 10 · Need Something Else -->
+  <section class="border-border-light border-t py-16 lg:py-20">
+    <div class="container">
+      <div
+        class="mb-10 grid grid-cols-1 items-end gap-8 lg:grid-cols-2 lg:gap-12">
+        <div>
+          <div class="label text-accent mb-4">— Need something else?</div>
+          <h2
+            class="font-primary text-3xl leading-[1.04] font-normal tracking-tight sm:text-4xl lg:text-[2.5rem]">
+            A care plan keeps a <span class="italic">working</span> site working.
+          </h2>
+        </div>
+        <p class="font-primary text-ink-2 text-lg leading-relaxed">
+          If that's not where you are right now, you probably need something
+          else first — and I'd rather point you to the right thing than sell you
+          the wrong one.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
         <a
           href="/services/website-rescue/"
           class="fork-card border-border-light text-dark hover:bg-stone-2 block border p-8 no-underline transition-colors md:p-9">
@@ -583,7 +692,7 @@ const SUPPORT_PLANS = [
           </div>
           <h3
             class="font-primary mt-3 mb-3 max-w-[24ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
-            Your site's already broken, inherited or your developer has vanished
+            Your site's already broken, inherited, or your developer's vanished?
           </h3>
           <p
             class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
@@ -602,7 +711,7 @@ const SUPPORT_PLANS = [
           </div>
           <h3
             class="font-primary mt-3 mb-3 max-w-[24ch] text-2xl leading-tight font-normal tracking-tight md:text-[1.7rem]">
-            No site yet, or yours is well overdue a redesign?
+            No site yet — or yours is well overdue a rebuild?
           </h3>
           <p
             class="text-ink-2 m-0 max-w-[46ch] text-sm leading-relaxed md:text-[0.9rem]">
@@ -614,8 +723,8 @@ const SUPPORT_PLANS = [
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <div id="contact">
+  <!-- 11 · Contact/Enquiry Section -->
+  <div id="enquiry">
     <ContactSection noPaddingBottom={false} />
   </div>
 </Base>
@@ -631,15 +740,87 @@ const SUPPORT_PLANS = [
   .text-ink-2 {
     color: var(--color-ink-2, #44403c);
   }
+  .text-ink-3 {
+    color: var(--color-ink-3, rgba(20, 19, 14, 0.55));
+  }
   .bg-stone-2 {
     background-color: var(--color-stone-2, #e7e5e3);
   }
+  .btn-ghost {
+    border: 1px solid var(--color-dark, #14130e);
+    background: transparent;
+    color: var(--color-dark, #14130e);
+  }
+  .btn-ghost:hover {
+    background: var(--color-dark, #14130e);
+    color: var(--color-paper, #f4f3ee);
+  }
+  .btn-ghost-style {
+    border: 1px solid var(--color-dark, #14130e) !important;
+    background: transparent !important;
+    color: var(--color-dark, #14130e) !important;
+  }
+  .btn-ghost-style:hover {
+    background: var(--color-dark, #14130e) !important;
+    color: var(--color-paper, #f4f3ee) !important;
+  }
 
-  /* Contact form privacy policy link */
-  #contact :global(a) {
+  /* Contact form styling */
+  #enquiry :global(a) {
     color: white;
   }
-  #contact :global(a:hover) {
+  #enquiry :global(a:hover) {
     color: var(--color-accent);
   }
+
+  /* Pricing toggle */
+  .bg-border-light {
+    background-color: var(--color-border-light, #d6d3d1);
+  }
+  #pricing-toggle[aria-checked="true"] {
+    background-color: var(--color-accent);
+  }
+  #pricing-toggle[aria-checked="true"] #toggle-dot {
+    transform: translateX(1.375rem);
+    background-color: white;
+  }
 </style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById("pricing-toggle");
+    const monthlyLabel = document.getElementById("pricing-label-monthly");
+    const yearlyLabel = document.getElementById("pricing-label-yearly");
+    const yearlyPrompt = document.getElementById("yearly-prompt");
+    const monthlyPrices = document.querySelectorAll(".price-monthly");
+    const yearlyPrices = document.querySelectorAll(".price-yearly");
+
+    if (!toggle) return;
+
+    toggle.addEventListener("click", () => {
+      const isYearly = toggle.getAttribute("aria-checked") === "true";
+
+      if (isYearly) {
+        // Switch to monthly
+        toggle.setAttribute("aria-checked", "false");
+        monthlyLabel?.classList.remove("text-ink-2");
+        monthlyLabel?.classList.add("text-dark");
+        yearlyLabel?.classList.remove("text-dark");
+        yearlyLabel?.classList.add("text-ink-2");
+        yearlyPrompt?.classList.remove("hidden");
+        monthlyPrices.forEach((el) => el.classList.remove("hidden"));
+        yearlyPrices.forEach((el) => el.classList.add("hidden"));
+      } else {
+        // Switch to yearly
+        toggle.setAttribute("aria-checked", "true");
+        monthlyLabel?.classList.remove("text-dark");
+        monthlyLabel?.classList.add("text-ink-2");
+        yearlyLabel?.classList.remove("text-ink-2");
+        yearlyLabel?.classList.add("text-dark");
+        yearlyPrompt?.classList.add("hidden");
+        monthlyPrices.forEach((el) => el.classList.add("hidden"));
+        yearlyPrices.forEach((el) => el.classList.remove("hidden"));
+      }
+    });
+  });
+</script>

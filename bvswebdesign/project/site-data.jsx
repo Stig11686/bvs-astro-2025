@@ -15,12 +15,13 @@ const META = {
   about:    'About Steve Marks | WordPress Web Designer Based in Skipton | BVS Web Design',
   design:   'WordPress Website Design for Service Businesses | BVS Web Design',
   rescue:   'Website Rescue | Stuck, Locked Out or Left Behind | BVS Web Design',
-  support:  'Website Support & Care Plans | BVS Web Design',
+  support:  'Website Care Plans & Maintenance Packages | BVS Web Design',
   audit:    "Free Website Audit | Find Out What's Holding Your Site Back | BVS Web Design",
   portfolio:'Recent Work & Case Studies | BVS Web Design',
   case:     'Ilkley Dental Care — Case Study | BVS Web Design',
   blog:     'Web Design Blog | Tips, Case Studies & Insights | BVS Web Design',
   contact:  'Contact BVS Web Design | Web Designer in Skipton, Yorkshire',
+  york:     'Web Design York | WordPress Websites for York Businesses | BVS Web Design',
 };
 
 // Services (nav dropdown order + descriptions from §3.1) ───────────────────────

@@ -167,68 +167,7 @@ function RescuePage({ setPage }) {
   );
 }
 
-// ── WEBSITE SUPPORT (§2.5 — kept, first-person, CTA fix) ────────────────────────
-function SupportPage({ setPage }) {
-  return (
-    <>
-      <ServiceHero
-        eyebrow="Website Support & Care Plans"
-        maxW="20ch"
-        cta="Get Peace of Mind →" ctaTo={LINKS.start}
-        intro={
-          <p className="serif" style={{ fontSize: 20, lineHeight: 1.5, color: 'var(--ink-2)', maxWidth: '58ch' }}>
-            Security, updates, backups and hosting — all handled, so your site keeps working while you focus on running your business. A real person at the other end of the email, not a ticket queue.
-          </p>
-        }
-      >
-        Looked after, so it keeps <span style={{ fontStyle: 'italic', color: 'var(--accent-a)' }}>earning</span>.
-      </ServiceHero>
-
-      {/* Plans */}
-      <section className="gutter" style={{ padding: '36px 56px', borderTop: '1px solid var(--rule)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0, border: '1px solid var(--rule)' }}>
-          {SUPPORT_PLANS.map((p, i, arr) => (
-            <div key={p.name} style={{
-              padding: '30px 30px 32px',
-              borderRight: i < arr.length - 1 ? '1px solid var(--rule)' : 'none',
-              background: p.featured ? 'var(--paper-2)' : 'transparent',
-              position: 'relative',
-            }}>
-              {p.featured && (
-                <div className="mono" style={{
-                  position: 'absolute', top: 0, right: 0,
-                  fontSize: 9.5, letterSpacing: '0.1em', textTransform: 'uppercase',
-                  background: 'var(--accent-a)', color: 'var(--dark-paper)', padding: '5px 10px',
-                }}>Most popular</div>
-              )}
-              <h3 className="serif" style={{ fontSize: 27, fontWeight: 400, letterSpacing: '-0.01em' }}>{p.name}</h3>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, margin: '10px 0 14px' }}>
-                <span className="serif" style={{ fontSize: 48, fontStyle: 'italic', color: 'var(--accent-a)', lineHeight: 1 }}>{p.price}</span>
-                <span className="label">{p.cadence}</span>
-              </div>
-              <p style={{ fontSize: 14, color: 'var(--ink-2)', lineHeight: 1.55, margin: '0 0 18px', minHeight: 64 }}>{p.blurb}</p>
-              <div style={{ borderTop: '1px solid var(--rule-soft)' }}>
-                {p.features.map((f) => (
-                  <div key={f} style={{ display: 'flex', gap: 10, padding: '8px 0', fontSize: 13.5, color: 'var(--ink-2)', borderBottom: '1px solid var(--rule-soft)' }}>
-                    <span style={{ color: 'var(--accent-a)' }}>✓</span>{f}
-                  </div>
-                ))}
-              </div>
-              <a href={LINKS.start} target="_blank" rel="noopener"
-                className={'btn ' + (p.featured ? 'btn--accent' : 'btn--ghost')}
-                style={{ marginTop: 20, width: '100%', justifyContent: 'center' }}>
-                Choose {p.name.split(' ')[0]} →
-              </a>
-            </div>
-          ))}
-        </div>
-        <p className="label" style={{ marginTop: 16 }}>
-          All plans are month-to-month · cancel any time · no setup fee for sites I've built
-        </p>
-      </section>
-    </>
-  );
-}
+// SupportPage (Website Care Plans) now lives in site-support.jsx
 
 // ── WEBSITE AUDIT (§2.4 — rewrite) ──────────────────────────────────────────────
 function AuditPage({ setPage }) {
@@ -316,4 +255,4 @@ function AuditPage({ setPage }) {
   );
 }
 
-Object.assign(window, { DesignPage, RescuePage, SupportPage, AuditPage });
+Object.assign(window, { DesignPage, RescuePage, AuditPage });
