@@ -7,12 +7,13 @@
   "packageManager": "yarn@1.22.19",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && yarn remove-draft-from-sitemap",
-    "preview": "astro build && yarn remove-draft-from-sitemap && astro preview",
+    "build": "yarn fetch-unsplash-images && astro build && yarn remove-draft-from-sitemap",
+    "preview": "yarn fetch-unsplash-images && astro build && yarn remove-draft-from-sitemap && astro preview",
     "astro-check": "astro check",
     "generate-favicons": "node ./scripts/generate-favicons.mjs",
     "remove-multilingual": "node ./scripts/remove-multilingual.mjs",
     "remove-draft-from-sitemap": "node ./scripts/remove-draft-from-sitemap.mjs",
+    "fetch-unsplash-images": "node ./scripts/fetch-unsplash-images.mjs",
     "format": "prettier -w ./src",
     "test": "cross-env TS_NODE_PROJECT=\"./tsconfig.jest.json\" jest --watch"
   },
