@@ -1,10 +1,8 @@
 name: Build check
 on:
   pull_request:
-  push:
-    branches: [rebuild]
 permissions:
-  contents: read
+  contents: write
   pull-requests: write
 jobs:
   build:
@@ -16,14 +14,33 @@ jobs:
           node-version: 22
       - run: npm install --no-audit --no-fund
       - name: Build
-        id: build
         run: |
           set -o pipefail
           npm run build 2>&1 | tee build.log
+      - name: Old URLs still resolve
+        run: |
+          set -o pipefail
+          node .github/scripts/verify-urls.mjs 2>&1 | tee -a build.log
       - name: Post the error to the pull request
-        if: failure() && github.event_name == 'pull_request'
+        if: failure()
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          { echo '### Build failed'; echo '```'; tail -n 80 build.log; echo '```'; } > comment.md
+          { echo '### Build failed'; echo '```'; grep -v '^warning:' build.log | tail -n 80; echo '```'; } > comment.md
           gh pr comment ${{ github.event.pull_request.number }} --repo ${{ github.repository }} --body-file comment.md
+      - name: Screenshots
+        if: success()
+        run: |
+          npm install --no-save playwright@1.48.2
+          npx playwright install --with-deps chromium
+          (npx astro preview --port 4321 &) && sleep 4
+          node .github/scripts/screenshots.mjs
+          cp build.log shots/
+      - name: Publish screenshots to the ci-screenshots branch
+        if: success()
+        run: |
+          cd shots
+          git init -q && git checkout -q -b ci-screenshots
+          git -c user.name=ci -c user.email=ci@localhost add -A
+          git -c user.name=ci -c user.email=ci@localhost commit -qm "Screenshots for ${{ github.event.pull_request.head.sha }}"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" ci-screenshots
