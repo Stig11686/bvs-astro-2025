@@ -6,7 +6,9 @@ import Img from "@/components/Img.astro";
 import WorkCard from "@/components/WorkCard.astro";
 import CtaSlab from "@/components/CtaSlab.astro";
 import { mdxComponents } from "@/components/mdx";
-import { getWork, type Work } from "@/lib/content";
+import { getWork, info, type Work } from "@/lib/content";
+import XSell from "@/components/XSell.astro";
+import { sectorFor } from "@/lib/sectors";
 
 export async function getStaticPaths() {
   const work = await getWork();
@@ -15,6 +17,7 @@ export async function getStaticPaths() {
 const { work, all } = Astro.props as { work: Work; all: Work[] };
 const { Content } = await render(work);
 const d = work.data;
+const sector = sectorFor(info(work, "industry"));
 const more = all.filter((w) => w.id !== work.id).slice(0, 3);
 const words = d.title.split(" ");
 const headline = words.length > 1 ? `${words.slice(0, -1).join(" ")} *${words.at(-1)}*` : d.title;
@@ -37,6 +40,15 @@ const headline = words.length > 1 ? `${words.slice(0, -1).join(" ")} *${words.at
   </PageHero>
   <div class="cs-img rv"><Img src={d.image} alt={`${d.title} website`} sizes="(min-width: 1280px) 1232px, 100vw" loading="eager" /></div>
   <div class="page-body"><article class="art"><Content components={mdxComponents} /></article></div>
+  {
+    sector && (
+      <section class="sec" style="padding-top:0">
+        <div class="wrap">
+          <XSell items={[{ ...sector, title: `Run a similar business? ${sector.title}.` }, { tag: "Free Website Audit", title: "Not sure what your site needs?", text: "Send me your address and I'll tell you what's holding it back and what to fix first.", href: "/services/website-audit/" }]} />
+        </div>
+      </section>
+    )
+  }
   <section class="sec" style="padding-top:0">
     <div class="wrap">
       <div class="w-head"><h2 class="dh sh rv">More <span class="it">work.</span></h2><a class="tlink" href="/portfolio/">All projects →</a></div>

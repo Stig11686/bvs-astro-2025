@@ -10,6 +10,7 @@ import { mdxComponents } from "@/components/mdx";
 import { getPosts, summary, type Post } from "@/lib/content";
 import { formatDate, readingTime } from "@/lib/text";
 import { site, slugify } from "@/site.config";
+import { sectorFor } from "@/lib/sectors";
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -38,7 +39,8 @@ const ctas: Record<string, { label: string; href: string; link: string; linkText
   "Website Design": { label: "Start a Project", href: site.startProject, link: "/services/website-design/", linkText: "How I build websites →" },
   "Case Studies": { label: "Get in Touch", href: "/contact/", link: "/portfolio/", linkText: "See more of my work →" },
 };
-const cta = ctas[d.category];
+const sector = d.category === "Case Studies" ? sectorFor(d.title) : undefined;
+const cta = sector ? { ...ctas["Case Studies"], link: sector.href, linkText: `${sector.tag} →` } : ctas[d.category];
 ---
 
 <Base

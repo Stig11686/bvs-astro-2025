@@ -1,9 +1,11 @@
 ---
 import "@fontsource-variable/geist/wght.css";
-import "@fontsource-variable/newsreader/opsz.css";
-import "@fontsource-variable/newsreader/opsz-italic.css";
+import "@fontsource/newsreader/latin-500.css";
+import "@fontsource/newsreader/latin-500-italic.css";
 import "@/styles/tokens.css";
 import "@/styles/site.css";
+import geistFont from "@fontsource-variable/geist/files/geist-latin-wght-normal.woff2?url";
+import newsreaderItalic from "@fontsource/newsreader/files/newsreader-latin-500-italic.woff2?url";
 import { getImage as optimise } from "astro:assets";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
@@ -21,7 +23,9 @@ interface Props {
   bodyClass?: string;
 }
 
-const { title, description = site.description, image, noindex = false, schema, article, bodyClass = "" } = Astro.props;
+const { title: rawTitle, description = site.description, image, noindex = false, schema, article, bodyClass = "" } = Astro.props;
+// Google shows about 60 characters. Long titles drop the brand suffix rather than get cut off mid-word.
+const title = rawTitle.length > 60 ? rawTitle.replace(/\s*\|\s*BVS Web Design(,? [A-Za-z ]+)?$/, "") : rawTitle;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 
 let ogImage = new URL("/og-image.jpg", site.url).href;
@@ -62,6 +66,8 @@ const schemas = [pageSchema, ...(schema ? (Array.isArray(schema) ? schema : [sch
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <script is:inline>document.documentElement.classList.add("js")</script>
+    <link rel="preload" href={geistFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={newsreaderItalic} as="font" type="font/woff2" crossorigin />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />

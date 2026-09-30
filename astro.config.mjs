@@ -7,6 +7,8 @@ import rehypeExternalLinks from "./src/lib/rehype-external-links.mjs";
 export default defineConfig({
   site: "https://www.bvswebdesign.co.uk",
   trailingSlash: "always",
+  // Inline the CSS into each page so nothing blocks the first paint
+  build: { inlineStylesheets: "always" },
   integrations: [
     mdx(),
     sitemap({

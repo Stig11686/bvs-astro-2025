@@ -1,5 +1,6 @@
 ---
 title: From Home Clinic to Multi-Business Growth - Becca's Website Success Story
+metaTitle: "Beauty Clinic Website Case Study: Rebecca Rennolds"
 image: /images/portfolio/rebecca-rennolds-permanent-beauty-and-laser.png
 date: '2025-06-12'
 author: Steve Marks

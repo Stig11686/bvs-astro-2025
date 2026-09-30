@@ -1,11 +1,11 @@
 ---
-title: Web Design in Yorkshire | WordPress Websites for Yorkshire Businesses
+title: WordPress Web Designer in Yorkshire
 metaDescription: >-
-  WordPress web design for Yorkshire businesses. Websites built to get enquiries, rank on Google, and work
-  while you're busy. Strategy, design, build and ongoing care.
+  WordPress websites for Yorkshire businesses, designed, built and looked after by Steve Marks in Skipton.
+  Built to bring in enquiries. Projects from £2,000.
 location: Yorkshire
 region: North & West Yorkshire
-heroHeadline: Websites that get Yorkshire businesses more *enquiries*, more *bookings* and found on Google.
+heroHeadline: Web design in Yorkshire for businesses that want more *enquiries.*
 heroExcerpt: >-
   I'm Steve — I design and build WordPress websites for service businesses across Yorkshire. Not templated,
   not outsourced. Strategy, design, build, launch, and ongoing care. All from one person who actually picks up
@@ -28,8 +28,8 @@ whyWorkHeadline: Why Yorkshire businesses work with me
 features:
   - title: Strategy-first approach
     text: >-
-      Every site starts with your business goals, not a template. We work out what you need before touching
-      any code.
+      Every site starts with your business goals, not a template. I work out what you need before touching any
+      code.
   - title: Built to convert
     text: Designed around getting enquiries, not just looking good. Every page has a job to do.
   - title: WordPress, no lock-in

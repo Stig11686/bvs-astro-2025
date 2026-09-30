@@ -5,8 +5,8 @@ description: >-
   that most websites simply don't have.
 metaTitle: How I Turn Blog Traffic Into Actual Enquiries | BVS Web Design
 metaDescription: >-
-  Most business blogs get traffic and nothing else. Here's the exact process I use to turn blog readers into
-  real enquiries — without more content or more traffic.
+  Blog traffic that never turns into enquiries is common. How I connect blog posts to services so readers get
+  in touch.
 image: /images/blog/web-analytics.jpg
 keywords:
   - blog traffic

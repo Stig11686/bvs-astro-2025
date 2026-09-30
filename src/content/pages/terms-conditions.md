@@ -1,9 +1,8 @@
 ---
 title: Terms & Conditions
-metaDescription: Terms and Conditions for BVSWebDesign
+metaDescription: The terms that apply to using the BVS Web Design website and to web design, rescue and care plan work.
 ---
 
-# Terms & Conditions  
 
 **Last updated:** August 29, 2025  
 

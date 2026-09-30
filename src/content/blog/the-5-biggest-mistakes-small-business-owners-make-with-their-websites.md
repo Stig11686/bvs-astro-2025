@@ -1,5 +1,6 @@
 ---
 title: The 5 biggest mistakes small business owners make with their websites
+metaTitle: "5 Small Business Website Mistakes to Avoid | BVS Web Design"
 image: /images/blog/confused-about-your-website.jpg
 date: '2025-05-02'
 author: Steve Marks

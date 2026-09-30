@@ -3,7 +3,7 @@ title: Reviews Are One of the Main Things AI Search Reads When It Describes a Lo
 description: >-
   Stars get you trusted. Words get you described. Why the wording of your Google reviews decides whether AI
   search recommends you, and how to change it.
-metaTitle: Google Reviews and AI Search | BVS Web Design
+metaTitle: "How AI Search Uses Your Google Reviews | BVS Web Design"
 metaDescription: >-
   AI search reads your reviews to decide what you do and where. Run a ten-minute check on your last 20 reviews
   and change one line to get better ones.

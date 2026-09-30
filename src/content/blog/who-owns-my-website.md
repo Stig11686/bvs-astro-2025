@@ -4,9 +4,7 @@ description: >-
   If your web designer registered your domain, you may not own your website at all. Here's what to check, what
   to watch out for, and how a good designer should work.
 metaTitle: Who Owns My Website? What Small Business Owners Need to Know | BVS Web Design
-metaDescription: >-
-  Think you own your website? If your designer registered your domain, you might not. Here's what to check and
-  what good looks like — from a Leeds web designer.
+metaDescription: "Think you own your website? If your designer registered your domain, you might not. What to check, and what good looks like."
 image: /images/blog/domain.jpg
 keywords:
   - who owns my website

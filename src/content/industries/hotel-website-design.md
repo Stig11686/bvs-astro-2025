@@ -1,12 +1,12 @@
 ---
-title: Hotel & B&B Website Design | WordPress Websites for Hotels & B&Bs
+title: Hotel & B&B Website Design
 metaDescription: >-
-  Hotel & B&B website design that drives direct bookings. Custom booking engines, room showcases, and SEO for
-  hotels, B&Bs, and guest houses in Yorkshire.
+  Hotel and B&B website design that wins direct bookings and cuts OTA commission. WordPress websites with room
+  showcases, booking and local SEO.
 industry: Hotel
 industryPlural: Hotels
 heroEyebrow: Hotel & B&B Website Design
-heroHeadline: Websites that get hotels more *direct bookings* and fewer OTA fees.
+heroHeadline: Hotel and B&B website design for more *direct bookings.*
 heroExcerpt: >-
   I'm Steve — I design and build WordPress websites for hotels, B&Bs, and guest houses. Not a template with
   your logo slapped on. Strategy, design, build, launch, and ongoing care. All from one person who understands
@@ -28,7 +28,7 @@ whyPoints:
 includesHeadline: What's included
 includes:
   - title: Discovery & strategy session
-    text: We start with your business — your rooms, your guests, your competitive landscape
+    text: I start with your business — your rooms, your guests, your competitive landscape
   - title: Custom design
     text: Not a hotel template. A site designed around your property and your booking flow
   - title: Booking integration

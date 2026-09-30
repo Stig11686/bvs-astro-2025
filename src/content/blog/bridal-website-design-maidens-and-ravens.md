@@ -1,5 +1,6 @@
 ---
 title: Bridal Website Design - How Maidens and Ravens Grew to 1,000+ Visitors a Month
+metaTitle: "Bridal Website Design Case Study: Maidens & Ravens"
 image: /images/portfolio/maidens-and-ravens.png
 date: '2025-05-19'
 author: Steve Marks

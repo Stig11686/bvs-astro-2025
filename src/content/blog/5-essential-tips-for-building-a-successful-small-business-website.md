@@ -1,5 +1,6 @@
 ---
 title: 5 Essential Tips for Building a Successful Small Business Website
+metaTitle: "Small Business Website Tips: 5 Essentials | BVS Web Design"
 image: /images/blog/2.jpg
 date: '2025-03-10'
 author: Steve Marks

@@ -1,5 +1,6 @@
 ---
 title: Dental Website Design Success - How Ilkley Dental Care Gets 30+ Enquiries a Month
+metaTitle: "Dental Website Design Case Study: Ilkley Dental Care"
 image: /images/portfolio/ilkley-dental-care.png
 date: '2025-08-21'
 author: Steve Marks

@@ -44,7 +44,8 @@ draft: false
 | `description` | Recommended | The summary under the headline and on cards. If left out, the first paragraph is used. |
 | `image` | Recommended | See "Images" below. Posts without an image show as a coloured text card. |
 | `imageAlt` | Recommended | Describes the image for screen readers. |
-| `metaTitle`, `metaDescription` | Optional | For Google. Fall back to the title and description. |
+| `metaTitle` | Recommended | The title Google shows. Keep it under 60 characters, keyword first, ending `| BVS Web Design` if it fits. Falls back to the headline. |
+| `metaDescription` | Recommended | The snippet under the title in Google. 120 to 155 characters. Falls back to the description. |
 | `keywords` | Optional | Search phrases, for your own reference. |
 | `unsplashImage` | Optional | An `https://images.unsplash.com/photo-...` URL. The build downloads it to the path in `image` if that file doesn't exist yet. |
 | `featured` | Optional | `true` puts the post in the big "Start here" slot on /blog/. Otherwise the newest post goes there. |

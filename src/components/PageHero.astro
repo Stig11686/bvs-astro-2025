@@ -14,8 +14,21 @@ interface Props {
 }
 const { title, lede, crumbs = [], shapes = ["var(--acc-t)", "var(--alt-t)"], class: className = "", size = "page" } = Astro.props;
 const hasAside = Astro.slots.has("aside");
+const site = "https://www.bvswebdesign.co.uk";
+const trail = [{ label: "Home", href: "/" }, ...crumbs];
+const breadcrumbs = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: trail.map((c, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: c.label,
+    item: new URL(c.href ?? (i === trail.length - 1 ? Astro.url.pathname : "/"), site).href,
+  })),
+};
 ---
 
+{crumbs.length > 0 && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbs)} />}
 <section class={`ph-hero ${className}`}>
   <i class="bgshape a" style={`background:${shapes[0]}`}></i><i class="bgshape b" style={`background:${shapes[1]}`}></i>
   <div class="wrap" style={hasAside ? undefined : "grid-template-columns:1fr"}>

@@ -1,12 +1,12 @@
 ---
-title: Dental Website Design | WordPress Websites for Dentists
+title: Dental Website Design in Yorkshire
 metaDescription: >-
-  WordPress websites for dental practices. Built to get new patient enquiries, build trust, and work while
-  you're treating patients. Strategy, design, build and ongoing care.
+  Dental website design for UK practices. WordPress websites built to win new patient enquiries and build
+  trust, like Ilkley Dental Care's 30+ a month.
 industry: Dental Practice
 industryPlural: Dental Practices
 heroEyebrow: Dental Website Design
-heroHeadline: Websites that get dental practices more *patient enquiries* and build trust before the first appointment.
+heroHeadline: Dental website design that brings in *patient enquiries.*
 heroExcerpt: >-
   I'm Steve — I design and build WordPress websites for dental practices across Yorkshire. Not a template with
   stock photos of smiling models. Strategy, design, build, launch, and ongoing care. All from one person who
@@ -28,7 +28,7 @@ whyPoints:
 includesHeadline: What's included
 includes:
   - title: Discovery & strategy session
-    text: We start with your practice — your patients, your treatments, your competitive landscape
+    text: I start with your practice — your patients, your treatments, your competitive landscape
   - title: Custom design
     text: Not a dental template. A site designed around your practice and your patient journey
   - title: Treatment pages

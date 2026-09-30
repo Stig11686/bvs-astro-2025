@@ -1,11 +1,11 @@
 ---
-title: Web Design in Ilkley | WordPress Websites for Ilkley Businesses
+title: Web Designer in Ilkley | WordPress Web Design
 metaDescription: >-
-  WordPress web design for Ilkley businesses. Websites built to get enquiries, rank on Google, and work while
-  you're busy. Strategy, design, build and ongoing care.
+  WordPress web design for Ilkley businesses. Websites built to win enquiries and rank locally, designed and
+  looked after by Steve Marks, nearby in Skipton.
 location: Ilkley
 region: West Yorkshire
-heroHeadline: Websites that get Ilkley businesses more *enquiries*, more *bookings* and found on Google.
+heroHeadline: Web design in Ilkley for businesses that want more *enquiries.*
 heroExcerpt: >-
   I'm Steve — I design and build WordPress websites for service businesses in Ilkley and across West
   Yorkshire. Not templated, not outsourced. Strategy, design, build, launch, and ongoing care. All from one
@@ -29,8 +29,8 @@ whyWorkHeadline: Why Ilkley businesses work with me
 features:
   - title: Strategy-first approach
     text: >-
-      Every site starts with your business goals, not a template. We work out what you need before touching
-      any code.
+      Every site starts with your business goals, not a template. I work out what you need before touching any
+      code.
   - title: Built to convert
     text: Designed around getting enquiries, not just looking good. Every page has a job to do.
   - title: WordPress, no lock-in
@@ -46,6 +46,8 @@ portfolioText: >-
   helped get found and get enquiries.
 portfolioSlugs:
   - ilkley-dental-care
+  - rebecca-rennolds-permanent-beauty-and-laser
+  - the-yorkshire-unicorn
 successStory:
   business: Ilkley Dental Care
   location: Ilkley

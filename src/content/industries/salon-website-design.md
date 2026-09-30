@@ -1,12 +1,12 @@
 ---
-title: Salon & Beauty Website Design | WordPress Websites for Beauty Clinics
+title: Salon & Beauty Clinic Website Design
 metaDescription: >-
-  WordPress websites for beauty clinics, aesthetics practices, and salons. Built to book appointments,
-  showcase treatments, and build trust. Strategy, design, build and ongoing care.
+  Website design for salons, beauty and aesthetics clinics. WordPress websites built to take bookings, show
+  your treatments and earn client trust.
 industry: Beauty Clinic
 industryPlural: Beauty Clinics
 heroEyebrow: Beauty & Salon Website Design
-heroHeadline: Websites that get beauty clinics more *bookings* and build client trust.
+heroHeadline: Salon and beauty website design that fills your *diary.*
 heroExcerpt: >-
   I'm Steve — I design and build WordPress websites for beauty clinics, aesthetics practices, and salons. Not
   a template with generic stock photos. Strategy, design, build, launch, and ongoing care. All from one person
@@ -28,7 +28,7 @@ whyPoints:
 includesHeadline: What's included
 includes:
   - title: Discovery & strategy session
-    text: We start with your clinic — your treatments, your clients, your competitive landscape
+    text: I start with your clinic — your treatments, your clients, your competitive landscape
   - title: Custom design
     text: Not a beauty template. A site designed around your clinic and your brand
   - title: Treatment pages
@@ -50,7 +50,7 @@ portfolioSlugs:
   - rebecca-rennolds-permanent-beauty-and-laser
 successStory:
   business: Rebecca Rennolds Permanent Beauty & Laser
-  location: York
+  location: Skipton
   text: >-
     A permanent makeup and laser clinic that needed a website as professional as the treatments they offer.
     Clean, elegant design with clear treatment information and easy booking — built to convert browsers into

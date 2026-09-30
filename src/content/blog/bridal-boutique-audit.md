@@ -1,5 +1,6 @@
 ---
 title: What I Found When I Audited a Bridal Boutique Website
+metaTitle: "Bridal Boutique Website Audit: What I Found | BVS Web Design"
 description: >-
   A beautiful, well-branded site was quietly losing appointments every week. Here's what a proper audit found
   — and what it means for bridal, beauty and dental businesses.
@@ -13,6 +14,9 @@ categories:
   - Case Studies
 draft: false
 image: /images/blog/bridal-website.jpg
+metaDescription: >-
+  What I found auditing a bridal boutique website: £18,000 a year in avoidable spend and a site that wasn't
+  turning visitors into bookings.
 ---
 
 A bridal boutique reached out for a free website audit.

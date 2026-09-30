@@ -1,5 +1,6 @@
 ---
 title: When Should You Update or Invest in a New Website?
+metaTitle: "When to Update or Replace Your Website | BVS Web Design"
 image: /images/blog/5.jpg
 date: '2025-04-12'
 author: Steve Marks

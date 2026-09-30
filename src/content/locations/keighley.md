@@ -1,11 +1,11 @@
 ---
-title: Web Design in Keighley | WordPress Websites for Keighley Businesses
+title: Web Designer in Keighley | WordPress Web Design
 metaDescription: >-
-  WordPress web design for Keighley businesses. Websites built to get enquiries, rank on Google, and work
-  while you're busy. Strategy, design, build and ongoing care.
+  WordPress web design for Keighley and Silsden businesses. Websites built to win enquiries and rank locally,
+  from a web designer just up the road in Skipton.
 location: Keighley
 region: West Yorkshire
-heroHeadline: Websites that get Keighley businesses more *enquiries*, more *bookings* and found on Google.
+heroHeadline: Web design in Keighley for businesses that want more *enquiries.*
 heroExcerpt: >-
   I'm Steve — I design and build WordPress websites for service businesses in Keighley and across Yorkshire.
   Not templated, not outsourced. Strategy, design, build, launch, and ongoing care. All from one person who
@@ -31,8 +31,8 @@ whyWorkHeadline: Why Keighley businesses work with me
 features:
   - title: Strategy-first approach
     text: >-
-      Every site starts with your business goals, not a template. We work out what you need before touching
-      any code.
+      Every site starts with your business goals, not a template. I work out what you need before touching any
+      code.
   - title: Built to convert
     text: Designed around getting enquiries, not just looking good. Every page has a job to do.
   - title: WordPress, no lock-in
@@ -47,13 +47,20 @@ portfolioText: >-
   From manufacturing to retail, trades to professional services — these are some of the businesses I've helped
   get found and get enquiries.
 portfolioSlugs:
-  - antler-interiors
   - viking-cricket-silsden
+  - climate-action-silsden
+  - viking-hockey-silsden
 successStory:
-  business: ''
-  location: Keighley
-  text: ''
-  metrics: []
+  business: Viking Cricket
+  location: Silsden
+  text: >-
+    An independent cricket retailer near Keighley that needed a shop customers could find their way around. I
+    rebuilt it on WordPress so Jeff can run it himself, and they made three online sales on launch day.
+  metrics:
+    - value: '3'
+      label: Sales on launch day
+    - value: '2'
+      label: Shops built, cricket then hockey
 processSteps:
   - title: Free call
     text: A proper conversation about your business, not your colour scheme.

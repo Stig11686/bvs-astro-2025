@@ -8,6 +8,7 @@ import Steps from "@/components/Steps.astro";
 import XSell from "@/components/XSell.astro";
 import CtaSlab from "@/components/CtaSlab.astro";
 import { site } from "@/site.config";
+import { sectors } from "@/lib/sectors";
 
 const included = [
   "Discovery & strategy session",
@@ -87,6 +88,13 @@ const steps = [
   </section>
 
   <section class="sec">
+    <div class="wrap">
+      <h2 class="dh sh rv">Websites for your <span class="it">kind of business.</span></h2>
+      <XSell items={sectors.map(({ tag, title, text, href }) => ({ tag, title, text, href }))} />
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
     <div class="wrap">
       <h2 class="dh sh rv">Not quite <span class="it">you?</span></h2>
       <XSell

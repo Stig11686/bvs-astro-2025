@@ -1,5 +1,6 @@
 ---
 title: These 5 Sales Boosting Tips Will Make Your Website More Mobile-Friendly
+metaTitle: "5 Ways to Make Your Website Mobile-Friendly | BVS Web Design"
 image: /images/blog/4.jpg
 date: '2025-06-09'
 author: Steve Marks

@@ -24,11 +24,29 @@ const d = entry.data;
 const all = await getWork();
 const picked = d.portfolioSlugs.map((s) => all.find((w) => w.id === s)).filter((w) => w !== undefined);
 const work = (picked.length ? picked : all.filter((w) => w.data.featured)).slice(0, 3);
-const storyLink = all.find((w) => d.successStory.business.toLowerCase().includes(w.data.title.split(" ")[0].toLowerCase()));
+const story = d.successStory.business.toLowerCase();
+const storyLink =
+  all.find((w) => story.includes(w.data.title.toLowerCase())) ??
+  all.find((w) => story.includes(w.data.title.split(" ")[0].toLowerCase()));
 ---
 
-<Base title={`${d.title} | BVS Web Design`} description={d.metaDescription} image={d.heroImage}>
+<Base
+  title={`${d.title} | BVS Web Design`}
+  description={d.metaDescription}
+  image={d.heroImage}
+  schema={{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Website design",
+    name: d.heroEyebrow,
+    description: d.metaDescription,
+    audience: { "@type": "BusinessAudience", name: d.industryPlural },
+    areaServed: ["Yorkshire", "United Kingdom"],
+    provider: { "@type": "ProfessionalService", name: site.name, url: site.url, telephone: "+447521917508" },
+  }}
+>| BVS Web Design`} description={d.metaDescription} image={d.heroImage}>
   <PageHero title={d.heroHeadline} lede={d.heroExcerpt} crumbs={[{ label: "Services", href: "/services/" }, { label: d.heroEyebrow }]}>
+    <p class="eyebrow" slot="above"><span class="bvs-dot"></span>{d.heroEyebrow} · Skipton, Yorkshire &amp; the UK</p>
     <Fragment slot="cta">
       <Button href={site.startProject} kind="acc">Start a Project</Button>
       <a class="tlink" href="#work">See the work →</a>

@@ -29,11 +29,27 @@ const d = entry.data;
 const all = await getWork();
 const picked = d.portfolioSlugs.map((s) => all.find((w) => w.id === s)).filter((w) => w !== undefined);
 const work = (picked.length >= 3 ? picked : [...picked, ...all.filter((w) => w.data.featured && !picked.includes(w))]).slice(0, 3);
-const storyLink = all.find((w) => d.successStory.business.toLowerCase().includes(w.data.title.split(" ")[0].toLowerCase()));
+const story = d.successStory.business.toLowerCase();
+const storyLink =
+  all.find((w) => story.includes(w.data.title.toLowerCase())) ??
+  all.find((w) => story.includes(w.data.title.split(" ")[0].toLowerCase()));
 ---
 
-<Base title={`${d.title} | BVS Web Design`} description={d.metaDescription}>
+<Base
+  title={`${d.title} | BVS Web Design`}
+  description={d.metaDescription}
+  schema={{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Website design",
+    name: `Web design in ${d.location}`,
+    description: d.metaDescription,
+    areaServed: { "@type": "Place", name: `${d.location}, ${d.region}` },
+    provider: { "@type": "ProfessionalService", name: site.name, url: site.url, telephone: "+447521917508", address: { "@type": "PostalAddress", addressLocality: "Skipton", addressRegion: "North Yorkshire", addressCountry: "GB" } },
+  }}
+>| BVS Web Design`} description={d.metaDescription}>
   <PageHero title={d.heroHeadline} lede={d.heroExcerpt} crumbs={[{ label: `Web design in ${d.location}` }]}>
+    <p class="eyebrow" slot="above"><span class="bvs-dot"></span>WordPress web designer · {d.location}, {d.region}</p>
     <Fragment slot="cta">
       <Button href={site.introCall} kind="acc">Book an Intro Call</Button>
       <a class="tlink" href="#contact">Send a Message →</a>

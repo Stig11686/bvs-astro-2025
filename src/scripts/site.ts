@@ -146,7 +146,7 @@ if (squig) {
     const tl = gsap.timeline({ delay: 0.15 });
     tl.from(".hero .ln>span", { yPercent: 110, duration: 1, ease: "power4.out", stagger: 0.1 })
       .to(squig, { strokeDashoffset: 0, duration: 0.8, ease: "power2.out" }, "-=.3")
-      .from(".hero-side>*", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out", stagger: 0.08 }, "-=.7")
+      .from(".hero-side>*:not(.lede)", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out", stagger: 0.08 }, "-=.7")
       .from(".collage .stk", { scale: 0, opacity: 0, duration: 0.9, ease: "back.out(1.8)", stagger: 0.12 }, "-=1.1")
       .from(".hero .bgshape", { scaleY: 0, transformOrigin: "bottom", duration: 1.2, ease: "power4.out", stagger: 0.1 }, 0);
     setTimeout(() => { if (tl.progress() < 1) tl.progress(1); }, 3200);
@@ -159,7 +159,7 @@ if (squig) {
 // Inner page hero intro
 if (motion && $(".ph-hero")) {
   gsap.from(".ph-hero .ln>span", { yPercent: 110, duration: 1, ease: "power4.out", stagger: 0.08, delay: 0.1 });
-  gsap.from(".ph-hero .ph-in>*:not(h1)", { y: 26, opacity: 0, duration: 0.8, ease: "power3.out", stagger: 0.08, delay: 0.45 });
+  gsap.from(".ph-hero .ph-in>*:not(h1):not(.lede)", { y: 26, opacity: 0, duration: 0.8, ease: "power3.out", stagger: 0.08, delay: 0.45 });
   gsap.from(".ph-hero .bgshape", { scaleY: 0, transformOrigin: "bottom", duration: 1.2, ease: "power4.out", stagger: 0.1 });
 }
 

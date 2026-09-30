@@ -1,12 +1,12 @@
 ---
-title: Bridal Website Design | WordPress Websites for Bridal Boutiques
+title: Bridal Boutique Website Design
 metaDescription: >-
-  WordPress websites for bridal boutiques. Built to book out your diary, showcase your dresses, and capture
-  brides searching for 'the one'. Strategy, design, build and ongoing care.
+  Bridal boutique website design that fills appointment diaries. WordPress websites that show off your dresses
+  and bring brides through the door.
 industry: Bridal Boutique
 industryPlural: Bridal Boutiques
 heroEyebrow: Bridal Website Design
-heroHeadline: Websites that get bridal boutiques *booked out* months in advance.
+heroHeadline: Bridal website design that gets boutiques *booked out.*
 heroExcerpt: >-
   I'm Steve — I design and build WordPress websites for bridal boutiques. Not a generic template. A site that
   captures the feeling of your boutique and turns browsing brides into appointment bookings. Strategy, design,
@@ -28,7 +28,7 @@ whyPoints:
 includesHeadline: What's included
 includes:
   - title: Discovery & strategy session
-    text: We start with your boutique — your dresses, your brides, your unique selling point
+    text: I start with your boutique — your dresses, your brides, your unique selling point
   - title: Custom design
     text: Not a bridal template. A site designed around your boutique's personality
   - title: Dress galleries
@@ -52,7 +52,7 @@ successStory:
   location: York
   text: >-
     A bridal boutique as distinctive as the dresses they sell. Elizabeth needed a website that matched her
-    vision — gothic, sustainable, one-of-a-kind. We built it, and now she's booked out every Saturday for six
+    vision — gothic, sustainable, one-of-a-kind. I built it, and now she's booked out every Saturday for six
     months.
   metrics:
     - value: '6'

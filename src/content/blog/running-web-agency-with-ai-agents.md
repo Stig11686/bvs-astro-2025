@@ -1,5 +1,6 @@
 ---
 title: How I'm Running a Web Agency with AI Agents — Real Tools, Real Workflows, and Where I Still Call the Shots
+metaTitle: "Running a Web Agency With AI Agents | BVS Web Design"
 date: '2026-02-16'
 author: Steve Marks
 categories:
@@ -121,4 +122,4 @@ On the roadmap: a call prep agent that goes deeper, a weekly SEO report pulling 
 
 What I'd really like though, is to add people to this business - there is no substitute - what I'm hoping to prove is that people with little spare time, and little spare resources, can create something for themselves and their communities that make a positive impact.
 
-If you're building something similar, or you're curious how any part of this applies to your own business, the [contact form](/contact) is the right place to start.
+If you're building something similar, or you're curious how any part of this applies to your own business, the [contact form](/contact/) is the right place to start.

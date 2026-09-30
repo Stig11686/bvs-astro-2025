@@ -1,5 +1,6 @@
 ---
 title: Why Your Business Website Needs a Care Plan (And What Happens Without One)
+metaTitle: "Why Your Website Needs a Care Plan | BVS Web Design"
 image: /images/blog/3.jpg
 date: '2025-03-31'
 author: Steve Marks

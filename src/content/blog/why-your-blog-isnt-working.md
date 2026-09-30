@@ -6,7 +6,7 @@ description: >-
 metaTitle: Why Your Blog Isn't Working (And How to Fix It) | BVS Web Design
 metaDescription: >-
   Your blog has years of content but nobody can find what they need. Here's how to organise it so visitors
-  actually convert — from a Leeds web designer.
+  actually convert, from a Yorkshire web designer.
 image: /images/blog/web-analytics.jpg
 keywords:
   - blog not working

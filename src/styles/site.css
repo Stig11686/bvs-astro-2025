@@ -1,5 +1,5 @@
 /* Site styles: v2 homepage + inner pages from the Claude Design export (design/v2.css, design/pages.css) */
-:root{--claret:#6a1a2c;--claret-d:#4a0f1d;--claret-b:#d06a80;--claret-t:#f1d3da;--blue:#16365a;--blue-d:#0c2340;--blue-b:#6ba6dd;--blue-t:#d3e3f2;--acc:var(--claret);--acc-d:var(--claret-d);--acc-b:var(--claret-b);--acc-t:var(--claret-t);--alt:var(--blue);--alt-d:var(--blue-d);--alt-b:var(--blue-b);--alt-t:var(--blue-t);--cream:#e4dfd9;--cream-2:#d9d3cc;--ink:#050505;--graphite:#171717;--iron:#4b4b4b;--slate:#737373;--fog:#c7c7c7;--shadow:rgba(0,0,0,.07) 0 6px 27px;--ease:cubic-bezier(.2,.8,.2,1);--spring:cubic-bezier(.34,1.56,.64,1);--g:clamp(20px,4vw,48px);--sans:"Geist Variable","Geist",system-ui,sans-serif;--serif:"Newsreader Variable","Newsreader",Georgia,serif}
+:root{--claret:#6a1a2c;--claret-d:#4a0f1d;--claret-b:#d06a80;--claret-t:#f1d3da;--blue:#16365a;--blue-d:#0c2340;--blue-b:#6ba6dd;--blue-t:#d3e3f2;--acc:var(--claret);--acc-d:var(--claret-d);--acc-b:var(--claret-b);--acc-t:var(--claret-t);--alt:var(--blue);--alt-d:var(--blue-d);--alt-b:var(--blue-b);--alt-t:var(--blue-t);--cream:#e4dfd9;--cream-2:#d9d3cc;--ink:#050505;--graphite:#171717;--iron:#4b4b4b;--slate:#737373;--fog:#c7c7c7;--shadow:rgba(0,0,0,.07) 0 6px 27px;--ease:cubic-bezier(.2,.8,.2,1);--spring:cubic-bezier(.34,1.56,.64,1);--g:clamp(20px,4vw,48px);--sans:"Geist Variable","Geist",system-ui,sans-serif;--serif:"Newsreader",Georgia,serif}
 [data-accent=blue]{--acc:var(--blue);--acc-d:var(--blue-d);--acc-b:var(--blue-b);--acc-t:var(--blue-t);--alt:var(--claret);--alt-d:var(--claret-d);--alt-b:var(--claret-b);--alt-t:var(--claret-t)}
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:var(--cream);color:var(--ink);font:400 18px/1.55 var(--sans);letter-spacing:-.01em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -758,3 +758,12 @@ picture{display:contents}
 @media (max-width:1000px){.pcards[style]{grid-template-columns:1fr!important}}
 .art .abox img{width:96px;height:96px;margin:0;border-radius:50%;object-fit:cover;object-position:88% 70%;box-shadow:none}
 @media (max-width:760px){.art table{display:block;overflow-x:auto;white-space:nowrap}}
+
+/* Eyebrow: claret dot + short line (design system) */
+.eyebrow{display:flex;align-items:center;gap:10px;margin:0 0 22px;font-size:15px;font-weight:500;color:var(--iron)}
+.eyebrow .bvs-dot,.bvs-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--acc);flex:0 0 8px}
+.hero .wrap{grid-template-rows:auto auto auto}
+.hero-eyebrow{grid-column:1;grid-row:1;position:relative;z-index:1}
+.hero-h{grid-row:2}
+.hero-side{grid-row:3}
+.collage{grid-row:1/span 3}

@@ -1,11 +1,11 @@
 ---
-title: Web Design in York | WordPress Websites for York Businesses
+title: Web Designer in York | WordPress Web Design
 metaDescription: >-
-  WordPress web design for York businesses. Websites built to get enquiries, rank on Google, and work while
-  you're busy. Strategy, design, build and ongoing care.
+  WordPress web design for York businesses by Steve Marks. Websites built to bring in enquiries and bookings,
+  rank on Google, and stay looked after.
 location: York
 region: North Yorkshire
-heroHeadline: Websites that get York businesses more *enquiries*, more *bookings* and found on Google.
+heroHeadline: Web design in York for businesses that want more *enquiries.*
 heroExcerpt: >-
   I'm Steve — I design and build WordPress websites for service businesses in York and across North Yorkshire.
   Not templated, not outsourced. Strategy, design, build, launch, and ongoing care. All from one person who
@@ -29,8 +29,8 @@ whyWorkHeadline: Why York businesses work with me
 features:
   - title: Strategy-first approach
     text: >-
-      Every site starts with your business goals, not a template. We work out what you need before touching
-      any code.
+      Every site starts with your business goals, not a template. I work out what you need before touching any
+      code.
   - title: Built to convert
     text: Designed around getting enquiries, not just looking good. Every page has a job to do.
   - title: WordPress, no lock-in
@@ -51,7 +51,7 @@ successStory:
   location: York
   text: >-
     A bridal boutique as distinctive as the dresses they sell. Elizabeth needed a website that matched her
-    vision — gothic, sustainable, one-of-a-kind. We built it, and now she's booked out every Saturday for six
+    vision — gothic, sustainable, one-of-a-kind. I built it, and now she's booked out every Saturday for six
     months.
   metrics:
     - value: '6'
