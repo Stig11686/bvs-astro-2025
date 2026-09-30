@@ -1,0 +1,599 @@
+
+> bvswebdesign@2.0.0 prebuild
+> node scripts/fetch-unsplash.mjs && node scripts/check-content.mjs
+
+[unsplash] local-reviews-phone: saved src/assets/media/local-reviews-phone.webp
+warning: src/content/blog/accessibility-is-the-minimum-requirement.mdx: metaTitle is 84 characters (aim for 60 or fewer)
+warning: src/content/blog/who-owns-my-website.mdx: metaTitle is 77 characters (aim for 60 or fewer)
+warning: src/content/blog/why-is-my-website-traffic-not-bringing-leads.mdx: metaTitle is 80 characters (aim for 60 or fewer)
+warning: src/content/pages/solicitor-website-audit.mdx: metaDescription is 186 characters (aim for 155 or fewer)
+warning: Images in the library that nothing uses: steve-client-meeting, steve-office
+Content check passed: 46 content files, 40 images.
+
+> bvswebdesign@2.0.0 build
+> astro build
+
+15:56:01 [content] Syncing content
+15:56:01 [content] Synced content
+15:56:01 [types] Generated 493ms
+15:56:01 [build] output: "static"
+15:56:01 [build] mode: "static"
+15:56:01 [build] directory: /home/runner/work/bvs-astro-2025/bvs-astro-2025/dist/
+15:56:01 [build] Collecting build info...
+15:56:01 [build] ✓ Completed in 517ms.
+15:56:01 [build] Building static entrypoints...
+15:56:04 [vite] [32m✓ built in 2.85s[39m
+15:56:04 [build] ✓ Completed in 2.88s.
+
+ building client (vite) 
+15:56:04 [vite] transforming...
+15:56:04 [vite] [32m✓[39m 6 modules transformed.
+15:56:04 [vite] rendering chunks...
+15:56:04 [vite] [32m✓ built in 31ms[39m
+
+ generating static routes 
+15:56:04 ▶ src/pages/404.astro
+15:56:04   └─ /404.html (+17ms) 
+15:56:04 ▶ src/pages/[page].astro
+15:56:04   ├─ /privacy-policy/index.html (+11ms) 
+15:56:04   ├─ /solicitor-audit-thank-you/index.html (+6ms) 
+15:56:04   ├─ /website-not-generating-leads/index.html (+6ms) 
+15:56:04   ├─ /terms-conditions/index.html (+4ms) 
+15:56:04   ├─ /solicitor-website-audit/index.html (+7ms) 
+15:56:04   ├─ /web-designer-ilkley/index.html (+10ms) 
+15:56:04   ├─ /web-designer-keighley/index.html (+10ms) 
+15:56:04   ├─ /web-designer-york/index.html (+10ms) 
+15:56:04   └─ /web-designer-yorkshire/index.html (+11ms) 
+15:56:04 ▶ src/pages/about.astro
+15:56:04   └─ /about/index.html (+3ms) 
+15:56:04 ▶ src/pages/blog/[slug].astro
+15:56:04   ├─ /blog/reviews-ai-search-local-business/index.html (+9ms) 
+15:56:04   ├─ /blog/why-your-blog-isnt-working/index.html (+8ms) 
+15:56:04   ├─ /blog/who-owns-my-website/index.html (+6ms) 
+15:56:04   ├─ /blog/bridal-boutique-audit/index.html (+6ms) 
+15:56:04   ├─ /blog/how-to-turn-blog-traffic-into-enquiries/index.html (+6ms) 
+15:56:04   ├─ /blog/why-is-my-website-traffic-not-bringing-leads/index.html (+5ms) 
+15:56:04   ├─ /blog/running-web-agency-with-ai-agents/index.html (+8ms) 
+15:56:04   ├─ /blog/accessibility-is-the-minimum-requirement/index.html (+6ms) 
+15:56:04   ├─ /blog/wordpress-isnt-slow-bad-builds-are/index.html (+6ms) 
+15:56:04   ├─ /blog/what-to-do-when-my-website-designer-scams-me/index.html (+6ms) 
+15:56:04   ├─ /blog/dental-website-design-success-ilkley-dental-care/index.html (+6ms) 
+15:56:04   ├─ /blog/beauty-clinic-website-success-rebecca-rennolds/index.html (+6ms) 
+15:56:04   ├─ /blog/these-5-sales-boosting-tips-will-make-your-website-more-mobile-friendly/index.html (+5ms) 
+15:56:04   ├─ /blog/bridal-website-design-maidens-and-ravens/index.html (+5ms) 
+15:56:04   ├─ /blog/the-5-biggest-mistakes-small-business-owners-make-with-their-websites/index.html (+6ms) 
+15:56:04   ├─ /blog/when-should-you-update-or-invest-in-a-new-website/index.html (+6ms) 
+15:56:04   ├─ /blog/why-your-business-website-needs-a-care-plan-and-what-happens-without-one/index.html (+7ms) 
+15:56:04   └─ /blog/5-essential-tips-for-building-a-successful-small-business-website/index.html (+5ms) 
+15:56:04 ▶ src/pages/blog/category/[category].astro
+15:56:04   ├─ /blog/category/website-design/index.html (+4ms) 
+15:56:04   ├─ /blog/category/website-rescue/index.html (+3ms) 
+15:56:04   ├─ /blog/category/website-support/index.html (+3ms) 
+15:56:04   └─ /blog/category/website-audit/index.html (+3ms) 
+15:56:04 ▶ src/pages/blog/index.astro
+15:56:04   └─ /blog/index.html (+7ms) 
+15:56:04 ▶ src/pages/blog/page/[page].astro
+15:56:04   └─ /blog/page/2/index.html (+4ms) 
+15:56:04 ▶ src/pages/contact.astro
+15:56:04   └─ /contact/index.html (+4ms) 
+15:56:04 ▶ src/pages/from-pretty-to-profitable.astro
+15:56:04   └─ /from-pretty-to-profitable/index.html (+2ms) 
+15:56:04 ▶ src/pages/index.astro
+15:56:04   └─ /index.html (+5ms) 
+15:56:04 λ src/pages/llms.txt.ts
+15:56:04   └─ /llms.txt (+2ms) 
+15:56:04 ▶ src/pages/portfolio/[slug].astro
+15:56:04   ├─ /portfolio/66-sheep-street/index.html (+8ms) 
+15:56:04   ├─ /portfolio/jaynes-bridalwear-lincoln/index.html (+5ms) 
+15:56:04   ├─ /portfolio/ilkley-dental-care/index.html (+4ms) 
+15:56:04   ├─ /portfolio/maidens-and-ravens/index.html (+5ms) 
+15:56:04   ├─ /portfolio/the-yorkshire-unicorn/index.html (+5ms) 
+15:56:04   ├─ /portfolio/climate-action-silsden/index.html (+6ms) 
+15:56:04   ├─ /portfolio/rebecca-rennolds-permanent-beauty-and-laser/index.html (+8ms) 
+15:56:04   ├─ /portfolio/viking-hockey-silsden/index.html (+5ms) 
+15:56:04   ├─ /portfolio/antler-interiors/index.html (+4ms) 
+15:56:04   ├─ /portfolio/the-coach-house-skipton/index.html (+4ms) 
+15:56:04   └─ /portfolio/viking-cricket-silsden/index.html (+6ms) 
+15:56:04 ▶ src/pages/portfolio/index.astro
+15:56:04   └─ /portfolio/index.html (+7ms) 
+15:56:04 λ src/pages/robots.txt.ts
+15:56:04   └─ /robots.txt (+1ms) 
+15:56:04 ▶ src/pages/services/[slug].astro
+15:56:04   ├─ /services/website-audit/index.html (+7ms) 
+15:56:04   ├─ /services/website-design/index.html (+5ms) 
+15:56:04   ├─ /services/website-rescue/index.html (+5ms) 
+15:56:04   ├─ /services/website-support/index.html (+8ms) 
+15:56:04   ├─ /services/bridal-web-design/index.html (+6ms) 
+15:56:04   ├─ /services/hotel-website-design/index.html (+5ms) 
+15:56:04   ├─ /services/salon-website-design/index.html (+6ms) 
+15:56:04   └─ /services/dental-web-design/index.html (+7ms) 
+15:56:04 ▶ src/pages/services/index.astro
+15:56:04   └─ /services/index.html (+6ms) 
+15:56:04 ✓ Completed in 415ms.
+
+ generating optimized images 
+15:56:04   ▶ /_astro/og-default.Cl0ML8Y3_19cTq8.jpeg (before: 128kB, after: 103kB) (+88ms) (1/408)
+15:56:04   ▶ /_astro/steve-portrait.CpOHc8Bl_Z2rPC82.jpeg (before: 42kB, after: 67kB) (+135ms) (2/408)
+15:56:08   ▶ /_astro/climate-action-silsden-homepage.DdRnFoPr_2irJC5.avif (before: 163kB, after: 112kB) (+3.90s) (3/408)
+15:56:08   ▶ /_astro/ilkley-dental-homepage.CGHKTtH1_Z1NJB6e.avif (before: 104kB, after: 25kB) (+4.06s) (4/408)
+15:56:09   ▶ /_astro/climate-action-silsden-homepage.DdRnFoPr_1LVqou.avif (before: 163kB, after: 14kB) (+868ms) (5/408)
+15:56:10   ▶ /_astro/ilkley-dental-homepage.CGHKTtH1_Z2pBfTQ.avif (before: 104kB, after: 7kB) (+1.23s) (6/408)
+15:56:10   ▶ /_astro/steve-portrait.CpOHc8Bl_Z2dGU76.avif (before: 42kB, after: 14kB) (+5.94s) (7/408)
+15:56:11   ▶ /_astro/climate-action-silsden-homepage.DdRnFoPr_2aFi82.avif (before: 163kB, after: 34kB) (+1.35s) (8/408)
+15:56:11   ▶ /_astro/steve-portrait.CpOHc8Bl_ZLzBEk.avif (before: 42kB, after: 5kB) (+770ms) (9/408)
+15:56:11   ▶ /_astro/ilkley-dental-homepage.CGHKTtH1_Z30Yk6.avif (before: 104kB, after: 13kB) (+1.88s) (10/408)
+15:56:12   ▶ /_astro/ilkley-dental-homepage.CGHKTtH1_ZTEqaj.webp (before: 104kB, after: 52kB) (+445ms) (11/408)
+15:56:12   ▶ /_astro/ilkley-dental-homepage.CGHKTtH1_Z1PmxqL.webp (before: 104kB, after: 14kB) (+101ms) (12/408)
+15:56:12   ▶ /_astro/ilkley-dental-homepage.CGHKTtH1_wdI8Y.webp (before: 104kB, after: 28kB) (+264ms) (13/408)
+15:56:12   ▶ /_astro/ilkley-dental-homepage.CGHKTtH1_ZSAwaL.png (before: 104kB, after: 1221kB) (+134ms) (14/408)
+15:56:13   ▶ /_astro/ilkley-dental-homepage.CGHKTtH1_Z15Qb8A.png (before: 104kB, after: 288kB) (+72ms) (15/408)
+15:56:13   ▶ /_astro/ilkley-dental-homepage.CGHKTtH1_1gJ5ra.png (before: 104kB, after: 665kB) (+131ms) (16/408)
+15:56:13   ▶ /_astro/ilkley-dental-homepage.CGHKTtH1_Z1riKkc.jpeg (before: 104kB, after: 104kB) (+202ms) (17/408)
+15:56:13   ▶ /_astro/climate-action-silsden-homepage.DdRnFoPr_1x2Q5F.avif (before: 163kB, after: 60kB) (+2.53s) (18/408)
+15:56:13   ▶ /_astro/climate-action-silsden-homepage.DdRnFoPr_Z1REcIJ.webp (before: 163kB, after: 143kB) (+208ms) (19/408)
+15:56:13   ▶ /_astro/jodie-marks.DOtjpjyk_9LU98.avif (before: 103kB, after: 42kB) (+8.94s) (20/408)
+15:56:13   ▶ /_astro/climate-action-silsden-homepage.DdRnFoPr_aDTp2.webp (before: 163kB, after: 22kB) (+53ms) (21/408)
+15:56:13   ▶ /_astro/jodie-marks.DOtjpjyk_LGUUN.avif (before: 103kB, after: 1kB) (+93ms) (22/408)
+15:56:13   ▶ /_astro/climate-action-silsden-homepage.DdRnFoPr_ynL8z.webp (before: 163kB, after: 52kB) (+112ms) (23/408)
+15:56:14   ▶ /_astro/jodie-marks.DOtjpjyk_ZDvdjP.webp (before: 103kB, after: 75kB) (+201ms) (24/408)
+15:56:14   ▶ /_astro/jodie-marks.DOtjpjyk_Z1Acxa.webp (before: 103kB, after: 1kB) (+33ms) (25/408)
+15:56:14   ▶ /_astro/climate-action-silsden-homepage.DdRnFoPr_2r82xM.webp (before: 163kB, after: 96kB) (+188ms) (26/408)
+15:56:14   ▶ /_astro/jodie-marks.DOtjpjyk_Z2sgBEp.png (before: 103kB, after: 1213kB) (+93ms) (27/408)
+15:56:14   ▶ /_astro/jodie-marks.DOtjpjyk_Z1PlARJ.png (before: 103kB, after: 25kB) (+22ms) (28/408)
+15:56:14   ▶ /_astro/climate-action-silsden-homepage.DdRnFoPr_2kNchy.png (before: 163kB, after: 1631kB) (+127ms) (29/408)
+15:56:14   ▶ /_astro/climate-action-silsden-homepage.DdRnFoPr_CXjom.png (before: 163kB, after: 203kB) (+43ms) (30/408)
+15:56:14   ▶ /_astro/climate-action-silsden-homepage.DdRnFoPr_11Hb7T.png (before: 163kB, after: 525kB) (+65ms) (31/408)
+15:56:14   ▶ /_astro/climate-action-silsden-homepage.DdRnFoPr_1zoiK9.png (before: 163kB, after: 1111kB) (+104ms) (32/408)
+15:56:14   ▶ /_astro/climate-action-silsden-homepage.DdRnFoPr_ZvMl9f.jpeg (before: 163kB, after: 132kB) (+58ms) (33/408)
+15:56:14   ▶ /_astro/steve-portrait.CpOHc8Bl_1YIp7r.avif (before: 42kB, after: 8kB) (+3.22s) (34/408)
+15:56:14   ▶ /_astro/elizabeth-matfin.eh5Bj3Ip_24f7Bh.avif (before: 10kB, after: 4kB) (+407ms) (35/408)
+15:56:14   ▶ /_astro/elizabeth-matfin.eh5Bj3Ip_1XaQDu.avif (before: 10kB, after: 1kB) (+67ms) (36/408)
+15:56:15   ▶ /_astro/steve-portrait.CpOHc8Bl_Zw0YCu.webp (before: 42kB, after: 29kB) (+121ms) (37/408)
+15:56:15   ▶ /_astro/elizabeth-matfin.eh5Bj3Ip_Z1jg5I3.webp (before: 10kB, after: 7kB) (+30ms) (38/408)
+15:56:15   ▶ /_astro/elizabeth-matfin.eh5Bj3Ip_Z1pklFP.webp (before: 10kB, after: 1kB) (+7ms) (39/408)
+15:56:15   ▶ /_astro/elizabeth-matfin.eh5Bj3Ip_1quyDJ.png (before: 10kB, after: 101kB) (+17ms) (40/408)
+15:56:15   ▶ /_astro/elizabeth-matfin.eh5Bj3Ip_1kqiFW.png (before: 10kB, after: 14kB) (+11ms) (41/408)
+15:56:15   ▶ /_astro/steve-portrait.CpOHc8Bl_1IQhBU.webp (before: 42kB, after: 8kB) (+58ms) (42/408)
+15:56:15   ▶ /_astro/steve-portrait.CpOHc8Bl_Zz1Opf.webp (before: 42kB, after: 17kB) (+100ms) (43/408)
+15:56:15   ▶ /_astro/steve-portrait.CpOHc8Bl_2dJEJi.png (before: 42kB, after: 570kB) (+83ms) (44/408)
+15:56:15   ▶ /_astro/steve-portrait.CpOHc8Bl_vdgDx.png (before: 42kB, after: 181kB) (+52ms) (45/408)
+15:56:15   ▶ /_astro/viking-hockey-homepage.CkawDc5j_1Lqt77.avif (before: 61kB, after: 23kB) (+1.16s) (46/408)
+15:56:15   ▶ /_astro/steve-portrait.CpOHc8Bl_Z1MEPnC.png (before: 42kB, after: 405kB) (+67ms) (47/408)
+15:56:16   ▶ /_astro/viking-hockey-homepage.CkawDc5j_ZzH612.avif (before: 61kB, after: 18kB) (+813ms) (48/408)
+15:56:16   ▶ /_astro/viking-hockey-homepage.CkawDc5j_1oe1Pk.webp (before: 61kB, after: 35kB) (+116ms) (49/408)
+15:56:16   ▶ /_astro/viking-hockey-homepage.CkawDc5j_ZWTxhO.webp (before: 61kB, after: 28kB) (+77ms) (50/408)
+15:56:16   ▶ /_astro/viking-hockey-homepage.CkawDc5j_Z1iEGFU.png (before: 61kB, after: 424kB) (+44ms) (51/408)
+15:56:16   ▶ /_astro/viking-hockey-homepage.CkawDc5j_1pnQYR.png (before: 61kB, after: 365kB) (+43ms) (52/408)
+15:56:16   ▶ /_astro/viking-hockey-homepage.CkawDc5j_Z1TNmsn.jpeg (before: 61kB, after: 151kB) (+130ms) (53/408)
+15:56:19   ▶ /_astro/viking-cricket-homepage.Dw5fTC7q_JAC6p.avif (before: 94kB, after: 30kB) (+6.30s) (54/408)
+15:56:19   ▶ /_astro/yorkshire-unicorn-homepage.CcJrFKvu_Z1kLh1y.avif (before: 93kB, after: 26kB) (+3.08s) (55/408)
+15:56:20   ▶ /_astro/viking-cricket-homepage.Dw5fTC7q_20QChs.avif (before: 94kB, after: 13kB) (+709ms) (56/408)
+15:56:20   ▶ /_astro/yorkshire-unicorn-homepage.CcJrFKvu_ZSvjXj.avif (before: 93kB, after: 11kB) (+942ms) (57/408)
+15:56:22   ▶ /_astro/maidens-and-ravens-homepage.cpxhO3PE_2mA3B.avif (before: 92kB, after: 28kB) (+7.10s) (58/408)
+15:56:22   ▶ /_astro/viking-cricket-homepage.Dw5fTC7q_1T4tq6.avif (before: 94kB, after: 21kB) (+2.42s) (59/408)
+15:56:23   ▶ /_astro/viking-cricket-homepage.Dw5fTC7q_Z1FHQnM.webp (before: 94kB, after: 56kB) (+255ms) (60/408)
+15:56:23   ▶ /_astro/viking-cricket-homepage.Dw5fTC7q_Z2u5N3o.webp (before: 94kB, after: 21kB) (+64ms) (61/408)
+15:56:23   ▶ /_astro/maidens-and-ravens-homepage.cpxhO3PE_jhXH.avif (before: 92kB, after: 10kB) (+974ms) (62/408)
+15:56:23   ▶ /_astro/viking-cricket-homepage.Dw5fTC7q_2tjbTb.webp (before: 94kB, after: 38kB) (+165ms) (63/408)
+15:56:23   ▶ /_astro/viking-cricket-homepage.Dw5fTC7q_16pSz4.png (before: 94kB, after: 524kB) (+79ms) (64/408)
+15:56:23   ▶ /_astro/yorkshire-unicorn-homepage.CcJrFKvu_Z15OXtH.avif (before: 93kB, after: 20kB) (+2.73s) (65/408)
+15:56:23   ▶ /_astro/viking-cricket-homepage.Dw5fTC7q_Z1JzqKd.png (before: 94kB, after: 190kB) (+46ms) (66/408)
+15:56:23   ▶ /_astro/viking-cricket-homepage.Dw5fTC7q_Z1QmzBz.png (before: 94kB, after: 402kB) (+74ms) (67/408)
+15:56:23   ▶ /_astro/yorkshire-unicorn-homepage.CcJrFKvu_ZqG65D.webp (before: 93kB, after: 51kB) (+146ms) (68/408)
+15:56:23   ▶ /_astro/yorkshire-unicorn-homepage.CcJrFKvu_yPWB.webp (before: 93kB, after: 20kB) (+70ms) (69/408)
+15:56:23   ▶ /_astro/viking-cricket-homepage.Dw5fTC7q_Z26uR35.jpeg (before: 94kB, after: 120kB) (+122ms) (70/408)
+15:56:23   ▶ /_astro/yorkshire-unicorn-homepage.CcJrFKvu_ZbJMxM.webp (before: 93kB, after: 38kB) (+122ms) (71/408)
+15:56:23   ▶ /_astro/local-reviews-phone.CEEheyFJ_Z4o10L.jpeg (before: 103kB, after: 94kB) (+134ms) (72/408)
+15:56:23   ▶ /_astro/yorkshire-unicorn-homepage.CcJrFKvu_ZpCc66.png (before: 93kB, after: 671kB) (+74ms) (73/408)
+15:56:23   ▶ /_astro/rebecca-rennolds.BNdmmKDy_ZOOLnJ.avif (before: 49kB, after: 18kB) (+8.41s) (74/408)
+15:56:23   ▶ /_astro/yorkshire-unicorn-homepage.CcJrFKvu_1CJW9.png (before: 93kB, after: 254kB) (+45ms) (75/408)
+15:56:23   ▶ /_astro/yorkshire-unicorn-homepage.CcJrFKvu_ZaFSyf.png (before: 93kB, after: 585kB) (+70ms) (76/408)
+15:56:23   ▶ /_astro/rebecca-rennolds.BNdmmKDy_Z1dz5it.avif (before: 49kB, after: 1kB) (+101ms) (77/408)
+15:56:24   ▶ /_astro/yorkshire-unicorn-homepage.CcJrFKvu_1ypdcf.jpeg (before: 93kB, after: 132kB) (+135ms) (78/408)
+15:56:24   ▶ /_astro/rebecca-rennolds.BNdmmKDy_2hTz06.webp (before: 49kB, after: 37kB) (+162ms) (79/408)
+15:56:24   ▶ /_astro/rebecca-rennolds.BNdmmKDy_Z4XBDw.webp (before: 49kB, after: 2kB) (+27ms) (80/408)
+15:56:24   ▶ /_astro/analytics-dashboard.V_AVlntO_Z1gWK7U.jpeg (before: 183kB, after: 118kB) (+76ms) (81/408)
+15:56:24   ▶ /_astro/rebecca-rennolds.BNdmmKDy_1ceWg9.png (before: 49kB, after: 637kB) (+74ms) (82/408)
+15:56:24   ▶ /_astro/rebecca-rennolds.BNdmmKDy_Z1pnJke.png (before: 49kB, after: 27kB) (+25ms) (83/408)
+15:56:24   ▶ /_astro/dot-com.WDOnvWxh_1pHmzj.jpeg (before: 303kB, after: 157kB) (+86ms) (84/408)
+15:56:27   ▶ /_astro/maidens-and-ravens-homepage.cpxhO3PE_Znndy7.avif (before: 92kB, after: 19kB) (+4.66s) (85/408)
+15:56:27   ▶ /_astro/maidens-and-ravens-homepage.cpxhO3PE_Z1NR7rR.webp (before: 92kB, after: 54kB) (+179ms) (86/408)
+15:56:28   ▶ /_astro/dot-com.WDOnvWxh_Z1oJCM2.avif (before: 303kB, after: 233kB) (+3.77s) (87/408)
+15:56:28   ▶ /_astro/maidens-and-ravens-homepage.cpxhO3PE_1kx03H.webp (before: 92kB, after: 17kB) (+63ms) (88/408)
+15:56:28   ▶ /_astro/maidens-and-ravens-homepage.cpxhO3PE_VPtvS.webp (before: 92kB, after: 33kB) (+135ms) (89/408)
+15:56:28   ▶ /_astro/maidens-and-ravens-homepage.cpxhO3PE_2ico4v.png (before: 92kB, after: 559kB) (+79ms) (90/408)
+15:56:28   ▶ /_astro/dot-com.WDOnvWxh_Z1mG9V4.avif (before: 303kB, after: 2kB) (+252ms) (91/408)
+15:56:28   ▶ /_astro/maidens-and-ravens-homepage.cpxhO3PE_2fDjnP.png (before: 92kB, after: 184kB) (+54ms) (92/408)
+15:56:28   ▶ /_astro/maidens-and-ravens-homepage.cpxhO3PE_1QVMQ1.png (before: 92kB, after: 374kB) (+64ms) (93/408)
+15:56:28   ▶ /_astro/maidens-and-ravens-homepage.cpxhO3PE_1XaP4K.jpeg (before: 92kB, after: 108kB) (+142ms) (94/408)
+15:56:29   ▶ /_astro/dot-com.WDOnvWxh_ZEtdlF.avif (before: 303kB, after: 16kB) (+1.18s) (95/408)
+15:56:30   ▶ /_astro/jaynes-homepage.BTLAaGHX_Z2hk9YW.avif (before: 81kB, after: 25kB) (+1.69s) (96/408)
+15:56:30   ▶ /_astro/jaynes-homepage.BTLAaGHX_vH4IU.avif (before: 81kB, after: 8kB) (+774ms) (97/408)
+15:56:31   ▶ /_astro/dot-com.WDOnvWxh_2oyvKa.avif (before: 303kB, after: 51kB) (+1.81s) (98/408)
+15:56:32   ▶ /_astro/jaynes-homepage.BTLAaGHX_ZF0eV3.avif (before: 81kB, after: 16kB) (+1.22s) (99/408)
+15:56:32   ▶ /_astro/dot-com.WDOnvWxh_Z2d2Lg0.webp (before: 303kB, after: 322kB) (+945ms) (100/408)
+15:56:32   ▶ /_astro/dot-com.WDOnvWxh_Z1c5vIA.webp (before: 303kB, after: 9kB) (+135ms) (101/408)
+15:56:32   ▶ /_astro/jaynes-homepage.BTLAaGHX_Zr0T8u.webp (before: 81kB, after: 42kB) (+216ms) (102/408)
+15:56:32   ▶ /_astro/jaynes-homepage.BTLAaGHX_2do0dw.webp (before: 81kB, after: 13kB) (+73ms) (103/408)
+15:56:32   ▶ /_astro/dot-com.WDOnvWxh_ZtRz9c.webp (before: 303kB, after: 62kB) (+189ms) (104/408)
+15:56:32   ▶ /_astro/jaynes-homepage.BTLAaGHX_11FFxy.webp (before: 81kB, after: 27kB) (+111ms) (105/408)
+15:56:32   ▶ /_astro/jaynes-homepage.BTLAaGHX_Z1CFPsY.png (before: 81kB, after: 629kB) (+136ms) (106/408)
+15:56:32   ▶ /_astro/jaynes-homepage.BTLAaGHX_Z72tdC.png (before: 81kB, after: 164kB) (+52ms) (107/408)
+15:56:32   ▶ /_astro/jaynes-homepage.BTLAaGHX_Z1iJMSA.png (before: 81kB, after: 419kB) (+102ms) (108/408)
+15:56:33   ▶ /_astro/jaynes-homepage.BTLAaGHX_Z1zkMgD.jpeg (before: 81kB, after: 88kB) (+156ms) (109/408)
+15:56:33   ▶ /_astro/dot-com.WDOnvWxh_Z2ncPwX.webp (before: 303kB, after: 155kB) (+498ms) (110/408)
+15:56:33   ▶ /_astro/bride-hanger.BfEhGlFd_ZbQ07s.jpeg (before: 170kB, after: 87kB) (+79ms) (111/408)
+15:56:33   ▶ /_astro/dot-com.WDOnvWxh_13nXdm.png (before: 303kB, after: 1997kB) (+239ms) (112/408)
+15:56:33   ▶ /_astro/dot-com.WDOnvWxh_1bGlDy.png (before: 303kB, after: 138kB) (+52ms) (113/408)
+15:56:33   ▶ /_astro/dot-com.WDOnvWxh_1STidW.png (before: 303kB, after: 442kB) (+81ms) (114/408)
+15:56:33   ▶ /_astro/dot-com.WDOnvWxh_vkfKw.png (before: 303kB, after: 996kB) (+129ms) (115/408)
+15:56:33   ▶ /_astro/analytics-charts.C4I6hepF_Z1w5WU6.jpeg (before: 117kB, after: 89kB) (+68ms) (116/408)
+15:56:39   ▶ /_astro/analytics-dashboard.V_AVlntO_ZiLfuu.avif (before: 183kB, after: 62kB) (+15.89s) (117/408)
+15:56:40   ▶ /_astro/local-reviews-phone.CEEheyFJ_Z1jdXHk.avif (before: 103kB, after: 20kB) (+16.40s) (118/408)
+15:56:40   ▶ /_astro/analytics-dashboard.V_AVlntO_231oXc.avif (before: 183kB, after: 12kB) (+916ms) (119/408)
+15:56:41   ▶ /_astro/local-reviews-phone.CEEheyFJ_ZOulSc.avif (before: 103kB, after: 4kB) (+940ms) (120/408)
+15:56:43   ▶ /_astro/analytics-dashboard.V_AVlntO_Z20CqDH.avif (before: 183kB, after: 23kB) (+2.96s) (121/408)
+15:56:45   ▶ /_astro/bride-hanger.BfEhGlFd_26tfgs.avif (before: 170kB, after: 42kB) (+12.58s) (122/408)
+15:56:46   ▶ /_astro/bride-hanger.BfEhGlFd_NXfUI.avif (before: 170kB, after: 7kB) (+470ms) (123/408)
+15:56:47   ▶ /_astro/bride-hanger.BfEhGlFd_1Tw1wa.avif (before: 170kB, after: 13kB) (+1.24s) (124/408)
+15:56:48   ▶ /_astro/analytics-dashboard.V_AVlntO_ZlSObq.avif (before: 183kB, after: 36kB) (+4.78s) (125/408)
+15:56:49   ▶ /_astro/local-reviews-phone.CEEheyFJ_1fjTra.avif (before: 103kB, after: 8kB) (+8.22s) (126/408)
+15:56:49   ▶ /_astro/bride-hanger.BfEhGlFd_Z26Dw87.avif (before: 170kB, after: 19kB) (+1.95s) (127/408)
+15:56:49   ▶ /_astro/analytics-charts.C4I6hepF_Mj0TF.avif (before: 117kB, after: 33kB) (+16.01s) (128/408)
+15:56:50   ▶ /_astro/analytics-charts.C4I6hepF_HN7wP.avif (before: 117kB, after: 7kB) (+470ms) (129/408)
+15:56:51   ▶ /_astro/analytics-charts.C4I6hepF_ZRlSjq.avif (before: 117kB, after: 13kB) (+1.17s) (130/408)
+15:56:53   ▶ /_astro/analytics-charts.C4I6hepF_D4B8y.avif (before: 117kB, after: 19kB) (+2.47s) (131/408)
+15:56:57   ▶ /_astro/bride-hanger.BfEhGlFd_l6s0h.avif (before: 170kB, after: 26kB) (+8.41s) (132/408)
+15:56:58   ▶ /_astro/bride-hanger.BfEhGlFd_Z1h1X3R.webp (before: 170kB, after: 103kB) (+748ms) (133/408)
+15:56:58   ▶ /_astro/analytics-charts.C4I6hepF_wLcTO.avif (before: 117kB, after: 25kB) (+4.82s) (134/408)
+15:56:58   ▶ /_astro/bride-hanger.BfEhGlFd_Z1oahJW.webp (before: 170kB, after: 13kB) (+106ms) (135/408)
+15:56:58   ▶ /_astro/bride-hanger.BfEhGlFd_ZiBw9v.webp (before: 170kB, after: 26kB) (+207ms) (136/408)
+15:56:59   ▶ /_astro/bride-hanger.BfEhGlFd_oMn98.webp (before: 170kB, after: 47kB) (+244ms) (137/408)
+15:56:59   ▶ /_astro/analytics-charts.C4I6hepF_Z1a8Lvq.webp (before: 117kB, after: 78kB) (+571ms) (138/408)
+15:56:59   ▶ /_astro/analytics-charts.C4I6hepF_1QoAbM.webp (before: 117kB, after: 14kB) (+80ms) (139/408)
+15:56:59   ▶ /_astro/analytics-charts.C4I6hepF_gezkw.webp (before: 117kB, after: 26kB) (+118ms) (140/408)
+15:56:59   ▶ /_astro/bride-hanger.BfEhGlFd_Z2dDLwp.webp (before: 170kB, after: 64kB) (+382ms) (141/408)
+15:56:59   ▶ /_astro/analytics-charts.C4I6hepF_pd9Hu.webp (before: 117kB, after: 42kB) (+291ms) (142/408)
+15:56:59   ▶ /_astro/bride-hanger.BfEhGlFd_1sIGiU.png (before: 170kB, after: 1453kB) (+438ms) (143/408)
+15:56:59   ▶ /_astro/bride-hanger.BfEhGlFd_2kyPIh.png (before: 170kB, after: 121kB) (+86ms) (144/408)
+15:57:00   ▶ /_astro/bride-hanger.BfEhGlFd_Z1E4wud.png (before: 170kB, after: 297kB) (+91ms) (145/408)
+15:57:00   ▶ /_astro/analytics-charts.C4I6hepF_Z1pFzvh.webp (before: 117kB, after: 55kB) (+529ms) (146/408)
+15:57:00   ▶ /_astro/bride-hanger.BfEhGlFd_ZNPCOf.png (before: 170kB, after: 591kB) (+132ms) (147/408)
+15:57:00   ▶ /_astro/local-reviews-phone.CEEheyFJ_294i1A.avif (before: 103kB, after: 13kB) (+11.03s) (148/408)
+15:57:00   ▶ /_astro/bride-hanger.BfEhGlFd_1CTlj9.png (before: 170kB, after: 997kB) (+173ms) (149/408)
+15:57:00   ▶ /_astro/analytics-charts.C4I6hepF_Z2fNofn.png (before: 117kB, after: 1981kB) (+252ms) (150/408)
+15:57:00   ▶ /_astro/analytics-charts.C4I6hepF_vYsv5.png (before: 117kB, after: 249kB) (+59ms) (151/408)
+15:57:00   ▶ /_astro/analytics-charts.C4I6hepF_Z14axlb.png (before: 117kB, after: 532kB) (+87ms) (152/408)
+15:57:00   ▶ /_astro/analytics-charts.C4I6hepF_ZgWzUS.png (before: 117kB, after: 904kB) (+155ms) (153/408)
+15:57:01   ▶ /_astro/analytics-charts.C4I6hepF_Z2vlcfe.png (before: 117kB, after: 1565kB) (+390ms) (154/408)
+15:57:01   ▶ /_astro/local-reviews-phone.CEEheyFJ_292Ad5.webp (before: 103kB, after: 62kB) (+864ms) (155/408)
+15:57:01   ▶ /_astro/n8n-blog-workflow.D5_-L_73_1aWcfz.avif (before: 46kB, after: 12kB) (+885ms) (156/408)
+15:57:01   ▶ /_astro/local-reviews-phone.CEEheyFJ_Zveek2.webp (before: 103kB, after: 10kB) (+116ms) (157/408)
+15:57:01   ▶ /_astro/n8n-blog-workflow.D5_-L_73_2k603M.avif (before: 46kB, after: 3kB) (+194ms) (158/408)
+15:57:01   ▶ /_astro/local-reviews-phone.CEEheyFJ_R7san.webp (before: 103kB, after: 23kB) (+255ms) (159/408)
+15:57:01   ▶ /_astro/analytics-dashboard.V_AVlntO_ODrfx.avif (before: 183kB, after: 45kB) (+13.16s) (160/408)
+15:57:01   ▶ /_astro/n8n-blog-workflow.D5_-L_73_14VnuU.avif (before: 46kB, after: 6kB) (+488ms) (161/408)
+15:57:02   ▶ /_astro/n8n-blog-workflow.D5_-L_73_W5JOv.webp (before: 46kB, after: 22kB) (+103ms) (162/408)
+15:57:02   ▶ /_astro/local-reviews-phone.CEEheyFJ_w8I84.webp (before: 103kB, after: 37kB) (+531ms) (163/408)
+15:57:02   ▶ /_astro/n8n-blog-workflow.D5_-L_73_Z1BuF6c.webp (before: 46kB, after: 4kB) (+43ms) (164/408)
+15:57:02   ▶ /_astro/n8n-blog-workflow.D5_-L_73_2dwQ9R.webp (before: 46kB, after: 12kB) (+53ms) (165/408)
+15:57:02   ▶ /_astro/n8n-blog-workflow.D5_-L_73_fU0b8.png (before: 46kB, after: 145kB) (+34ms) (166/408)
+15:57:02   ▶ /_astro/n8n-blog-workflow.D5_-L_73_28hl22.png (before: 46kB, after: 38kB) (+29ms) (167/408)
+15:57:02   ▶ /_astro/n8n-blog-workflow.D5_-L_73_S7Ita.png (before: 46kB, after: 103kB) (+34ms) (168/408)
+15:57:02   ▶ /_astro/analytics-dashboard.V_AVlntO_Z1UGOo1.webp (before: 183kB, after: 128kB) (+475ms) (169/408)
+15:57:02   ▶ /_astro/analytics-dashboard.V_AVlntO_2mhwwm.webp (before: 183kB, after: 21kB) (+162ms) (170/408)
+15:57:02   ▶ /_astro/local-reviews-phone.CEEheyFJ_ZhzI4A.png (before: 103kB, after: 1687kB) (+385ms) (171/408)
+15:57:02   ▶ /_astro/n8n-workflow-overview.D-RXPtnV_2wX5tQ.avif (before: 16kB, after: 3kB) (+269ms) (172/408)
+15:57:02   ▶ /_astro/local-reviews-phone.CEEheyFJ_1cvAy2.png (before: 103kB, after: 330kB) (+140ms) (173/408)
+15:57:02   ▶ /_astro/analytics-dashboard.V_AVlntO_Z1Gmj5x.webp (before: 183kB, after: 41kB) (+169ms) (174/408)
+15:57:02   ▶ /_astro/local-reviews-phone.CEEheyFJ_Z1OLglR.png (before: 103kB, after: 582kB) (+117ms) (175/408)
+15:57:02   ▶ /_astro/analytics-dashboard.V_AVlntO_ZJ6gsd.webp (before: 183kB, after: 68kB) (+246ms) (176/408)
+15:57:02   ▶ /_astro/n8n-workflow-overview.D-RXPtnV_1q37Dz.avif (before: 16kB, after: 1kB) (+377ms) (177/408)
+15:57:02   ▶ /_astro/n8n-workflow-list.CVcOkeHm_ZAXuqc.avif (before: 19kB, after: 7kB) (+1.80s) (178/408)
+15:57:02   ▶ /_astro/local-reviews-phone.CEEheyFJ_Z1TtA9B.png (before: 103kB, after: 1173kB) (+197ms) (179/408)
+15:57:03   ▶ /_astro/n8n-workflow-list.CVcOkeHm_1hxiC2.avif (before: 19kB, after: 2kB) (+213ms) (180/408)
+15:57:03   ▶ /_astro/n8n-workflow-overview.D-RXPtnV_Z1a2eNF.avif (before: 16kB, after: 2kB) (+250ms) (181/408)
+15:57:03   ▶ /_astro/n8n-workflow-overview.D-RXPtnV_U2vAk.webp (before: 16kB, after: 5kB) (+64ms) (182/408)
+15:57:03   ▶ /_astro/analytics-dashboard.V_AVlntO_ZMh7CY.webp (before: 183kB, after: 91kB) (+392ms) (183/408)
+15:57:03   ▶ /_astro/n8n-workflow-overview.D-RXPtnV_12PFmM.webp (before: 16kB, after: 1kB) (+56ms) (184/408)
+15:57:03   ▶ /_astro/n8n-workflow-overview.D-RXPtnV_Z1xeG5s.webp (before: 16kB, after: 3kB) (+151ms) (185/408)
+15:57:03   ▶ /_astro/n8n-workflow-overview.D-RXPtnV_Z1vzMGl.png (before: 16kB, after: 76kB) (+48ms) (186/408)
+15:57:03   ▶ /_astro/n8n-workflow-overview.D-RXPtnV_Z1E339s.png (before: 16kB, after: 26kB) (+18ms) (187/408)
+15:57:03   ▶ /_astro/n8n-workflow-overview.D-RXPtnV_P3Ice.png (before: 16kB, after: 71kB) (+74ms) (188/408)
+15:57:03   ▶ /_astro/n8n-workflow-list.CVcOkeHm_2nG4a.avif (before: 19kB, after: 6kB) (+557ms) (189/408)
+15:57:03   ▶ /_astro/n8n-workflow-overview.D-RXPtnV_ZUrobi.jpeg (before: 16kB, after: 28kB) (+115ms) (190/408)
+15:57:03   ▶ /_astro/analytics-dashboard.V_AVlntO_HR08f.png (before: 183kB, after: 2137kB) (+437ms) (191/408)
+15:57:03   ▶ /_astro/n8n-workflow-list.CVcOkeHm_ZOOVQg.webp (before: 19kB, after: 13kB) (+146ms) (192/408)
+15:57:03   ▶ /_astro/braille-keyboard.xqmBVGnh_KOI58.jpeg (before: 128kB, after: 117kB) (+158ms) (193/408)
+15:57:03   ▶ /_astro/analytics-dashboard.V_AVlntO_Z109Lov.png (before: 183kB, after: 214kB) (+147ms) (194/408)
+15:57:03   ▶ /_astro/n8n-workflow-list.CVcOkeHm_2q8LgY.webp (before: 19kB, after: 4kB) (+38ms) (195/408)
+15:57:03   ▶ /_astro/n8n-workflow-list.CVcOkeHm_1aY9I7.webp (before: 19kB, after: 8kB) (+88ms) (196/408)
+15:57:03   ▶ /_astro/n8n-workflow-list.CVcOkeHm_Z1w0GuD.png (before: 19kB, after: 62kB) (+46ms) (197/408)
+15:57:03   ▶ /_astro/n8n-workflow-list.CVcOkeHm_15IDAh.png (before: 19kB, after: 18kB) (+15ms) (198/408)
+15:57:04   ▶ /_astro/n8n-workflow-list.CVcOkeHm_Z9pWWA.png (before: 19kB, after: 45kB) (+23ms) (199/408)
+15:57:04   ▶ /_astro/analytics-dashboard.V_AVlntO_1nvMw.png (before: 183kB, after: 489kB) (+207ms) (200/408)
+15:57:04   ▶ /_astro/wordpress-plugins.BtjCEomI_2nMFGv.jpeg (before: 82kB, after: 92kB) (+63ms) (201/408)
+15:57:04   ▶ /_astro/analytics-dashboard.V_AVlntO_1Dc8Ot.png (before: 183kB, after: 898kB) (+194ms) (202/408)
+15:57:04   ▶ /_astro/analytics-dashboard.V_AVlntO_1QhGSh.png (before: 183kB, after: 1574kB) (+514ms) (203/408)
+15:57:04   ▶ /_astro/stressed-at-laptop.Dmf1upni_Z1i7bqo.jpeg (before: 90kB, after: 57kB) (+185ms) (204/408)
+15:57:06   ▶ /_astro/66-sheep-street-homepage.B4YP5z85_7355I.avif (before: 86kB, after: 32kB) (+3.89s) (205/408)
+15:57:07   ▶ /_astro/66-sheep-street-homepage.B4YP5z85_1Ql08S.avif (before: 86kB, after: 8kB) (+635ms) (206/408)
+15:57:07   ▶ /_astro/wordpress-plugins.BtjCEomI_Sodvd.avif (before: 82kB, after: 32kB) (+3.36s) (207/408)
+15:57:08   ▶ /_astro/wordpress-plugins.BtjCEomI_Z1xntSX.avif (before: 82kB, after: 10kB) (+736ms) (208/408)
+15:57:08   ▶ /_astro/66-sheep-street-homepage.B4YP5z85_ZBwNOv.avif (before: 86kB, after: 15kB) (+905ms) (209/408)
+15:57:08   ▶ /_astro/braille-keyboard.xqmBVGnh_ZVaLEw.avif (before: 128kB, after: 41kB) (+4.56s) (210/408)
+15:57:08   ▶ /_astro/66-sheep-street-homepage.B4YP5z85_118g1D.webp (before: 86kB, after: 60kB) (+325ms) (211/408)
+15:57:08   ▶ /_astro/66-sheep-street-homepage.B4YP5z85_ZyXtlj.webp (before: 86kB, after: 13kB) (+56ms) (212/408)
+15:57:08   ▶ /_astro/66-sheep-street-homepage.B4YP5z85_22kPue.webp (before: 86kB, after: 25kB) (+75ms) (213/408)
+15:57:08   ▶ /_astro/66-sheep-street-homepage.B4YP5z85_12ca1b.png (before: 86kB, after: 979kB) (+113ms) (214/408)
+15:57:08   ▶ /_astro/66-sheep-street-homepage.B4YP5z85_2dagBx.png (before: 86kB, after: 167kB) (+96ms) (215/408)
+15:57:09   ▶ /_astro/66-sheep-street-homepage.B4YP5z85_ZfHxlQ.png (before: 86kB, after: 369kB) (+75ms) (216/408)
+15:57:09   ▶ /_astro/braille-keyboard.xqmBVGnh_Z29Fq2U.avif (before: 128kB, after: 11kB) (+911ms) (217/408)
+15:57:09   ▶ /_astro/wordpress-plugins.BtjCEomI_Z1a3our.avif (before: 82kB, after: 19kB) (+1.80s) (218/408)
+15:57:10   ▶ /_astro/wordpress-plugins.BtjCEomI_EwL59.webp (before: 82kB, after: 61kB) (+181ms) (219/408)
+15:57:10   ▶ /_astro/wordpress-plugins.BtjCEomI_ZoM1f1.webp (before: 82kB, after: 17kB) (+85ms) (220/408)
+15:57:10   ▶ /_astro/wordpress-plugins.BtjCEomI_Z1rUPu.webp (before: 82kB, after: 33kB) (+138ms) (221/408)
+15:57:10   ▶ /_astro/wordpress-plugins.BtjCEomI_Z1CXye.png (before: 82kB, after: 712kB) (+124ms) (222/408)
+15:57:10   ▶ /_astro/wordpress-plugins.BtjCEomI_Z1Jc8UI.png (before: 82kB, after: 174kB) (+34ms) (223/408)
+15:57:10   ▶ /_astro/wordpress-plugins.BtjCEomI_Z1lR3wc.png (before: 82kB, after: 379kB) (+53ms) (224/408)
+15:57:10   ▶ /_astro/rebecca-rennolds-homepage.G-OTUsm6_1Bttz5.jpeg (before: 118kB, after: 141kB) (+135ms) (225/408)
+15:57:11   ▶ /_astro/braille-keyboard.xqmBVGnh_Z21KVTW.avif (before: 128kB, after: 20kB) (+2.17s) (226/408)
+15:57:11   ▶ /_astro/66-sheep-street-homepage.B4YP5z85_yBc5l.avif (before: 86kB, after: 23kB) (+2.76s) (227/408)
+15:57:12   ▶ /_astro/66-sheep-street-homepage.B4YP5z85_1sGn1g.webp (before: 86kB, after: 41kB) (+459ms) (228/408)
+15:57:12   ▶ /_astro/66-sheep-street-homepage.B4YP5z85_1tKh0N.png (before: 86kB, after: 718kB) (+224ms) (229/408)
+15:57:12   ▶ /_astro/66-sheep-street-homepage.B4YP5z85_2rPddF.jpeg (before: 86kB, after: 77kB) (+105ms) (230/408)
+15:57:12   ▶ /_astro/paper-files.DJI6qRhL_EVkm5.jpeg (before: 60kB, after: 114kB) (+373ms) (231/408)
+15:57:13   ▶ /_astro/rebecca-rennolds-homepage.G-OTUsm6_T2E0n.avif (before: 118kB, after: 28kB) (+2.98s) (232/408)
+15:57:14   ▶ /_astro/braille-keyboard.xqmBVGnh_eOl6E.avif (before: 128kB, after: 30kB) (+2.69s) (233/408)
+15:57:14   ▶ /_astro/rebecca-rennolds-homepage.G-OTUsm6_14riy0.avif (before: 118kB, after: 9kB) (+831ms) (234/408)
+15:57:14   ▶ /_astro/braille-keyboard.xqmBVGnh_2byyIj.webp (before: 128kB, after: 93kB) (+439ms) (235/408)
+15:57:14   ▶ /_astro/braille-keyboard.xqmBVGnh_Z114WnX.webp (before: 128kB, after: 21kB) (+111ms) (236/408)
+15:57:14   ▶ /_astro/braille-keyboard.xqmBVGnh_ZSatg0.webp (before: 128kB, after: 40kB) (+191ms) (237/408)
+15:57:15   ▶ /_astro/braille-keyboard.xqmBVGnh_WSFA.webp (before: 128kB, after: 63kB) (+232ms) (238/408)
+15:57:15   ▶ /_astro/braille-keyboard.xqmBVGnh_15SVYm.png (before: 128kB, after: 1940kB) (+160ms) (239/408)
+15:57:15   ▶ /_astro/paper-files.DJI6qRhL_Z7ubPf.avif (before: 60kB, after: 16kB) (+2.31s) (240/408)
+15:57:15   ▶ /_astro/braille-keyboard.xqmBVGnh_Z2lu54F.png (before: 128kB, after: 323kB) (+132ms) (241/408)
+15:57:15   ▶ /_astro/braille-keyboard.xqmBVGnh_Z2dzAVH.png (before: 128kB, after: 752kB) (+247ms) (242/408)
+15:57:15   ▶ /_astro/braille-keyboard.xqmBVGnh_ZFcPWM.png (before: 128kB, after: 1440kB) (+218ms) (243/408)
+15:57:16   ▶ /_astro/hand-on-laptop.BPjmKCtz_2pGCz7.jpeg (before: 26kB, after: 58kB) (+181ms) (244/408)
+15:57:16   ▶ /_astro/paper-files.DJI6qRhL_1fWXuG.avif (before: 60kB, after: 8kB) (+1.04s) (245/408)
+15:57:16   ▶ /_astro/rebecca-rennolds-homepage.G-OTUsm6_253w4v.avif (before: 118kB, after: 19kB) (+2.26s) (246/408)
+15:57:17   ▶ /_astro/rebecca-rennolds-homepage.G-OTUsm6_Z1wgOtO.webp (before: 118kB, after: 56kB) (+282ms) (247/408)
+15:57:17   ▶ /_astro/rebecca-rennolds-homepage.G-OTUsm6_Z1lRaVc.webp (before: 118kB, after: 19kB) (+158ms) (248/408)
+15:57:17   ▶ /_astro/rebecca-rennolds-homepage.G-OTUsm6_ZlfWpG.webp (before: 118kB, after: 41kB) (+209ms) (249/408)
+15:57:17   ▶ /_astro/rebecca-rennolds-homepage.G-OTUsm6_1fQUt2.png (before: 118kB, after: 1193kB) (+176ms) (250/408)
+15:57:17   ▶ /_astro/rebecca-rennolds-homepage.G-OTUsm6_1qgz1E.png (before: 118kB, after: 407kB) (+77ms) (251/408)
+15:57:17   ▶ /_astro/rebecca-rennolds-homepage.G-OTUsm6_2qRMxa.png (before: 118kB, after: 981kB) (+157ms) (252/408)
+15:57:17   ▶ /_astro/desk-flatlay-coffee.B9h7Po0E_Z15SDwH.jpeg (before: 45kB, after: 85kB) (+105ms) (253/408)
+15:57:18   ▶ /_astro/paper-files.DJI6qRhL_F7gKO.avif (before: 60kB, after: 13kB) (+1.75s) (254/408)
+15:57:18   ▶ /_astro/paper-files.DJI6qRhL_ZUMkjd.webp (before: 60kB, after: 39kB) (+149ms) (255/408)
+15:57:18   ▶ /_astro/paper-files.DJI6qRhL_rEP1I.webp (before: 60kB, after: 16kB) (+66ms) (256/408)
+15:57:18   ▶ /_astro/paper-files.DJI6qRhL_Z8aQH9.webp (before: 60kB, after: 30kB) (+114ms) (257/408)
+15:57:18   ▶ /_astro/paper-files.DJI6qRhL_2kDpa9.png (before: 60kB, after: 821kB) (+75ms) (258/408)
+15:57:18   ▶ /_astro/paper-files.DJI6qRhL_Z1m5yiQ.png (before: 60kB, after: 324kB) (+40ms) (259/408)
+15:57:18   ▶ /_astro/paper-files.DJI6qRhL_Z1VVg2I.png (before: 60kB, after: 784kB) (+71ms) (260/408)
+15:57:18   ▶ /_astro/desk-laptop-camera.C_s7zP1f_1egJhq.jpeg (before: 25kB, after: 63kB) (+101ms) (261/408)
+15:57:18   ▶ /_astro/stressed-at-laptop.Dmf1upni_1gWFu0.avif (before: 90kB, after: 21kB) (+13.91s) (262/408)
+15:57:18   ▶ /_astro/hand-on-laptop.BPjmKCtz_oMk9I.avif (before: 26kB, after: 10kB) (+2.82s) (263/408)
+15:57:19   ▶ /_astro/stressed-at-laptop.Dmf1upni_a6x2U.avif (before: 90kB, after: 4kB) (+525ms) (264/408)
+15:57:20   ▶ /_astro/desk-laptop-camera.C_s7zP1f_YkOKT.avif (before: 25kB, after: 9kB) (+1.31s) (265/408)
+15:57:20   ▶ /_astro/hand-on-laptop.BPjmKCtz_Z25LsWU.avif (before: 26kB, after: 5kB) (+1.19s) (266/408)
+15:57:20   ▶ /_astro/desk-laptop-camera.C_s7zP1f_ZSWp5Q.avif (before: 25kB, after: 5kB) (+465ms) (267/408)
+15:57:20   ▶ /_astro/stressed-at-laptop.Dmf1upni_33jG4.avif (before: 90kB, after: 7kB) (+1.18s) (268/408)
+15:57:21   ▶ /_astro/desk-laptop-camera.C_s7zP1f_Z2JK2K.avif (before: 25kB, after: 8kB) (+1.11s) (269/408)
+15:57:21   ▶ /_astro/desk-laptop-camera.C_s7zP1f_27VipQ.webp (before: 25kB, after: 19kB) (+97ms) (270/408)
+15:57:21   ▶ /_astro/desk-flatlay-coffee.B9h7Po0E_Z1eIzYi.avif (before: 45kB, after: 16kB) (+3.77s) (271/408)
+15:57:21   ▶ /_astro/desk-laptop-camera.C_s7zP1f_eD3y6.webp (before: 25kB, after: 9kB) (+47ms) (272/408)
+15:57:21   ▶ /_astro/desk-laptop-camera.C_s7zP1f_15PHBc.webp (before: 25kB, after: 16kB) (+104ms) (273/408)
+15:57:21   ▶ /_astro/desk-laptop-camera.C_s7zP1f_MwaJ9.png (before: 25kB, after: 352kB) (+78ms) (274/408)
+15:57:21   ▶ /_astro/desk-laptop-camera.C_s7zP1f_Z15L47B.png (before: 25kB, after: 154kB) (+48ms) (275/408)
+15:57:22   ▶ /_astro/desk-laptop-camera.C_s7zP1f_Zeyp4v.png (before: 25kB, after: 355kB) (+83ms) (276/408)
+15:57:22   ▶ /_astro/desk-laptop-plant.Cy7Zu7AU_ZR6YH7.jpeg (before: 32kB, after: 68kB) (+152ms) (277/408)
+15:57:22   ▶ /_astro/desk-flatlay-coffee.B9h7Po0E_djUUr.avif (before: 45kB, after: 7kB) (+528ms) (278/408)
+15:57:22   ▶ /_astro/hand-on-laptop.BPjmKCtz_2ecDRh.avif (before: 26kB, after: 8kB) (+2.26s) (279/408)
+15:57:22   ▶ /_astro/hand-on-laptop.BPjmKCtz_Z1NldvW.webp (before: 26kB, after: 19kB) (+102ms) (280/408)
+15:57:22   ▶ /_astro/hand-on-laptop.BPjmKCtz_Lh7al.webp (before: 26kB, after: 8kB) (+59ms) (281/408)
+15:57:22   ▶ /_astro/hand-on-laptop.BPjmKCtz_146bB.webp (before: 26kB, after: 16kB) (+127ms) (282/408)
+15:57:22   ▶ /_astro/hand-on-laptop.BPjmKCtz_1UnTWh.png (before: 26kB, after: 296kB) (+101ms) (283/408)
+15:57:22   ▶ /_astro/hand-on-laptop.BPjmKCtz_ZzaSam.png (before: 26kB, after: 128kB) (+49ms) (284/408)
+15:57:22   ▶ /_astro/hand-on-laptop.BPjmKCtz_Z1knT96.png (before: 26kB, after: 299kB) (+87ms) (285/408)
+15:57:23   ▶ /_astro/desk-laptop-plant.Cy7Zu7AU_G2AcD.avif (before: 32kB, after: 11kB) (+1.64s) (286/408)
+15:57:24   ▶ /_astro/desk-flatlay-coffee.B9h7Po0E_jHTMh.avif (before: 45kB, after: 13kB) (+1.75s) (287/408)
+15:57:24   ▶ /_astro/desk-flatlay-coffee.B9h7Po0E_Z1sA2pm.webp (before: 45kB, after: 32kB) (+190ms) (288/408)
+15:57:24   ▶ /_astro/desk-flatlay-coffee.B9h7Po0E_ZwvuC.webp (before: 45kB, after: 13kB) (+140ms) (289/408)
+15:57:24   ▶ /_astro/desk-flatlay-coffee.B9h7Po0E_5Qsmd.webp (before: 45kB, after: 26kB) (+187ms) (290/408)
+15:57:24   ▶ /_astro/desk-flatlay-coffee.B9h7Po0E_Z29KM3J.png (before: 45kB, after: 463kB) (+104ms) (291/408)
+15:57:24   ▶ /_astro/desk-flatlay-coffee.B9h7Po0E_ZGHg90.png (before: 45kB, after: 189kB) (+64ms) (292/408)
+15:57:24   ▶ /_astro/desk-flatlay-coffee.B9h7Po0E_ZAjhha.png (before: 45kB, after: 449kB) (+117ms) (293/408)
+15:57:25   ▶ /_astro/steve-headshot.BUyEbJkG_2oiIXC.avif (before: 43kB, after: 13kB) (+2.40s) (294/408)
+15:57:25   ▶ /_astro/desk-laptop-plant.Cy7Zu7AU_2ihPF1.avif (before: 32kB, after: 6kB) (+1.45s) (295/408)
+15:57:25   ▶ /_astro/steve-headshot.BUyEbJkG_Z1rvDKe.avif (before: 43kB, after: 5kB) (+564ms) (296/408)
+15:57:26   ▶ /_astro/stressed-at-laptop.Dmf1upni_Z279iHw.avif (before: 90kB, after: 11kB) (+5.53s) (297/408)
+15:57:26   ▶ /_astro/desk-laptop-plant.Cy7Zu7AU_Z15bwoW.avif (before: 32kB, after: 9kB) (+1.16s) (298/408)
+15:57:26   ▶ /_astro/desk-laptop-plant.Cy7Zu7AU_2wlQ46.webp (before: 32kB, after: 22kB) (+157ms) (299/408)
+15:57:26   ▶ /_astro/desk-laptop-plant.Cy7Zu7AU_ZVA2hs.webp (before: 32kB, after: 10kB) (+82ms) (300/408)
+15:57:26   ▶ /_astro/desk-laptop-plant.Cy7Zu7AU_K7Irv.webp (before: 32kB, after: 18kB) (+103ms) (301/408)
+15:57:26   ▶ /_astro/steve-headshot.BUyEbJkG_1jMn1x.avif (before: 43kB, after: 9kB) (+1.02s) (302/408)
+15:57:26   ▶ /_astro/desk-laptop-plant.Cy7Zu7AU_1kFTIB.png (before: 32kB, after: 368kB) (+49ms) (303/408)
+15:57:26   ▶ /_astro/desk-laptop-plant.Cy7Zu7AU_Z28fXBW.png (before: 32kB, after: 157kB) (+40ms) (304/408)
+15:57:26   ▶ /_astro/desk-laptop-plant.Cy7Zu7AU_ZqxcRY.png (before: 32kB, after: 366kB) (+89ms) (305/408)
+15:57:27   ▶ /_astro/steve-headshot.BUyEbJkG_ZYctlH.webp (before: 43kB, after: 29kB) (+158ms) (306/408)
+15:57:27   ▶ /_astro/steve-headshot.BUyEbJkG_13Ufw1.webp (before: 43kB, after: 10kB) (+72ms) (307/408)
+15:57:27   ▶ /_astro/steve-headshot.BUyEbJkG_Z1eWQv9.webp (before: 43kB, after: 18kB) (+126ms) (308/408)
+15:57:27   ▶ /_astro/steve-headshot.BUyEbJkG_1Kyb15.png (before: 43kB, after: 765kB) (+85ms) (309/408)
+15:57:27   ▶ /_astro/steve-headshot.BUyEbJkG_Z9HKrm.png (before: 43kB, after: 251kB) (+36ms) (310/408)
+15:57:27   ▶ /_astro/steve-headshot.BUyEbJkG_Z2sARtw.png (before: 43kB, after: 556kB) (+98ms) (311/408)
+15:57:27   ▶ /_astro/antler-interiors-homepage.1iaAzmqG_FcOtu.jpeg (before: 94kB, after: 137kB) (+132ms) (312/408)
+15:57:30   ▶ /_astro/66-sheep-street-hero.1ECso-Hj_qqQP6.avif (before: 81kB, after: 32kB) (+3.49s) (313/408)
+15:57:30   ▶ /_astro/antler-interiors-homepage.1iaAzmqG_naLGA.avif (before: 94kB, after: 26kB) (+3.31s) (314/408)
+15:57:31   ▶ /_astro/66-sheep-street-hero.1ECso-Hj_Z1nYi6v.avif (before: 81kB, after: 8kB) (+560ms) (315/408)
+15:57:31   ▶ /_astro/antler-interiors-homepage.1iaAzmqG_xzqfd.avif (before: 94kB, after: 12kB) (+1.00s) (316/408)
+15:57:31   ▶ /_astro/66-sheep-street-hero.1ECso-Hj_1JqIG9.avif (before: 81kB, after: 15kB) (+842ms) (317/408)
+15:57:32   ▶ /_astro/66-sheep-street-coffee.DWPHAk46_Zdn5Q1.avif (before: 71kB, after: 28kB) (+7.49s) (318/408)
+15:57:32   ▶ /_astro/66-sheep-street-coffee.DWPHAk46_25QicF.avif (before: 71kB, after: 7kB) (+592ms) (319/408)
+15:57:34   ▶ /_astro/66-sheep-street-hero.1ECso-Hj_ZDuV24.avif (before: 81kB, after: 23kB) (+2.27s) (320/408)
+15:57:34   ▶ /_astro/antler-interiors-homepage.1iaAzmqG_1ybDKI.avif (before: 94kB, after: 21kB) (+2.45s) (321/408)
+15:57:34   ▶ /_astro/66-sheep-street-hero.1ECso-Hj_3epyj.webp (before: 81kB, after: 59kB) (+311ms) (322/408)
+15:57:34   ▶ /_astro/66-sheep-street-hero.1ECso-Hj_Z14Iaxl.webp (before: 81kB, after: 12kB) (+103ms) (323/408)
+15:57:34   ▶ /_astro/antler-interiors-homepage.1iaAzmqG_Z238GMB.webp (before: 94kB, after: 49kB) (+262ms) (324/408)
+15:57:34   ▶ /_astro/66-sheep-street-hero.1ECso-Hj_23GQfj.webp (before: 81kB, after: 24kB) (+94ms) (325/408)
+15:57:34   ▶ /_astro/antler-interiors-homepage.1iaAzmqG_Z1RJ3eY.webp (before: 94kB, after: 21kB) (+96ms) (326/408)
+15:57:34   ▶ /_astro/66-sheep-street-hero.1ECso-Hj_Z11HniQ.webp (before: 81kB, after: 39kB) (+150ms) (327/408)
+15:57:34   ▶ /_astro/antler-interiors-homepage.1iaAzmqG_ZR7OIt.webp (before: 94kB, after: 38kB) (+128ms) (328/408)
+15:57:34   ▶ /_astro/66-sheep-street-hero.1ECso-Hj_2qwOQ0.png (before: 81kB, after: 883kB) (+98ms) (329/408)
+15:57:34   ▶ /_astro/66-sheep-street-hero.1ECso-Hj_D1EkI.png (before: 81kB, after: 147kB) (+34ms) (330/408)
+15:57:34   ▶ /_astro/antler-interiors-homepage.1iaAzmqG_J03af.png (before: 94kB, after: 862kB) (+146ms) (331/408)
+15:57:35   ▶ /_astro/66-sheep-street-hero.1ECso-Hj_Z1iJrFy.png (before: 81kB, after: 328kB) (+65ms) (332/408)
+15:57:35   ▶ /_astro/antler-interiors-homepage.1iaAzmqG_ToGHR.png (before: 94kB, after: 334kB) (+100ms) (333/408)
+15:57:35   ▶ /_astro/66-sheep-street-hero.1ECso-Hj_1lA1XP.png (before: 81kB, after: 641kB) (+96ms) (334/408)
+15:57:35   ▶ /_astro/antler-interiors-homepage.1iaAzmqG_1U0Uen.png (before: 94kB, after: 761kB) (+152ms) (335/408)
+15:57:35   ▶ /_astro/coach-house-homepage.DkrqEivO_1g8jxb.jpeg (before: 89kB, after: 111kB) (+144ms) (336/408)
+15:57:35   ▶ /_astro/66-sheep-street-coffee.DWPHAk46_ZKv3ur.avif (before: 71kB, after: 12kB) (+2.55s) (337/408)
+15:57:36   ▶ /_astro/stressed-at-laptop.Dmf1upni_1VgwFR.avif (before: 90kB, after: 15kB) (+10.02s) (338/408)
+15:57:36   ▶ /_astro/stressed-at-laptop.Dmf1upni_SKedd.webp (before: 90kB, after: 53kB) (+818ms) (339/408)
+15:57:37   ▶ /_astro/stressed-at-laptop.Dmf1upni_Z1Mlfnb.webp (before: 90kB, after: 7kB) (+188ms) (340/408)
+15:57:37   ▶ /_astro/stressed-at-laptop.Dmf1upni_Z1TosJ2.webp (before: 90kB, after: 15kB) (+196ms) (341/408)
+15:57:37   ▶ /_astro/stressed-at-laptop.Dmf1upni_Z1MSb9m.webp (before: 90kB, after: 24kB) (+406ms) (342/408)
+15:57:38   ▶ /_astro/stressed-at-laptop.Dmf1upni_1y45p5.webp (before: 90kB, after: 35kB) (+606ms) (343/408)
+15:57:38   ▶ /_astro/coach-house-homepage.DkrqEivO_KLQgE.avif (before: 89kB, after: 23kB) (+3.09s) (344/408)
+15:57:38   ▶ /_astro/stressed-at-laptop.Dmf1upni_Z1N8uj2.png (before: 90kB, after: 1472kB) (+304ms) (345/408)
+15:57:38   ▶ /_astro/stressed-at-laptop.Dmf1upni_2cbgGN.png (before: 90kB, after: 192kB) (+144ms) (346/408)
+15:57:38   ▶ /_astro/stressed-at-laptop.Dmf1upni_2583kW.png (before: 90kB, after: 424kB) (+130ms) (347/408)
+15:57:39   ▶ /_astro/stressed-at-laptop.Dmf1upni_Z58lgi.png (before: 90kB, after: 710kB) (+121ms) (348/408)
+15:57:39   ▶ /_astro/coach-house-homepage.DkrqEivO_ZtHq1v.avif (before: 89kB, after: 8kB) (+690ms) (349/408)
+15:57:39   ▶ /_astro/stressed-at-laptop.Dmf1upni_Z18OD7a.png (before: 90kB, after: 1172kB) (+151ms) (350/408)
+15:57:39   ▶ /_astro/viking-cricket-awards.kLH-owsn_sfXEM.avif (before: 268kB, after: 79kB) (+4.44s) (351/408)
+15:57:40   ▶ /_astro/viking-cricket-awards.kLH-owsn_Z2k8jhP.avif (before: 268kB, after: 14kB) (+920ms) (352/408)
+15:57:40   ▶ /_astro/coach-house-homepage.DkrqEivO_Z1yG6ux.avif (before: 89kB, after: 14kB) (+1.93s) (353/408)
+15:57:41   ▶ /_astro/coach-house-homepage.DkrqEivO_1l1yJJ.webp (before: 89kB, after: 45kB) (+396ms) (354/408)
+15:57:41   ▶ /_astro/66-sheep-street-coffee.DWPHAk46_1x67J7.avif (before: 71kB, after: 20kB) (+6.04s) (355/408)
+15:57:41   ▶ /_astro/coach-house-homepage.DkrqEivO_ZQTRii.webp (before: 89kB, after: 14kB) (+151ms) (356/408)
+15:57:41   ▶ /_astro/viking-cricket-moody-bat.CRWZNJ1x_ZhduvB.avif (before: 90kB, after: 26kB) (+2.40s) (357/408)
+15:57:41   ▶ /_astro/viking-cricket-awards.kLH-owsn_2fWz0I.avif (before: 268kB, after: 28kB) (+1.07s) (358/408)
+15:57:41   ▶ /_astro/coach-house-homepage.DkrqEivO_Z1VSxLk.webp (before: 89kB, after: 27kB) (+152ms) (359/408)
+15:57:41   ▶ /_astro/66-sheep-street-coffee.DWPHAk46_lQBC4.webp (before: 71kB, after: 54kB) (+198ms) (360/408)
+15:57:41   ▶ /_astro/66-sheep-street-coffee.DWPHAk46_sUIj9.webp (before: 71kB, after: 11kB) (+48ms) (361/408)
+15:57:41   ▶ /_astro/coach-house-homepage.DkrqEivO_25wV2U.png (before: 89kB, after: 799kB) (+92ms) (362/408)
+15:57:41   ▶ /_astro/coach-house-homepage.DkrqEivO_1vnwYo.png (before: 89kB, after: 222kB) (+54ms) (363/408)
+15:57:41   ▶ /_astro/66-sheep-street-coffee.DWPHAk46_Z2nqCnX.webp (before: 71kB, after: 21kB) (+130ms) (364/408)
+15:57:41   ▶ /_astro/viking-cricket-moody-bat.CRWZNJ1x_Z1SW9GK.avif (before: 90kB, after: 7kB) (+333ms) (365/408)
+15:57:41   ▶ /_astro/coach-house-homepage.DkrqEivO_qoQvm.png (before: 89kB, after: 471kB) (+80ms) (366/408)
+15:57:42   ▶ /_astro/66-sheep-street-coffee.DWPHAk46_27kPdc.webp (before: 71kB, after: 35kB) (+144ms) (367/408)
+15:57:42   ▶ /_astro/66-sheep-street-coffee.DWPHAk46_16mXUf.png (before: 71kB, after: 651kB) (+80ms) (368/408)
+15:57:42   ▶ /_astro/66-sheep-street-coffee.DWPHAk46_Z1WGzXw.png (before: 71kB, after: 121kB) (+56ms) (369/408)
+15:57:42   ▶ /_astro/66-sheep-street-coffee.DWPHAk46_g8c8i.png (before: 71kB, after: 251kB) (+109ms) (370/408)
+15:57:42   ▶ /_astro/66-sheep-street-coffee.DWPHAk46_Z2dkViy.png (before: 71kB, after: 488kB) (+211ms) (371/408)
+15:57:42   ▶ /_astro/viking-cricket-moody-bat.CRWZNJ1x_ZWpeLi.avif (before: 90kB, after: 12kB) (+1.08s) (372/408)
+15:57:43   ▶ /_astro/viking-cricket-awards.kLH-owsn_1rylUW.avif (before: 268kB, after: 44kB) (+2.19s) (373/408)
+15:57:44   ▶ /_astro/viking-cricket-moody-bat.CRWZNJ1x_ZGFJ5e.avif (before: 90kB, after: 17kB) (+1.60s) (374/408)
+15:57:44   ▶ /_astro/viking-cricket-bats.B_8uQdBZ_Z1ayS5i.avif (before: 148kB, after: 48kB) (+2.84s) (375/408)
+15:57:44   ▶ /_astro/viking-cricket-moody-bat.CRWZNJ1x_BQFpj.webp (before: 90kB, after: 50kB) (+244ms) (376/408)
+15:57:44   ▶ /_astro/viking-cricket-moody-bat.CRWZNJ1x_JUuBY.webp (before: 90kB, after: 10kB) (+83ms) (377/408)
+15:57:44   ▶ /_astro/viking-cricket-bats.B_8uQdBZ_Z1NXD8S.avif (before: 148kB, after: 6kB) (+265ms) (378/408)
+15:57:45   ▶ /_astro/viking-cricket-moody-bat.CRWZNJ1x_1Gspxr.webp (before: 90kB, after: 21kB) (+121ms) (379/408)
+15:57:45   ▶ /_astro/viking-cricket-moody-bat.CRWZNJ1x_coqPG.webp (before: 90kB, after: 34kB) (+147ms) (380/408)
+15:57:45   ▶ /_astro/viking-cricket-moody-bat.CRWZNJ1x_CUzoQ.png (before: 90kB, after: 618kB) (+86ms) (381/408)
+15:57:45   ▶ /_astro/viking-cricket-moody-bat.CRWZNJ1x_Z1x7Se6.png (before: 90kB, after: 100kB) (+77ms) (382/408)
+15:57:45   ▶ /_astro/viking-cricket-moody-bat.CRWZNJ1x_ZAzXiD.png (before: 90kB, after: 230kB) (+100ms) (383/408)
+15:57:45   ▶ /_astro/viking-cricket-moody-bat.CRWZNJ1x_dskPe.png (before: 90kB, after: 437kB) (+155ms) (384/408)
+15:57:45   ▶ /_astro/viking-cricket-bats.B_8uQdBZ_COKrA.avif (before: 148kB, after: 12kB) (+692ms) (385/408)
+15:57:46   ▶ /_astro/viking-cricket-awards.kLH-owsn_ZwN3cV.avif (before: 268kB, after: 58kB) (+2.31s) (386/408)
+15:57:46   ▶ /_astro/viking-cricket-awards.kLH-owsn_Z1X3uOp.webp (before: 268kB, after: 137kB) (+283ms) (387/408)
+15:57:46   ▶ /_astro/viking-cricket-awards.kLH-owsn_188fCz.webp (before: 268kB, after: 20kB) (+47ms) (388/408)
+15:57:46   ▶ /_astro/viking-cricket-awards.kLH-owsn_D207c.webp (before: 268kB, after: 42kB) (+77ms) (389/408)
+15:57:46   ▶ /_astro/viking-cricket-bats.B_8uQdBZ_ZlN00E.avif (before: 148kB, after: 22kB) (+906ms) (390/408)
+15:57:46   ▶ /_astro/viking-cricket-awards.kLH-owsn_21N4p2.webp (before: 268kB, after: 72kB) (+120ms) (391/408)
+15:57:46   ▶ /_astro/viking-cricket-awards.kLH-owsn_2qEg9.webp (before: 268kB, after: 99kB) (+214ms) (392/408)
+15:57:47   ▶ /_astro/viking-cricket-awards.kLH-owsn_O5f8r.png (before: 268kB, after: 2314kB) (+166ms) (393/408)
+15:57:47   ▶ /_astro/viking-cricket-awards.kLH-owsn_Z1iu3E6.png (before: 268kB, after: 159kB) (+52ms) (394/408)
+15:57:47   ▶ /_astro/viking-cricket-awards.kLH-owsn_Z1MAjat.png (before: 268kB, after: 421kB) (+70ms) (395/408)
+15:57:47   ▶ /_astro/viking-cricket-awards.kLH-owsn_Z2iRH6I.png (before: 268kB, after: 901kB) (+95ms) (396/408)
+15:57:47   ▶ /_astro/viking-cricket-awards.kLH-owsn_LW1yk.png (before: 268kB, after: 1550kB) (+141ms) (397/408)
+15:57:47   ▶ /_astro/viking-cricket-bats.B_8uQdBZ_DSOAa.avif (before: 148kB, after: 31kB) (+1.12s) (398/408)
+15:57:47   ▶ /_astro/viking-cricket-bats.B_8uQdBZ_ZQiKw8.webp (before: 148kB, after: 84kB) (+172ms) (399/408)
+15:57:47   ▶ /_astro/viking-cricket-bats.B_8uQdBZ_1iKHeW.webp (before: 148kB, after: 10kB) (+31ms) (400/408)
+15:57:47   ▶ /_astro/viking-cricket-bats.B_8uQdBZ_Z1jC1Xv.webp (before: 148kB, after: 20kB) (+48ms) (401/408)
+15:57:48   ▶ /_astro/viking-cricket-bats.B_8uQdBZ_Z2wRru.webp (before: 148kB, after: 38kB) (+80ms) (402/408)
+15:57:48   ▶ /_astro/viking-cricket-bats.B_8uQdBZ_X9W9k.webp (before: 148kB, after: 54kB) (+123ms) (403/408)
+15:57:48   ▶ /_astro/viking-cricket-bats.B_8uQdBZ_Qr4lV.png (before: 148kB, after: 793kB) (+75ms) (404/408)
+15:57:48   ▶ /_astro/viking-cricket-bats.B_8uQdBZ_d65v0.png (before: 148kB, after: 62kB) (+23ms) (405/408)
+15:57:48   ▶ /_astro/viking-cricket-bats.B_8uQdBZ_Z2phDHs.png (before: 148kB, after: 159kB) (+31ms) (406/408)
+15:57:48   ▶ /_astro/viking-cricket-bats.B_8uQdBZ_1FcWqz.png (before: 148kB, after: 329kB) (+44ms) (407/408)
+15:57:48   ▶ /_astro/viking-cricket-bats.B_8uQdBZ_Z2ohlLx.png (before: 148kB, after: 550kB) (+62ms) (408/408)
+15:57:48 ✓ Completed in 103.59s.
+
+15:57:48 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+15:57:48 [build] 59 page(s) built in 107.51s
+15:57:48 [build] Complete!
+ok    /  200
+ok    /about/  200
+ok    /blog/  200
+ok    /blog/5-essential-tips-for-building-a-successful-small-business-website/  200
+ok    /blog/accessibility-is-the-minimum-requirement/  200
+ok    /blog/beauty-clinic-website-success-rebecca-rennolds/  200
+ok    /blog/bridal-boutique-audit/  200
+ok    /blog/bridal-website-design-maidens-and-ravens/  200
+ok    /blog/category/case-studies/  301! → /portfolio/
+ok    /blog/category/website-audit/  200
+ok    /blog/category/website-design/  200
+ok    /blog/category/website-rescue/  200
+ok    /blog/category/website-support/  200
+ok    /blog/dental-website-design-success-ilkley-dental-care/  200
+ok    /blog/how-to-turn-blog-traffic-into-enquiries/  200
+ok    /blog/page/2/  200
+ok    /blog/page/3/  301 → /blog/
+ok    /blog/page/4/  301 → /blog/
+ok    /blog/page/5/  301 → /blog/
+ok    /blog/reviews-ai-search-local-business/  200
+ok    /blog/running-web-agency-with-ai-agents/  200
+ok    /blog/tag/case-studies/  301! → /portfolio/
+ok    /blog/tag/website-audit/  301! → /blog/category/website-audit/
+ok    /blog/tag/website-design/  301! → /blog/category/website-design/
+ok    /blog/tag/website-rescue/  301! → /blog/category/website-rescue/
+ok    /blog/tag/website-support/  301! → /blog/category/website-support/
+ok    /blog/the-5-biggest-mistakes-small-business-owners-make-with-their-websites/  200
+ok    /blog/these-5-sales-boosting-tips-will-make-your-website-more-mobile-friendly/  200
+ok    /blog/what-to-do-when-my-website-designer-scams-me/  200
+ok    /blog/when-should-you-update-or-invest-in-a-new-website/  200
+ok    /blog/who-owns-my-website/  200
+ok    /blog/why-is-my-website-traffic-not-bringing-leads/  200
+ok    /blog/why-your-blog-isnt-working/  200
+ok    /blog/why-your-business-website-needs-a-care-plan-and-what-happens-without-one/  200
+ok    /blog/wordpress-isnt-slow-bad-builds-are/  200
+ok    /contact/  200
+ok    /elements/  301! → /
+ok    /from-pretty-to-profitable/  200
+ok    /portfolio/  200
+ok    /portfolio/66-sheep-street/  200
+ok    /portfolio/antler-interiors/  200
+ok    /portfolio/climate-action-silsden/  200
+ok    /portfolio/ilkley-dental-care/  200
+ok    /portfolio/jaynes-bridalwear-lincoln/  200
+ok    /portfolio/maidens-and-ravens/  200
+ok    /portfolio/rebecca-rennolds-permanent-beauty-and-laser/  200
+ok    /portfolio/the-coach-house-skipton/  200
+ok    /portfolio/the-yorkshire-unicorn/  200
+ok    /portfolio/viking-cricket-silsden/  200
+ok    /portfolio/viking-hockey-silsden/  200
+ok    /pricing/  301! → /services/
+ok    /privacy-policy/  200
+ok    /services/  200
+ok    /services/bridal-web-design/  200
+ok    /services/conversion-optimisation/  301! → /services/website-audit/
+ok    /services/dental-web-design/  200
+ok    /services/hotel-website-design/  200
+ok    /services/salon-website-design/  200
+ok    /services/website-audit/  200
+ok    /services/website-design/  200
+ok    /services/website-rescue/  200
+ok    /services/website-support/  200
+ok    /solicitor-audit-thank-you/  200
+ok    /solicitor-website-audit/  200
+ok    /terms-conditions/  200
+ok    /web-designer-ilkley/  200
+ok    /web-designer-keighley/  200
+ok    /web-designer-york/  200
+ok    /web-designer-yorkshire/  200
+ok    /website-not-generating-leads/  200
+
+70/70 old URLs resolve.

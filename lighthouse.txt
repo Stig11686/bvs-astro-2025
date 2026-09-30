@@ -1,0 +1,25 @@
+
+=== http://localhost:38499/
+perf 100 | a11y 100 | best 100 | seo 100
+LCP 1.4 s | FCP 1.4 s | TBT 0 ms | CLS 0.004 | SI 1.4 s
+
+=== http://localhost:38499/services/website-support/
+perf 100 | a11y 100 | best 100 | seo 100
+LCP 1.5 s | FCP 1.5 s | TBT 0 ms | CLS 0.018 | SI 1.5 s
+
+=== http://localhost:38499/blog/who-owns-my-website/
+perf 96 | a11y 100 | best 100 | seo 100
+LCP 2.3 s | FCP 2.3 s | TBT 0 ms | CLS 0.004 | SI 2.3 s
+  - [0.74] first-contentful-paint: 2.3 s
+
+=== http://localhost:38499/portfolio/jaynes-bridalwear-lincoln/
+perf 100 | a11y 100 | best 100 | seo 100
+LCP 1.4 s | FCP 1.4 s | TBT 0 ms | CLS 0.011 | SI 1.4 s
+
+=== http://localhost:38499/web-designer-york/
+perf 100 | a11y 100 | best 100 | seo 100
+LCP 1.4 s | FCP 1.4 s | TBT 0 ms | CLS 0.006 | SI 1.4 s
+
+=== http://localhost:38499/blog/
+perf 100 | a11y 100 | best 100 | seo 100
+LCP 1.4 s | FCP 1.4 s | TBT 0 ms | CLS 0.002 | SI 1.4 s
