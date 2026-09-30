@@ -1,0 +1,108 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/PageHero.astro";
+import Button from "@/components/Button.astro";
+import Bands from "@/components/Bands.astro";
+import Img from "@/components/Img.astro";
+import Steps from "@/components/Steps.astro";
+import XSell from "@/components/XSell.astro";
+import CtaSlab from "@/components/CtaSlab.astro";
+import { site } from "@/site.config";
+
+const included = [
+  "Discovery & strategy session",
+  "Custom design in Figma",
+  "Hand-built WordPress (no page builders)",
+  "Copywriting guidance",
+  "On-page SEO foundations",
+  "Mobile-first, fast by default",
+  "Editor training video",
+  "30 days of post-launch fixes",
+];
+const steps = [
+  { title: "Free call", text: "A proper conversation about your business, not your colour scheme." },
+  { title: "Discovery", text: "Your customers, what they need to see, and what is getting in the way." },
+  { title: "Design", text: "Figma drafts you can mark up, built around the path to enquiry." },
+  { title: "Build", text: "Hand-built WordPress. No bloated page builders." },
+  { title: "Launch + care", text: "Live, trained, and looked after long after handover." },
+];
+---
+
+<Base
+  title="Website Design in Skipton & Yorkshire | BVS Web Design"
+  description="A WordPress website built to bring the work in. Web design in Skipton & across Yorkshire: strategy, design, build, launch. Projects from £2,000."
+>
+  <PageHero
+    title="A website built | around *enquiries,* | not applause."
+    lede="A new WordPress website built around generating enquiries, not just looking good. I handle strategy, copy guidance, design, build and launch, then stay on to look after it."
+    crumbs={[{ label: "Services", href: "/services/" }, { label: "Website Design" }]}
+  >
+    <Fragment slot="cta">
+      <Button href={site.startProject} kind="acc">Start a Project</Button>
+      <a class="tlink" href="/portfolio/">See My Work →</a>
+    </Fragment>
+    <div class="factcard" slot="aside">
+      <Img src="/images/portfolio/rebecca-rennolds-permanent-beauty-and-laser.png" alt="Rebecca Rennolds Permanent Beauty website" sizes="(min-width: 1000px) 400px, 90vw" widths={[400, 800]} />
+      <div class="big">3–4k</div>
+      <p><b>visits per month</b> for Rebecca Rennolds Permanent Beauty, built from scratch with no existing website.</p>
+    </div>
+  </PageHero>
+
+  <Bands items={["Discovery", "Custom design", "Hand-built WordPress", "SEO foundations", "Training", "Aftercare"]} />
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="split">
+        <h2 class="dh sh rv">Everything it takes to <span class="it">launch</span> properly.</h2>
+        <div class="prose-lg rv">
+          <p>No bolt-on extras and no surprise invoices. Every build includes the strategy, design and training you need for the site to do its job from day one.</p>
+          <p class="ink">And because I build it by hand, <em>you can edit it yourself</em> without phoning me on a Sunday.</p>
+          <p>Projects start at £2,000, and I quote every one properly once I understand what you need.</p>
+        </div>
+      </div>
+      <ul class="inc">{included.map((i) => <li class="rv"><i>✓</i>{i}</li>)}</ul>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <h2 class="dh sh rv">How it <span class="it">goes.</span></h2>
+      <Steps items={steps} />
+    </div>
+  </section>
+
+  <section class="band-res tone-blue">
+    <div class="sec">
+      <div class="wrap">
+        <div>
+          <div class="num rv">3–4k<small>visits a month for Rebecca Rennolds Permanent Beauty. She came to me with no website at all, and now ranks strongly for the local searches that matter.</small></div>
+          <div class="rv" style="margin-top:30px"><a class="tlink" href="/portfolio/rebecca-rennolds-permanent-beauty-and-laser/">Read the case study →</a></div>
+        </div>
+        <div class="shots rv">
+          <Img src="/images/portfolio/rebecca-rennolds-permanent-beauty-and-laser.png" alt="Rebecca Rennolds website" sizes="(min-width: 1000px) 340px, 50vw" widths={[340, 680]} />
+          <Img src="/images/portfolio/ilkley-dental-care.png" alt="Ilkley Dental Care website" sizes="(min-width: 1000px) 240px, 40vw" widths={[240, 480]} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="dh sh rv">Not quite <span class="it">you?</span></h2>
+      <XSell
+        items={[
+          { tag: "Website Rescue", title: "Already got a site that's stuck?", text: "Developer gone quiet, locked out, or paying too much. I take it over and sort it out.", href: "/services/website-rescue/" },
+          { tag: "Free Website Audit", title: "Not sure what's wrong?", text: "Send me your address and I'll tell you what's holding it back and what to fix first.", href: "/services/website-audit/" },
+          { tag: "Care Plans", title: "Just need it looked after?", text: "Hosting, updates, backups and edits, handled by a real person in Skipton.", href: "/services/website-support/" },
+        ]}
+      />
+    </div>
+  </section>
+
+  <CtaSlab
+    title="Let's build something that *earns* its keep."
+    lede="Start with a free 30-minute call. No deck, no questionnaire, just a proper conversation about your business."
+    button={{ label: "Start a Project", href: site.startProject }}
+    link={{ label: "Or book an intro call →", href: site.introCall }}
+  />
+</Base>

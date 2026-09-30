@@ -1,0 +1,18 @@
+---
+// The design's button: label that rolls on hover + sliding arrow tile.
+// kind: "dark" (default), "acc" (claret) or "light" (white)
+interface Props {
+  href: string;
+  kind?: "dark" | "acc" | "light";
+  arrow?: string;
+  class?: string;
+  external?: boolean;
+}
+const { href, kind = "dark", arrow = "→", class: className = "", external } = Astro.props;
+const isExternal = external ?? /^https?:\/\//.test(href);
+const cls = ["btn", kind !== "dark" && `btn--${kind}`, "mag", className].filter(Boolean).join(" ");
+---
+
+<a class={cls} href={href} {...(isExternal ? { target: "_blank", rel: "noopener" } : {})}
+  ><span class="lbl"><slot /></span><span class="ar"><i>{arrow}</i><i>{arrow}</i></span></a
+>

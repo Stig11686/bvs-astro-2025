@@ -1,0 +1,57 @@
+---
+// Enquiry form. Posts to the CRM (see src/scripts/site.ts), which receives
+// name, email, website, service_type, message and privacy_agreed.
+// Each option's value must be a CRM service_type:
+// new_website | support_care | site_audit | not_sure
+export type Option = { label: string; value: string; key?: string };
+
+interface Props {
+  options?: Option[];
+  selectLabel?: string;
+  selectPlaceholder?: string;
+  fields?: ("business" | "phone" | "website")[];
+  messageLabel?: string;
+  messagePlaceholder?: string;
+  success?: string;
+  button?: string;
+}
+
+const {
+  options = [
+    { label: "I need a new website", value: "new_website" },
+    { label: "I need help with my current site", value: "support_care" },
+    { label: "I'd like a website audit", value: "site_audit" },
+    { label: "Not sure yet", value: "not_sure" },
+  ],
+  selectLabel = "What's going on?",
+  selectPlaceholder = "Choose the one that fits best",
+  fields = ["business", "phone"],
+  messageLabel = "Tell me a bit more",
+  messagePlaceholder,
+  success = "Thanks, that's with me. I'll be in touch within one working day.",
+  button = "Send a Message",
+} = Astro.props;
+---
+
+<form class="form rv" id="cform" data-enquiry>
+  <div class="f"><label for="n">Your name</label><input id="n" name="name" required autocomplete="name" /></div>
+  {fields.includes("business") && <div class="f"><label for="b">Business name</label><input id="b" name="business" autocomplete="organization" /></div>}
+  <div class="f"><label for="e">Email</label><input id="e" name="email" type="email" required autocomplete="email" /></div>
+  {fields.includes("phone") && <div class="f"><label for="t">Phone <em>(optional)</em></label><input id="t" name="phone" type="tel" autocomplete="tel" /></div>}
+  {fields.includes("website") && <div class="f full"><label for="w">Your website</label><input id="w" name="website" placeholder="yourbusiness.co.uk, or leave blank if there isn't one yet" /></div>}
+  <div class="f full" id="selWrap">
+    <label for="why">{selectLabel}</label>
+    <div class="sel">
+      <select id="why" name="service_type" required>
+        <option value="">{selectPlaceholder}</option>
+        {options.map((o) => <option value={o.value} data-key={o.key}>{o.label}</option>)}
+      </select>
+    </div>
+  </div>
+  <div class="f full"><label for="m">{messageLabel}</label><textarea id="m" name="message" placeholder={messagePlaceholder}></textarea></div>
+  <input class="hp" name="company_url" tabindex="-1" autocomplete="off" aria-hidden="true" />
+  <button class="btn btn--acc mag" type="submit"><span class="lbl">{button}</span><span class="ar"><i>→</i><i>→</i></span></button>
+  <p class="f check">By sending this you agree to the <a href="/privacy-policy/">privacy policy</a>.</p>
+  <p class="ok" role="status">{success}</p>
+  <p class="err" role="alert">That didn't send. Please try again, or email <a href="mailto:info@bvswebdesign.co.uk">info@bvswebdesign.co.uk</a>.</p>
+</form>

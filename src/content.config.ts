@@ -1,153 +1,138 @@
-import parseTomlToJson from "@/lib/utils/parseTomlToJson";
+// Content schemas. The build fails with a clear message if a file breaks them,
+// so a post with a missing title or unknown category never goes live.
 import { defineCollection, z } from "astro:content";
-import { button, sectionsSchema } from "./sections.schema";
 import { glob } from "astro/loaders";
+import { blogCategories } from "./site.config";
 
-const config = parseTomlToJson("./src/config/config.toml");
-const portfolioFolder = config.settings.portfolioFolder || "portfolio";
-const blogFolder = config.settings.blogFolder || "blog";
-const servicesFolder = config.settings.servicesFolder || "services";
+// Filename is the URL. `customSlug` (older posts) overrides it.
+const idFromFile = ({ entry, data }: { entry: string; data: Record<string, unknown> }) =>
+  (data.customSlug as string) || entry.replace(/\.(md|mdx)$/, "").split("/").pop()!;
 
-// Universal Page Schema
-export const page = z.object({
-  title: z.string(),
-  author: z.string().optional(),
-  categories: z.array(z.string()).default(["others"]).optional(),
-  tags: z.array(z.string()).default(["others"]).optional(),
-  date: z.date().optional(), // example date format 2022-01-01 or 2022-01-01T00:00:00+00:00 (Year-Month-Day Hour:Minute:Second+Timezone)
-  description: z.string().optional(),
-  image: z.string().optional(),
-  draft: z.boolean().optional(),
-  button: button.optional(),
-  metaTitle: z.string().optional(),
-  metaDescription: z.string().optional(),
-  robots: z.string().optional(),
-  excludeFromSitemap: z.boolean().optional(),
-  excludeFromCollection: z.boolean().optional(),
-  customSlug: z.string().optional(),
-  canonical: z.string().optional(),
-  keywords: z.array(z.string()).optional(),
-  disableTagline: z.boolean().optional(),
-  showInMenu: z.boolean().optional(), // Controls whether item appears in navigation menus
-  showContactForm: z.boolean().optional(), // Shows contact form section at bottom of page
-  ...sectionsSchema,
+const imagePath = z
+  .string()
+  .regex(/^\/images\//, 'Image paths start with "/images/", e.g. "/images/blog/my-post.jpg"');
+
+const blog = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/blog", generateId: idFromFile }),
+  schema: z
+    .object({
+      title: z.string(),
+      description: z.string().optional(),
+      date: z.coerce.date(),
+      image: imagePath.optional(),
+      imageAlt: z.string().optional(),
+      unsplashImage: z.string().url().optional(),
+      // One category, from the list in src/site.config.ts
+      category: z.enum(blogCategories).optional(),
+      categories: z.array(z.enum(blogCategories)).optional(),
+      tags: z.array(z.string()).optional(),
+      metaTitle: z.string().optional(),
+      metaDescription: z.string().optional(),
+      keywords: z.array(z.string()).optional(),
+      author: z.string().default("Steve Marks"),
+      featured: z.boolean().default(false),
+      draft: z.boolean().default(false),
+      customSlug: z.string().optional(),
+    })
+    .refine((d) => d.category || d.categories?.length, {
+      message: `Add a category, one of: ${blogCategories.join(", ")}`,
+    })
+    .transform((d) => ({ ...d, category: (d.category ?? d.categories![0]) as (typeof blogCategories)[number] })),
 });
 
-// Marquee Schema
-export const marqueeConfig = z.object({
-  elementWidth: z.string(),
-  elementWidthAuto: z.boolean(),
-  elementWidthInSmallDevices: z.string(),
-  pauseOnHover: z.boolean(),
-  reverse: z.enum(["reverse", ""]).optional(), // Optional: "reverse" or an empty string
-  duration: z.string(),
+const portfolio = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/portfolio", generateId: idFromFile }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    image: imagePath,
+    date: z.coerce.date(),
+    featured: z.boolean().default(false),
+    categories: z.array(z.string()).default([]),
+    information: z.array(z.object({ label: z.string(), value: z.string() })).default([]),
+    metaTitle: z.string().optional(),
+    metaDescription: z.string().optional(),
+    draft: z.boolean().default(false),
+    customSlug: z.string().optional(),
+  }),
 });
 
-// Pages collection schema
-const pagesCollection = defineCollection({
-  schema: page,
+const faq = z.array(z.object({ question: z.string(), answer: z.string() }));
+const metric = z.array(z.object({ value: z.string(), label: z.string() }));
+
+// Location landing pages: /web-designer-<file name>/
+const locations = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/locations" }),
+  schema: z.object({
+    title: z.string(),
+    metaDescription: z.string(),
+    location: z.string(),
+    region: z.string(),
+    heroHeadline: z.string(),
+    heroExcerpt: z.string(),
+    heroImage: imagePath,
+    heroImageAlt: z.string().default(""),
+    resultsHeadline: z.string(),
+    resultsText: z.string(),
+    testimonial: z.object({ quote: z.string(), author: z.string(), business: z.string(), avatar: imagePath.optional() }),
+    whyWorkHeadline: z.string(),
+    features: z.array(z.object({ title: z.string(), text: z.string() })),
+    portfolioText: z.string().optional(),
+    portfolioSlugs: z.array(z.string()).default([]),
+    successStory: z.object({ business: z.string(), location: z.string(), text: z.string(), metrics: metric }),
+    processSteps: z.array(z.object({ title: z.string(), text: z.string() })),
+    faqHeadline: z.string(),
+    faqText: z.string().optional(),
+    faq,
+  }),
 });
 
-// Service collection schema
-const serviceCollection = defineCollection({
-  schema: page.merge(
-    z.object({
-      icon: z.string().optional(),
-    }),
-  ),
+// Industry pages: /services/<file name>/
+const industries = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/industries" }),
+  schema: z.object({
+    title: z.string(),
+    metaDescription: z.string(),
+    industry: z.string(),
+    industryPlural: z.string(),
+    heroEyebrow: z.string(),
+    heroHeadline: z.string(),
+    heroExcerpt: z.string(),
+    heroImage: imagePath,
+    heroImageAlt: z.string().default(""),
+    whyHeadline: z.string(),
+    whyText: z.string(),
+    whyPoints: z.array(z.string()).default([]),
+    includesHeadline: z.string(),
+    includesText: z.string().optional(),
+    includes: z.array(z.object({ title: z.string(), text: z.string() })),
+    portfolioHeadline: z.string().optional(),
+    portfolioText: z.string().optional(),
+    portfolioSlugs: z.array(z.string()).default([]),
+    successStory: z.object({ business: z.string(), location: z.string().optional(), text: z.string(), metrics: metric }),
+    testimonial: z
+      .object({ quote: z.string(), author: z.string(), business: z.string(), avatar: imagePath.optional() })
+      .optional(),
+    faqHeadline: z.string(),
+    faqText: z.string().optional(),
+    faq,
+  }),
 });
 
-// Post collection schema
-const blogCollection = defineCollection({
-  // Load Markdown and MDX files in the `src/content/blog/` directory.
-  loader: glob({ base: "./src/content/blog", pattern: "**/*.{md,mdx}" }),
-  schema: page.merge(
-    z.object({
-      author: z.string().optional(),
-      options: z
-        .object({
-          layout: z
-            .enum(["grid", "creative", "horizontal", "overlay"])
-            .optional(),
-          appearance: z.enum(["dark", "light"]).optional(),
-          columns: z
-            .union([z.literal(1), z.literal(2), z.literal(3)])
-            .optional(),
-          limit: z.union([z.number().int(), z.literal(false)]).optional(),
-        })
-        .optional(),
-    }),
-  ),
+// Simple content pages: privacy, terms and similar. /<file name>/
+const pages = defineCollection({
+  loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/pages" }),
+  schema: z.object({
+    title: z.string(),
+    headline: z.string().optional(),
+    description: z.string().optional(),
+    metaTitle: z.string().optional(),
+    metaDescription: z.string().optional(),
+    crumb: z.string().optional(),
+    noindex: z.boolean().default(false),
+    contactForm: z.boolean().default(false),
+    draft: z.boolean().default(false),
+  }),
 });
 
-// Portfolio Collection
-const portfolioCollection = defineCollection({
-  // Load Markdown and MDX files in the `src/content/portfolio/` directory.
-  loader: glob({ base: "./src/content/portfolio", pattern: "**/*.{md,mdx}" }),
-  schema: page.merge(
-    z.object({
-      featured: z.boolean().optional(), // Controls whether item appears on homepage
-      images: z.array(z.string()).min(1).optional(),
-      options: z
-        .object({
-          layout: z.enum(["masonry", "grid", "full-width", "slider"]),
-          appearance: z.enum(["dark", "light"]).optional(),
-          limit: z.union([z.number().int(), z.literal(false)]).optional(),
-        })
-        .optional(),
-      information: z
-        .array(
-          z.object({
-            label: z.string(),
-            value: z.string(),
-          }),
-        )
-        .optional(),
-    }),
-  ),
-});
-
-// Team Collection
-export const teamCollection = defineCollection({
-  // Load Markdown and MDX files in the `src/content/portfolio` directory.
-  loader: glob({ base: "./src/content/team", pattern: "**/*.{md,mdx}" }),
-  schema: page.merge(
-    z.object({
-      image: z.string(),
-      profession: z.string().optional(),
-      email: z.string().optional(),
-      phone: z.string().optional(),
-      social: z
-        .array(
-          z.object({
-            enable: z.boolean(),
-            label: z.string(),
-            icon: z.string(),
-            url: z.string(),
-          }),
-        )
-        .optional(),
-    }),
-  ),
-});
-
-// Export collections
-export const collections = {
-  // To prevent, getEntry (Content fetching API) throws error when collection does not exist, we specify a default collection along with the schema of each required collection
-  [blogFolder]: blogCollection,
-  blog: blogCollection,
-  [servicesFolder]: serviceCollection,
-  services: serviceCollection,
-  [portfolioFolder]: portfolioCollection,
-  portfolio: portfolioCollection,
-
-  pages: pagesCollection,
-  sections: defineCollection({}),
-  homepage: defineCollection({}),
-  "about-us": defineCollection({}),
-  contact: defineCollection({}),
-  faq: defineCollection({}),
-  team: teamCollection,
-  pricing: defineCollection({}),
-  author: defineCollection({}),
-};
+export const collections = { blog, portfolio, locations, industries, pages };

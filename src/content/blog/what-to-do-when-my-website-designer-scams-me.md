@@ -1,0 +1,295 @@
+---
+title: My Web Designer Has Gone Silent – What to Do Next (And How to Avoid Being Scammed)
+description: >-
+  Discover the exact steps to take if your web designer has disappeared, left you without access, or delivered
+  a broken website. A practical guide from an expert.
+metaTitle: My Web Designer Has Gone Silent – What to Do Next | BVS Web Design
+metaDescription: >-
+  Web designer not responding? Ghosted mid-project? Here's exactly what to do — how to protect yourself,
+  recover your website, and avoid it happening again.
+keywords:
+  - web design scam
+  - recover hacked website
+  - bad web designer
+  - WordPress help
+image: /images/blog/scammed-by-my-web-designer.jpg
+date: '2025-10-10'
+author: Steve Marks
+categories:
+  - Website Rescue
+tags:
+  - Website Rescue
+draft: false
+---
+
+If your web designer has stopped responding, you're probably somewhere between worried and furious right now.
+
+Maybe they were mid-build and just... disappeared. Maybe they're taking days to reply to basic questions. Maybe you've sent three emails and heard nothing. Whatever the situation, that sinking feeling of not being able to reach someone you've paid is genuinely awful — and unfortunately, more common than it should be.
+
+The good news: in most cases, this is fixable. And even if it isn't, you're not as stuck as you feel right now.
+
+This guide covers two related situations:
+
+- **Your web designer has gone quiet** — not responding, hard to reach, or mid-project and disappeared
+- **You think you've been scammed** — money taken, nothing delivered, or locked out of your own website
+
+Both situations are stressful. But they need slightly different responses, so let's deal with them separately.
+
+---
+
+## My Web Designer Has Stopped Responding — What Do I Do Right Now?
+
+Before assuming the worst, it's worth ruling out the obvious. Designers get ill, go on holiday, and have chaotic patches like anyone else. But if it's been more than a few working days with no response — especially mid-project — you're right to be concerned.
+
+**Step 1: Try every channel once**
+Send one clear, calm message via email, and if you have it, one via phone or WhatsApp. Don't send ten messages — it won't help and muddies the paper trail. State clearly what you need and give a specific deadline: "Please respond by Friday or I'll need to take the next steps."
+
+**Step 2: Check what you actually have access to**
+While you're waiting, log in and check your domain, hosting, and WordPress admin. If you can access everything independently of them, you're in a much stronger position. If they control your domain or hosting — make a note, that's the priority to resolve.
+
+**Step 3: Stop any ongoing payments**
+If you're on a monthly retainer and getting nothing in return, pause it. You can always reinstate. Don't keep paying into a void.
+
+**Step 4: Give a formal deadline in writing**
+If there's still no response after your initial message, send a follow-up email (not WhatsApp — email creates a proper paper trail) that's clear and professional: what was agreed, what's outstanding, and a firm date by which you need a response. Keep emotion out of it.
+
+**Step 5: Decide whether this is salvageable**
+Sometimes designers go quiet for legitimate reasons and come back apologetic and ready to deliver. Sometimes they don't. Once your deadline passes without a response, treat it as a breakdown of the agreement and move to the steps below.
+
+---
+
+## My Web Designer Has Gone Quiet — Is This a Scam?
+
+Not necessarily — but it doesn't really matter what you call it. Whether it's a deliberate scam, a freelancer who took on too much, or someone who simply isn't professional enough to communicate — the outcome for you is the same: you've paid money, you're not getting what you were promised, and you need to take control of the situation.
+
+Here's how to tell where you actually stand...
+
+---
+
+## What "Being Scammed" Actually Looks Like (It's Not Always Obvious)
+
+Scammed might be a strong word here. It might be poor customer service. It might just be a frustrating experience. Let me give you a real example of a client who came to me.
+
+This business owner had their website for 5 years. It was costing him **hundreds of pounds per month,** giving him no results, and to be honest, he was close to retiring and didn't really want new clients!! But when he see me, he came asking for a brand new website. When we were doing discovery, that's when his story came out. So we dug into it...
+
+He had:
+
+- A basic 5+ year old website
+- “Location pages” that didn’t rank
+- Hosting (wildly overpriced)
+- No real updates or results
+
+In other words: he was paying for _nothing._
+
+He didn’t actually need a new site — he just needed someone to tell him the truth.
+
+**My advice?**  
+Tell his current company he had spoken to someone else, and that he no longer wanted location pages for hundreds of pounds per month. Cancel the monthly fees. He kept the site, and we talked about a new website.
+
+He did it. Overnight his costs dropped massively. From one conversation he regained control. He was in a position where he could tell me he didn't actually want a new website. It wasn't what his business needed. But I was so glad I could help.
+
+**That’s what being scammed looks like in real life:**  
+Not always fraud. Sometimes it’s just years of wasted money and no value.
+
+Other common scenarios:
+
+- You pay a deposit and never hear from them again
+- The site is half-finished and they ghost you
+- You’re locked out of your own domain or hosting
+- Surprise charges for every small change
+- “SEO” or “marketing” retainers that do nothing
+- Cheap-looking site that damages your brand
+
+If you’re paying and getting nothing in return — that’s a problem. And you’d be surprised how many business owners are in the same boat.
+
+---
+
+## What To Do Right Now (Before Anything Else)
+
+Once you realise you’ve been taken advantage of, it’s easy to either kick off or bury your head in the sand.  
+Neither really helps.
+
+Here’s how I would deal with it:
+
+### 1. Write down what’s actually happened
+
+- What you paid for
+- What you actually got
+- Any emails, invoices, messages
+
+Getting it out of your head and into one place makes things clearer straight away.
+
+### 2. Make sure you have access
+
+Check you can log in to:
+
+- Domain name account (e.g. GoDaddy, 123-Reg)
+- Hosting
+- Website admin (WordPress or similar)
+- Email (if it’s tied to the website)
+
+If you can’t access something, or it’s in their name, make a note. We’ll deal with that later.
+
+### 3. Stop any ongoing payments
+
+If you’re still being billed monthly for “maintenance”, “SEO”, “updates”, or anything else you’re not actually getting value from — cancel it.
+
+### 4. If possible, give them one clear chance to fix it
+
+If they haven’t completely disappeared, send a calm, direct message:
+
+- Here’s what was agreed
+- Here’s what’s missing or wrong
+- Here’s what I want done
+- Please sort by X date
+
+### 5. Don’t rush into hiring someone else
+
+Most people want to immediately find a new web person. Understandable, but dangerous — this is when a lot of people make mistake number two.
+
+Once you’ve done these steps, you’re in control again. You know what you’ve got, what you’re missing and where things stand. Like my client did, think about what you want for you business, and take your time talking to a few designers.
+
+---
+
+## Can You Get Your Money Back?
+
+Sometimes you can, sometimes you can’t. Sometimes its not worth the hassle - but a few things may help:
+
+### 1. Credit card or PayPal payments
+
+- You might be able to get a chargeback or open a dispute if they delivered nothing or didn’t meet the agreement.
+
+### 2. Small claims court
+
+- Only worth it for bigger amounts (£1k+) with a clear paper trail. Chasing tiny sums is rarely worth the stress.
+
+### 3. Cut your losses when it makes sense
+
+- Sometimes it’s smarter to stop paying, get your site under control, and move on. Peace of mind beats a refund most of the time.
+
+### 4. Protect yourself next time
+
+- Even if you don’t get money back, make sure you have access to your domain and hosting, and learn the warning signs for the future.
+
+---
+
+## How to Recover Your Website (Without Losing Your Head)
+
+### 1. Figure out what you actually have
+
+Check:
+
+- Do you still have the old website files?
+- Can you log in to WordPress or your CMS?
+- Is the domain and hosting in your name?
+
+Knowing what’s available makes the next steps easier.
+
+### 2. Decide: fix or start fresh
+
+- **Fix:** If the site mostly works and just needs updates or proper hosting, this can save time and money.
+- **Start fresh:** If it’s old, slow, or broken beyond repair, sometimes a clean build is easier in the long run.
+
+### 3. Short-term patch
+
+While you figure out the long-term plan:
+
+- Keep the site online so customers can still find you
+- Fix any critical errors (contact forms, broken pages)
+- Don’t spend a fortune on cosmetic changes yet
+
+### 4. Long-term plan
+
+- Get hosting and domain in your own name
+- Back up everything
+- Make a list of what you actually need: content, design, features
+- Only then hire someone you trust (or do it yourself if you’re confident)
+
+### 5. Learn from it
+
+- Don’t blindly pay monthly retainers without results
+- Make sure you have logins from day one
+- Ask for references and examples of their work
+- Set clear expectations before paying anything
+
+The key is control. Once your website is under your control, you can decide if it needs improving, replacing, or just leaving alone.
+
+---
+
+## How to Pick a Web Designer You Can Actually Trust
+
+### 1. Make sure you own your stuff
+
+- Domain name in _your_ name
+- Hosting account you control
+- CMS login you keep
+
+If they can lock you out, don’t touch it.
+
+### 2. Look for transparency
+
+- Clear pricing upfront
+- Realistic timelines
+- Straight answers to questions
+
+If they’re dodgy or vague, walk away.
+
+### 3. Check their work
+
+- Ask for recent examples
+- Ask about results, not just pretty designs
+- Speak to past clients if you can
+
+A good designer will be happy to show you proof.
+
+### 4. Avoid long-term retainers unless necessary
+
+- Paying £100+ per month for “updates” or “SEO” is fine _if you know exactly what you’re getting_
+- Otherwise, you’re just handing over cash for air
+
+### 5. Keep expectations realistic
+
+- A website alone won’t solve all business problems
+- It should work, look professional, and convert visitors, but don’t expect miracles overnight
+
+Bottom line: find someone straightforward, competent, and trustworthy — the kind of person you could hand your business to without losing sleep.
+
+---
+
+## Mindset and Next Steps
+
+Getting burned by a web designer sucks. There’s no sugarcoating it. But it doesn’t mean your website, your business, or your judgement is broken.
+
+### 1. Keep a level head
+
+- Panic or anger won’t fix the situation
+- Step back, assess what you actually have, and work through the options
+
+### 2. Focus on control, not revenge
+
+- The real win is getting your site, domain, and hosting under your control
+- Once you’ve done that, you can decide if you need fixes, a rebuild, or just to leave it alone
+
+### 3. Learn for next time
+
+- Don’t blindly hand over monthly retainers
+- Keep logins in your name
+- Ask questions, check references, and get everything in writing
+
+### 4. Take action
+
+- Cancel unnecessary payments
+- Secure your accounts
+- Plan your next steps carefully
+
+Being scammed doesn’t have to be the end of your website — or your trust in web designers. With a clear head, some practical steps, and the right approach, you can sort it out, cut costs, and set things up properly this time.
+
+If this has happened to you and you want some straight advice on what to do next, feel free to [book a quick call with me](https://tidycal.com/bvswebdesign/30-minute-meeting) — no strings, just help.
+
+---
+
+## Related Reading
+
+- [Why Your Business Website Needs a Care Plan](/blog/why-your-business-website-needs-a-care-plan-and-what-happens-without-one/) — Prevention is better than cure. A care plan keeps things running.
+- [The 5 Biggest Mistakes Small Business Owners Make](/blog/the-5-biggest-mistakes-small-business-owners-make-with-their-websites/) — Avoid the traps that lead to these situations.
+- [WordPress Website Design Services](/services/website-design/) — Work with someone you can trust

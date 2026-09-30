@@ -1,0 +1,36 @@
+---
+// Navy slab with the swipeable review deck.
+import Img from "./Img.astro";
+import { testimonials } from "@/data/testimonials";
+import { emph } from "@/lib/text";
+const { title = "Don't just take my *word* for it." } = Astro.props;
+---
+
+<section class="sec" style="padding-bottom:0">
+  <div class="slab rev on-dark">
+    <section class="sec">
+      <div class="wrap">
+        <div>
+          <h2 class="dh h2 rv" set:html={emph(title)} />
+          <div class="gpill rv"><Img src="/images/icons/google.svg" alt="" /><span class="stars" aria-hidden="true">★★★★★</span>Rated five stars on Google</div>
+          <div class="dnav"><button id="dprev" class="mag" aria-label="Previous review">←</button><button id="dnext" class="mag" aria-label="Next review">→</button><span>Drag or tap to shuffle</span></div>
+        </div>
+        <div class="deck" id="deck">
+          {
+            testimonials.map((t) => (
+              <figure class="qc" data-cursor="Drag">
+                <div class="qm" aria-hidden="true">“</div>
+                <blockquote>{t.quote}</blockquote>
+                <figcaption>
+                  <Img src={t.avatar} alt="" sizes="54px" widths={[108]} />
+                  <div><b>{t.author}</b><span>{t.business}</span></div>
+                  <span class="stars" aria-label="Five stars">★★★★★</span>
+                </figcaption>
+              </figure>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </div>
+</section>

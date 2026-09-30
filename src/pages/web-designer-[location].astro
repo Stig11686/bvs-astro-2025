@@ -1,0 +1,104 @@
+---
+// Location landing pages. Content: src/content/locations/<name>.md → /web-designer-<name>/
+// To add a town, copy one of those files, rename it and change the words.
+import { getCollection, type CollectionEntry } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/PageHero.astro";
+import Button from "@/components/Button.astro";
+import Img from "@/components/Img.astro";
+import Bands from "@/components/Bands.astro";
+import Features from "@/components/Features.astro";
+import WorkCard from "@/components/WorkCard.astro";
+import SuccessStory from "@/components/SuccessStory.astro";
+import QuoteBand from "@/components/QuoteBand.astro";
+import Steps from "@/components/Steps.astro";
+import Faq from "@/components/Faq.astro";
+import ServicesXSell from "@/components/ServicesXSell.astro";
+import ContactSection from "@/components/ContactSection.astro";
+import AsideList from "@/components/AsideList.astro";
+import { getWork } from "@/lib/content";
+import { emph } from "@/lib/text";
+import { site } from "@/site.config";
+
+export async function getStaticPaths() {
+  const locations = await getCollection("locations");
+  return locations.map((entry) => ({ params: { location: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props as { entry: CollectionEntry<"locations"> };
+const d = entry.data;
+const all = await getWork();
+const picked = d.portfolioSlugs.map((s) => all.find((w) => w.id === s)).filter((w) => w !== undefined);
+const work = (picked.length >= 3 ? picked : [...picked, ...all.filter((w) => w.data.featured && !picked.includes(w))]).slice(0, 3);
+const storyLink = all.find((w) => d.successStory.business.toLowerCase().includes(w.data.title.split(" ")[0].toLowerCase()));
+---
+
+<Base title={`${d.title} | BVS Web Design`} description={d.metaDescription}>
+  <PageHero title={d.heroHeadline} lede={d.heroExcerpt} crumbs={[{ label: `Web design in ${d.location}` }]}>
+    <Fragment slot="cta">
+      <Button href={site.introCall} kind="acc">Book an Intro Call</Button>
+      <a class="tlink" href="#contact">Send a Message →</a>
+    </Fragment>
+    <div class="factcard" slot="aside">
+      <Img src={d.heroImage} alt={d.heroImageAlt} sizes="(min-width: 1000px) 400px, 90vw" widths={[400, 800]} style="aspect-ratio:4/5;object-position:70% 30%" />
+      <p><b>Steve Marks,</b> web designer in Skipton, working with businesses across {d.location} and {d.region}.</p>
+    </div>
+  </PageHero>
+
+  <Bands items={[`Web design ${d.location}`, "WordPress websites", "Local SEO", "Care plans", "Made in Yorkshire"]} />
+
+  <section class="sec">
+    <div class="wrap split">
+      <h2 class="dh sh rv" set:html={emph(d.resultsHeadline)} />
+      <div class="prose-lg rv"><p>{d.resultsText}</p></div>
+    </div>
+  </section>
+
+  <QuoteBand quote={d.testimonial.quote} author={d.testimonial.author} business={d.testimonial.business} avatar={d.testimonial.avatar} />
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="dh sh rv" set:html={emph(d.whyWorkHeadline)} />
+      <Features items={d.features} />
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="split">
+        <h2 class="dh sh rv">Work that <span class="it">works.</span></h2>
+        {d.portfolioText && <p class="lede rv">{d.portfolioText}</p>}
+      </div>
+      <div class="wgrid">{work.map((w) => <WorkCard work={w} sizes="(min-width: 1000px) 400px, 92vw" />)}</div>
+    </div>
+  </section>
+
+  <SuccessStory eyebrow={`${d.location} success story`} {...d.successStory} href={storyLink && `/portfolio/${storyLink.id}/`} />
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="dh sh rv">How it <span class="it">goes.</span></h2>
+      <Steps items={d.processSteps} />
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap split">
+      <div class="sticky-h">
+        <h2 class="dh sh rv" set:html={emph(d.faqHeadline)} />
+        {d.faqText && <p class="lede rv" style="margin-top:20px">{d.faqText}</p>}
+      </div>
+      <div class="rv"><Faq items={d.faq} /></div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <h2 class="dh sh rv">How I can <span class="it">help.</span></h2>
+      <ServicesXSell />
+    </div>
+  </section>
+
+  <ContactSection title={`Tell me about your ${d.location} *business.*`} lede="Say what's going on with your website and I'll come back to you personally within one working day." form={{ fields: ["business", "phone", "website"] }}>
+    <AsideList />
+  </ContactSection>
+</Base>

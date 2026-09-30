@@ -1,0 +1,66 @@
+:root{
+  /* Brand accents — kept from BVS */
+  --claret:#6a1a2c;
+  --claret-deep:#4a0f1d;
+  --claret-bright:#d06a80;
+  --blue:#16365a;
+  --blue-deep:#0c2340;
+  --blue-bright:#6ba6dd;
+
+  /* Atelier neutrals */
+  --cream:#e4dfd9;
+  --cream-2:#d9d3cc;
+  --white:#ffffff;
+  --ink:#050505;
+  --black:#000000;
+  --graphite:#171717;
+  --iron:#4b4b4b;
+  --slate:#737373;
+  --pewter:#666666;
+  --stone:#999694;
+  --fog:#c7c7c7;
+
+  /* Legacy aliases (components read these) */
+  --paper:var(--cream);
+  --paper-2:var(--cream-2);
+  --ink-2:var(--iron);
+  --ink-3:var(--slate);
+  --rule:var(--fog);
+  --rule-soft:rgba(0,0,0,0.08);
+  --dark-bg:var(--blue-deep);
+  --dark-paper:var(--white);
+
+  /* Semantic */
+  --accent-a:var(--claret);
+  --accent-a-deep:var(--claret-deep);
+  --accent-b:var(--blue);
+  --accent-bright:var(--claret-bright);
+  --surface-page:var(--cream);
+  --surface-card:var(--white);
+  --surface-dark:var(--blue-deep);
+  --surface-button:var(--graphite);
+  --text-body:var(--ink);
+  --text-muted:var(--iron);
+  --text-subtle:var(--slate);
+  --text-placeholder:var(--stone);
+  --text-accent:var(--claret);
+  --border-default:var(--fog);
+  --border-strong:var(--slate);
+  --scrim:rgba(23,23,23,0.45);
+}
+
+/* Blue-led variant: navy becomes the punctuation, claret the dark surface */
+[data-accent="blue"]{
+  --accent-a:var(--blue);--accent-a-deep:var(--blue-deep);--accent-b:var(--claret);
+  --accent-bright:var(--blue-bright);--dark-bg:var(--claret-deep);--surface-dark:var(--claret-deep);
+}
+
+/* Navy slab scope: accent remaps to the bright tone */
+.bvs-dark{
+  --accent-a:var(--accent-bright);
+  --text-body:var(--white);
+  --text-muted:rgba(255,255,255,0.78);
+  --text-subtle:rgba(255,255,255,0.6);
+  --border-default:rgba(255,255,255,0.18);
+  background:var(--dark-bg);color:var(--white);
+}

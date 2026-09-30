@@ -1,0 +1,25 @@
+---
+// Light blue band with one testimonial.
+import Img from "./Img.astro";
+interface Props {
+  quote: string;
+  author: string;
+  business: string;
+  avatar?: string;
+}
+const { quote, author, business, avatar } = Astro.props;
+---
+
+<section class="band-res tone-blue">
+  <div class="sec">
+    <div class="wrap" style="grid-template-columns:1fr">
+      <figure class="rv">
+        <blockquote style="font-family:var(--serif);font-weight:500;font-size:clamp(26px,2.8vw,40px);line-height:1.25;letter-spacing:-.02em;max-width:34ch">“{quote}”</blockquote>
+        <figcaption style="display:flex;gap:14px;align-items:center;margin-top:28px">
+          {avatar && <Img src={avatar} alt="" sizes="56px" widths={[112]} style="width:56px;height:56px;border-radius:50%;object-fit:cover" />}
+          <div><b style="display:block">{author}</b><span style="font-size:15px;color:var(--iron)">{business}</span></div>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>

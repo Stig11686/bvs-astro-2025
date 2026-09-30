@@ -125,39 +125,39 @@
 /blog/category/ai-automation/        /blog/category/website-design/   301!
 
 # Old blog tag redirects
-/blog/tag/ai-agents/                 /blog/tag/website-design/      301!
-/blog/tag/web-agency/                /blog/tag/website-design/      301!
-/blog/tag/automation/                /blog/tag/website-design/      301!
-/blog/tag/n8n/                       /blog/tag/website-design/      301!
-/blog/tag/development/               /blog/tag/website-design/      301!
-/blog/tag/finance/                   /blog/tag/website-design/      301!
-/blog/tag/management/                /blog/tag/website-design/      301!
-/blog/tag/design/                    /blog/tag/website-design/      301!
-/blog/tag/ecommerce/                 /blog/tag/website-design/      301!
-/blog/tag/strategy/                  /blog/tag/website-design/      301!
-/blog/tag/marketing/                 /blog/tag/website-design/      301!
-/blog/tag/dental-website-design/     /blog/tag/website-design/      301!
-/blog/tag/local-seo/                 /blog/tag/website-audit/       301!
-/blog/tag/client-success/            /blog/tag/case-studies/        301!
-/blog/tag/beauty-website-design/     /blog/tag/website-design/      301!
-/blog/tag/client-growth/             /blog/tag/case-studies/        301!
-/blog/tag/hospitality-websites/      /blog/tag/website-design/      301!
-/blog/tag/bridal-website-design/     /blog/tag/website-design/      301!
-/blog/tag/alternative-bridal/        /blog/tag/website-design/      301!
-/blog/tag/client-help/               /blog/tag/website-rescue/      301!
-/blog/tag/wordpress/                 /blog/tag/website-support/     301!
-/blog/tag/performance/               /blog/tag/website-support/     301!
-/blog/tag/best-practices/            /blog/tag/website-design/      301!
-/blog/tag/accessibility/             /blog/tag/website-design/      301!
-/blog/tag/seo/                       /blog/tag/website-audit/       301!
-/blog/tag/content/                   /blog/tag/website-design/      301!
-/blog/tag/conversion/                /blog/tag/website-audit/       301!
-/blog/tag/domain-ownership/          /blog/tag/website-rescue/      301!
-/blog/tag/web-design/                /blog/tag/website-design/      301!
-/blog/tag/transparency/              /blog/tag/website-rescue/      301!
-/blog/tag/small-business/            /blog/tag/website-design/      301!
-/blog/tag/insights/                  /blog/tag/website-design/      301!
-/blog/tag/bridal/                    /blog/tag/website-design/      301!
+/blog/tag/ai-agents/                 /blog/category/website-design/      301!
+/blog/tag/web-agency/                /blog/category/website-design/      301!
+/blog/tag/automation/                /blog/category/website-design/      301!
+/blog/tag/n8n/                       /blog/category/website-design/      301!
+/blog/tag/development/               /blog/category/website-design/      301!
+/blog/tag/finance/                   /blog/category/website-design/      301!
+/blog/tag/management/                /blog/category/website-design/      301!
+/blog/tag/design/                    /blog/category/website-design/      301!
+/blog/tag/ecommerce/                 /blog/category/website-design/      301!
+/blog/tag/strategy/                  /blog/category/website-design/      301!
+/blog/tag/marketing/                 /blog/category/website-design/      301!
+/blog/tag/dental-website-design/     /blog/category/website-design/      301!
+/blog/tag/local-seo/                 /blog/category/website-audit/       301!
+/blog/tag/client-success/            /blog/category/case-studies/        301!
+/blog/tag/beauty-website-design/     /blog/category/website-design/      301!
+/blog/tag/client-growth/             /blog/category/case-studies/        301!
+/blog/tag/hospitality-websites/      /blog/category/website-design/      301!
+/blog/tag/bridal-website-design/     /blog/category/website-design/      301!
+/blog/tag/alternative-bridal/        /blog/category/website-design/      301!
+/blog/tag/client-help/               /blog/category/website-rescue/      301!
+/blog/tag/wordpress/                 /blog/category/website-support/     301!
+/blog/tag/performance/               /blog/category/website-support/     301!
+/blog/tag/best-practices/            /blog/category/website-design/      301!
+/blog/tag/accessibility/             /blog/category/website-design/      301!
+/blog/tag/seo/                       /blog/category/website-audit/       301!
+/blog/tag/content/                   /blog/category/website-design/      301!
+/blog/tag/conversion/                /blog/category/website-audit/       301!
+/blog/tag/domain-ownership/          /blog/category/website-rescue/      301!
+/blog/tag/web-design/                /blog/category/website-design/      301!
+/blog/tag/transparency/              /blog/category/website-rescue/      301!
+/blog/tag/small-business/            /blog/category/website-design/      301!
+/blog/tag/insights/                  /blog/category/website-design/      301!
+/blog/tag/bridal/                    /blog/category/website-design/      301!
 
 # Common URL guesses
 /team/           /about/    301!
@@ -171,3 +171,11 @@
 /news/           /blog/     301!
 /careers/        /contact/  301!
 /jobs/           /contact/  301!
+
+# -------------------------------------------------------
+# 2026 redesign: pages the new build no longer creates
+# -------------------------------------------------------
+/blog/tag/:tag/                       /blog/category/:tag/                   301
+/blog/tag/:tag                        /blog/category/:tag/                   301
+/blog/page/*                          /blog/                                 301
+/images/favicons/*                    /favicons/:splat                       301

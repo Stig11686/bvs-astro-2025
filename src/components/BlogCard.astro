@@ -1,0 +1,28 @@
+---
+import Img from "./Img.astro";
+import type { Post } from "@/lib/content";
+import { formatDate } from "@/lib/text";
+
+interface Props {
+  post: Post;
+  tone?: "acc" | "navy";
+}
+const { post, tone } = Astro.props;
+const { title, category, date, image, imageAlt } = post.data;
+const showImage = image && !tone;
+---
+
+<a class={`bcard rv${tone ? ` tone tone-${tone}` : ""}`} data-cat={category} href={`/blog/${post.id}/`}>
+  {
+    showImage && (
+      <div class="bi">
+        <Img src={image} alt={imageAlt ?? ""} sizes="(min-width: 1000px) 380px, (min-width: 700px) 45vw, 92vw" widths={[360, 560, 760, 1000]} />
+      </div>
+    )
+  }
+  <div class="bb" style={showImage ? undefined : "padding:26px 22px 22px;min-height:300px"}>
+    <div class="bmeta"><span class="c">{category}</span>{formatDate(date)}</div>
+    <h3 style={showImage ? undefined : "font-size:30px;font-weight:900;letter-spacing:-.05em;line-height:1"}>{title}</h3>
+    <span class="more">Read the post <span>→</span></span>
+  </div>
+</a>

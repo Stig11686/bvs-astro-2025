@@ -1,0 +1,97 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/PageHero.astro";
+import Button from "@/components/Button.astro";
+import NumberedRows from "@/components/NumberedRows.astro";
+import CtaSlab from "@/components/CtaSlab.astro";
+import { site } from "@/site.config";
+
+const looks = [
+  { title: "First impressions", text: "Does it pass the five-second test? Is it immediately clear what you do and who for?" },
+  { title: "SEO foundations", text: "Are you showing up on Google for the right searches? Are there basic technical issues holding you back?" },
+  { title: "Conversion blockers", text: "Why aren't visitors getting in touch? What's getting in the way between landing on the page and picking up the phone?" },
+  { title: "Mobile experience", text: "Over 60% of your visitors are on a phone. Does your site actually work for them?" },
+  { title: "Technical health", text: "Speed, security, broken links, Core Web Vitals. The unglamorous stuff that drags performance down without anyone noticing." },
+];
+---
+
+<Base
+  title="Free Website Review & Health Check | BVS Web Design"
+  description="Get a free, plain-English website review from a Yorkshire web designer. Find out why your site isn't getting enquiries, and what to fix first."
+>
+  <PageHero
+    title="Find out what | your site *is and* | *isn't* doing."
+    lede="Most business owners have a nagging feeling their website could be doing more. A free audit gives you a clear answer. I'll look at your site properly and tell you exactly what's holding it back and what to fix first."
+    crumbs={[{ label: "Services", href: "/services/" }, { label: "Free Website Audit" }]}
+  >
+    <Fragment slot="cta">
+      <Button href={site.introCall} kind="acc">Book Your Free Audit</Button>
+      <a class="tlink" href="#look">What I look at ↓</a>
+    </Fragment>
+    <div class="scan-wrap" id="scan" aria-hidden="true" slot="aside">
+      <div class="free">Free!</div>
+      <div class="scan">
+        <div class="scan-bar"><i></i><i></i><i></i><span id="surl">yourwebsite.co.uk</span></div>
+        <div class="scan-view">
+          <div class="sl"><i class="big"></i><i style="width:92%"></i><i style="width:76%"></i><i style="width:84%"></i><i style="width:40%;height:40px"></i><i style="width:88%"></i><i style="width:70%"></i></div>
+          <div>
+            <div class="ring"><svg width="150" height="150" viewBox="0 0 150 150"><circle class="bg" cx="75" cy="75" r="60"></circle><circle class="fg" id="rfg" cx="75" cy="75" r="60"></circle></svg><b id="rn">0</b></div>
+            <small style="display:block;text-align:center;font-size:13px;color:#737373;margin-top:8px">Your score</small>
+          </div>
+          <div class="scanline"></div>
+        </div>
+      </div>
+    </div>
+  </PageHero>
+
+  <section class="state">
+    <div class="wrap">
+      <p id="stmt">
+        There's no catch. This is how I start conversations with new clients. Some people take the findings away and fix
+        things themselves. Others ask me to help. <em class="it">Either way you leave with something useful.</em>
+      </p>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0" id="look">
+    <div class="wrap">
+      <h2 class="dh sh rv">What I <span class="it">look at.</span></h2>
+      <NumberedRows items={looks} />
+    </div>
+  </section>
+
+  <div class="slab audit on-dark">
+    <section class="sec">
+      <div class="wrap">
+        <div><h2 class="dh h2 rv">A plain-English walkthrough, and a <span class="it">priority list</span> that's yours to keep.</h2></div>
+        <div class="prose-lg rv">
+          <p>A video walkthrough of your site where I talk you through everything I've found, in plain English, no jargon. Plus a written priority list so you know exactly what to tackle first.</p>
+          <p class="ink">The whole thing takes around 30 minutes of your time. The call is free. <em>The findings are yours to keep.</em></p>
+          <div style="margin-top:32px"><Button href={site.introCall} kind="light">Book Your Free Audit</Button></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="sec">
+    <div class="band-res tone-blue" style="margin:0">
+      <div class="sec">
+        <div class="wrap">
+          <div><div class="num rv">30+<small>enquiries a month for Ilkley Dental Care, once the audit's findings were fixed.</small></div></div>
+          <div class="prose-lg rv">
+            <p class="ink">A dental practice came to me not knowing why their website wasn't generating enquiries despite reasonable traffic. The audit found a <b>broken contact form nobody knew about</b>, a phone number buried below the fold, and no clear call to action on any page.</p>
+            <p class="ink">Issues they'd lived with for years, fixed in a few weeks.</p>
+            <div style="margin-top:26px"><a class="tlink" href="/portfolio/ilkley-dental-care/">See the Ilkley Dental Care project →</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaSlab
+    title="Ready to get more from your *website?*"
+    lede="A free, no-obligation audit. Around 30 minutes of your time, and the findings are yours to keep."
+    button={{ label: "Book Your Free Audit", href: site.introCall }}
+    link={{ label: "Or send me a message →", href: "/contact/" }}
+  />
+</Base>

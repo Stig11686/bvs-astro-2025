@@ -1,0 +1,12 @@
+---
+// <Card title="..." description="..." buttonLabel="..." buttonUrl="..." />
+// (the old theme's `icon` prop is accepted and ignored)
+const { title, description, buttonLabel, buttonUrl } = Astro.props;
+---
+
+<div class="mcard">
+  <h3>{title}</h3>
+  {description && <p set:html={description} />}
+  <slot />
+  {buttonLabel && buttonUrl && <p><a class="tlink" href={buttonUrl} style="font-size:18px">{buttonLabel} →</a></p>}
+</div>

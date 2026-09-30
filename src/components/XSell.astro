@@ -1,0 +1,21 @@
+---
+interface Props {
+  items: { tag: string; title: string; text: string; href: string }[];
+}
+const { items } = Astro.props;
+---
+
+<div class="xsell">
+  {
+    items.map((x) => (
+      <a class="xcard" href={x.href}>
+        <div class="tag2">
+          {x.tag}
+          <span>→</span>
+        </div>
+        <h3>{x.title}</h3>
+        <p>{x.text}</p>
+      </a>
+    ))
+  }
+</div>

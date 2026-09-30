@@ -1,0 +1,26 @@
+---
+// Navy slab: a named client, what happened, and the numbers.
+import { emph } from "@/lib/text";
+interface Props {
+  eyebrow?: string;
+  business: string;
+  location?: string;
+  text: string;
+  metrics: { value: string; label: string }[];
+  href?: string;
+}
+const { eyebrow = "Success story", business, location, text, metrics, href } = Astro.props;
+---
+
+<div class="slab rev on-dark">
+  <section class="sec">
+    <div class="wrap" style="display:block">
+      <p class="lede rv" style="font-family:var(--serif);font-style:italic;color:var(--acc-b)">{eyebrow}</p>
+      <h2 class="dh sh rv" style="margin-top:10px" set:html={emph(`${business}${location ? `, *${location}.*` : "."}`)} />
+      <div class="split" style="margin-top:34px">
+        <div class="prose-lg rv"><p class="ink">{text}</p>{href && <p style="margin-top:24px"><a class="tlink" href={href}>Read the case study →</a></p>}</div>
+        {metrics.length > 0 && <div class="metrics rv" style="margin-top:0">{metrics.map((m) => <div class="metric"><b>{m.value}</b><span>{m.label}</span></div>)}</div>}
+      </div>
+    </div>
+  </section>
+</div>

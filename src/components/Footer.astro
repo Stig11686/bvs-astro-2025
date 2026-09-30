@@ -1,0 +1,40 @@
+---
+import Brand from "./Brand.astro";
+import { site, footerLinks } from "@/site.config";
+const year = new Date().getFullYear();
+---
+
+<footer class="ftr">
+  <div class="wrap ftr-cols">
+    <div>
+      <Brand />
+      <p>WordPress websites for small businesses, designed and built in Skipton, North Yorkshire.</p>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>{footerLinks.services.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+    </div>
+    <div>
+      <h4>Who I work with</h4>
+      <ul>{footerLinks.industries.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+      <h4 style="margin-top:26px">Areas</h4>
+      <ul>{footerLinks.areas.map((l) => <li><a href={l.href}>{l.label}</a></li>)}</ul>
+    </div>
+    <div>
+      <h4>Get in touch</h4>
+      <ul>
+        <li><a href={site.introCall} target="_blank" rel="noopener">Book an intro call</a></li>
+        <li><a href="/contact/">Contact form</a></li>
+        <li><a href={site.phoneHref}>{site.phone}</a></li>
+        <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        {site.social.map((s) => <li><a href={s.url} target="_blank" rel="noopener">{s.label}</a></li>)}
+      </ul>
+    </div>
+  </div>
+  <div class="fbig" id="fbig" aria-hidden="true">BVSWEBDESIGN</div>
+  <div class="fbase">
+    <span>© {year} BVS Web Design</span>
+    <span><a href="/privacy-policy/">Privacy</a> · <a href="/terms-conditions/">Terms</a> · <button type="button" class="cookie-open">Cookies</button></span>
+    <span>Skipton · Yorkshire · UK</span>
+  </div>
+</footer>

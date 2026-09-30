@@ -1,0 +1,15 @@
+---
+// Solicitor audit request. Posts to the CRM audit endpoint (src/scripts/site.ts).
+---
+
+<form class="form" data-audit-request style="margin-top:30px">
+  <div class="f"><label for="an">Your name</label><input id="an" name="name" required autocomplete="name" /></div>
+  <div class="f"><label for="af">Firm name</label><input id="af" name="firm_name" required autocomplete="organization" /></div>
+  <div class="f full"><label for="aw">Your website</label><input id="aw" name="website_url" required placeholder="www.yourfirm.co.uk" /></div>
+  <div class="f"><label for="ae">Email address</label><input id="ae" name="email" type="email" required autocomplete="email" /></div>
+  <div class="f"><label for="ap">Phone <em>(optional)</em></label><input id="ap" name="phone" type="tel" autocomplete="tel" /></div>
+  <input class="hp" name="company_url" tabindex="-1" autocomplete="off" aria-hidden="true" />
+  <button class="btn btn--acc mag" type="submit"><span class="lbl">Get Your Free Audit</span><span class="ar"><i>→</i><i>→</i></span></button>
+  <p class="f check">By sending this you agree to the <a href="/privacy-policy/">privacy policy</a>.</p>
+  <p class="err" role="alert">That didn't send. Please try again, or email <a href="mailto:info@bvswebdesign.co.uk">info@bvswebdesign.co.uk</a>.</p>
+</form>
