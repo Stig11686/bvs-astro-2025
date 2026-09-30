@@ -1,0 +1,5 @@
+---
+// Wraps a numbered markdown list and sets it as a process.
+interface Props { title?: string }
+---
+<div class="steps">{Astro.props.title && <p class="label">{Astro.props.title}</p>}<slot /></div>

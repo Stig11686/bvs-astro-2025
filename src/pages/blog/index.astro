@@ -1,0 +1,18 @@
+---
+import Base from "@/layouts/Base.astro";
+import BlogIndex from "@/components/ui/BlogIndex.astro";
+import { getPosts, POSTS_PER_PAGE as PER_PAGE } from "@/lib/content";
+
+
+const all = await getPosts();
+const pages = Math.max(1, Math.ceil(all.length / PER_PAGE));
+---
+<Base title="Web Design Blog | Tips, Case Studies & Insights | BVS Web Design" description="Practical advice for small business owners: getting more enquiries from your website, looking after it, getting out of a bad setup, and building it right.">
+  <BlogIndex
+    posts={all.slice(0, PER_PAGE)}
+    allPosts={all}
+    heading="Tips, case studies & *insights*."
+    intro="Practical advice for service business owners: getting more enquiries from your website, keeping it looked after, getting out of a bad setup, and building it right first time."
+    pages={pages}
+  />
+</Base>

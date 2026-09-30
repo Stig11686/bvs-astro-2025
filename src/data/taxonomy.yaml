@@ -1,0 +1,79 @@
+# The four content pillars. Every blog post belongs to exactly one.
+# Each pillar has one service page, and its slug is used for both
+#   /services/<slug>/        the service page
+#   /blog/category/<slug>/   the pillar's blog archive
+pillars:
+  audit:
+    name: Website Audit
+    slug: website-audit
+    problem: "Your site isn't bringing anything in"
+    summary: "You've got a website. Maybe it even looks decent. But the enquiries aren't coming and you're not sure why. I find what's holding it back and fix it."
+    cta:
+      heading: "Find out what your site *is and isn't* doing."
+      body: "A free, no-obligation audit. Around 30 minutes of your time, and the findings are yours to keep."
+      primary: audit
+    inline:
+      heading: "Not sure what's holding your site back?"
+      body: "A free audit tells you, in plain English, what to fix first."
+  support:
+    name: Website Support & Care Plans
+    shortName: Support & Care
+    slug: website-support
+    problem: "You need someone to look after it"
+    summary: "Updates, fixes, small changes, and a person to ask when something doesn't look right. You don't need a developer on call. You need someone who picks up."
+    cta:
+      heading: "Hand the worry *over*."
+      body: "Tell me what your site does for the business and I'll tell you which plan fits, or that you don't need one yet."
+      primary: start
+    inline:
+      heading: "Want someone else looking after it?"
+      body: "Care plans cover updates, security, backups and the small changes, handled by one person in Skipton."
+  rescue:
+    name: Website Rescue
+    slug: website-rescue
+    problem: "Your developer disappeared, or you're stuck on the wrong platform"
+    summary: "Left with a half-finished site, no access to your own files, a developer who's stopped returning calls, or a platform charging far too much. I take it over and sort it out."
+    cta:
+      heading: "Stuck? Let's get you *back in control*."
+      body: "You don't need it all figured out. Tell me what's going on and I'll tell you what's possible."
+      primary: start
+    inline:
+      heading: "Locked out, or paying too much to stay?"
+      body: "Tell me what's going on and I'll tell you honestly what's possible."
+  design:
+    name: Website Design
+    slug: website-design
+    problem: "You're starting from scratch"
+    summary: "New business, new direction, or starting properly for the first time. I'll build something that brings the work in from day one."
+    cta:
+      heading: "Let's build something that *earns* its keep."
+      body: "Start with a free 30-minute call. No deck, no questionnaire. Just a proper conversation about your business."
+      primary: start
+    inline:
+      heading: "Thinking about a new website?"
+      body: "Start with a free 30-minute call about your business, not your colour scheme."
+
+# Order the pillars appear in navigation and on the homepage.
+pillarOrder: [design, rescue, support, audit]
+
+# The angle a Website Support post takes. Optional, support posts only.
+supportAngles:
+  running: "Keeping it running"
+  day-to-day: "Help with the day-to-day"
+  cost: "Fair cost"
+
+# Who a piece of content is for. A post with no audiences is for all service businesses.
+audiences:
+  salon: "Salon & beauty"
+  dental: "Dental & clinics"
+  bridal: "Bridal"
+  hospitality: "Hospitality"
+  community: "Charity & community"
+  retail: "Retail & e-commerce"
+
+# Post formats.
+formats:
+  article: "Article"
+  guide: "Guide"
+  case-study: "Case study"
+  comparison: "Comparison"

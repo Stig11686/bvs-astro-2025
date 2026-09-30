@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/ui/PageHero.astro";
+import Section from "@/components/sections/Section.astro";
+import ServiceTiles from "@/components/sections/ServiceTiles.astro";
+
+const industries = (await getCollection("industries")).sort((a, b) => a.data.title.localeCompare(b.data.title));
+---
+<Base title="Web Design Services for Service Businesses | BVS Web Design" description="Website design, rescue, support and care plans, and free audits for service businesses across Yorkshire and the UK.">
+  <PageHero eyebrow="Services" heading="Pick where you are *right now*." intro={["Most people arrive with one of four problems. Each has its own page, written plainly, with what I do, what it costs where there's a fixed price, and what to do next."]} />
+  <Section layout="wide"><ServiceTiles /></Section>
+  <Section heading="By *industry*">
+    <ul class="industry-list">
+      {industries.map((i) => <li><a class="underlink" href={`/services/${i.id}/`}>{i.data.title}</a></li>)}
+    </ul>
+  </Section>
+</Base>
+<style>
+  .industry-list { list-style: none; padding: 0; display: grid; gap: 12px; }
+</style>

@@ -1,0 +1,22 @@
+---
+import type { Post } from "@/lib/content";
+import { getPillar } from "@/lib/data";
+import { formatDate, readingTime } from "@/lib/text";
+interface Props { post: Post; headingLevel?: "h2" | "h3" }
+const { post, headingLevel: H = "h3" } = Astro.props;
+const pillar = getPillar(post.data.pillar);
+---
+<a class="post-card card-link" href={`/blog/${post.id}/`}>
+  <p class="label post-card__meta">
+    <span class="label--accent">● {pillar.shortName ?? pillar.name}</span>
+    <span>{formatDate(post.data.date)}</span>
+    <span>{readingTime(post.body)} min</span>
+  </p>
+  <H class="post-card__title h3">{post.data.title}</H>
+  <p class="post-card__excerpt">{post.data.description}</p>
+</a>
+<style>
+  .post-card__meta { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+  .post-card__title { margin: 12px 0 10px; font-size: clamp(1.35rem, 1.15rem + 0.6vw, 1.7rem); }
+  .post-card__excerpt { font-size: 0.93rem; color: var(--ink-2); line-height: 1.6; }
+</style>

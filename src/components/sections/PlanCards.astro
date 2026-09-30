@@ -1,0 +1,40 @@
+---
+import { links } from "@/site.config";
+interface Plan { name: string; annual: string; note?: string; monthly: string; you: string; features: string[]; not?: string; setup?: string; featured?: boolean }
+interface Props { plans: Plan[] }
+---
+<div class="plans">
+  {Astro.props.plans.map((p) => (
+    <div class:list={["plan", { "plan--featured": p.featured }]}>
+      {p.featured && <span class="mono plan__badge">Most popular</span>}
+      <h3 class="h3">{p.name}</h3>
+      <p class="plan__price serif">{p.annual}</p>
+      {p.note && <p class="label label--accent">{p.note}</p>}
+      <p class="plan__monthly serif">{p.monthly}</p>
+      <p class="plan__you"><strong>This is you if:</strong> {p.you}</p>
+      <ul>{p.features.map((f) => <li><span aria-hidden="true">✓</span>{f}</li>)}</ul>
+      {p.not && <p class="plan__not"><strong>Not for you if:</strong> {p.not}</p>}
+      {p.setup && <p class="mono plan__setup">{p.setup}</p>}
+      <a class:list={["btn", p.featured ? "btn--accent" : "btn--ghost", "plan__btn"]} href={links.start} target="_blank" rel="noopener">Choose {p.name} →</a>
+    </div>
+  ))}
+</div>
+<style>
+  .plans { display: grid; border: 1px solid var(--rule); font-family: var(--font-sans); }
+  @media (min-width: 950px) { .plans { grid-template-columns: repeat(3, 1fr); } }
+  .plan { position: relative; display: flex; flex-direction: column; padding: 30px; border-bottom: 1px solid var(--rule); }
+  @media (min-width: 950px) { .plan { border-bottom: 0; border-right: 1px solid var(--rule); } .plan:last-child { border-right: 0; } }
+  .plan--featured { background: var(--paper-2); }
+  .plan__badge { position: absolute; top: 0; right: 0; font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; background: var(--accent); color: var(--dark-paper); padding: 5px 10px; }
+  .plan__price { font-size: 2.3rem; font-style: italic; color: var(--accent); line-height: 1.05; margin-top: 12px; }
+  .plan__monthly { font-size: 1.1rem; color: var(--ink-2); margin-top: 8px; }
+  .plan__you { font-size: .92rem; color: var(--ink-2); line-height: 1.55; margin: 20px 0 18px; }
+  .plan strong { color: var(--ink); }
+  .plan ul { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--rule-soft); }
+  .plan li { display: flex; gap: 10px; padding: 9px 0; font-size: .86rem; color: var(--ink-2); line-height: 1.45; border-bottom: 1px solid var(--rule-soft); }
+  .plan li span { color: var(--accent); }
+  .plan__not { font-size: .86rem; color: var(--ink-3); line-height: 1.55; margin-top: 16px; }
+  .plan__setup { font-size: 11.5px; line-height: 1.6; color: var(--ink-2); margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule-soft); }
+  .plan__btn { margin-top: auto; width: 100%; }
+  .plan__not + .plan__btn, .plan__setup + .plan__btn, ul + .plan__btn { margin-top: 22px; }
+</style>

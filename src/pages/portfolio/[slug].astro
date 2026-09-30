@@ -1,0 +1,113 @@
+---
+import { render } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import Img from "@/components/ui/Img.astro";
+import PostCard from "@/components/ui/PostCard.astro";
+import ClientQuote from "@/components/blocks/ClientQuote.astro";
+import { allComponents } from "@/components/sections";
+import { getWork, getPosts, type Work } from "@/lib/content";
+import { getPillar } from "@/lib/data";
+import { hasMedia } from "@/lib/media";
+import { accentify } from "@/lib/text";
+import { breadcrumbJsonLd } from "@/lib/schema";
+
+export async function getStaticPaths() {
+  const work = await getWork();
+  return work.map((item) => ({ params: { slug: item.id }, props: { item } }));
+}
+const { item } = Astro.props as { item: Work };
+const d = item.data;
+const { Content } = await render(item);
+(Astro.locals as { pillar?: string }).pillar = d.pillars[0];
+const pillarNames = d.pillars.map((p) => getPillar(p));
+const posts = (await getPosts()).filter((p) => d.pillars.includes(p.data.pillar) || p.data.work === item.id).slice(0, 3);
+const facts = [["Client", d.client], ["Sector", d.sector], ...(d.town ? [["Location", d.town]] : []), ...d.facts.map((f) => [f.label.replace(/:$/, ""), f.value])];
+const path = `/portfolio/${item.id}/`;
+---
+<Base
+  title={d.metaTitle ?? `${d.client}: Case Study | BVS Web Design`}
+  description={d.metaDescription ?? d.summary}
+  image={d.image}
+  noindex={d.noindex}
+  jsonLd={[breadcrumbJsonLd([["Home", "/"], ["Portfolio", "/portfolio/"], [d.client, path]])]}
+  cta={{ heading: "Want results like *these*?", body: "Whether you know exactly what you need or you're not sure where to start, let's have a conversation.", primary: "start" }}
+>
+  <section class="gutter case-head">
+    <div class="wrap">
+      <p class="eyebrow">Case study · {d.date.getFullYear()} · {d.sector}{d.town ? ` · ${d.town}` : ""}</p>
+      <h1 class="h1 case-head__h" set:html={accentify(d.title)} />
+      <div class="case-head__row">
+        <p class="lede">{d.summary}</p>
+        {d.stats.slice(0, 2).map((s) => (
+          <div class="case-stat"><p class="case-stat__v serif">{s.value}</p><p class="label">{s.label}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {d.image && hasMedia(d.image) && (
+    <div class="gutter"><div class="wrap"><Img id={d.image} eager sizes="(min-width: 1320px) 1208px, 100vw" class="case-hero" /></div></div>
+  )}
+
+  <section class="gutter section rule-top case-body">
+    <div class="wrap case-body__grid">
+      <aside>
+        <p class="label">Project</p>
+        <dl class="facts">
+          {facts.map(([k, v]) => (<div><dt class="label">{k}</dt><dd class="serif">{v}</dd></div>))}
+          <div><dt class="label">Work</dt><dd class="serif">{pillarNames.map((p, i) => <>{i > 0 && ", "}<a href={`/services/${p.slug}/`}>{p.name}</a></>)}</dd></div>
+          {d.website && <div><dt class="label">Website</dt><dd class="serif"><a href={d.website} target="_blank" rel="noopener">Visit ↗</a></dd></div>}
+        </dl>
+      </aside>
+      <div class="prose"><Content components={allComponents} /></div>
+    </div>
+  </section>
+
+  {d.gallery.length > 0 && (
+    <section class="gutter case-gallery"><div class="wrap grid grid--2">{d.gallery.map((g) => <Img id={g} sizes="(min-width: 700px) 50vw, 100vw" />)}</div></section>
+  )}
+
+  {d.testimonial && (
+    <section class="dark gutter section"><div class="wrap"><p class="eyebrow">Word from the client</p><div class="case-quote"><ClientQuote id={d.testimonial} dark size="large" /></div></div></section>
+  )}
+
+  {posts.length > 0 && (
+    <section class="rule-top">
+      <div class="gutter"><div class="wrap"><h2 class="h2 case-posts-h">Related <span class="accent-italic">reading</span></h2></div></div>
+      <div class="ruled case-posts">{posts.map((p) => <PostCard post={p} />)}</div>
+    </section>
+  )}
+
+  <section class="gutter tint case-next rule-top">
+    <div class="wrap case-next__row">
+      <div><p class="label">Browse more →</p><p class="h3">See the rest of the <em class="accent-italic">portfolio</em>.</p></div>
+      <a class="btn btn--solid" href="/portfolio/">All projects →</a>
+    </div>
+  </section>
+</Base>
+<style>
+  .case-head { padding-top: clamp(40px, 6vw, 64px); padding-bottom: 28px; }
+  .case-head__h { margin-top: 16px; max-width: 24ch; }
+  .case-head__row { margin-top: 30px; display: grid; gap: 24px 36px; align-items: end; }
+  @media (min-width: 900px) { .case-head__row { grid-template-columns: 2fr 1fr 1fr; } }
+  .case-head__row .lede { max-width: 52ch; }
+  .case-stat { border-left: 1px solid var(--rule); padding-left: 20px; }
+  .case-stat__v { font-size: 2.4rem; font-style: italic; line-height: 1; color: var(--accent); margin-bottom: 8px; }
+  .case-hero :global(img) { width: 100%; border: 1px solid var(--rule); }
+  .case-body { margin-top: 40px; }
+  .case-body__grid { display: grid; gap: 40px 56px; }
+  @media (min-width: 1000px) { .case-body__grid { grid-template-columns: 1fr 3fr; } .case-body aside { position: sticky; top: 110px; align-self: start; } }
+  .facts { margin: 14px 0 0; }
+  .facts div { display: grid; grid-template-columns: 1fr 1.3fr; gap: 8px; padding: 10px 0; border-top: 1px solid var(--rule-soft); }
+  .facts dd { margin: 0; font-style: italic; font-size: .98rem; }
+  .facts a { color: var(--ink); text-decoration-color: var(--accent); }
+  .case-gallery { padding-bottom: var(--section-y); }
+  .case-gallery :global(img) { border: 1px solid var(--rule); width: 100%; }
+  .case-quote { margin-top: 22px; max-width: 900px; }
+  .case-posts-h { padding: var(--section-y) 0 20px; }
+  .case-posts { border-left: 0; }
+  @media (min-width: 900px) { .case-posts { grid-template-columns: repeat(3, 1fr); } }
+  .case-next { padding-top: 36px; padding-bottom: 36px; }
+  .case-next__row { display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center; }
+  .case-next .h3 { margin-top: 8px; }
+</style>

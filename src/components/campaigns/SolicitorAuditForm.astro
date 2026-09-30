@@ -1,0 +1,123 @@
+---
+// Solicitor audit request form, ported from the old site.
+// Posts JSON { name, firm_name, website_url, email, phone } to the BVS CRM,
+// then redirects to /solicitor-audit-thank-you/?name=<first name> (or to the
+// `redirect` URL the CRM returns). The id "solicitor-audit-form" is the anchor
+// the page's buttons link to.
+const endpoint = "https://crm.bvswebdesign.co.uk/api/audit-requests";
+---
+<form id="solicitor-audit-form" class="saform" data-endpoint={endpoint}>
+  <div class="saform__row">
+    <label for="saf-name"><span class="label">Your Name <span class="saform__req">*</span></span>
+      <input type="text" id="saf-name" name="name" required autocomplete="name" placeholder="John Smith" />
+    </label>
+    <label for="saf-firm"><span class="label">Firm Name <span class="saform__req">*</span></span>
+      <input type="text" id="saf-firm" name="firm_name" required autocomplete="organization" placeholder="Smith & Associates Solicitors" />
+    </label>
+  </div>
+  <label for="saf-url"><span class="label">Your Website URL <span class="saform__req">*</span></span>
+    <input type="url" id="saf-url" name="website_url" required inputmode="url" placeholder="https://www.yourfirm.co.uk" />
+  </label>
+  <div class="saform__row">
+    <label for="saf-email"><span class="label">Email Address <span class="saform__req">*</span></span>
+      <input type="email" id="saf-email" name="email" required autocomplete="email" placeholder="john@yourfirm.co.uk" />
+    </label>
+    <label for="saf-phone"><span class="label">Phone Number <span class="saform__opt">(Optional)</span></span>
+      <input type="tel" id="saf-phone" name="phone" autocomplete="tel" placeholder="01756 123456" />
+    </label>
+  </div>
+
+  <p class="saform__status" role="alert" aria-live="polite"></p>
+
+  <div class="btn-row">
+    <button type="submit" class="btn btn--accent">Get Your Free Audit</button>
+  </div>
+
+  <p class="label saform__note">No obligation. No sales pressure. Just a genuinely useful audit to help you understand and improve your website.</p>
+</form>
+
+<script>
+  const form = document.getElementById("solicitor-audit-form") as HTMLFormElement | null;
+  if (form) {
+    const button = form.querySelector<HTMLButtonElement>("button[type=submit]")!;
+    const status = form.querySelector<HTMLElement>(".saform__status")!;
+    const label = button.textContent ?? "Get Your Free Audit";
+
+    const showMessage = (message: string) => {
+      status.textContent = message;
+      status.dataset.state = "error";
+      status.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    };
+    const setLoading = (loading: boolean) => {
+      button.disabled = loading;
+      button.textContent = loading ? "Submitting..." : label;
+    };
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      status.textContent = "";
+      delete status.dataset.state;
+
+      const fd = new FormData(form);
+      const data = {
+        name: (fd.get("name") as string) ?? "",
+        firm_name: (fd.get("firm_name") as string) ?? "",
+        website_url: (fd.get("website_url") as string) ?? "",
+        email: (fd.get("email") as string) ?? "",
+        phone: (fd.get("phone") as string) || null,
+      };
+
+      if (!data.name || !data.firm_name || !data.website_url || !data.email) {
+        showMessage("Please fill in all required fields.");
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+        showMessage("Please enter a valid email address.");
+        return;
+      }
+      try {
+        new URL(data.website_url);
+      } catch {
+        showMessage("Please enter a valid website URL (e.g., https://www.yoursite.co.uk).");
+        return;
+      }
+
+      setLoading(true);
+      try {
+        const response = await fetch(form.dataset.endpoint!, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+        const result = await response.json();
+        if (response.ok && result.success) {
+          const firstName = data.name.split(" ")[0];
+          window.location.href = result.redirect || `/solicitor-audit-thank-you/?name=${encodeURIComponent(firstName)}`;
+        } else {
+          showMessage(result.message || "Something went wrong. Please try again or contact us directly.");
+          setLoading(false);
+        }
+      } catch (error) {
+        console.error("Form submission error:", error);
+        showMessage("Unable to submit your request. Please check your connection and try again, or email us directly at info@bvswebdesign.co.uk.");
+        setLoading(false);
+      }
+    });
+  }
+</script>
+
+<style>
+  .saform { display: flex; flex-direction: column; gap: 16px; border: 1px solid var(--rule); background: var(--paper); padding: clamp(22px, 3vw, 32px); font-family: var(--font-sans); scroll-margin-top: 24px; }
+  .saform__row { display: grid; gap: 16px; }
+  @media (min-width: 640px) { .saform__row { grid-template-columns: 1fr 1fr; } }
+  .saform label { display: block; }
+  .saform .label { display: block; margin-bottom: 7px; }
+  .saform__req { color: var(--accent); }
+  .saform__opt { text-transform: none; letter-spacing: 0; }
+  .saform input { width: 100%; background: var(--paper); border: 1px solid var(--rule); padding: 13px 14px; font-size: 15px; color: var(--ink); border-radius: 0; }
+  .saform input:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: transparent; }
+  .saform__status { font-size: .95rem; }
+  .saform__status:empty { display: none; }
+  .saform__status[data-state="error"] { color: #9b1c1c; }
+  .saform__note { text-transform: none; letter-spacing: 0.02em; font-size: 12px; }
+</style>

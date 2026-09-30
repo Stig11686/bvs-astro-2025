@@ -1,0 +1,87 @@
+---
+// Core service pages (one per pillar) and industry pages share /services/<slug>/.
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/ui/PageHero.astro";
+import FAQList from "@/components/ui/FAQList.astro";
+import RelatedStrip from "@/components/ui/RelatedStrip.astro";
+import Section from "@/components/sections/Section.astro";
+import ServiceTiles from "@/components/sections/ServiceTiles.astro";
+import { allComponents } from "@/components/sections";
+import { getPosts, getWork, postsForPillar, postsForAudience, workFor } from "@/lib/content";
+import { getPillar, taxonomy } from "@/lib/data";
+import { links, ctaLabels } from "@/site.config";
+import { plain } from "@/lib/text";
+import { faqJsonLd, breadcrumbJsonLd } from "@/lib/schema";
+
+type Service = CollectionEntry<"services">;
+type Industry = CollectionEntry<"industries">;
+
+export async function getStaticPaths() {
+  const services = await getCollection("services");
+  const industries = await getCollection("industries");
+  return [
+    ...services.map((entry) => ({ params: { slug: entry.id }, props: { kind: "service" as const, entry } })),
+    ...industries.map((entry) => ({ params: { slug: entry.id }, props: { kind: "industry" as const, entry } })),
+  ];
+}
+
+const { kind, entry } = Astro.props as { kind: "service"; entry: Service } | { kind: "industry"; entry: Industry };
+const d = entry.data;
+const { Content } = await render(entry);
+const posts = await getPosts();
+const work = await getWork();
+
+let primary: "start" | "audit" = "start";
+let cta: string | undefined;
+let relatedPosts, relatedWork, postsHref = "/blog/";
+if (kind === "service") {
+  const pillar = getPillar(entry.data.pillar);
+  if (pillar.slug !== entry.id) throw new Error(`src/content/services/${entry.id}.mdx must be named ${pillar.slug}.mdx to match its pillar`);
+  (Astro.locals as { pillar?: string }).pillar = pillar.id;
+  primary = entry.data.primaryCta;
+  cta = pillar.id;
+  relatedPosts = postsForPillar(pillar.id, posts);
+  relatedWork = workFor(work, { pillar: pillar.id });
+  postsHref = `/blog/category/${pillar.slug}/`;
+} else {
+  relatedPosts = postsForAudience(entry.data.audience, posts);
+  relatedWork = workFor(work, { audience: entry.data.audience });
+}
+const label = kind === "service" && entry.data.ctaLabel ? entry.data.ctaLabel : ctaLabels[primary];
+const path = `/services/${entry.id}/`;
+const jsonLd = [breadcrumbJsonLd([["Home", "/"], ["Services", "/services/"], [d.title, path]]), ...(d.faqs?.length ? [faqJsonLd(d.faqs)] : [])];
+---
+
+<Base
+  title={d.metaTitle ?? `${d.title} | BVS Web Design`}
+  description={d.metaDescription ?? plain(d.intro[0] ?? d.heading)}
+  image={d.image}
+  noindex={d.noindex}
+  jsonLd={jsonLd}
+  cta={cta ?? "home"}
+  headerCta={primary}
+>
+  <PageHero eyebrow={d.eyebrow} heading={d.heading} intro={d.intro} max="22ch">
+    <div class="btn-row">
+      <a class="btn btn--solid" href={links[primary]} target="_blank" rel="noopener">{label}</a>
+      <a class="btn btn--ghost" href={kind === "service" ? entry.data.messageHref : "/contact/"}>Send a Message</a>
+    </div>
+  </PageHero>
+
+  <Content components={allComponents} />
+
+  {d.faqs?.length ? (
+    <Section eyebrow="Questions" heading="The things people *ask first*">
+      <FAQList faqs={d.faqs} />
+    </Section>
+  ) : null}
+
+  <RelatedStrip work={relatedWork} posts={relatedPosts} postsHref={postsHref} />
+
+  {kind === "industry" && (
+    <Section layout="wide" heading={`How I can *help* ${taxonomy.audiences[entry.data.audience].toLowerCase()} businesses`}>
+      <ServiceTiles />
+    </Section>
+  )}
+</Base>

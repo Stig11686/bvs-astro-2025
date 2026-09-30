@@ -1,0 +1,18 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/ui/PageHero.astro";
+import WorkCard from "@/components/ui/WorkCard.astro";
+import { getWork } from "@/lib/content";
+const work = await getWork();
+---
+<Base title="Recent Work & Case Studies | BVS Web Design" description="Websites for service businesses across Yorkshire and the UK: bridal, hospitality, dental, beauty, retail and community organisations, written up honestly.">
+  <PageHero eyebrow="Recent work" heading="A small portfolio, written up *honestly*." size="hero" max="18ch" intro={["Service businesses across Yorkshire and the UK: bridal, hospitality, dental, beauty, retail and community organisations."]} />
+  <section class="rule-top work-grid">
+    {work.map((w) => <WorkCard item={w} size="large" />)}
+  </section>
+</Base>
+<style>
+  .work-grid { display: grid; }
+  .work-grid > :global(*) { border-bottom: 1px solid var(--rule); }
+  @media (min-width: 800px) { .work-grid { grid-template-columns: 1fr 1fr; } .work-grid > :global(*:nth-child(odd)) { border-right: 1px solid var(--rule); } }
+</style>

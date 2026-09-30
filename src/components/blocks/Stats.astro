@@ -1,0 +1,15 @@
+---
+// A row of verified numbers.
+import { getProof } from "@/lib/data";
+interface Props { ids: string[] }
+const items = Astro.props.ids.map(getProof);
+---
+<div class="stats" style={`--n:${items.length}`}>
+  {items.map((p) => (
+    <div class="stat">
+      <p class="stat__value serif">{p.value}</p>
+      <p class="stat__label serif">{p.label}</p>
+      <p class="label">{p.attribution}</p>
+    </div>
+  ))}
+</div>

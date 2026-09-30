@@ -1,0 +1,16 @@
+---
+// A real testimonial from src/data/testimonials.yaml.
+import { getTestimonial } from "@/lib/data";
+import Img from "@/components/ui/Img.astro";
+import { hasMedia } from "@/lib/media";
+interface Props { id: string; dark?: boolean; size?: "normal" | "large" }
+const { id, dark = false, size = "normal" } = Astro.props;
+const t = getTestimonial(id);
+---
+<figure class:list={["client-quote", `client-quote--${size}`, { dark }]}>
+  <blockquote class="serif"><span class="q">“</span>{t.quote}<span class="q">”</span></blockquote>
+  <figcaption>
+    {t.photo && hasMedia(t.photo) && <Img id={t.photo} widths={[112]} sizes="56px" class="client-quote__photo" />}
+    <span><strong>{t.name}</strong><span class="label">{t.role}</span></span>
+  </figcaption>
+</figure>

@@ -1,0 +1,15 @@
+---
+// An image from the media library, with an optional caption.
+import Img from "@/components/ui/Img.astro";
+import { getMedia } from "@/lib/media";
+interface Props { id: string; caption?: string; alt?: string; wide?: boolean }
+const { id, caption, alt, wide = false } = Astro.props;
+const m = getMedia(id);
+const cap = caption ?? m.caption;
+---
+<figure class:list={["figure", { "figure--wide": wide }]}>
+  <Img id={id} alt={alt} sizes={wide ? "(min-width: 1200px) 1100px, 100vw" : "(min-width: 800px) 720px, 100vw"} />
+  {(cap || m.credit) && (
+    <figcaption>{cap}{cap && m.credit && " · "}{m.credit && <span class="figure__credit">{m.credit}</span>}</figcaption>
+  )}
+</figure>

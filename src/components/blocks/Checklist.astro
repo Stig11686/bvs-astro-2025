@@ -1,0 +1,5 @@
+---
+// Wraps a bulleted markdown list as ticks the reader can work through.
+interface Props { title?: string }
+---
+<div class="checklist">{Astro.props.title && <p class="label checklist__title">{Astro.props.title}</p>}<slot /></div>

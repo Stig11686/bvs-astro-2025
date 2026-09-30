@@ -1,0 +1,6 @@
+---
+// A ruled grid of titled cards.
+interface Props { columns?: 2 | 3 }
+const { columns = 2 } = Astro.props;
+---
+<div class:list={["cards", `cards--${columns}`]}><slot /></div>

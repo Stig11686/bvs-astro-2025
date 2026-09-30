@@ -1,0 +1,27 @@
+---
+// A grid of short reasons, each with a line icon.
+interface Props { items: { icon?: "pin" | "person" | "search" | "growth" | "key" | "shield"; title: string; body: string }[] }
+const paths: Record<string, string> = {
+  pin: '<path d="M12 21c4-4.2 6.5-7.4 6.5-10.5a6.5 6.5 0 1 0-13 0C5.5 13.6 8 16.8 12 21z"/><circle cx="12" cy="10.3" r="2.4"/>',
+  person: '<circle cx="12" cy="8" r="3.4"/><path d="M5.5 19.5a6.5 6.5 0 0 1 13 0"/>',
+  search: '<circle cx="10.5" cy="10.5" r="5.5"/><line x1="14.6" y1="14.6" x2="20" y2="20"/>',
+  growth: '<polyline points="4 16 9.5 10.5 13 14 20 6.5"/><polyline points="15 6.5 20 6.5 20 11.5"/>',
+  key: '<rect x="5.5" y="11" width="13" height="8.5" rx="1.5"/><path d="M8.5 11V8.5a3.5 3.5 0 0 1 7 0V11"/>',
+  shield: '<path d="M12 3l7 2.6v5.1c0 4.7-3.1 7.8-7 9.3-3.9-1.5-7-4.6-7-9.3V5.6L12 3z"/><polyline points="9 11.5 11.3 13.8 15.2 9.5"/>',
+};
+---
+<div class="ruled ruled--3 reasons">
+  {Astro.props.items.map((r) => (
+    <div class="reason">
+      {r.icon && <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={paths[r.icon]} />}
+      <h3 class="h3">{r.title}</h3>
+      <p>{r.body}</p>
+    </div>
+  ))}
+</div>
+<style>
+  .reason { padding: 30px 32px; font-family: var(--font-sans); }
+  .reason svg { color: var(--accent); margin-bottom: 18px; }
+  .reason h3 { font-size: 1.45rem; margin-bottom: 10px; }
+  .reason p { font-size: .92rem; color: var(--ink-2); line-height: 1.6; margin: 0; max-width: 38ch; }
+</style>

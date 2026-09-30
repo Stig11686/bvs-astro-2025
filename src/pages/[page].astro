@@ -1,0 +1,106 @@
+---
+// Standalone pages (/privacy-policy/ etc.) and location pages (/web-designer-york/).
+import { getCollection, getEntry, render, type CollectionEntry } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/ui/PageHero.astro";
+import Img from "@/components/ui/Img.astro";
+import FAQList from "@/components/ui/FAQList.astro";
+import WorkCard from "@/components/ui/WorkCard.astro";
+import Section from "@/components/sections/Section.astro";
+import ServiceTiles from "@/components/sections/ServiceTiles.astro";
+import Process from "@/components/sections/Process.astro";
+import ClientQuote from "@/components/blocks/ClientQuote.astro";
+import { allComponents } from "@/components/sections";
+import { links, ctaLabels } from "@/site.config";
+import { hasMedia } from "@/lib/media";
+import { plain } from "@/lib/text";
+import { faqJsonLd, breadcrumbJsonLd } from "@/lib/schema";
+
+type Page = CollectionEntry<"pages">;
+type Location = CollectionEntry<"locations">;
+
+export async function getStaticPaths() {
+  const pages = await getCollection("pages");
+  const locations = await getCollection("locations");
+  return [
+    ...pages.map((entry) => ({ params: { page: entry.id }, props: { kind: "page" as const, entry } })),
+    ...locations.map((entry) => ({ params: { page: entry.id }, props: { kind: "location" as const, entry } })),
+  ];
+}
+
+const { kind, entry } = Astro.props as { kind: "page"; entry: Page } | { kind: "location"; entry: Location };
+const { Content } = await render(entry);
+const path = `/${entry.id}/`;
+const work = kind === "location" ? (await Promise.all(entry.data.work.map((id) => getEntry("work", id)))).filter(Boolean) : [];
+if (kind === "location" && work.length !== entry.data.work.length) throw new Error(`${entry.id}: a case study in "work" does not exist`);
+const faqs = entry.data.faqs;
+---
+
+{kind === "location" ? (
+  <Base
+    title={entry.data.metaTitle ?? `${entry.data.title} | BVS Web Design`}
+    description={entry.data.metaDescription ?? plain(entry.data.intro[0] ?? entry.data.heading)}
+    image={entry.data.image}
+    jsonLd={[breadcrumbJsonLd([["Home", "/"], [entry.data.title, path]]), ...(faqs?.length ? [faqJsonLd(faqs)] : [])]}
+    cta={{ heading: `Ready to get more from your *${entry.data.town}* website?`, body: "Whether you're starting fresh or fixing what's there, let's have a conversation. A free website review takes about half an hour.", primary: "audit" }}
+  >
+    <div class:list={["loc-hero", { "loc-hero--img": entry.data.image && hasMedia(entry.data.image) }]}>
+      <PageHero eyebrow={entry.data.eyebrow} heading={entry.data.heading} intro={entry.data.intro} size="hero" max="22ch">
+        <div class="btn-row">
+          <a class="btn btn--solid" href={links.audit} target="_blank" rel="noopener">Book a Website Review →</a>
+          <a class="btn btn--ghost" href="/contact/">Send a Message</a>
+        </div>
+      </PageHero>
+      {entry.data.image && hasMedia(entry.data.image) && <div class="loc-hero__img gutter"><Img id={entry.data.image} eager sizes="(min-width: 1000px) 40vw, 100vw" /></div>}
+    </div>
+
+    <Content components={allComponents} />
+
+    {entry.data.testimonial && (
+      <section class="dark gutter section"><div class="wrap"><p class="eyebrow">Word from a client</p><div class="loc-quote"><ClientQuote id={entry.data.testimonial} dark size="large" /></div></div></section>
+    )}
+
+    {work.length > 0 && (
+      <Section layout="wide" heading={`Work for *${entry.data.town}* businesses`}>
+        <div class="grid grid--3">{work.map((w) => <WorkCard item={w!} />)}</div>
+      </Section>
+    )}
+
+    <Section layout="wide" eyebrow="How I work" heading="Five steps, *no surprises*."><Process /></Section>
+
+    {faqs?.length ? (
+      <Section eyebrow="Common questions" heading={`The things ${entry.data.town} *owners ask*.`}><FAQList faqs={faqs} /></Section>
+    ) : null}
+
+    <Section layout="wide" heading="How I can *help*."><ServiceTiles /></Section>
+  </Base>
+) : (
+  <Base
+    title={entry.data.metaTitle ?? `${entry.data.title} | BVS Web Design`}
+    description={entry.data.metaDescription ?? entry.data.description ?? plain(entry.data.heading ?? entry.data.title)}
+    noindex={entry.data.noindex}
+    jsonLd={faqs?.length ? [faqJsonLd(faqs)] : []}
+    cta={entry.data.cta === "none" ? false : entry.data.cta === "audit" ? "audit" : "home"}
+    headerCta={entry.data.cta === "audit" ? "audit" : "start"}
+  >
+    <PageHero eyebrow={entry.data.eyebrow} heading={entry.data.heading ?? entry.data.title} intro={entry.data.intro} max="24ch" />
+    {entry.data.layout === "prose" ? (
+      <section class="gutter section rule-top"><div class="wrap"><div class="prose"><Content components={allComponents} /></div></div></section>
+    ) : (
+      <Content components={allComponents} />
+    )}
+    {faqs?.length ? (
+      <Section eyebrow="Questions" heading="The things people *ask first*"><FAQList faqs={faqs} /></Section>
+    ) : null}
+  </Base>
+)}
+
+<style>
+  @media (min-width: 1000px) {
+    .loc-hero--img { display: grid; grid-template-columns: 1.4fr 1fr; align-items: center; }
+    .loc-hero__img { padding-left: 0 !important; }
+  }
+  .loc-hero__img :global(img) { width: 100%; aspect-ratio: 4/5; object-fit: cover; border: 1px solid var(--rule); }
+  .loc-hero__img { padding-bottom: 32px; }
+  .loc-quote { margin-top: 22px; max-width: 900px; }
+</style>

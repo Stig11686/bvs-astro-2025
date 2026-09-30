@@ -1,0 +1,29 @@
+---
+// Numbered, expanding questions. Pair with faqJsonLd() in the page's SEO props.
+interface Props { faqs: { q: string; a: string }[] }
+const { faqs } = Astro.props;
+---
+<div class="faq">
+  {faqs.map((f, i) => (
+    <details class="faq__item" open={i === 0}>
+      <summary>
+        <span class="faq__n serif">{String(i + 1).padStart(2, "0")}</span>
+        <span class="faq__q serif">{f.q}</span>
+        <span class="faq__plus serif" aria-hidden="true">+</span>
+      </summary>
+      <p class="faq__a serif">{f.a}</p>
+    </details>
+  ))}
+</div>
+<style>
+  .faq { border-top: 1px solid var(--rule); }
+  .faq__item { border-bottom: 1px solid var(--rule); }
+  summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: auto 1fr auto; gap: 18px; align-items: baseline; padding: 20px 0; }
+  summary::-webkit-details-marker { display: none; }
+  .faq__n { font-style: italic; font-size: 1.1rem; color: var(--accent); }
+  .faq__q { font-size: clamp(1.2rem, 1.05rem + 0.6vw, 1.55rem); letter-spacing: -0.015em; line-height: 1.2; }
+  .faq__plus { font-size: 1.6rem; color: var(--accent); line-height: 1; transition: transform .25s; }
+  details[open] .faq__plus { transform: rotate(45deg); }
+  .faq__a { font-size: 1.1rem; line-height: 1.6; color: var(--ink-2); padding: 0 0 22px; max-width: 74ch; }
+  @media (min-width: 700px) { .faq__a { padding-left: 44px; } }
+</style>

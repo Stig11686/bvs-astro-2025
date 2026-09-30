@@ -1,0 +1,25 @@
+---
+// The standard page top: eyebrow, headline, intro paragraphs and optional actions.
+import { accentify } from "@/lib/text";
+interface Props { eyebrow?: string; heading: string; intro?: string[]; size?: "hero" | "h1"; max?: string }
+const { eyebrow, heading, intro = [], size = "h1", max = "20ch" } = Astro.props;
+---
+<section class="gutter page-hero">
+  <div class="wrap">
+    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+    <h1 class:list={[size === "hero" ? "h-hero" : "h1", "page-hero__h"]} style={`max-width:${max}`} set:html={accentify(heading)} />
+    {intro.length > 0 && (
+      <div class:list={["page-hero__intro", { "page-hero__intro--2": intro.length === 2 }]}>
+        {intro.map((p) => <p class="lede" set:html={accentify(p)} />)}
+      </div>
+    )}
+    <slot />
+  </div>
+</section>
+<style>
+  .page-hero { padding-top: clamp(40px, 6vw, 64px); padding-bottom: clamp(24px, 4vw, 36px); }
+  .page-hero__h { margin: 16px 0 0; }
+  .page-hero__intro { margin-top: 22px; display: grid; gap: 16px; max-width: 64ch; }
+  @media (min-width: 900px) { .page-hero__intro--2 { grid-template-columns: 1fr 1fr; gap: 40px; max-width: 1080px; } }
+  .page-hero :global(.btn-row) { margin-top: 28px; }
+</style>

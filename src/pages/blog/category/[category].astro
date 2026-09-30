@@ -1,0 +1,22 @@
+---
+import Base from "@/layouts/Base.astro";
+import BlogIndex from "@/components/ui/BlogIndex.astro";
+import { getPosts } from "@/lib/content";
+import { pillars } from "@/lib/data";
+
+export async function getStaticPaths() {
+  const all = await getPosts();
+  return pillars.map((p) => ({ params: { category: p.slug }, props: { pillar: p, all } }));
+}
+const { pillar, all } = Astro.props;
+const posts = all.filter((p) => p.data.pillar === pillar.id);
+---
+<Base title={`${pillar.name} articles | BVS Web Design Blog`} description={pillar.summary} cta={pillar.id} headerCta={pillar.cta.primary}>
+  <BlogIndex posts={posts} allPosts={all} active={pillar.id} eyebrow={`Blog · ${pillar.name}`} heading={`${pillar.problem}.`} intro={pillar.summary} />
+  <section class="gutter section rule-top">
+    <div class="wrap split split--1-2">
+      <p class="label">Need a hand with this?</p>
+      <p class="lede">This is what my <a class="underlink" href={`/services/${pillar.slug}/`}>{pillar.name.toLowerCase()}</a> service is for.</p>
+    </div>
+  </section>
+</Base>
