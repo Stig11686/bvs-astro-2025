@@ -10,6 +10,11 @@ import { hasMedia } from "@/lib/media";
 import { links, site } from "@/site.config";
 import { businessJsonLd } from "@/lib/schema";
 
+const carePlans = [
+  { name: "Essentials", promise: "I keep it running", price: "£35" },
+  { name: "Active", promise: "I keep it right", price: "£99" },
+  { name: "Growth", promise: "I keep it improving", price: "£249" },
+];
 const work = (await getWork()).filter((w) => w.data.featured).slice(0, 4);
 const stats = allProof().filter((p) => p.homepage).map((p) => p.id).slice(0, 3);
 ---
@@ -17,9 +22,9 @@ const stats = allProof().filter((p) => p.homepage).map((p) => p.id).slice(0, 3);
   <section class="gutter home-hero">
     <div class="wrap split split--hero">
       <div>
-        <p class="eyebrow">WordPress web design · Skipton, Yorkshire &amp; the UK</p>
+        <p class="eyebrow">Web design &amp; care plans · Skipton, North Yorkshire</p>
         <h1 class="h-hero home-hero__h">Websites that get service businesses <em class="accent-italic">more enquiries</em>, more bookings, and <em>found on Google</em>.</h1>
-        <p class="lede home-hero__sub">WordPress web design, based in Skipton and working across Yorkshire and the UK.</p>
+        <p class="lede home-hero__sub">I build websites for service businesses in Skipton, across North Yorkshire and the UK, then look after them so they keep bringing work in.</p>
         <div class="btn-row home-hero__cta">
           <a class="btn btn--solid" href={links.start} target="_blank" rel="noopener">Start a Project →</a>
           <a class="underlink" href="#work">See my work</a>
@@ -48,11 +53,32 @@ const stats = allProof().filter((p) => p.homepage).map((p) => p.id).slice(0, 3);
     </div>
   </section>
 
+  <section class="gutter section rule-top care-band">
+    <div class="wrap">
+      <div class="split split--1-2">
+        <div><p class="eyebrow">Care plans</p><h2 class="h2 care-band__h">A website needs looking after, and <em class="accent-italic">it can keep improving</em>.</h2></div>
+        <div class="stack body-serif">
+          <p>Some sites need keeping safe and up to date. Some need changes as the business changes. Some should bring in more enquiries every month. Each care plan covers one of those, handled by me in Skipton.</p>
+          <p><a class="underlink" href="/services/website-support/">Compare the care plans →</a></p>
+        </div>
+      </div>
+      <div class="ruled ruled--3 care-band__plans">
+        {carePlans.map((c) => (
+          <a class="card-link" href="/services/website-support/">
+            <span class="label label--accent">{c.name}</span>
+            <span class="care-band__promise serif">{c.promise}</span>
+            <span class="care-band__price">From {c.price} a month</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="gutter section">
     <div class="wrap split split--1-2">
-      <div><p class="eyebrow">About</p><h2 class="h2 about-h">Results, not just <em class="accent-italic">redesigns</em>.</h2></div>
+      <div><p class="eyebrow">About</p><h2 class="h2 about-h">Results over <em class="accent-italic">redesigns</em>.</h2></div>
       <div class="stack body-serif">
-        <p>I'm Steve. I design and build websites for service businesses, and I care about what happens after launch, not just how it looks on handover day.</p>
+        <p>I'm Steve. I design and build websites for service businesses, and I care about what happens after launch as much as how it looks on handover day.</p>
         <p>Every project starts with understanding your business: who your customers are, what they need to see before they get in touch, and what's stopping them right now. The design comes after that, not before it.</p>
         <p><a class="underlink" href="/about/">More about how I work →</a></p>
       </div>
@@ -83,5 +109,10 @@ const stats = allProof().filter((p) => p.homepage).map((p) => p.id).slice(0, 3);
   .help-card__h { font-size: clamp(1.4rem, 1.15rem + 0.8vw, 1.7rem); letter-spacing: -0.015em; line-height: 1.1; margin: 12px 0; max-width: 22ch; }
   .help-card__b { font-size: .92rem; color: var(--ink-2); line-height: 1.6; max-width: 46ch; }
   .about-h { margin-top: 14px; }
+  .care-band__h { margin-top: 14px; }
+  .care-band__plans { margin-top: 36px; }
+  .care-band__plans .card-link { display: flex; flex-direction: column; gap: 10px; }
+  .care-band__promise { font-size: clamp(1.4rem, 1.15rem + 0.8vw, 1.8rem); letter-spacing: -0.015em; line-height: 1.1; }
+  .care-band__price { font-size: .9rem; color: var(--ink-2); }
   .work-head { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: baseline; margin-bottom: 28px; }
 </style>

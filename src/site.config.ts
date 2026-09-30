@@ -2,13 +2,12 @@
 export const site = {
   name: "BVS Web Design",
   url: "https://www.bvswebdesign.co.uk",
-  tagline: "WordPress websites for service businesses. Built in Skipton, working across Yorkshire and the UK.",
+  tagline: "Websites and care plans for service businesses. Built in Skipton, working across North Yorkshire and the UK.",
   description:
-    "Website design for service businesses that get more enquiries, more bookings and found on Google. Based in Skipton, working across Yorkshire and the UK.",
+    "Website design and care plans for service businesses in Skipton and across North Yorkshire. More enquiries, more bookings, and a site that stays looked after.",
   author: "Steve Marks",
   email: "info@bvswebdesign.co.uk",
-  phone: "07521 917508",
-  phoneHref: "+447521917508",
+  // No phone number on the site, by choice.
   address: {
     street: "3 Woodfield Drive",
     locality: "Bradley",
@@ -37,7 +36,7 @@ export const links = {
 
 export const ctaLabels = {
   start: "Start a Project →",
-  audit: "Book a Free Audit →",
+  audit: "Book a Free Website Review →",
 };
 
 export const nav = [

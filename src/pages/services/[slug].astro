@@ -12,7 +12,7 @@ import { getPosts, getWork, postsForPillar, postsForAudience, workFor } from "@/
 import { getPillar, taxonomy } from "@/lib/data";
 import { links, ctaLabels } from "@/site.config";
 import { plain } from "@/lib/text";
-import { faqJsonLd, breadcrumbJsonLd } from "@/lib/schema";
+import { faqJsonLd, breadcrumbJsonLd, serviceJsonLd } from "@/lib/schema";
 
 type Service = CollectionEntry<"services">;
 type Industry = CollectionEntry<"industries">;
@@ -50,7 +50,14 @@ if (kind === "service") {
 }
 const label = kind === "service" && entry.data.ctaLabel ? entry.data.ctaLabel : ctaLabels[primary];
 const path = `/services/${entry.id}/`;
-const jsonLd = [breadcrumbJsonLd([["Home", "/"], ["Services", "/services/"], [d.title, path]]), ...(d.faqs?.length ? [faqJsonLd(d.faqs)] : [])];
+const careOffers = kind === "service" && entry.data.pillar === "support"
+  ? [{ name: "Essentials care plan", price: "35" }, { name: "Active care plan", price: "99" }, { name: "Growth care plan", price: "249" }]
+  : undefined;
+const jsonLd = [
+  serviceJsonLd({ name: d.title, description: d.metaDescription ?? plain(d.intro[0] ?? d.heading), path, offers: careOffers }),
+  breadcrumbJsonLd([["Home", "/"], ["Services", "/services/"], [d.title, path]]),
+  ...(d.faqs?.length ? [faqJsonLd(d.faqs)] : []),
+];
 ---
 
 <Base

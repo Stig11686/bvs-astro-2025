@@ -9,7 +9,7 @@ import { allProof, testimonials } from "@/lib/data";
 const results = allProof().filter((p) => p.named && p.work).slice(0, 4);
 const quoteId = "elizabeth-matfin-support" in testimonials ? "elizabeth-matfin-support" : Object.keys(testimonials)[0];
 ---
-<Base title="About Steve Marks | Web Designer Based in Skipton | BVS Web Design" description="I'm Steve Marks, a freelance web designer in Skipton. I build websites that bring in enquiries for service businesses, then stick around to keep them working." cta={{ heading: "Ready to talk about your *project*?", body: "Tell me what you're trying to achieve and I'll tell you honestly whether, and how, I can help.", primary: "start" }}>
+<Base title="About Steve Marks | Web Designer Based in Skipton | BVS Web Design" description="I'm Steve Marks, a freelance web designer in Skipton. I build websites that bring in enquiries for service businesses, then stick around to keep them working." cta={{ heading: "Ready to talk about your *project*?", body: "Tell me what you're trying to achieve and I'll tell you straight whether, and how, I can help.", primary: "start" }}>
   <section class="gutter about-hero">
     <div class="wrap split split--hero">
       <div>
@@ -19,14 +19,14 @@ const quoteId = "elizabeth-matfin-support" in testimonials ? "elizabeth-matfin-s
       <div class="about-hero__img media-frame">{hasMedia("steve-portrait") ? <Img id="steve-portrait" eager sizes="(min-width: 900px) 40vw, 100vw" /> : <div class="ph">Steve, portrait</div>}</div>
     </div>
     <div class="wrap about-intro">
-      <p class="body-serif">I'm Steve, a freelance web designer and developer based in Skipton, North Yorkshire. I work with service businesses across Yorkshire and the UK to build websites that generate real enquiries, not just compliments.</p>
-      <p class="body-serif">What I care about is what happens after launch. Anyone can build something that looks good in a browser. The question is whether it's bringing customers in six months later, and whether there's someone you can call when something goes wrong.</p>
+      <p class="body-serif">I'm Steve, a freelance web designer and developer based in Skipton, North Yorkshire. I work with service businesses across Yorkshire and the UK to build websites that generate real enquiries rather than compliments.</p>
+      <p class="body-serif">I care most about what happens after launch. Anyone can build something that looks good in a browser. The question is whether it's bringing customers in six months later, and whether there's someone you can call when something goes wrong.</p>
     </div>
   </section>
 
   <Section heading="How a *project* works">
     <p>Every project starts with a conversation about your business, not your colour scheme. I want to understand who your customers are, what they need to see before they get in touch, and what's getting in the way.</p>
-    <p>From there I handle everything: strategy, copy guidance, design, build and launch. Once the site is live, most of my clients stay on a care plan, so I'm looking after security, updates and ongoing improvements without them having to think about it. Some just want the build, and that's fine too.</p>
+    <p>From there I handle everything: strategy, copy guidance, design, build and launch. Once the site is live, most of my clients stay on a care plan, so I'm looking after security, updates and ongoing improvements without them having to think about it. Some only want the build, and that's fine too.</p>
     <p><strong>Either way, you work directly with me throughout.</strong> <em>No account managers, no handoffs to a junior.</em></p>
   </Section>
 

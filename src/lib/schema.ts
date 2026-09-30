@@ -13,7 +13,6 @@ export const businessJsonLd = () => ({
   name: site.name,
   url: site.url,
   email: site.email,
-  telephone: site.phone,
   founder: { "@type": "Person", name: site.author },
   address: {
     "@type": "PostalAddress",
@@ -44,4 +43,17 @@ export const articleJsonLd = (a: { title: string; description: string; path: str
   author: { "@type": "Person", name: site.author, url: new URL("/about/", site.url).href },
   publisher: { "@type": "Organization", name: site.name, url: site.url },
   ...(a.image ? { image: a.image } : {}),
+});
+
+export const serviceJsonLd = (s: { name: string; description: string; path: string; offers?: { name: string; price: string }[] }) => ({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: s.name,
+  description: s.description,
+  url: new URL(s.path, site.url).href,
+  areaServed: [{ "@type": "Place", name: "Skipton" }, { "@type": "Place", name: "North Yorkshire" }, { "@type": "Country", name: "United Kingdom" }],
+  provider: { "@type": "ProfessionalService", name: site.name, url: site.url },
+  ...(s.offers?.length
+    ? { offers: s.offers.map((o) => ({ "@type": "Offer", name: o.name, price: o.price, priceCurrency: "GBP", priceSpecification: { "@type": "UnitPriceSpecification", price: o.price, priceCurrency: "GBP", unitCode: "MON" } })) }
+    : {}),
 });

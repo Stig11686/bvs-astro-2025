@@ -202,6 +202,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* ── Blocks ──────────────────────────────────────────────────────────── */
 .callout { font-family: var(--font-sans); font-size: 1rem; line-height: 1.6; color: var(--ink-2); background: var(--paper-2); border-left: 2px solid var(--accent); padding: 18px 22px; }
 .callout--warning { border-left-color: var(--ink); background: var(--paper-3); }
+.callout--warning .callout__label { color: var(--ink-2); }
 .callout--steve { background: transparent; border: 1px solid var(--rule); border-left: 2px solid var(--accent); }
 .callout__label { margin-bottom: 6px; }
 .callout--tip .callout__label, .callout--steve .callout__label { color: var(--accent); }

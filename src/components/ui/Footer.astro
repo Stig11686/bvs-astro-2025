@@ -11,7 +11,7 @@ const cols: { h: string; items: [string, string, boolean?][] }[] = [
   { h: "Services", items: pillars.map((p) => [p.shortName ?? p.name, `/services/${p.slug}/`] as [string, string]) },
   { h: "Industries", items: industries.map((i) => [i.data.title, `/services/${i.id}/`] as [string, string]) },
   { h: "Where I work", items: locations.map((l) => [l.data.town, `/${l.id}/`] as [string, string]) },
-  { h: "Start", items: [["Start a Project", links.start, true], ["Book a Free Audit", links.audit, true]] },
+  { h: "Start", items: [["Start a Project", links.start, true], ["Book a Free Website Review", links.audit, true]] },
 ];
 const year = new Date().getFullYear();
 ---
@@ -23,7 +23,6 @@ const year = new Date().getFullYear();
         <a href="/" class="serif site-footer__name">BVS<em>Web</em>Design</a>
         <p class="serif site-footer__tag">{site.tagline}</p>
         <a class="serif site-footer__email" href={`mailto:${site.email}`}>{site.email}</a>
-        <a class="serif site-footer__phone" href={`tel:${site.phoneHref}`}>{site.phone}</a>
       </div>
       {cols.map((c) => (
         <div>
@@ -57,8 +56,7 @@ const year = new Date().getFullYear();
   .site-footer__name { font-size: 27px; font-weight: 500; letter-spacing: -0.01em; text-decoration: none; }
   .site-footer__name em { color: var(--accent); }
   .site-footer__tag { font-size: 15px; font-style: italic; margin-top: 10px; color: rgba(255,255,255,0.6); max-width: 34ch; }
-  .site-footer__email, .site-footer__phone { display: table; margin-top: 12px; font-size: 15px; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
-  .site-footer__phone { margin-top: 8px; }
+  .site-footer__email { display: table; margin-top: 12px; font-size: 15px; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
   .site-footer__h { margin-bottom: 12px; }
   .site-footer ul { list-style: none; margin: 0; padding: 0; }
   .site-footer li a { display: block; font-size: 16px; font-style: italic; line-height: 1.85; text-decoration: none; }

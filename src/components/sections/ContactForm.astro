@@ -40,7 +40,7 @@ const stages = [
     </label>
   )}
   <label><span class="label">{variant === "care" ? "Anything else worth knowing?" : "What's going on?"}</span>
-    <textarea name="message" rows="6" required placeholder={variant === "care" ? "Who looks after the site now, what keeps going wrong, what you'd like it to do." : "A new site, a rescue, an audit, or just not sure yet. Tell me what you can."}></textarea>
+    <textarea name="message" rows="6" required placeholder={variant === "care" ? "Who looks after the site now, what keeps going wrong, what you'd like it to do." : "A new site, a rescue, an audit, or not sure yet. Tell me what you can."}></textarea>
   </label>
   <label class="cform__check"><input type="checkbox" name="privacy_agreed" value="Agreed" required /> <span>I agree to the <a href="/privacy-policy/">privacy policy</a>.</span></label>
   <div class="btn-row"><button type="submit" class="btn btn--accent">Send a Message →</button></div>
