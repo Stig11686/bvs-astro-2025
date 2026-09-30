@@ -9,6 +9,7 @@ fs.mkdirSync("shots", { recursive: true });
 const browser = await chromium.launch();
 for (const [name, viewport] of [["desktop", { width: 1440, height: 900 }], ["phone", { width: 390, height: 844 }]]) {
   const page = await browser.newPage({ viewport });
+  await page.addInitScript(() => localStorage.setItem("bvs-consent", "denied"));
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
   for (const p of pages) {
