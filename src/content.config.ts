@@ -133,7 +133,7 @@ const pages = defineCollection({
     eyebrow: z.string().optional(),
     heading: z.string().optional(),
     intro: z.array(z.string()).default([]),
-    layout: z.enum(["prose", "landing"]).default("prose"),
+    template: z.enum(["prose", "landing"]).default("prose"), // not "layout": MDX reserves that key
     cta: z.enum(["start", "audit", "none"]).default("start"),
     faqs: z.array(faq).optional(),
     ...seo,

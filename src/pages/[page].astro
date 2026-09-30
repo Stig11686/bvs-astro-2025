@@ -84,7 +84,7 @@ const faqs = entry.data.faqs;
     headerCta={entry.data.cta === "audit" ? "audit" : "start"}
   >
     <PageHero eyebrow={entry.data.eyebrow} heading={entry.data.heading ?? entry.data.title} intro={entry.data.intro} max="24ch" />
-    {entry.data.layout === "prose" ? (
+    {entry.data.template === "prose" ? (
       <section class="gutter section rule-top"><div class="wrap"><div class="prose"><Content components={allComponents} /></div></div></section>
     ) : (
       <Content components={allComponents} />
