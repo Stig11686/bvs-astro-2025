@@ -47,6 +47,7 @@ const items = ids.map((id) => ({ id, ...testimonials[id] }));
   .review { scroll-snap-align: start; display: flex; flex-direction: column; gap: 16px; background: var(--paper); border: 1px solid var(--rule); padding: 28px; }
   .review__who { display: flex; align-items: center; gap: 14px; }
   .review__who > span:last-child { display: grid; gap: 4px; }
+  .review__photo { flex: 0 0 56px; }
   .review__photo :global(img) { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
   .review__initial { width: 56px; height: 56px; flex: 0 0 56px; border-radius: 50%; background: var(--paper-2); border: 1px solid var(--rule); display: grid; place-items: center; font-size: 24px; font-style: italic; color: var(--accent); }
   .review__name { font-size: 1.15rem; letter-spacing: -0.01em; line-height: 1.1; }

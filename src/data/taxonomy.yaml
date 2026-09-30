@@ -53,8 +53,10 @@ pillars:
       heading: "Thinking about a new website?"
       body: "Start with a free 30-minute call about your business, not your colour scheme."
 
-# Order the pillars appear in navigation and on the homepage.
+# Order the pillars appear in navigation, the footer and service tiles.
 pillarOrder: [design, rescue, support, audit]
+# Order of the homepage "I can help if…" cards.
+problemOrder: [audit, rescue, support, design]
 
 # The angle a Website Support post takes. Optional, support posts only.
 supportAngles:

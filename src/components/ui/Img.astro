@@ -28,5 +28,5 @@ if (!w.includes(maxW) && maxW < 2000) w.push(maxW);
   loading={eager ? "eager" : "lazy"}
   fetchpriority={eager ? "high" : "auto"}
   decoding="async"
-  class={cls}
+  pictureAttributes={{ class: cls }}
 />

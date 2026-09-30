@@ -6,6 +6,8 @@ export default defineConfig({
   site: "https://www.bvswebdesign.co.uk",
   trailingSlash: "always",
   build: { format: "directory" },
+  // "class" so a scoped class passed to a component (e.g. <Img class="…">) keeps its styles.
+  scopedStyleStrategy: "class",
   integrations: [
     mdx(),
     sitemap({

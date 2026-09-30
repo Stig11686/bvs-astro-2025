@@ -40,6 +40,7 @@ export const taxonomy = load(
   z.object({
     pillars: z.record(pillarSchema),
     pillarOrder: z.array(z.string()),
+    problemOrder: z.array(z.string()).optional(),
     supportAngles: z.record(z.string()),
     audiences: z.record(z.string()),
     formats: z.record(z.string()),
@@ -53,6 +54,8 @@ export const pillars: Pillar[] = taxonomy.pillarOrder.map((id) => ({
   id,
   ...taxonomy.pillars[id],
 }));
+
+export const problemPillars: Pillar[] = (taxonomy.problemOrder ?? taxonomy.pillarOrder).map((id) => ({ id, ...taxonomy.pillars[id] }));
 
 export function getPillar(id: string): Pillar {
   const p = taxonomy.pillars[id];

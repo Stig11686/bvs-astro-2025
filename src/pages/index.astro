@@ -5,7 +5,7 @@ import WorkCard from "@/components/ui/WorkCard.astro";
 import Reviews from "@/components/ui/Reviews.astro";
 import Stats from "@/components/blocks/Stats.astro";
 import { getWork } from "@/lib/content";
-import { pillars, allProof } from "@/lib/data";
+import { problemPillars, allProof } from "@/lib/data";
 import { hasMedia } from "@/lib/media";
 import { links, site } from "@/site.config";
 import { businessJsonLd } from "@/lib/schema";
@@ -37,7 +37,7 @@ const stats = allProof().filter((p) => p.homepage).map((p) => p.id).slice(0, 3);
     <div class="wrap">
       <h2 class="h2 help-h">I can help if<span class="accent-italic">…</span></h2>
       <div class="ruled ruled--2">
-        {pillars.map((p, i) => (
+        {problemPillars.map((p, i) => (
           <a class="card-link help-card" href={`/services/${p.slug}/`}>
             <span class="help-card__top"><span class="card-num">0{i + 1}</span><span class="arrow">→</span></span>
             <span class="help-card__h serif">{p.problem}</span>
