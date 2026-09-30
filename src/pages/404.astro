@@ -1,26 +1,9 @@
 ---
 import Base from "@/layouts/Base.astro";
-import CustomButton from "@/components/CustomButton.astro";
+import PageHero from "@/components/ui/PageHero.astro";
 ---
-
-<Base title="Page Not Found" disableTagline={true} fitToScreen={false}>
-  <section>
-    <div class="container">
-      <div class="flex flex-col items-center gap-y-10">
-        <div class="space-y-4 text-center text-lg">
-          <h1 class="text-8xl font-bold sm:text-9xl md:text-[16rem]">404</h1>
-          <h2 class="text-h1-sm md:text-h1">Look Like You’re Lost</h2>
-          <p>
-            The link you followed probably broken or the page has been removed
-          </p>
-        </div>
-        <CustomButton
-          class="uppercase"
-          label="Back to Home"
-          url="/"
-          variant="text"
-        />
-      </div>
-    </div>
-  </section>
+<Base title="Page not found | BVS Web Design" noindex>
+  <PageHero eyebrow="404" heading="That page has *moved or gone*." intro={["The link may be old. Try the homepage, the blog, or get in touch and I'll point you to the right place."]}>
+    <div class="btn-row"><a class="btn btn--solid" href="/">Homepage</a><a class="btn btn--ghost" href="/blog/">The blog</a></div>
+  </PageHero>
 </Base>

@@ -1,0 +1,128 @@
+# The media library. One entry per image; the key is the image's name.
+# Files live in src/assets/media/. Add images with:
+#   npm run add-image -- photo.jpg --name some-name --alt "What the image shows"
+# Fields: file, alt (required unless decorative: true), caption, credit,
+#         unsplash (a photo URL: downloaded at build time if the file is missing).
+
+66-sheep-street-coffee:
+  alt: 66 Sheep Street homepage with a coffee cup in the hero
+  file: 66-sheep-street-coffee.webp
+66-sheep-street-hero:
+  alt: 66 Sheep Street website hero
+  file: 66-sheep-street-hero.webp
+66-sheep-street-homepage:
+  alt: '66 Sheep Street homepage: Bakery by day, bistro by night'
+  file: 66-sheep-street-homepage.webp
+analytics-charts:
+  alt: Website analytics charts on a laptop screen
+  file: analytics-charts.webp
+analytics-dashboard:
+  alt: An analytics dashboard open on a laptop
+  file: analytics-dashboard.webp
+antler-interiors-homepage:
+  alt: Antler Interiors homepage showing a bespoke kitchen
+  file: antler-interiors-homepage.webp
+braille-keyboard:
+  alt: Hands using a braille keyboard
+  file: braille-keyboard.webp
+bride-hanger:
+  alt: Wedding dress on a hanger marked Bride
+  file: bride-hanger.webp
+climate-action-silsden-homepage:
+  alt: 'Climate Action Silsden homepage: Making Silsden Greener Together'
+  file: climate-action-silsden-homepage.webp
+coach-house-homepage:
+  alt: 'The Coach House Skipton homepage: Unique boutique hotel in Skipton'
+  file: coach-house-homepage.webp
+desk-flatlay-coffee:
+  alt: Coffee cup, notebook and dried flowers on a desk
+  file: desk-flatlay-coffee.webp
+desk-laptop-camera:
+  alt: Laptop, phone and camera on a desk
+  file: desk-laptop-camera.webp
+desk-laptop-plant:
+  alt: Laptop on a white desk beside a potted plant
+  file: desk-laptop-plant.webp
+dot-com:
+  alt: The letters .com carved in stone
+  file: dot-com.webp
+elizabeth-matfin:
+  alt: Elizabeth Matfin, owner of Maidens and Ravens
+  file: elizabeth-matfin.webp
+hand-on-laptop:
+  alt: Hand resting beside a laptop on a white desk
+  file: hand-on-laptop.webp
+ilkley-dental-homepage:
+  alt: Ilkley Dental Care homepage
+  file: ilkley-dental-homepage.webp
+jaynes-homepage:
+  alt: Jaynes Bridalwear homepage with a row of wedding gowns
+  file: jaynes-homepage.webp
+jodie-marks:
+  alt: Jodie Marks, Practice Manager at Ilkley Dental Care
+  file: jodie-marks.webp
+local-reviews-phone:
+  alt: Reading local business reviews on a phone
+  credit: Photo from Unsplash
+  file: local-reviews-phone.webp
+  unsplash: https://images.unsplash.com/photo-1712638932314-e2b185ca0930
+maidens-and-ravens-homepage:
+  alt: 'Maidens and Ravens homepage: Discover the magic at Maidens and Ravens'
+  file: maidens-and-ravens-homepage.webp
+n8n-blog-workflow:
+  alt: An n8n workflow that drafts blog posts
+  file: n8n-blog-workflow.webp
+n8n-workflow-list:
+  alt: A list of n8n automation workflows
+  file: n8n-workflow-list.webp
+n8n-workflow-overview:
+  alt: An n8n workflow overview
+  file: n8n-workflow-overview.webp
+og-default:
+  alt: BVS Web Design
+  file: og-default.webp
+paper-files:
+  alt: Hands sorting through a folder of paper files
+  file: paper-files.webp
+rebecca-rennolds:
+  alt: Rebecca Rennolds in her clinic
+  file: rebecca-rennolds.webp
+rebecca-rennolds-homepage:
+  alt: Rebecca Rennolds Permanent Beauty and Laser homepage
+  file: rebecca-rennolds-homepage.webp
+steve-client-meeting:
+  alt: Steve talking through a website with a client over a laptop
+  file: steve-client-meeting.webp
+steve-headshot:
+  alt: Steve Marks, web designer in Skipton
+  file: steve-headshot.webp
+steve-office:
+  alt: Steve Marks at the office
+  file: steve-office.webp
+steve-portrait:
+  alt: Steve Marks in a bright office
+  file: steve-portrait.webp
+stressed-at-laptop:
+  alt: A woman with her head in her hands at a laptop
+  file: stressed-at-laptop.webp
+viking-cricket-awards:
+  alt: Viking Cricket homepage showing awards and credentials
+  file: viking-cricket-awards.webp
+viking-cricket-bats:
+  alt: 'Viking Cricket bat range: Find your bat, forge your game'
+  file: viking-cricket-bats.webp
+viking-cricket-homepage:
+  alt: 'Viking Cricket homepage: Made for the game, crafted by Vikings'
+  file: viking-cricket-homepage.webp
+viking-cricket-moody-bat:
+  alt: Premium cricket bat showcase with parallax effect
+  file: viking-cricket-moody-bat.webp
+viking-hockey-homepage:
+  alt: Viking Hockey homepage showing hockey equipment
+  file: viking-hockey-homepage.webp
+wordpress-plugins:
+  alt: The WordPress plugins screen
+  file: wordpress-plugins.webp
+yorkshire-unicorn-homepage:
+  alt: 'The Yorkshire Unicorn homepage: Boutique rooms in the heart of Skipton'
+  file: yorkshire-unicorn-homepage.webp

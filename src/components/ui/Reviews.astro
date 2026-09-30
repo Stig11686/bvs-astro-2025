@@ -1,0 +1,57 @@
+---
+// Real client testimonials in a scrolling row.
+import { testimonials } from "@/lib/data";
+import Img from "./Img.astro";
+import { hasMedia } from "@/lib/media";
+interface Props { ids?: string[] }
+const ids = Astro.props.ids ?? Object.keys(testimonials);
+const items = ids.map((id) => ({ id, ...testimonials[id] }));
+---
+<section class="reviews rule-top" aria-labelledby="reviews-h">
+  <div class="gutter"><div class="wrap reviews__head">
+    <div><p class="eyebrow">Reviews</p><h2 id="reviews-h" class="h2">What clients <span class="accent-italic">say</span>.</h2></div>
+    <div class="reviews__nav">
+      <button type="button" data-dir="-1" aria-label="Previous reviews">←</button>
+      <button type="button" data-dir="1" aria-label="Next reviews">→</button>
+    </div>
+  </div></div>
+  <div class="reviews__track gutter" tabindex="0" aria-label="Client reviews">
+    {items.map((t) => (
+      <figure class="review">
+        <figcaption class="review__who">
+          {t.photo && hasMedia(t.photo) ? <Img id={t.photo} widths={[112]} sizes="56px" class="review__photo" /> : <span class="review__initial serif" aria-hidden="true">{t.name.charAt(0)}</span>}
+          <span><span class="serif review__name">{t.name}</span><span class="label">{t.role}</span></span>
+        </figcaption>
+        {t.stars && <p class="review__stars" aria-label={`${t.stars} out of 5 stars`}>{"★".repeat(t.stars)}</p>}
+        <blockquote class="serif"><span class="q">“</span>{t.quote}<span class="q">”</span></blockquote>
+      </figure>
+    ))}
+  </div>
+</section>
+<script>
+  document.querySelectorAll<HTMLElement>(".reviews").forEach((el) => {
+    const track = el.querySelector<HTMLElement>(".reviews__track")!;
+    el.querySelectorAll<HTMLButtonElement>("[data-dir]").forEach((b) =>
+      b.addEventListener("click", () => track.scrollBy({ left: Number(b.dataset.dir) * track.clientWidth * 0.9, behavior: "smooth" })),
+    );
+  });
+</script>
+<style>
+  .reviews { padding-bottom: var(--section-y); }
+  .reviews__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px; padding-top: var(--section-y); margin-bottom: 32px; }
+  .reviews__head h2 { margin-top: 14px; }
+  .reviews__nav { display: flex; gap: 8px; }
+  .reviews__nav button { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--ink); background: transparent; cursor: pointer; font-size: 16px; transition: background .15s, color .15s; }
+  .reviews__nav button:hover { background: var(--ink); color: var(--paper); }
+  .reviews__track { display: grid; grid-auto-flow: column; grid-auto-columns: min(86vw, 420px); gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding: var(--gutter); padding-bottom: 8px; scrollbar-width: thin; }
+  .review { scroll-snap-align: start; display: flex; flex-direction: column; gap: 16px; background: var(--paper); border: 1px solid var(--rule); padding: 28px; }
+  .review__who { display: flex; align-items: center; gap: 14px; }
+  .review__who > span:last-child { display: grid; gap: 4px; }
+  .review__photo { flex: 0 0 56px; }
+  .review__photo :global(img) { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
+  .review__initial { width: 56px; height: 56px; flex: 0 0 56px; border-radius: 50%; background: var(--paper-2); border: 1px solid var(--rule); display: grid; place-items: center; font-size: 24px; font-style: italic; color: var(--accent); }
+  .review__name { font-size: 1.15rem; letter-spacing: -0.01em; line-height: 1.1; }
+  .review__stars { color: var(--accent); letter-spacing: 2px; }
+  .review blockquote { font-size: 1.12rem; line-height: 1.5; color: var(--ink-2); }
+  .review .q { color: var(--accent); }
+</style>

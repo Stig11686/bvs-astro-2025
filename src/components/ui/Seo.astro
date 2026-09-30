@@ -1,0 +1,44 @@
+---
+import { getImage } from "astro:assets";
+import { site } from "@/site.config";
+import { getMedia, hasMedia } from "@/lib/media";
+
+export interface SeoProps {
+  title: string;
+  description?: string;
+  image?: string; // media id
+  noindex?: boolean;
+  type?: "website" | "article";
+  published?: Date;
+  jsonLd?: Record<string, unknown>[];
+}
+
+const { title, description = site.description, image, noindex = false, type = "website", published, jsonLd = [] } =
+  Astro.props as SeoProps;
+
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const imageId = hasMedia(image) ? image! : hasMedia(site.defaultImage) ? site.defaultImage : undefined;
+let ogImage: string | undefined;
+if (imageId) {
+  const og = await getImage({ src: getMedia(imageId).src, width: 1200, format: "jpeg", quality: 80 });
+  ogImage = new URL(og.src, site.url).href;
+}
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+<meta property="og:site_name" content={site.name} />
+<meta property="og:locale" content="en_GB" />
+<meta property="og:type" content={type} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+{ogImage && <meta property="og:image" content={ogImage} />}
+{published && <meta property="article:published_time" content={published.toISOString()} />}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{ogImage && <meta name="twitter:image" content={ogImage} />}
+{jsonLd.map((data) => <script type="application/ld+json" set:html={JSON.stringify(data)} />)}

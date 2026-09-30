@@ -1,0 +1,38 @@
+---
+// A page section. Markdown inside it is set as serif body copy.
+import { accentify } from "@/lib/text";
+interface Props {
+  eyebrow?: string;
+  heading?: string;
+  layout?: "split" | "stack" | "wide";
+  tone?: "plain" | "tint" | "dark";
+  id?: string;
+  size?: "h2" | "h3";
+}
+const { eyebrow, heading, layout = "split", tone = "plain", id, size = "h2" } = Astro.props;
+---
+<section id={id} class:list={["gutter section page-section", `page-section--${layout}`, { tint: tone === "tint", dark: tone === "dark", "rule-top": tone === "plain" }]}>
+  <div class="wrap page-section__grid">
+    {(eyebrow || heading) && (
+      <div class="page-section__head">
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        {heading && <h2 class={size} set:html={accentify(heading)} />}
+      </div>
+    )}
+    <div class="page-section__body"><slot /></div>
+  </div>
+</section>
+<style>
+  .page-section__head .eyebrow + h2 { margin-top: 14px; }
+  .page-section__grid { display: grid; gap: 24px 56px; }
+  .page-section--stack .page-section__head, .page-section--wide .page-section__head { margin-bottom: 8px; }
+  @media (min-width: 950px) { .page-section--split .page-section__grid { grid-template-columns: 1fr 1.25fr; } }
+  .page-section__body { font-family: var(--font-serif); font-size: 1.15rem; line-height: 1.6; color: var(--ink-2); }
+  .page-section--split .page-section__body { max-width: 66ch; }
+  .page-section__body > :global(* + *) { margin-top: 1em; }
+  .page-section__body :global(strong) { color: var(--ink); font-weight: 500; }
+  .page-section__body :global(em) { color: var(--accent); }
+  .page-section__body :global(a:not(.btn)) { color: var(--ink); text-decoration-color: var(--accent); text-underline-offset: 3px; }
+  .page-section__body :global(ul) { padding-left: 1.2em; }
+  .page-section__body :global(li::marker) { color: var(--accent); }
+</style>

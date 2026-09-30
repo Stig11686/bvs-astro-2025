@@ -4,267 +4,242 @@
  *
  * Campaign landing page for bridal boutique outreach.
  * Captures email signups for the website rebuild case study series.
+ * The form posts { firstName, email } as JSON to the Netlify function
+ * at netlify/functions/subscribe.js (MailerLite).
  */
-
 import Base from "@/layouts/Base.astro";
 
 const pageTitle = "From Pretty to Profitable | BVS Web Design";
-const pageDescription = "Follow a real bridal boutique website rebuild — from discovery to launch. Get behind-the-scenes updates as I transform a beautiful but underperforming site into one that actually converts.";
+const pageDescription = "Follow a real bridal boutique website rebuild, from discovery to launch. Get behind-the-scenes updates as I transform a beautiful but underperforming site into one that converts.";
 
 const calendlyUrl = import.meta.env.CALENDLY_URL || "https://tidycal.com/bvswebdesign/30-minute-meeting";
 ---
 
-<Base
-  metaTitle={pageTitle}
-  metaDescription={pageDescription}
-  robots="noindex, nofollow"
-  footerSpaceTop={false}
->
-  <!-- Hero Section -->
-  <section class="bg-primary text-white py-20 md:py-32">
-    <div class="container mx-auto px-4 text-center">
-      <span class="inline-block text-xs tracking-widest uppercase text-white/90 mb-4 font-medium">
-        A BVS Web Design Case Study
-      </span>
-      <h1 class="text-4xl md:text-6xl lg:text-7xl font-secondary font-bold mb-6 leading-tight">
-        From Pretty to Profitable
-      </h1>
-      <p class="text-lg md:text-xl text-white/80 max-w-xl mx-auto mb-8">
-        Follow a real bridal boutique website rebuild — from discovery to launch
-      </p>
-      <a href="#signup" class="btn btn-accent inline-flex items-center gap-2 text-white">
-        Follow the journey
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-        </svg>
-      </a>
+<Base title={pageTitle} description={pageDescription} noindex cta={false} headerCta="none">
+  <!-- Hero -->
+  <section class="dark gutter fp-hero">
+    <div class="wrap fp-center">
+      <p class="eyebrow">A BVS Web Design Case Study</p>
+      <h1 class="h-hero fp-hero__h">From Pretty to <em class="accent-italic">Profitable</em></h1>
+      <p class="lede fp-hero__lede">Follow a real bridal boutique website rebuild, from discovery to launch</p>
+      <div class="btn-row fp-center-row">
+        <a href="#signup" class="btn btn--accent">
+          Follow the journey
+          <svg class="fp-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- Problem Section -->
-  <section class="py-16 md:py-24 bg-light">
-    <div class="container mx-auto px-4 max-w-3xl text-center">
-      <p class="text-2xl md:text-3xl leading-relaxed mb-6">
-        A beautiful website should be your best salesperson.
-      </p>
-      <p class="text-2xl md:text-3xl leading-relaxed mb-6">
-        For too many boutique owners, it isn't.
-      </p>
-      <p class="text-xl text-text-default/70 mb-6">
-        The site looks stunning. You're proud of it. But the enquiries aren't coming in the way they should, and you're not sure why.
-      </p>
-      <p class="text-xl text-accent font-medium italic">
-        Sound familiar?
-      </p>
+  <!-- Problem -->
+  <section class="tint gutter section">
+    <div class="wrap fp-center fp-narrow">
+      <p class="fp-big serif">A beautiful website should be your best salesperson.</p>
+      <p class="fp-big serif">For too many boutique owners, it isn't.</p>
+      <p class="lede">The site looks stunning. You're proud of it. But the enquiries aren't coming in the way they should, and you're not sure why.</p>
+      <p class="fp-familiar serif">Sound familiar?</p>
     </div>
   </section>
 
-  <!-- Story Section -->
-  <section class="py-16 md:py-24">
-    <div class="container mx-auto px-4">
-      <div class="grid md:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
-        <div>
-          <p class="text-2xl font-secondary font-semibold mb-6">
-            I audited a bridal boutique with exactly this problem.
-          </p>
-          <p class="text-lg text-text-default/70 mb-4">
-            Great design. Real traffic. Almost no leads.
-          </p>
-          <p class="text-lg text-text-default/70 mb-4">
-            What I found surprised even me — £18,000 a year in unnecessary spend across hosting, management and ads, while the site quietly failed to convert the visitors it was already getting.
-          </p>
-          <p class="text-lg text-text-default/70">
-            So I'm rebuilding it. Properly. And I'm documenting every decision along the way.
-          </p>
+  <!-- Story -->
+  <section class="gutter section rule-top">
+    <div class="wrap fp-story">
+      <div class="fp-story__text">
+        <p class="h3">I audited a bridal boutique with exactly this problem.</p>
+        <p class="body-serif">Great design. Real traffic. Almost no leads.</p>
+        <p class="body-serif">What I found surprised even me: £18,000 a year in unnecessary spend across hosting, management and ads, while the site failed to convert the visitors it was already getting.</p>
+        <p class="body-serif">So I'm rebuilding it properly, and I'm documenting every decision along the way.</p>
+      </div>
+      <div class="fp-center">
+        <span class="fp-figure serif">£18k</span>
+        <span class="label fp-figure__label">wasted per year</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- What you'll get -->
+  <section class="tint gutter section">
+    <div class="wrap">
+      <div class="fp-center">
+        <h2 class="h2">What You'll Get</h2>
+        <p class="lede fp-sub">Behind-the-scenes access to every stage of the rebuild</p>
+      </div>
+      <div class="ruled ruled--3 fp-cards">
+        <div class="fp-card">
+          <p class="card-num">01</p>
+          <h3 class="h3">The Discovery</h3>
+          <p>What the audit uncovered and why it matters</p>
         </div>
-        <div class="text-center">
-          <span class="block text-7xl md:text-8xl lg:text-9xl font-secondary font-bold text-accent leading-none">
-            £18k
-          </span>
-          <span class="text-sm tracking-widest uppercase text-text-default/60 mt-2 block">
-            wasted per year
-          </span>
+        <div class="fp-card">
+          <p class="card-num">02</p>
+          <h3 class="h3">The Rebuild</h3>
+          <p>Every key decision explained in plain English</p>
+        </div>
+        <div class="fp-card">
+          <p class="card-num">03</p>
+          <h3 class="h3">The Results</h3>
+          <p>What happens when a website is built to convert</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- What You'll Get Section -->
-  <section class="py-16 md:py-24 bg-light">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl md:text-4xl font-secondary font-bold text-center mb-4">
-        What You'll Get
-      </h2>
-      <p class="text-center text-text-default/70 mb-12 max-w-xl mx-auto">
-        Behind-the-scenes access to every stage of the rebuild
-      </p>
-      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-        <div class="bg-white p-8 rounded-lg shadow-sm text-center">
-          <div class="text-4xl mb-4">🔍</div>
-          <h3 class="text-xl font-secondary font-semibold mb-3">The Discovery</h3>
-          <p class="text-text-default/70">
-            What the audit uncovered and why it matters
-          </p>
-        </div>
-        <div class="bg-white p-8 rounded-lg shadow-sm text-center">
-          <div class="text-4xl mb-4">🛠️</div>
-          <h3 class="text-xl font-secondary font-semibold mb-3">The Rebuild</h3>
-          <p class="text-text-default/70">
-            Every key decision explained in plain English
-          </p>
-        </div>
-        <div class="bg-white p-8 rounded-lg shadow-sm text-center">
-          <div class="text-4xl mb-4">📈</div>
-          <h3 class="text-xl font-secondary font-semibold mb-3">The Results</h3>
-          <p class="text-text-default/70">
-            What happens when a website is actually built to convert
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Email Capture Form -->
-  <section class="py-16 md:py-24" id="signup">
-    <div class="container mx-auto px-4 max-w-xl text-center">
-      <h2 class="text-3xl md:text-4xl font-secondary font-bold mb-4">
-        Follow the build. It's free.
-      </h2>
-      <p class="text-text-default/70 mb-8">
-        Get behind-the-scenes updates as the rebuild progresses — honest insights from a real project, no jargon.
-      </p>
+  <!-- Email capture -->
+  <section class="gutter section rule-top" id="signup">
+    <div class="wrap fp-center fp-form-wrap">
+      <h2 class="h2">Follow the build. It's free.</h2>
+      <p class="lede fp-sub">Get behind-the-scenes updates as the rebuild progresses: honest insights from a real project, no jargon.</p>
 
       <div id="form-container">
-        <form class="space-y-4" id="signup-form">
-          <div id="form-error" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm"></div>
-          <div class="flex flex-col sm:flex-row gap-4">
-            <input
-              type="text"
-              name="firstName"
-              placeholder="First name"
-              required
-              autocomplete="given-name"
-              class="flex-1 px-4 py-3 border border-border-light rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email address"
-              required
-              autocomplete="email"
-              class="flex-1 px-4 py-3 border border-border-light rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
-            />
+        <form class="fp-form" id="signup-form">
+          <p id="form-error" class="fp-error" role="alert" hidden></p>
+          <div class="fp-form__row">
+            <label>
+              <span class="visually-hidden">First name</span>
+              <input type="text" name="firstName" placeholder="First name" required autocomplete="given-name" />
+            </label>
+            <label>
+              <span class="visually-hidden">Email address</span>
+              <input type="email" name="email" placeholder="Email address" required autocomplete="email" />
+            </label>
           </div>
-          <button type="submit" class="btn btn-primary w-full justify-center" id="submit-btn">
+          <button type="submit" class="btn btn--solid fp-submit" id="submit-btn">
             <span id="btn-text">Join the journey</span>
-            <span id="btn-spinner" class="hidden">
-              <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              Submitting...
-            </span>
+            <span id="btn-spinner" hidden>Submitting...</span>
           </button>
         </form>
-        <p class="text-sm text-text-default/60 mt-4">
-          No spam. Unsubscribe any time.
-        </p>
+        <p class="label fp-note">No spam. Unsubscribe any time.</p>
       </div>
 
-      <div id="success-message" class="hidden">
-        <div class="bg-green-50 border border-green-200 rounded-lg p-8">
-          <h3 class="text-2xl font-secondary font-bold text-green-800 mb-2">You're in.</h3>
-          <p class="text-green-700">First email is on its way.</p>
-        </div>
+      <div id="success-message" class="fp-success" hidden>
+        <p class="h3">You're in.</p>
+        <p>First email is on its way.</p>
       </div>
     </div>
   </section>
 
   <!-- Secondary CTA -->
-  <section class="py-16 md:py-20 mb-16 md:mb-24 bg-theme-light">
-    <div class="container mx-auto px-4 text-center max-w-2xl">
-      <h2 class="text-2xl md:text-3xl font-secondary font-bold mb-4">
-        Already know your website has a problem?
-      </h2>
-      <p class="text-text-default/70 mb-6">
-        Skip the journey — book a free 30-minute audit call and let's take a look together.
-      </p>
-      <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" class="btn btn-outline text-dark border-dark hover:bg-dark hover:text-white">
-        Book a free call
-      </a>
+  <section class="dark gutter section">
+    <div class="wrap fp-center fp-narrow">
+      <h2 class="h2">Already know your website has a problem?</h2>
+      <p class="lede fp-sub">Skip the journey. Book a free 30-minute audit call and let's take a look together.</p>
+      <div class="btn-row fp-center-row">
+        <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" class="btn btn--accent">Book a free call</a>
+      </div>
     </div>
   </section>
 </Base>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('signup-form') as HTMLFormElement;
-    const formContainer = document.getElementById('form-container') as HTMLDivElement;
-    const successMessage = document.getElementById('success-message') as HTMLDivElement;
-    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
-    const btnText = document.getElementById('btn-text') as HTMLSpanElement;
-    const btnSpinner = document.getElementById('btn-spinner') as HTMLSpanElement;
-    const errorDiv = document.getElementById('form-error') as HTMLDivElement;
+  const form = document.getElementById("signup-form") as HTMLFormElement | null;
+  const formContainer = document.getElementById("form-container") as HTMLDivElement;
+  const successMessage = document.getElementById("success-message") as HTMLDivElement;
+  const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement;
+  const btnText = document.getElementById("btn-text") as HTMLSpanElement;
+  const btnSpinner = document.getElementById("btn-spinner") as HTMLSpanElement;
+  const errorEl = document.getElementById("form-error") as HTMLParagraphElement;
 
-    if (!form) return;
+  function showError(message: string) {
+    errorEl.textContent = message;
+    errorEl.hidden = false;
+  }
 
-    function showError(message: string) {
-      errorDiv.textContent = message;
-      errorDiv.classList.remove('hidden');
+  function clearError() {
+    errorEl.hidden = true;
+  }
+
+  function setLoading(loading: boolean) {
+    submitBtn.disabled = loading;
+    btnText.hidden = loading;
+    btnSpinner.hidden = !loading;
+  }
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    clearError();
+
+    const formData = new FormData(form);
+    const firstName = (formData.get("firstName") as string)?.trim();
+    const email = (formData.get("email") as string)?.trim();
+
+    if (!firstName || !email) {
+      showError("Please fill in all fields.");
+      return;
     }
 
-    function clearError() {
-      errorDiv.classList.add('hidden');
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      showError("Please enter a valid email address.");
+      return;
     }
 
-    function setLoading(loading: boolean) {
-      submitBtn.disabled = loading;
-      btnText.classList.toggle('hidden', loading);
-      btnSpinner.classList.toggle('hidden', !loading);
-    }
+    setLoading(true);
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      clearError();
+    try {
+      const response = await fetch("/.netlify/functions/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ firstName, email }),
+      });
 
-      const formData = new FormData(form);
-      const firstName = (formData.get('firstName') as string)?.trim();
-      const email = (formData.get('email') as string)?.trim();
+      const result = await response.json();
 
-      if (!firstName || !email) {
-        showError('Please fill in all fields.');
-        return;
-      }
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        showError('Please enter a valid email address.');
-        return;
-      }
-
-      setLoading(true);
-
-      try {
-        const response = await fetch('/.netlify/functions/subscribe', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ firstName, email }),
-        });
-
-        const result = await response.json();
-
-        if (response.ok && result.success) {
-          formContainer.classList.add('hidden');
-          successMessage.classList.remove('hidden');
-        } else {
-          showError(result.error || 'Something went wrong. Please try again.');
-          setLoading(false);
-        }
-      } catch (error) {
-        console.error('Form submission error:', error);
-        showError('Unable to submit. Please check your connection and try again.');
+      if (response.ok && result.success) {
+        formContainer.hidden = true;
+        successMessage.hidden = false;
+      } else {
+        showError(result.error || "Something went wrong. Please try again.");
         setLoading(false);
       }
-    });
+    } catch (error) {
+      console.error("Form submission error:", error);
+      showError("Unable to submit. Please check your connection and try again.");
+      setLoading(false);
+    }
   });
 </script>
+
+<style>
+  [hidden] { display: none !important; }
+  .fp-center { text-align: center; }
+  .fp-center-row { justify-content: center; }
+  .fp-narrow { max-width: 760px; }
+
+  .fp-hero { padding-top: clamp(72px, 11vw, 128px); padding-bottom: clamp(72px, 11vw, 128px); }
+  .fp-hero__h { margin: 18px auto 0; max-width: 14ch; }
+  .fp-hero__lede { margin: 22px auto 0; max-width: 36ch; }
+  .fp-hero .btn-row { margin-top: 32px; }
+  .fp-icon { width: 16px; height: 16px; }
+
+  .fp-big { font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2.1rem); line-height: 1.3; letter-spacing: -0.012em; color: var(--ink); }
+  .fp-big + .fp-big { margin-top: 10px; }
+  .fp-narrow .lede { margin: 24px auto 0; max-width: 52ch; }
+  .fp-familiar { margin-top: 20px; font-size: 1.3rem; font-style: italic; color: var(--accent); }
+
+  .fp-story { display: grid; gap: clamp(28px, 5vw, 56px); align-items: center; max-width: 1080px; }
+  @media (min-width: 800px) { .fp-story { grid-template-columns: 1fr 1fr; } }
+  .fp-story__text > * + * { margin-top: 1em; }
+  .fp-figure { display: block; font-size: clamp(4.5rem, 3rem + 7vw, 9rem); font-style: italic; line-height: 0.9; letter-spacing: -0.03em; color: var(--accent); }
+  .fp-figure__label { display: block; margin-top: 12px; }
+
+  .fp-sub { margin: 14px auto 0; max-width: 46ch; }
+  .fp-cards { margin: clamp(32px, 5vw, 48px) auto 0; max-width: 1080px; background: var(--paper); }
+  .fp-card { padding: clamp(22px, 3vw, 32px); text-align: left; }
+  .fp-card h3 { margin-top: 10px; }
+  .fp-card p:last-child { margin-top: 8px; color: var(--ink-2); }
+
+  .fp-form-wrap { max-width: 620px; }
+  #form-container { margin-top: 32px; }
+  .fp-form { display: flex; flex-direction: column; gap: 14px; text-align: left; }
+  .fp-form__row { display: grid; gap: 14px; }
+  @media (min-width: 560px) { .fp-form__row { grid-template-columns: 1fr 1fr; } }
+  .fp-form input { width: 100%; background: var(--paper); border: 1px solid var(--rule); padding: 13px 14px; font-size: 15px; color: var(--ink); border-radius: 0; }
+  .fp-form input:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: transparent; }
+  .fp-submit { width: 100%; }
+  .fp-error { border: 1px solid #9b1c1c; color: #9b1c1c; padding: 12px 14px; font-size: .95rem; }
+  .fp-note { margin-top: 14px; }
+  .fp-success { margin-top: 32px; border: 1px solid var(--rule); border-left: 2px solid var(--accent); background: var(--paper-2); padding: clamp(22px, 3vw, 32px); }
+  .fp-success p:last-child { margin-top: 6px; color: var(--ink-2); }
+</style>

@@ -1,153 +1,143 @@
-import parseTomlToJson from "@/lib/utils/parseTomlToJson";
 import { defineCollection, z } from "astro:content";
-import { button, sectionsSchema } from "./sections.schema";
 import { glob } from "astro/loaders";
+import { taxonomy } from "./lib/data";
 
-const config = parseTomlToJson("./src/config/config.toml");
-const portfolioFolder = config.settings.portfolioFolder || "portfolio";
-const blogFolder = config.settings.blogFolder || "blog";
-const servicesFolder = config.settings.servicesFolder || "services";
+// Enums come from src/data/taxonomy.yaml so there is one list to edit.
+const keys = (o: Record<string, unknown>) => Object.keys(o) as [string, ...string[]];
+const pillar = z.enum(keys(taxonomy.pillars));
+const audience = z.enum(keys(taxonomy.audiences));
+const supportAngle = z.enum(keys(taxonomy.supportAngles));
+const format = z.enum(keys(taxonomy.formats));
 
-// Universal Page Schema
-export const page = z.object({
-  title: z.string(),
-  author: z.string().optional(),
-  categories: z.array(z.string()).default(["others"]).optional(),
-  tags: z.array(z.string()).default(["others"]).optional(),
-  date: z.date().optional(), // example date format 2022-01-01 or 2022-01-01T00:00:00+00:00 (Year-Month-Day Hour:Minute:Second+Timezone)
-  description: z.string().optional(),
-  image: z.string().optional(),
-  draft: z.boolean().optional(),
-  button: button.optional(),
+const faq = z.object({ q: z.string(), a: z.string() });
+const seo = {
   metaTitle: z.string().optional(),
   metaDescription: z.string().optional(),
-  robots: z.string().optional(),
-  excludeFromSitemap: z.boolean().optional(),
-  excludeFromCollection: z.boolean().optional(),
-  customSlug: z.string().optional(),
-  canonical: z.string().optional(),
-  keywords: z.array(z.string()).optional(),
-  disableTagline: z.boolean().optional(),
-  showInMenu: z.boolean().optional(), // Controls whether item appears in navigation menus
-  showContactForm: z.boolean().optional(), // Shows contact form section at bottom of page
-  ...sectionsSchema,
-});
-
-// Marquee Schema
-export const marqueeConfig = z.object({
-  elementWidth: z.string(),
-  elementWidthAuto: z.boolean(),
-  elementWidthInSmallDevices: z.string(),
-  pauseOnHover: z.boolean(),
-  reverse: z.enum(["reverse", ""]).optional(), // Optional: "reverse" or an empty string
-  duration: z.string(),
-});
-
-// Pages collection schema
-const pagesCollection = defineCollection({
-  schema: page,
-});
-
-// Service collection schema
-const serviceCollection = defineCollection({
-  schema: page.merge(
-    z.object({
-      icon: z.string().optional(),
-    }),
-  ),
-});
-
-// Post collection schema
-const blogCollection = defineCollection({
-  // Load Markdown and MDX files in the `src/content/blog/` directory.
-  loader: glob({ base: "./src/content/blog", pattern: "**/*.{md,mdx}" }),
-  schema: page.merge(
-    z.object({
-      author: z.string().optional(),
-      options: z
-        .object({
-          layout: z
-            .enum(["grid", "creative", "horizontal", "overlay"])
-            .optional(),
-          appearance: z.enum(["dark", "light"]).optional(),
-          columns: z
-            .union([z.literal(1), z.literal(2), z.literal(3)])
-            .optional(),
-          limit: z.union([z.number().int(), z.literal(false)]).optional(),
-        })
-        .optional(),
-    }),
-  ),
-});
-
-// Portfolio Collection
-const portfolioCollection = defineCollection({
-  // Load Markdown and MDX files in the `src/content/portfolio/` directory.
-  loader: glob({ base: "./src/content/portfolio", pattern: "**/*.{md,mdx}" }),
-  schema: page.merge(
-    z.object({
-      featured: z.boolean().optional(), // Controls whether item appears on homepage
-      images: z.array(z.string()).min(1).optional(),
-      options: z
-        .object({
-          layout: z.enum(["masonry", "grid", "full-width", "slider"]),
-          appearance: z.enum(["dark", "light"]).optional(),
-          limit: z.union([z.number().int(), z.literal(false)]).optional(),
-        })
-        .optional(),
-      information: z
-        .array(
-          z.object({
-            label: z.string(),
-            value: z.string(),
-          }),
-        )
-        .optional(),
-    }),
-  ),
-});
-
-// Team Collection
-export const teamCollection = defineCollection({
-  // Load Markdown and MDX files in the `src/content/portfolio` directory.
-  loader: glob({ base: "./src/content/team", pattern: "**/*.{md,mdx}" }),
-  schema: page.merge(
-    z.object({
-      image: z.string(),
-      profession: z.string().optional(),
-      email: z.string().optional(),
-      phone: z.string().optional(),
-      social: z
-        .array(
-          z.object({
-            enable: z.boolean(),
-            label: z.string(),
-            icon: z.string(),
-            url: z.string(),
-          }),
-        )
-        .optional(),
-    }),
-  ),
-});
-
-// Export collections
-export const collections = {
-  // To prevent, getEntry (Content fetching API) throws error when collection does not exist, we specify a default collection along with the schema of each required collection
-  [blogFolder]: blogCollection,
-  blog: blogCollection,
-  [servicesFolder]: serviceCollection,
-  services: serviceCollection,
-  [portfolioFolder]: portfolioCollection,
-  portfolio: portfolioCollection,
-
-  pages: pagesCollection,
-  sections: defineCollection({}),
-  homepage: defineCollection({}),
-  "about-us": defineCollection({}),
-  contact: defineCollection({}),
-  faq: defineCollection({}),
-  team: teamCollection,
-  pricing: defineCollection({}),
-  author: defineCollection({}),
+  noindex: z.boolean().default(false),
 };
+
+// ── Blog posts ─────────────────────────────────────────────────────────────
+// src/content/blog/<slug>.mdx → /blog/<slug>/
+const blog = defineCollection({
+  loader: glob({ base: "./src/content/blog", pattern: "*.mdx" }),
+  schema: z
+    .object({
+      title: z.string(),
+      description: z.string(),
+      date: z.coerce.date(),
+      updated: z.coerce.date().optional(),
+      pillar,
+      supportAngle: supportAngle.optional(),
+      audiences: z.array(audience).default([]),
+      format: format.default("article"),
+      image: z.string().optional(), // media id from src/data/media.yaml
+      takeaways: z.array(z.string()).max(5).optional(),
+      faqs: z.array(faq).optional(),
+      work: z.string().optional(), // case study to feature, by slug
+      keywords: z.array(z.string()).optional(),
+      draft: z.boolean().default(false),
+      ...seo,
+    })
+    .refine((p) => !p.supportAngle || p.pillar === "support", {
+      message: "supportAngle is only for posts in the support pillar",
+      path: ["supportAngle"],
+    }),
+});
+
+// ── Core services: one per pillar ───────────────────────────────────────────
+// src/content/services/<pillar slug>.mdx → /services/<pillar slug>/
+const services = defineCollection({
+  loader: glob({ base: "./src/content/services", pattern: "*.mdx" }),
+  schema: z.object({
+    title: z.string(),
+    pillar,
+    eyebrow: z.string(),
+    heading: z.string(), // *words* in asterisks are set in accent italics
+    intro: z.array(z.string()).default([]),
+    primaryCta: z.enum(["start", "audit"]).default("start"),
+    ctaLabel: z.string().optional(),
+    messageHref: z.string().default("/contact/"), // where the hero's "Send a Message" button goes
+    image: z.string().optional(),
+    faqs: z.array(faq).optional(),
+    ...seo,
+  }),
+});
+
+// ── Industry pages ─────────────────────────────────────────────────────────
+// src/content/industries/<slug>.mdx → /services/<slug>/
+const industries = defineCollection({
+  loader: glob({ base: "./src/content/industries", pattern: "*.mdx" }),
+  schema: z.object({
+    title: z.string(),
+    audience,
+    eyebrow: z.string(),
+    heading: z.string(),
+    intro: z.array(z.string()).default([]),
+    image: z.string().optional(),
+    faqs: z.array(faq).optional(),
+    ...seo,
+  }),
+});
+
+// ── Location pages ─────────────────────────────────────────────────────────
+// src/content/locations/<slug>.mdx → /<slug>/   e.g. web-designer-york
+const locations = defineCollection({
+  loader: glob({ base: "./src/content/locations", pattern: "*.mdx" }),
+  schema: z.object({
+    title: z.string(),
+    town: z.string(),
+    eyebrow: z.string(),
+    heading: z.string(),
+    intro: z.array(z.string()).default([]),
+    image: z.string().optional(),
+    work: z.array(z.string()).default([]), // case studies to show, by slug
+    testimonial: z.string().optional(),
+    faqs: z.array(faq).optional(),
+    ...seo,
+  }),
+});
+
+// ── Case studies ───────────────────────────────────────────────────────────
+// src/content/work/<slug>.mdx → /portfolio/<slug>/
+const work = defineCollection({
+  loader: glob({ base: "./src/content/work", pattern: "*.mdx" }),
+  schema: z.object({
+    client: z.string(),
+    title: z.string(), // the headline
+    summary: z.string(),
+    date: z.coerce.date(),
+    sector: z.string(),
+    town: z.string().optional(),
+    pillars: z.array(pillar).min(1),
+    audiences: z.array(audience).default([]),
+    website: z.string().url().optional(),
+    image: z.string().optional(),
+    gallery: z.array(z.string()).default([]),
+    stats: z.array(z.object({ value: z.string(), label: z.string() })).default([]),
+    facts: z.array(z.object({ label: z.string(), value: z.string() })).default([]),
+    testimonial: z.string().optional(),
+    featured: z.boolean().default(false),
+    order: z.number().default(100),
+    draft: z.boolean().default(false),
+    ...seo,
+  }),
+});
+
+// ── Standalone pages (legal, landing pages) ─────────────────────────────────
+// src/content/pages/<slug>.mdx → /<slug>/
+const pages = defineCollection({
+  loader: glob({ base: "./src/content/pages", pattern: "*.mdx" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    eyebrow: z.string().optional(),
+    heading: z.string().optional(),
+    intro: z.array(z.string()).default([]),
+    template: z.enum(["prose", "landing"]).default("prose"), // not "layout": MDX reserves that key
+    cta: z.enum(["start", "audit", "none"]).default("start"),
+    faqs: z.array(faq).optional(),
+    ...seo,
+  }),
+});
+
+export const collections = { blog, services, industries, locations, work, pages };

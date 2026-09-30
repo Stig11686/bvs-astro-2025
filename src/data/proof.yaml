@@ -1,0 +1,57 @@
+# Verified results only. Every figure here must be one you can stand behind.
+# `named: false` shows `anonymousLabel` instead of the client name (e.g. until a client signs off).
+# `homepage: true` puts the figure in the homepage proof strip (the first three are used).
+# Use in a page with <Stat id="…" /> or <Stats ids={["…", "…"]} />.
+
+ilkley-dental-enquiries:
+  value: "30+"
+  label: Enquiries per month
+  client: Ilkley Dental Care
+  work: ilkley-dental-care
+  pillars: [audit, design]
+  audiences: [dental]
+  homepage: true
+
+rebecca-rennolds-visits:
+  value: "3–4k"
+  label: Visits per month
+  client: Rebecca Rennolds
+  work: rebecca-rennolds-permanent-beauty-and-laser
+  pillars: [design]
+  audiences: [salon]
+  homepage: true
+
+maidens-ravens-reviews:
+  value: "30"
+  label: Google reviews in 3 months
+  client: Maidens & Ravens
+  work: maidens-and-ravens
+  pillars: [design]
+  audiences: [bridal]
+  homepage: true
+
+maidens-ravens-saturdays:
+  value: "6 months"
+  label: Of Saturdays booked through the website
+  client: Maidens & Ravens
+  work: maidens-and-ravens
+  pillars: [design]
+  audiences: [bridal]
+
+jaynes-platform-saving:
+  value: "£18k"
+  label: A year in platform fees, mostly cut
+  client: Jaynes Bridalwear
+  named: true
+  anonymousLabel: A Lincoln bridal boutique
+  work: jaynes-bridalwear-lincoln
+  pillars: [rescue, support]
+  audiences: [bridal]
+
+viking-cricket-launch:
+  value: "3"
+  label: Sales on launch day
+  client: Viking Cricket
+  work: viking-cricket-silsden
+  pillars: [design]
+  audiences: [retail]

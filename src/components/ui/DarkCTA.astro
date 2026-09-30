@@ -1,0 +1,30 @@
+---
+import { links, ctaLabels, site } from "@/site.config";
+import { accentify } from "@/lib/text";
+
+export interface CtaProps { heading: string; body: string; primary: "start" | "audit" }
+const { heading, body, primary } = Astro.props as CtaProps;
+---
+
+<section class="dark gutter dark-cta" aria-labelledby="cta-heading">
+  <div class="wrap">
+    <p class="eyebrow">{site.availability || "Let's talk"}</p>
+    <h2 id="cta-heading" class="display dark-cta__h" set:html={accentify(heading)} />
+    <div class="dark-cta__row">
+      <p class="lede">{body}</p>
+      <div class="dark-cta__actions">
+        <a class="btn btn--accent" href={links[primary]} target="_blank" rel="noopener">{ctaLabels[primary]}</a>
+        <a class="btn btn--ghost-dark" href={links.contact}>Send a Message</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .dark-cta { padding-top: clamp(56px, 8vw, 84px); padding-bottom: clamp(40px, 5vw, 48px); }
+  .dark-cta__h { font-size: clamp(2.8rem, 1.2rem + 6vw, 6rem); line-height: 0.95; letter-spacing: -0.03em; margin: 20px 0 32px; max-width: 16ch; }
+  .dark-cta__row { display: grid; gap: 28px; align-items: end; }
+  .dark-cta__row .lede { color: rgba(255,255,255,0.75); max-width: 52ch; }
+  .dark-cta__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  @media (min-width: 900px) { .dark-cta__row { grid-template-columns: 1.5fr 1fr; gap: 56px; } .dark-cta__actions { flex-direction: column; align-items: flex-start; } }
+</style>

@@ -1,0 +1,63 @@
+---
+import Base from "@/layouts/Base.astro";
+import Img from "@/components/ui/Img.astro";
+import Section from "@/components/sections/Section.astro";
+import ClientQuote from "@/components/blocks/ClientQuote.astro";
+import { hasMedia } from "@/lib/media";
+import { allProof, testimonials } from "@/lib/data";
+
+const results = allProof().filter((p) => p.named && p.work).slice(0, 4);
+const quoteId = "elizabeth-matfin-support" in testimonials ? "elizabeth-matfin-support" : Object.keys(testimonials)[0];
+---
+<Base title="About Steve Marks | Web Designer Based in Skipton | BVS Web Design" description="I'm Steve Marks, a freelance web designer in Skipton. I build websites that bring in enquiries for service businesses, then stick around to keep them working." cta={{ heading: "Ready to talk about your *project*?", body: "Tell me what you're trying to achieve and I'll tell you straight whether, and how, I can help.", primary: "start" }}>
+  <section class="gutter about-hero">
+    <div class="wrap split split--hero">
+      <div>
+        <p class="eyebrow">About Steve Marks</p>
+        <h1 class="h1 about-hero__h">I build websites that <em class="accent-italic">work</em>. Then I stick around to make sure they <em>keep working</em>.</h1>
+      </div>
+      <div class="about-hero__img media-frame">{hasMedia("steve-portrait") ? <Img id="steve-portrait" eager sizes="(min-width: 900px) 40vw, 100vw" /> : <div class="ph">Steve, portrait</div>}</div>
+    </div>
+    <div class="wrap about-intro">
+      <p class="body-serif">I'm Steve, a freelance web designer and developer based in Skipton, North Yorkshire. I work with service businesses across Yorkshire and the UK to build websites that generate real enquiries rather than compliments.</p>
+      <p class="body-serif">I care most about what happens after launch. Anyone can build something that looks good in a browser. The question is whether it's bringing customers in six months later, and whether there's someone you can call when something goes wrong.</p>
+    </div>
+  </section>
+
+  <Section heading="How a *project* works">
+    <p>Every project starts with a conversation about your business, not your colour scheme. I want to understand who your customers are, what they need to see before they get in touch, and what's getting in the way.</p>
+    <p>From there I handle everything: strategy, copy guidance, design, build and launch. Once the site is live, most of my clients stay on a care plan, so I'm looking after security, updates and ongoing improvements without them having to think about it. Some only want the build, and that's fine too.</p>
+    <p><strong>Either way, you work directly with me throughout.</strong> <em>No account managers, no handoffs to a junior.</em></p>
+  </Section>
+
+  {results.length > 0 && (
+    <Section layout="wide" heading="What that looks like *in practice*">
+      <div class="results">
+        {results.map((r) => (
+          <a class="results__row" href={`/portfolio/${r.work}/`}>
+            <span class="h3 results__client">{r.client}</span>
+            <span class="results__body"><span class="accent-italic">{r.value}</span> {r.label.toLowerCase()} <span class="arrow">→</span></span>
+          </a>
+        ))}
+      </div>
+    </Section>
+  )}
+
+  {quoteId && (
+    <section class="dark gutter section"><div class="wrap"><p class="eyebrow">Word from a client</p><div class="about-quote"><ClientQuote id={quoteId} dark size="large" /></div></div></section>
+  )}
+</Base>
+<style>
+  .about-hero { padding-top: clamp(40px, 6vw, 64px); padding-bottom: var(--section-y); }
+  .about-hero__h { margin-top: 16px; }
+  .about-hero__img { aspect-ratio: 4/5; border: 1px solid var(--rule); }
+  .about-hero__img .ph { height: 100%; border: 0; }
+  .about-intro { margin-top: 36px; display: grid; gap: 20px 48px; max-width: 1100px; margin-left: 0; }
+  @media (min-width: 900px) { .about-intro { grid-template-columns: 1fr 1fr; } }
+  .results { border-top: 1px solid var(--rule); }
+  .results__row { display: grid; gap: 8px 32px; padding: 22px 0; border-bottom: 1px solid var(--rule-soft); text-decoration: none; color: var(--ink); }
+  @media (min-width: 800px) { .results__row { grid-template-columns: 1fr 2fr; align-items: baseline; } }
+  .results__client { color: var(--accent); }
+  .results__body { font-family: var(--font-serif); font-size: 1.2rem; color: var(--ink-2); }
+  .about-quote { margin-top: 22px; max-width: 900px; }
+</style>

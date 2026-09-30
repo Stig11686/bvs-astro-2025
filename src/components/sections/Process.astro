@@ -1,0 +1,32 @@
+---
+// A horizontal timeline of steps.
+interface Props { steps?: { title: string; body: string }[] }
+const steps = Astro.props.steps ?? [
+  { title: "Free call", body: "A proper conversation about your business, not your colour scheme." },
+  { title: "Discovery", body: "Your customers, what they need to see, and what is getting in the way." },
+  { title: "Design", body: "Drafts you can mark up, built around the path to enquiry." },
+  { title: "Build", body: "Built properly, fast by default, and yours to own." },
+  { title: "Launch + care", body: "Live, trained, and looked after long after handover." },
+];
+---
+<ol class="process" style={`--n:${steps.length}`}>
+  {steps.map((s, i) => (
+    <li>
+      <span class="process__dot" aria-hidden="true"></span>
+      <span class="process__n serif">{String(i + 1).padStart(2, "0")}</span>
+      <h3 class="h3">{s.title}</h3>
+      <p>{s.body}</p>
+    </li>
+  ))}
+</ol>
+<style>
+  .process { list-style: none; padding: 0; margin: 0; display: grid; border-top: 2px solid var(--ink); font-family: var(--font-sans); }
+  @media (min-width: 900px) { .process { grid-template-columns: repeat(var(--n, 5), 1fr); } }
+  .process li { position: relative; padding: 26px 22px 8px 0; margin: 0 !important; }
+  @media (min-width: 900px) { .process li { padding-left: 22px; border-right: 1px solid var(--rule); } .process li:last-child { border-right: 0; } }
+  .process__dot { position: absolute; top: -7px; left: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid var(--paper); }
+  @media (min-width: 900px) { .process__dot { left: 22px; } }
+  .process__n { font-size: 3rem; font-style: italic; line-height: .9; color: var(--accent); }
+  .process h3 { margin: 14px 0 8px; font-size: 1.35rem; }
+  .process p { font-size: .88rem; line-height: 1.55; color: var(--ink-2); margin: 0; }
+</style>

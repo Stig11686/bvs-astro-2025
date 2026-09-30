@@ -1,0 +1,105 @@
+---
+import { nav, links, ctaLabels } from "@/site.config";
+import { pillars } from "@/lib/data";
+
+interface Props { cta?: "start" | "audit" | "none" }
+const { cta = "start" } = Astro.props;
+const path = Astro.url.pathname;
+const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWith(href));
+const serviceLinks = pillars.map((p) => ({ title: p.name, desc: p.summary, href: `/services/${p.slug}/` }));
+---
+
+<header class="site-header gutter">
+  <a href="/" class="brand">
+    <span class="brand__name serif">BVS<em>Web</em>Design</span>
+    <span class="label brand__sub">Skipton · Websites &amp; care plans</span>
+  </a>
+
+  <button class="menu__toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menu</button>
+  <nav class="menu__panel" id="main-nav" aria-label="Main">
+      <ul class="nav">
+        {nav.map((item) =>
+          item.services ? (
+            <li class="nav__item nav__item--services">
+              <a href={item.href} class:list={["nav__link", { "is-active": isActive(item.href) }]}>
+                {item.label} <span class="caret" aria-hidden="true">▾</span>
+              </a>
+              <div class="dropdown">
+                {serviceLinks.map((s) => (
+                  <a href={s.href} class:list={["dropdown__item", { "is-active": path === s.href }]}>
+                    <span class="dropdown__title serif">{s.title} <span class="arrow">→</span></span>
+                    <span class="dropdown__desc">{s.desc}</span>
+                  </a>
+                ))}
+              </div>
+            </li>
+          ) : (
+            <li class="nav__item">
+              <a href={item.href} class:list={["nav__link", { "is-active": isActive(item.href) }]} aria-current={isActive(item.href) ? "page" : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ),
+        )}
+      </ul>
+      {cta !== "none" && (
+        <a class="btn btn--solid header-cta" href={links[cta]} target="_blank" rel="noopener">{ctaLabels[cta]}</a>
+      )}
+  </nav>
+</header>
+
+<script>
+  const header = document.querySelector(".site-header");
+  const toggle = header?.querySelector<HTMLButtonElement>(".menu__toggle");
+  toggle?.addEventListener("click", () => {
+    const open = header!.toggleAttribute("data-open");
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.textContent = open ? "Close" : "Menu";
+  });
+</script>
+
+<style>
+  .site-header {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    padding-top: 18px; padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+    background: color-mix(in srgb, var(--paper) 90%, transparent);
+    backdrop-filter: blur(8px);
+  }
+  .brand { text-decoration: none; color: var(--ink); display: grid; gap: 5px; }
+  .brand__name { font-size: 23px; font-weight: 500; letter-spacing: -0.01em; line-height: 1; }
+  .brand__name em { color: var(--accent); }
+  .brand__sub { font-size: 10px; }
+
+  .menu__toggle { background: none; color: var(--ink); cursor: pointer; font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; border: 1px solid var(--ink); border-radius: 999px; padding: 9px 16px; }
+  .site-header[data-open] .menu__panel { display: block; }
+  .menu__panel { display: none; position: absolute; left: 0; right: 0; top: 100%; background: var(--paper); border-bottom: 1px solid var(--rule); padding: 12px var(--gutter) 24px; max-height: calc(100vh - 70px); overflow: auto; }
+  .nav { list-style: none; margin: 0; padding: 0; }
+  .nav__link { display: block; font-family: var(--font-serif); font-style: italic; font-size: 20px; text-decoration: none; color: var(--ink); padding: 10px 0; border-bottom: 1px solid var(--rule-soft); }
+  .nav__link.is-active { color: var(--accent); }
+  .caret { font-size: 11px; font-style: normal; }
+  .dropdown { padding: 4px 0 8px 14px; }
+  .dropdown__item { display: block; padding: 8px 0; text-decoration: none; color: var(--ink); }
+  .dropdown__title { font-size: 17px; }
+  .dropdown__desc { display: none; }
+  .header-cta { margin-top: 18px; }
+
+  @media (min-width: 1080px) {
+    .menu__toggle { display: none; }
+    .menu__panel { display: flex; position: static; align-items: center; gap: 26px; padding: 0; border: 0; background: none; max-height: none; overflow: visible; }
+    .nav { display: flex; gap: 26px; align-items: center; }
+    .nav__link { font-size: 17px; padding: 0 0 2px; border-bottom: 1px solid transparent; white-space: nowrap; transition: color .15s; }
+    .nav__link:hover { color: var(--accent); }
+    .nav__link.is-active { border-bottom-color: var(--accent); }
+    .nav__item--services { position: relative; }
+    .dropdown { display: none; position: absolute; top: calc(100% + 14px); right: -20px; width: 380px; padding: 8px; background: var(--paper); border: 1px solid var(--rule); box-shadow: 0 24px 60px rgba(0,0,0,0.16); }
+    .dropdown::before { content: ""; position: absolute; left: 0; right: 0; top: -16px; height: 16px; }
+    .nav__item--services:hover .dropdown, .nav__item--services:focus-within .dropdown { display: block; }
+    .dropdown__item { padding: 14px 16px; }
+    .dropdown__item:hover, .dropdown__item.is-active { background: var(--paper-2); }
+    .dropdown__title { font-size: 19px; letter-spacing: -0.01em; }
+    .dropdown__desc { display: block; font-size: 12.5px; color: var(--ink-2); line-height: 1.5; margin-top: 4px; }
+    .header-cta { margin: 0 0 0 4px; }
+  }
+</style>

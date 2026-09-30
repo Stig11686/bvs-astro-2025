@@ -1,0 +1,30 @@
+---
+// "Recent work" and "From the blog" strips used at the foot of service, industry and location pages.
+import WorkCard from "./WorkCard.astro";
+import PostCard from "./PostCard.astro";
+import type { Post, Work } from "@/lib/content";
+import { accentify } from "@/lib/text";
+interface Props { work?: Work[]; posts?: Post[]; workHeading?: string; postsHeading?: string; postsHref?: string }
+const { work = [], posts = [], workHeading = "Recent *work*", postsHeading = "From the *blog*", postsHref = "/blog/" } = Astro.props;
+---
+{work.length > 0 && (
+  <section class="gutter section rule-top">
+    <div class="wrap">
+      <div class="strip-head"><h2 class="h2" set:html={accentify(workHeading)} /><a class="btn btn--ghost" href="/portfolio/">All projects →</a></div>
+      <div class="grid grid--3">{work.map((w) => <WorkCard item={w} />)}</div>
+    </div>
+  </section>
+)}
+{posts.length > 0 && (
+  <section class="rule-top">
+    <div class="gutter strip-head-wrap"><div class="wrap strip-head"><h2 class="h2" set:html={accentify(postsHeading)} /><a class="underlink" href={postsHref}>More articles →</a></div></div>
+    <div class="ruled strip-posts">{posts.map((p) => <PostCard post={p} />)}</div>
+  </section>
+)}
+<style>
+  .strip-head { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: baseline; margin-bottom: 28px; }
+  .strip-head-wrap { padding-top: var(--section-y); }
+  .strip-head-wrap .strip-head { margin-bottom: 20px; }
+  .strip-posts { border-left: 0; }
+  @media (min-width: 900px) { .strip-posts { grid-template-columns: repeat(3, 1fr); } }
+</style>

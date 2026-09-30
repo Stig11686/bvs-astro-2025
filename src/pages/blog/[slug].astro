@@ -1,0 +1,150 @@
+---
+import { render } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import Img from "@/components/ui/Img.astro";
+import PostCard from "@/components/ui/PostCard.astro";
+import FAQList from "@/components/ui/FAQList.astro";
+import CaseStudyCard from "@/components/blocks/CaseStudyCard.astro";
+import { blocks } from "@/components/blocks";
+import { getPosts, getWork, relatedPosts, workFor, type Post } from "@/lib/content";
+import { getPillar, taxonomy } from "@/lib/data";
+import { hasMedia } from "@/lib/media";
+import { formatDate, readingTime } from "@/lib/text";
+import { articleJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/schema";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post, posts } }));
+}
+
+const { post, posts } = Astro.props as { post: Post; posts: Post[] };
+const d = post.data;
+const pillar = getPillar(d.pillar);
+(Astro.locals as { pillar?: string }).pillar = d.pillar;
+
+const { Content } = await render(post);
+const related = relatedPosts(post, posts);
+const work = await getWork();
+const featuredWork = d.work ?? workFor(work, { pillar: d.pillar, audience: d.audiences[0] }, 1)[0]?.id;
+const path = `/blog/${post.id}/`;
+
+const jsonLd = [
+  articleJsonLd({ title: d.title, description: d.description, path, date: d.date, updated: d.updated }),
+  breadcrumbJsonLd([["Home", "/"], ["Blog", "/blog/"], [pillar.name, `/blog/category/${pillar.slug}/`], [d.title, path]]),
+  ...(d.faqs?.length ? [faqJsonLd(d.faqs)] : []),
+];
+---
+
+<Base
+  title={d.metaTitle ?? `${d.title} | BVS Web Design`}
+  description={d.metaDescription ?? d.description}
+  image={d.image}
+  type="article"
+  published={d.date}
+  noindex={d.noindex}
+  jsonLd={jsonLd}
+  cta={d.pillar}
+  headerCta={pillar.cta.primary}
+>
+  <article>
+    <header class="gutter post-head">
+      <div class="wrap">
+        <p class="label post-head__crumbs">
+          <a href="/blog/">Blog</a> / <a class="label--accent" href={`/blog/category/${pillar.slug}/`}>{pillar.name}</a>
+        </p>
+        <h1 class="h1 post-head__title">{d.title}</h1>
+        <p class="lede post-head__desc">{d.description}</p>
+        <p class="label post-head__meta">
+          <span>{formatDate(d.date)}</span>
+          {d.updated && <span>Updated {formatDate(d.updated)}</span>}
+          <span>{readingTime(post.body)} min read</span>
+          {d.audiences.map((a) => <span>{taxonomy.audiences[a]}</span>)}
+        </p>
+      </div>
+    </header>
+
+    {d.image && hasMedia(d.image) && (
+      <div class="gutter post-cover">
+        <div class="wrap"><Img id={d.image} eager sizes="(min-width: 1320px) 1208px, 100vw" class="post-cover__img" /></div>
+      </div>
+    )}
+
+    <div class="gutter post-body">
+      <div class="wrap post-grid">
+        <div class="post-main">
+          {d.takeaways?.length ? (
+            <section class="takeaways" aria-label="Key takeaways">
+              <p class="label label--accent">Key takeaways</p>
+              <ul>{d.takeaways.map((t) => <li>{t}</li>)}</ul>
+            </section>
+          ) : null}
+
+          <div class="prose">
+            <Content components={blocks} />
+          </div>
+
+          {d.faqs?.length ? (
+            <section class="post-faq" aria-labelledby="faq-h">
+              <h2 id="faq-h" class="h2">Questions people <span class="accent-italic">ask</span></h2>
+              <FAQList faqs={d.faqs} />
+            </section>
+          ) : null}
+
+          {featuredWork && (
+            <section class="post-work" aria-label="Related case study">
+              <CaseStudyCard id={featuredWork} />
+            </section>
+          )}
+        </div>
+
+        <aside class="post-aside">
+          <div class="post-aside__box">
+            <p class="label">This post is about</p>
+            <p class="post-aside__h serif">{pillar.name}</p>
+            <p class="post-aside__b">{pillar.summary}</p>
+            <a class="underlink" href={`/services/${pillar.slug}/`}>How I can help →</a>
+          </div>
+          <p class="label post-aside__author">Written by Steve Marks, web designer in Skipton</p>
+        </aside>
+      </div>
+    </div>
+  </article>
+
+  {related.length > 0 && (
+    <section class="rule-top" aria-labelledby="related-h">
+      <div class="gutter related-head">
+        <div class="wrap"><h2 id="related-h" class="h2">Keep <span class="accent-italic">reading</span></h2></div>
+      </div>
+      <div class="related-grid ruled">
+        {related.map((p) => <PostCard post={p} />)}
+      </div>
+    </section>
+  )}
+</Base>
+
+<style>
+  .post-head { padding-top: clamp(36px, 5vw, 60px); padding-bottom: 28px; }
+  .post-head__crumbs a { text-decoration: none; }
+  .post-head__title { margin: 16px 0 18px; max-width: 24ch; }
+  .post-head__desc { max-width: 60ch; }
+  .post-head__meta { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 20px; }
+  .post-cover__img :global(img) { width: 100%; aspect-ratio: 16 / 8; object-fit: cover; border: 1px solid var(--rule); }
+  .post-body { padding-top: clamp(28px, 4vw, 48px); padding-bottom: clamp(40px, 5vw, 64px); }
+  .post-grid { display: grid; gap: 48px; }
+  @media (min-width: 1100px) { .post-grid { grid-template-columns: minmax(0, 1fr) 280px; gap: 72px; } }
+  .takeaways { border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); padding: 18px 0 20px; margin-bottom: 36px; max-width: 68ch; }
+  .takeaways ul { margin: 10px 0 0; padding-left: 1.2em; font-family: var(--font-serif); font-size: 1.12rem; line-height: 1.5; }
+  .takeaways li + li { margin-top: 6px; }
+  .takeaways li::marker { color: var(--accent); }
+  .post-faq { margin-top: 56px; max-width: 68ch; }
+  .post-faq .h2 { margin-bottom: 20px; }
+  .post-work { max-width: 68ch; margin-top: 40px; }
+  .post-aside__box { border: 1px solid var(--rule); padding: 22px 22px 24px; background: var(--paper-2); }
+  @media (min-width: 1100px) { .post-aside { position: sticky; top: 110px; align-self: start; } }
+  .post-aside__h { font-size: 1.5rem; margin: 8px 0 8px; line-height: 1.1; }
+  .post-aside__b { font-size: .92rem; color: var(--ink-2); margin-bottom: 14px; }
+  .post-aside__author { margin-top: 16px; }
+  .related-head { padding-top: 48px; padding-bottom: 24px; }
+  .related-grid { border-left: 0; }
+  @media (min-width: 900px) { .related-grid { grid-template-columns: repeat(3, 1fr); } }
+</style>

@@ -1,0 +1,16 @@
+---
+import Base from "@/layouts/Base.astro";
+import BlogIndex from "@/components/ui/BlogIndex.astro";
+import { getPosts, POSTS_PER_PAGE as PER_PAGE } from "@/lib/content";
+
+export async function getStaticPaths() {
+  const all = await getPosts();
+  const pages = Math.ceil(all.length / PER_PAGE);
+  return Array.from({ length: Math.max(0, pages - 1) }, (_, i) => ({ params: { page: String(i + 2) }, props: { page: i + 2, pages, all } }));
+}
+const { page, pages, all } = Astro.props;
+const posts = all.slice((page - 1) * PER_PAGE, page * PER_PAGE);
+---
+<Base title={`Web Design Blog, page ${page} | BVS Web Design`} description="More practical website advice for service business owners.">
+  <BlogIndex posts={posts} allPosts={all} heading="Tips, case studies & *insights*." intro="Older posts." page={page} pages={pages} featureFirst={false} />
+</Base>

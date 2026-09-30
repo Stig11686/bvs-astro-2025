@@ -1,0 +1,68 @@
+---
+import { getCollection } from "astro:content";
+import { site, links } from "@/site.config";
+import { pillars } from "@/lib/data";
+
+const industries = (await getCollection("industries")).sort((a, b) => a.data.title.localeCompare(b.data.title));
+const locations = (await getCollection("locations")).sort((a, b) => a.data.town.localeCompare(b.data.town));
+
+const cols: { h: string; items: [string, string, boolean?][] }[] = [
+  { h: "Site", items: [["Home", "/"], ["About", "/about/"], ["Portfolio", "/portfolio/"], ["Blog", "/blog/"], ["Contact", "/contact/"]] },
+  { h: "Services", items: pillars.map((p) => [p.shortName ?? p.name, `/services/${p.slug}/`] as [string, string]) },
+  { h: "Industries", items: industries.map((i) => [i.data.title, `/services/${i.id}/`] as [string, string]) },
+  { h: "Where I work", items: locations.map((l) => [l.data.town, `/${l.id}/`] as [string, string]) },
+  { h: "Start", items: [["Start a Project", links.start, true], ["Book a Free Website Review", links.audit, true]] },
+];
+const year = new Date().getFullYear();
+---
+
+<footer class="dark gutter site-footer">
+  <div class="wrap">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <a href="/" class="serif site-footer__name">BVS<em>Web</em>Design</a>
+        <p class="serif site-footer__tag">{site.tagline}</p>
+        <a class="serif site-footer__email" href={`mailto:${site.email}`}>{site.email}</a>
+      </div>
+      {cols.map((c) => (
+        <div>
+          <p class="label site-footer__h">{c.h}</p>
+          <ul>
+            {c.items.map(([label, href, ext]) => (
+              <li><a class="serif" href={href} target={ext ? "_blank" : undefined} rel={ext ? "noopener" : undefined}>{label}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+    <div class="mono site-footer__base">
+      <span>© {year} BVS Web Design · Skipton, North Yorkshire</span>
+      <span class="site-footer__legal">
+        <a href="/privacy-policy/">Privacy</a>
+        <a href="/terms-conditions/">Terms</a>
+        <a href="#" data-cookie-settings>Cookie settings</a>
+        <a href={site.social.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+        <a href={site.social.facebook} target="_blank" rel="noopener">Facebook</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer { padding-top: 40px; padding-bottom: 20px; border-top: 1px solid rgba(255,255,255,0.12); }
+  .site-footer__grid { display: grid; gap: 32px; grid-template-columns: repeat(2, 1fr); }
+  .site-footer__brand { grid-column: 1 / -1; }
+  @media (min-width: 1000px) { .site-footer__grid { grid-template-columns: 2fr repeat(5, 1fr); } .site-footer__brand { grid-column: auto; } }
+  .site-footer__name { font-size: 27px; font-weight: 500; letter-spacing: -0.01em; text-decoration: none; }
+  .site-footer__name em { color: var(--accent); }
+  .site-footer__tag { font-size: 15px; font-style: italic; margin-top: 10px; color: rgba(255,255,255,0.6); max-width: 34ch; }
+  .site-footer__email { display: table; margin-top: 12px; font-size: 15px; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
+  .site-footer__h { margin-bottom: 12px; }
+  .site-footer ul { list-style: none; margin: 0; padding: 0; }
+  .site-footer li a { display: block; font-size: 16px; font-style: italic; line-height: 1.85; text-decoration: none; }
+  .site-footer li a:hover { color: var(--accent); }
+  .site-footer__base { margin-top: 32px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.12); display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 0.04em; text-transform: uppercase; }
+  .site-footer__legal { display: flex; gap: 18px; }
+  .site-footer__legal a { text-decoration: none; }
+  .site-footer__legal a:hover { color: var(--dark-paper); }
+</style>

@@ -1,0 +1,18 @@
+---
+// Links to a case study, with its headline number.
+import { getEntry } from "astro:content";
+import Img from "@/components/ui/Img.astro";
+import { hasMedia } from "@/lib/media";
+interface Props { id: string }
+const w = await getEntry("work", Astro.props.id);
+if (!w) throw new Error(`CaseStudyCard: no case study "${Astro.props.id}" in src/content/work/`);
+const stat = w.data.stats[0];
+---
+<a class="case-card" href={`/portfolio/${w.id}/`}>
+  {w.data.image && hasMedia(w.data.image) ? <Img id={w.data.image} sizes="(min-width: 800px) 280px, 100vw" widths={[480, 800]} class="case-card__img" /> : <div class="ph case-card__img">{w.data.client}</div>}
+  <div class="case-card__text">
+    <p class="label">Case study · {w.data.sector}</p>
+    <p class="case-card__title serif">{w.data.client} <span class="arrow">→</span></p>
+    {stat && <p class="case-card__stat">{stat.value} {stat.label}</p>}
+  </div>
+</a>

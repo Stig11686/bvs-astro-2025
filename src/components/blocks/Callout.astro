@@ -1,0 +1,10 @@
+---
+// A tip, warning or aside set apart from the text.
+interface Props { type?: "tip" | "warning" | "note" | "steve"; title?: string }
+const { type = "tip", title } = Astro.props;
+const defaults = { tip: "Tip", warning: "Watch out", note: "Note", steve: "What I'd do" };
+---
+<aside class:list={["callout", `callout--${type}`]}>
+  <p class="label callout__label">{title ?? defaults[type]}</p>
+  <div class="callout__body"><slot /></div>
+</aside>

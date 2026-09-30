@@ -1,0 +1,9 @@
+---
+// A question and answer that opens on click. Use FAQ frontmatter for the main FAQ; this is for inline use.
+interface Props { label: string; open?: boolean }
+const { label, open = false } = Astro.props;
+---
+<details class="accordion" open={open}>
+  <summary class="serif">{label}<span aria-hidden="true">+</span></summary>
+  <div class="accordion__body"><slot /></div>
+</details>

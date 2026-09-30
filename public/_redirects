@@ -1,173 +1,191 @@
 # -------------------------------------------------------
+# 2026 rebuild: pages that moved or were merged
+# -------------------------------------------------------
+/services/conversion-optimisation/     /services/website-audit/           301!
+/services/conversion-optimisation      /services/website-audit/           301!
+/elements/                             /                                   301!
+/blog/category/case-studies/           /portfolio/                         301!
+/blog/tag/website-design/              /blog/category/website-design/      301!
+/blog/tag/website-audit/               /blog/category/website-audit/       301!
+/blog/tag/website-rescue/              /blog/category/website-rescue/      301!
+/blog/tag/website-support/             /blog/category/website-support/     301!
+/blog/tag/case-studies/                /portfolio/                         301!
+
+# -------------------------------------------------------
 # Redirects — bvswebdesign.co.uk
 # Netlify processes top-to-bottom; first match wins.
 # -------------------------------------------------------
 
 # Old service pages
-/services/websites-in-a-week/           /services/                           301!
-/services/hosting-and-email/            /services/website-support/           301!
-/services/hosting-and-email             /services/website-support/           301!
-/services/construction-website-design/  /services/                           301!
-/services/construction-website-design   /services/                           301!
-/services/restaurant-website-design/    /services/                           301!
-/services/restaurant-website-design     /services/                           301!
-/services/digital-marketing-and-seo/    /services/                           301!
-/services/digital-marketing-and-seo     /services/                           301!
-/services/web-development/              /services/website-design/            301!
-/services/web-development               /services/website-design/            301!
-/services/web-design/                 /services/website-design/             301!
-/web-design-and-development/          /services/website-design/             301!
-/web-content-and-marketing/           /services/                            301!
-/shopify-design-and-development/      /services/website-design/             301!
-/shopify-design-and-development       /services/website-design/             301!
-/seo-services/                        /services/                            301!
-/wordpress-design-and-development/    /services/website-design/            301!
-/web-hosting-and-email/               /services/website-support/            301!
-/services/service-03/                 /portfolio/                           301!
-/services/service-04/                 /services/                            301!
-/services/wordpress/                  /services/website-design/             301!
-/services/wordpress-website-design/   /services/website-design/             301!
-/services/seo/                        /services/                            301!
-/services/hosting/                    /services/website-support/            301!
+/services/websites-in-a-week/                                /services/                                         301!
+/services/hosting-and-email/                                 /services/website-support/                         301!
+/services/hosting-and-email                                  /services/website-support/                         301!
+/services/construction-website-design/                       /services/                                         301!
+/services/construction-website-design                        /services/                                         301!
+/services/restaurant-website-design/                         /services/                                         301!
+/services/restaurant-website-design                          /services/                                         301!
+/services/digital-marketing-and-seo/                         /services/                                         301!
+/services/digital-marketing-and-seo                          /services/                                         301!
+/services/web-development/                                   /services/website-design/                          301!
+/services/web-development                                    /services/website-design/                          301!
+/services/web-design/                                        /services/website-design/                          301!
+/web-design-and-development/                                 /services/website-design/                          301!
+/web-content-and-marketing/                                  /services/                                         301!
+/shopify-design-and-development/                             /services/website-design/                          301!
+/shopify-design-and-development                              /services/website-design/                          301!
+/seo-services/                                               /services/                                         301!
+/wordpress-design-and-development/                           /services/website-design/                          301!
+/web-hosting-and-email/                                      /services/website-support/                         301!
+/services/service-03/                                        /portfolio/                                        301!
+/services/service-04/                                        /services/                                         301!
+/services/wordpress/                                         /services/website-design/                          301!
+/services/wordpress-website-design/                          /services/website-design/                          301!
+/services/seo/                                               /services/                                         301!
+/services/hosting/                                           /services/website-support/                         301!
 
 # Old portfolio / projects URLs
-/projects/rebecca-rennolds-permanent-beauty-and-laser/ /portfolio/rebecca-rennolds-permanent-beauty-and-laser/ 301!
-/projects/maidens-and-ravens/          /portfolio/maidens-and-ravens/        301!
-/projects/the-coach-house-skipton/     /portfolio/the-coach-house-skipton/   301!
-/projects/antler-interiors/            /portfolio/antler-interiors/          301!
-/projects/the-yorkshire-unicorn/       /portfolio/the-yorkshire-unicorn/     301!
-/projects/home-start-skipton/          /portfolio/                           301!
-/projects/home-start/                  /portfolio/                           301!
-/projects/ilkley-dental-care/          /portfolio/ilkley-dental-care/        301!
-/projects/                             /portfolio/                           301!
-/portfolio/home-start-skipton/         /portfolio/                           301!
-/portfolio/home-start/                 /portfolio/                           301!
-/case-studies/                         /portfolio/                           301!
-/case-studies/*                        /portfolio/                           301!
-/work/                                 /portfolio/                           301!
-/work/*                                /portfolio/                           301!
-/our-work/                             /portfolio/                           301!
-/our-work/*                            /portfolio/                           301!
+/projects/rebecca-rennolds-permanent-beauty-and-laser/       /portfolio/rebecca-rennolds-permanent-beauty-and-laser/ 301!
+/projects/maidens-and-ravens/                                /portfolio/maidens-and-ravens/                     301!
+/projects/the-coach-house-skipton/                           /portfolio/the-coach-house-skipton/                301!
+/projects/antler-interiors/                                  /portfolio/antler-interiors/                       301!
+/projects/the-yorkshire-unicorn/                             /portfolio/the-yorkshire-unicorn/                  301!
+/projects/home-start-skipton/                                /portfolio/                                        301!
+/projects/home-start/                                        /portfolio/                                        301!
+/projects/ilkley-dental-care/                                /portfolio/ilkley-dental-care/                     301!
+/projects/                                                   /portfolio/                                        301!
+/portfolio/home-start-skipton/                               /portfolio/                                        301!
+/portfolio/home-start/                                       /portfolio/                                        301!
+/case-studies/                                               /portfolio/                                        301!
+/case-studies/*                                              /portfolio/                                        301!
+/work/                                                       /portfolio/                                        301!
+/work/*                                                      /portfolio/                                        301!
+/our-work/                                                   /portfolio/                                        301!
+/our-work/*                                                  /portfolio/                                        301!
 
 # Old articles → blog
-/articles/the-5-biggest-mistakes-small-business-owners-make-with-their-websites/   /blog/the-5-biggest-mistakes-small-business-owners-make-with-their-websites/ 301!
-/articles/the-5-biggest-mistakes-small-business-owners-make-with-their-websites    /blog/the-5-biggest-mistakes-small-business-owners-make-with-their-websites/ 301!
+/articles/the-5-biggest-mistakes-small-business-owners-make-with-their-websites/ /blog/the-5-biggest-mistakes-small-business-owners-make-with-their-websites/ 301!
+/articles/the-5-biggest-mistakes-small-business-owners-make-with-their-websites /blog/the-5-biggest-mistakes-small-business-owners-make-with-their-websites/ 301!
 /articles/why-your-business-website-needs-a-care-plan-and-what-happens-without-one/ /blog/why-your-business-website-needs-a-care-plan-and-what-happens-without-one/ 301!
-/articles/when-should-you-update-or-invest-in-a-new-website/  /blog/when-should-you-update-or-invest-in-a-new-website/ 301!
-/articles/when-should-you-update-or-invest-in-a-new-website   /blog/when-should-you-update-or-invest-in-a-new-website/ 301!
+/articles/when-should-you-update-or-invest-in-a-new-website/ /blog/when-should-you-update-or-invest-in-a-new-website/ 301!
+/articles/when-should-you-update-or-invest-in-a-new-website  /blog/when-should-you-update-or-invest-in-a-new-website/ 301!
 /articles/5-essential-tips-for-building-a-successful-small-business-website/ /blog/5-essential-tips-for-building-a-successful-small-business-website/ 301!
-/articles/the-importance-of-discovery-for-your-new-website/   /blog/                                                  301!
-/articles/your-website-is-more-than-a-tool-it-s-a-statement   /blog/                                                  301!
-/articles/how-to-display-your-blogs-in-social-media/          /blog/                                                  301!
-/articles/building-a-scheduling-app-in-laravel-9-part-1/      /blog/                                                  301!
-/articles/setting-up-email-in-windows-mail-app/               /blog/                                                  301!
-/articles/3-ways-to-master-woocommerce-without-breaking-a-sweat/ /blog/                                               301!
-/articles/astro-the-modern-static-site-builder-a-deep-dive-comparisons-and-practical-api-integrations/ /blog/         301!
-/articles/amending-the-position-of-the-google-pay-and-apple-pay-buttons-in-woocommerce/ /blog/                        301!
-/blog/amending-the-position-of-the-google-pay-and-apple-pay-buttons-in-woocommerce/ /blog/                            301!
-/articles/                                                     /blog/                                                  301!
+/articles/the-importance-of-discovery-for-your-new-website/  /blog/                                             301!
+/articles/your-website-is-more-than-a-tool-it-s-a-statement  /blog/                                             301!
+/articles/how-to-display-your-blogs-in-social-media/         /blog/                                             301!
+/articles/building-a-scheduling-app-in-laravel-9-part-1/     /blog/                                             301!
+/articles/setting-up-email-in-windows-mail-app/              /blog/                                             301!
+/articles/3-ways-to-master-woocommerce-without-breaking-a-sweat/ /blog/                                             301!
+/articles/astro-the-modern-static-site-builder-a-deep-dive-comparisons-and-practical-api-integrations/ /blog/                                             301!
+/articles/amending-the-position-of-the-google-pay-and-apple-pay-buttons-in-woocommerce/ /blog/                                             301!
+/blog/amending-the-position-of-the-google-pay-and-apple-pay-buttons-in-woocommerce/ /blog/                                             301!
+/articles/                                                   /blog/                                             301!
 
 # Blog typo fix
-/blog/what-to-do-when-my-website-deisgner-scams-me/ /blog/what-to-do-when-my-website-designer-scams-me/ 301!
+/blog/what-to-do-when-my-website-deisgner-scams-me/          /blog/what-to-do-when-my-website-designer-scams-me/ 301!
 
 # Old category URL format (categories → category, now standardized)
-/blog/categories/                    /blog/                              301!
-/blog/categories/seo/                /blog/category/website-audit/       301!
-/blog/categories/web-design/         /blog/category/website-design/      301!
-/blog/categories/case-studies/       /blog/category/case-studies/        301!
-/blog/categories/content-strategy/   /blog/category/website-audit/       301!
-/blog/categories/ai-automation/      /blog/category/website-design/      301!
-/blog/categories/hints-and-tips/     /blog/category/website-design/      301!
-/blog/categories/small-business/     /blog/category/website-design/      301!
-/blog/categories/website-audit/      /blog/category/website-audit/       301!
-/blog/categories/insights/           /blog/category/website-design/      301!
-/blog/categories/technology/         /blog/category/website-design/      301!
-/blog/categories/business/           /blog/category/website-design/      301!
-/blog/categories/sales/              /blog/category/website-design/      301!
+/blog/categories/                                            /blog/                                             301!
+/blog/categories/seo/                                        /blog/category/website-audit/                      301!
+/blog/categories/web-design/                                 /blog/category/website-design/                     301!
+/blog/categories/case-studies/                               /portfolio/                                        301!
+/blog/categories/content-strategy/                           /blog/category/website-audit/                      301!
+/blog/categories/ai-automation/                              /blog/category/website-design/                     301!
+/blog/categories/hints-and-tips/                             /blog/category/website-design/                     301!
+/blog/categories/small-business/                             /blog/category/website-design/                     301!
+/blog/categories/website-audit/                              /blog/category/website-audit/                      301!
+/blog/categories/insights/                                   /blog/category/website-design/                     301!
+/blog/categories/technology/                                 /blog/category/website-design/                     301!
+/blog/categories/business/                                   /blog/category/website-design/                     301!
+/blog/categories/sales/                                      /blog/category/website-design/                     301!
 
 # Old category URLs with spaces (URL encoded)
-/blog/category/case%20studies/       /blog/category/case-studies/        301!
-/blog/category/web%20design/         /blog/category/web-design/          301!
-/blog/category/content%20strategy/   /blog/category/content-strategy/    301!
-/blog/category/ai%20automation/      /blog/category/ai-automation/       301!
-/blog/category/hints%20and%20tips/   /blog/category/hints-and-tips/      301!
-/blog/category/small%20business/     /blog/category/small-business/      301!
-/blog/category/website%20audit/      /blog/category/website-audit/       301!
+/blog/category/case%20studies/                               /portfolio/                                        301!
+/blog/category/web%20design/                                 /blog/category/web-design/                         301!
+/blog/category/content%20strategy/                           /blog/category/content-strategy/                   301!
+/blog/category/ai%20automation/                              /blog/category/ai-automation/                      301!
+/blog/category/hints%20and%20tips/                           /blog/category/hints-and-tips/                     301!
+/blog/category/small%20business/                             /blog/category/small-business/                     301!
+/blog/category/website%20audit/                              /blog/category/website-audit/                      301!
 
 # Old coverage area pages
-/coverage/wordpress-web-design-barnoldswick/  /services/website-design/ 301!
-/coverage/wordpress-web-design-gargrave/      /services/website-design/ 301!
-/coverage/wordpress-web-design-skipton/       /                      301!
-/web-designer-skipton/                        /                      301!
-/web-designer-skipton                         /                      301!
-/coverage/wordpress-web-design-ilkley/        /web-designer-ilkley/ 301!
-/coverage/wordpress-web-design-otley/         /services/website-design/ 301!
-/coverage/wordpress-web-design-york/          /web-designer-york/ 301!
-/coverage/wordpress-web-design-west-yorkshire/ /services/website-design/ 301!
-/coverage/                                    /                     301!
+/coverage/wordpress-web-design-barnoldswick/                 /services/website-design/                          301!
+/coverage/wordpress-web-design-gargrave/                     /services/website-design/                          301!
+/coverage/wordpress-web-design-skipton/                      /                                                  301!
+/web-designer-skipton/                                       /                                                  301!
+/web-designer-skipton                                        /                                                  301!
+/coverage/wordpress-web-design-ilkley/                       /web-designer-ilkley/                              301!
+/coverage/wordpress-web-design-otley/                        /services/website-design/                          301!
+/coverage/wordpress-web-design-york/                         /web-designer-york/                                301!
+/coverage/wordpress-web-design-west-yorkshire/               /services/website-design/                          301!
+/coverage/                                                   /                                                  301!
 
 # Legal pages
-/privacy/                             /privacy-policy/              301!
-/terms/                               /terms-conditions/            301!
-/terms                                /terms-conditions/            301!
-/terms-conditions/privacy-policy.md   /privacy-policy/             301!
+/privacy/                                                    /privacy-policy/                                   301!
+/terms/                                                      /terms-conditions/                                 301!
+/terms                                                       /terms-conditions/                                 301!
+/terms-conditions/privacy-policy.md                          /privacy-policy/                                   301!
 
 # Old category redirects (standardized to service categories)
-/blog/category/insights/             /blog/category/website-design/   301!
-/blog/category/technology/           /blog/category/website-design/   301!
-/blog/category/business/             /blog/category/website-design/   301!
-/blog/category/sales/                /blog/category/website-design/   301!
-/blog/category/seo/                  /blog/category/website-audit/    301!
-/blog/category/content-strategy/     /blog/category/website-audit/    301!
-/blog/category/hints-and-tips/       /blog/category/website-design/   301!
-/blog/category/web-design/           /blog/category/website-design/   301!
-/blog/category/small-business/       /blog/category/website-design/   301!
-/blog/category/ai-automation/        /blog/category/website-design/   301!
+/blog/category/insights/                                     /blog/category/website-design/                     301!
+/blog/category/technology/                                   /blog/category/website-design/                     301!
+/blog/category/business/                                     /blog/category/website-design/                     301!
+/blog/category/sales/                                        /blog/category/website-design/                     301!
+/blog/category/seo/                                          /blog/category/website-audit/                      301!
+/blog/category/content-strategy/                             /blog/category/website-audit/                      301!
+/blog/category/hints-and-tips/                               /blog/category/website-design/                     301!
+/blog/category/web-design/                                   /blog/category/website-design/                     301!
+/blog/category/small-business/                               /blog/category/website-design/                     301!
+/blog/category/ai-automation/                                /blog/category/website-design/                     301!
 
-# Old blog tag redirects
-/blog/tag/ai-agents/                 /blog/tag/website-design/      301!
-/blog/tag/web-agency/                /blog/tag/website-design/      301!
-/blog/tag/automation/                /blog/tag/website-design/      301!
-/blog/tag/n8n/                       /blog/tag/website-design/      301!
-/blog/tag/development/               /blog/tag/website-design/      301!
-/blog/tag/finance/                   /blog/tag/website-design/      301!
-/blog/tag/management/                /blog/tag/website-design/      301!
-/blog/tag/design/                    /blog/tag/website-design/      301!
-/blog/tag/ecommerce/                 /blog/tag/website-design/      301!
-/blog/tag/strategy/                  /blog/tag/website-design/      301!
-/blog/tag/marketing/                 /blog/tag/website-design/      301!
-/blog/tag/dental-website-design/     /blog/tag/website-design/      301!
-/blog/tag/local-seo/                 /blog/tag/website-audit/       301!
-/blog/tag/client-success/            /blog/tag/case-studies/        301!
-/blog/tag/beauty-website-design/     /blog/tag/website-design/      301!
-/blog/tag/client-growth/             /blog/tag/case-studies/        301!
-/blog/tag/hospitality-websites/      /blog/tag/website-design/      301!
-/blog/tag/bridal-website-design/     /blog/tag/website-design/      301!
-/blog/tag/alternative-bridal/        /blog/tag/website-design/      301!
-/blog/tag/client-help/               /blog/tag/website-rescue/      301!
-/blog/tag/wordpress/                 /blog/tag/website-support/     301!
-/blog/tag/performance/               /blog/tag/website-support/     301!
-/blog/tag/best-practices/            /blog/tag/website-design/      301!
-/blog/tag/accessibility/             /blog/tag/website-design/      301!
-/blog/tag/seo/                       /blog/tag/website-audit/       301!
-/blog/tag/content/                   /blog/tag/website-design/      301!
-/blog/tag/conversion/                /blog/tag/website-audit/       301!
-/blog/tag/domain-ownership/          /blog/tag/website-rescue/      301!
-/blog/tag/web-design/                /blog/tag/website-design/      301!
-/blog/tag/transparency/              /blog/tag/website-rescue/      301!
-/blog/tag/small-business/            /blog/tag/website-design/      301!
-/blog/tag/insights/                  /blog/tag/website-design/      301!
-/blog/tag/bridal/                    /blog/tag/website-design/      301!
+# Old blog tag redirects (now pointing straight at the pillar archives)
+/blog/tag/ai-agents/                                         /blog/category/website-design/                     301!
+/blog/tag/web-agency/                                        /blog/category/website-design/                     301!
+/blog/tag/automation/                                        /blog/category/website-design/                     301!
+/blog/tag/n8n/                                               /blog/category/website-design/                     301!
+/blog/tag/development/                                       /blog/category/website-design/                     301!
+/blog/tag/finance/                                           /blog/category/website-design/                     301!
+/blog/tag/management/                                        /blog/category/website-design/                     301!
+/blog/tag/design/                                            /blog/category/website-design/                     301!
+/blog/tag/ecommerce/                                         /blog/category/website-design/                     301!
+/blog/tag/strategy/                                          /blog/category/website-design/                     301!
+/blog/tag/marketing/                                         /blog/category/website-design/                     301!
+/blog/tag/dental-website-design/                             /blog/category/website-design/                     301!
+/blog/tag/local-seo/                                         /blog/category/website-audit/                      301!
+/blog/tag/client-success/                                    /portfolio/                                        301!
+/blog/tag/beauty-website-design/                             /blog/category/website-design/                     301!
+/blog/tag/client-growth/                                     /portfolio/                                        301!
+/blog/tag/hospitality-websites/                              /blog/category/website-design/                     301!
+/blog/tag/bridal-website-design/                             /blog/category/website-design/                     301!
+/blog/tag/alternative-bridal/                                /blog/category/website-design/                     301!
+/blog/tag/client-help/                                       /blog/category/website-rescue/                     301!
+/blog/tag/wordpress/                                         /blog/category/website-support/                    301!
+/blog/tag/performance/                                       /blog/category/website-support/                    301!
+/blog/tag/best-practices/                                    /blog/category/website-design/                     301!
+/blog/tag/accessibility/                                     /blog/category/website-design/                     301!
+/blog/tag/seo/                                               /blog/category/website-audit/                      301!
+/blog/tag/content/                                           /blog/category/website-design/                     301!
+/blog/tag/conversion/                                        /blog/category/website-audit/                      301!
+/blog/tag/domain-ownership/                                  /blog/category/website-rescue/                     301!
+/blog/tag/web-design/                                        /blog/category/website-design/                     301!
+/blog/tag/transparency/                                      /blog/category/website-rescue/                     301!
+/blog/tag/small-business/                                    /blog/category/website-design/                     301!
+/blog/tag/insights/                                          /blog/category/website-design/                     301!
+/blog/tag/bridal/                                            /blog/category/website-design/                     301!
 
 # Common URL guesses
-/team/           /about/    301!
-/our-team/       /about/    301!
-/testimonials/   /          301!
-/reviews/        /          301!
-/faq/            /contact/  301!
-/faqs/           /contact/  301!
-/pricing/        /services/ 301!
-/packages/       /services/ 301!
-/news/           /blog/     301!
-/careers/        /contact/  301!
-/jobs/           /contact/  301!
+/team/                                                       /about/                                            301!
+/our-team/                                                   /about/                                            301!
+/testimonials/                                               /                                                  301!
+/reviews/                                                    /                                                  301!
+/faq/                                                        /contact/                                          301!
+/faqs/                                                       /contact/                                          301!
+/pricing/                                                    /services/                                         301!
+/packages/                                                   /services/                                         301!
+/news/                                                       /blog/                                             301!
+/careers/                                                    /contact/                                          301!
+/jobs/                                                       /contact/                                          301!
+
+# Catch-alls last (first match wins). Not forced, so real pages are always served.
+/blog/tag/*                            /blog/                              301
+/blog/category/*                       /blog/                              301
+/blog/page/*                           /blog/                              301

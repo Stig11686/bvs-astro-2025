@@ -1,0 +1,20 @@
+---
+// Cards that point to another service: "Need something else?"
+interface Props { items: { tag: string; href: string; heading: string; body: string }[] }
+---
+<div class="grid grid--2 signposts">
+  {Astro.props.items.map((c) => (
+    <a class="signpost" href={c.href}>
+      <span class="signpost__top"><span class="label label--accent">{c.tag}</span><span class="arrow">→</span></span>
+      <span class="signpost__h serif">{c.heading}</span>
+      <span class="signpost__b">{c.body}</span>
+    </a>
+  ))}
+</div>
+<style>
+  .signpost { display: flex; flex-direction: column; border: 1px solid var(--rule); padding: 28px 30px 26px; text-decoration: none !important; color: var(--ink) !important; background: var(--paper); transition: background .15s, transform .15s; }
+  .signpost:hover { background: var(--paper-2); transform: translateY(-2px); }
+  .signpost__top { display: flex; justify-content: space-between; align-items: center; }
+  .signpost__h { font-size: 1.5rem; letter-spacing: -0.01em; line-height: 1.15; margin: 14px 0 10px; }
+  .signpost__b { font-family: var(--font-sans); font-size: .92rem; color: var(--ink-2); line-height: 1.6; }
+</style>

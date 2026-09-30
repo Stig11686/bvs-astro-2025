@@ -1,0 +1,6 @@
+---
+// A YouTube video, loaded without cookies.
+interface Props { youtube: string; title: string }
+const { youtube, title } = Astro.props;
+---
+<div class="video"><iframe src={`https://www.youtube-nocookie.com/embed/${youtube}`} title={title} loading="lazy" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>

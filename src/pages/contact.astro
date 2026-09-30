@@ -1,0 +1,41 @@
+---
+import Base from "@/layouts/Base.astro";
+import ContactForm from "@/components/sections/ContactForm.astro";
+import { links, site } from "@/site.config";
+---
+<Base title="Contact BVS Web Design | Web Designer in Skipton, Yorkshire" description="Get in touch about a new website, a rescue, a care plan or a free audit. I reply within one working day." headerCta="none" cta={false}>
+  <section class="gutter section contact">
+    <div class="wrap split split--1-1">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h1 class="h1 contact__h">Let's talk about <em class="accent-italic">your project</em>.</h1>
+        <p class="lede contact__intro">Whether you know exactly what you need or you're not sure where to start, get in touch. I'll get back to you within one working day.</p>
+        <dl class="contact__details">
+          <div><dt class="label">Email</dt><dd class="serif"><a href={`mailto:${site.email}`}>{site.email}</a></dd></div>
+          <div><dt class="label">Based in</dt><dd class="serif">Skipton, North Yorkshire</dd></div>
+          <div><dt class="label">Working</dt><dd class="serif">across Yorkshire &amp; the UK</dd></div>
+        </dl>
+        <div class="contact__book tint">
+          <p class="serif contact__book-h">Prefer to book a time?</p>
+          <p class="contact__book-b">Grab a free 30-minute slot and we'll talk it through.</p>
+          <div class="btn-row">
+            <a class="btn btn--solid" href={links.start} target="_blank" rel="noopener">Start a Project →</a>
+            <a class="btn btn--ghost" href={links.audit} target="_blank" rel="noopener">Book a Free Website Review</a>
+          </div>
+        </div>
+      </div>
+      <ContactForm />
+    </div>
+  </section>
+</Base>
+<style>
+  .contact__h { margin-top: 16px; }
+  .contact__intro { margin-top: 20px; max-width: 46ch; }
+  .contact__details { margin: 36px 0 0; border-top: 1px solid var(--rule); }
+  .contact__details div { display: grid; grid-template-columns: 1fr 2fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--rule-soft); }
+  .contact__details dd { margin: 0; font-style: italic; font-size: 1.05rem; }
+  .contact__details a { color: var(--ink); text-decoration-color: var(--accent); }
+  .contact__book { margin-top: 28px; padding: 22px 24px; border: 1px solid var(--rule); }
+  .contact__book-h { font-size: 1.2rem; }
+  .contact__book-b { font-size: .9rem; color: var(--ink-2); margin: 6px 0 14px; }
+</style>

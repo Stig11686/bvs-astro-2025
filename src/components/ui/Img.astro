@@ -1,0 +1,32 @@
+---
+// Renders a media-library image as <picture> with AVIF and WebP, in several widths.
+import { Picture } from "astro:assets";
+import { getMedia } from "@/lib/media";
+
+interface Props {
+  id: string;
+  alt?: string; // overrides the library alt text for this use
+  sizes?: string;
+  widths?: number[];
+  class?: string;
+  eager?: boolean;
+}
+
+const { id, alt, sizes = "(min-width: 1100px) 1100px, 100vw", widths, eager = false, class: cls } = Astro.props;
+const img = getMedia(id);
+const maxW = img.src.width;
+const w = (widths ?? [480, 800, 1200, 1600, 2000]).filter((x) => x <= maxW);
+if (!w.includes(maxW) && maxW < 2000) w.push(maxW);
+---
+
+<Picture
+  src={img.src}
+  alt={img.decorative ? "" : (alt ?? img.alt)}
+  formats={["avif", "webp"]}
+  widths={w}
+  sizes={sizes}
+  loading={eager ? "eager" : "lazy"}
+  fetchpriority={eager ? "high" : "auto"}
+  decoding="async"
+  pictureAttributes={{ class: cls }}
+/>

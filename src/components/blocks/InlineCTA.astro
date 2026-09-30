@@ -1,0 +1,21 @@
+---
+// A soft prompt inside a post. Defaults to the post's pillar; override any line.
+import { getPillar } from "@/lib/data";
+import { links, ctaLabels } from "@/site.config";
+interface Props { pillar?: string; heading?: string; body?: string; primary?: "start" | "audit"; label?: string }
+const pillarId = Astro.props.pillar ?? (Astro.locals as { pillar?: string }).pillar ?? "audit";
+const p = getPillar(pillarId);
+const heading = Astro.props.heading ?? p.inline.heading;
+const body = Astro.props.body ?? p.inline.body;
+const primary = Astro.props.primary ?? p.cta.primary;
+---
+<aside class="inline-cta">
+  <div>
+    <p class="inline-cta__h serif">{heading}</p>
+    <p class="inline-cta__b">{body}</p>
+  </div>
+  <div class="inline-cta__actions">
+    <a class="btn btn--solid" href={links[primary]} target="_blank" rel="noopener">{Astro.props.label ?? ctaLabels[primary]}</a>
+    <a class="underlink" href={`/services/${p.slug}/`}>How {p.name.replace(" & Care Plans","")} works</a>
+  </div>
+</aside>

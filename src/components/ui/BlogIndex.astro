@@ -1,0 +1,100 @@
+---
+// Shared by /blog/, /blog/page/N/ and /blog/category/<pillar>/.
+import PostCard from "./PostCard.astro";
+import Img from "./Img.astro";
+import type { Post } from "@/lib/content";
+import { pillars, getPillar } from "@/lib/data";
+import { hasMedia } from "@/lib/media";
+import { formatDate, readingTime, accentify } from "@/lib/text";
+
+interface Props {
+  posts: Post[]; // posts on this page
+  allPosts: Post[]; // for filter counts
+  active?: string; // pillar id
+  heading: string;
+  intro: string;
+  eyebrow?: string;
+  page?: number;
+  pages?: number;
+  baseHref?: string;
+  featureFirst?: boolean;
+}
+const { posts, allPosts, active, heading, intro, eyebrow = "The Blog", page = 1, pages = 1, baseHref = "/blog/", featureFirst = true } = Astro.props;
+const [first, ...rest] = featureFirst ? posts : [undefined, ...posts];
+const counts = Object.fromEntries(pillars.map((p) => [p.id, allPosts.filter((x) => x.data.pillar === p.id).length]));
+const pageHref = (n: number) => (n === 1 ? baseHref : `${baseHref}page/${n}/`);
+---
+
+<section class="gutter blog-hero">
+  <div class="wrap">
+    <p class="eyebrow">{eyebrow}</p>
+    <h1 class="h-hero blog-hero__h" set:html={accentify(heading)} />
+    <p class="lede blog-hero__intro">{intro}</p>
+  </div>
+</section>
+
+<nav class="blog-filters mono" aria-label="Blog topics">
+  <a href="/blog/" class:list={{ "is-active": !active }}>All <span>{allPosts.length}</span></a>
+  {pillars.map((p) => (
+    <a href={`/blog/category/${p.slug}/`} class:list={{ "is-active": active === p.id }}>{p.shortName ?? p.name} <span>{counts[p.id]}</span></a>
+  ))}
+</nav>
+
+{first && (
+  <section class="gutter blog-feature rule-bottom">
+    <div class="wrap blog-feature__grid">
+      <a href={`/blog/${first.id}/`} class="blog-feature__img media-frame" tabindex="-1" aria-hidden="true">
+        {first.data.image && hasMedia(first.data.image) ? <Img id={first.data.image} eager sizes="(min-width: 1000px) 55vw, 100vw" /> : <div class="ph">{first.data.title}</div>}
+        <span class="mono blog-feature__tag">Latest</span>
+      </a>
+      <div>
+        <p class="label blog-feature__meta">
+          <span class="label--accent">● {getPillar(first.data.pillar).shortName ?? getPillar(first.data.pillar).name}</span>
+          <span>{formatDate(first.data.date)}</span><span>{readingTime(first.body)} min read</span>
+        </p>
+        <h2 class="h2 blog-feature__title"><a href={`/blog/${first.id}/`}>{first.data.title}</a></h2>
+        <p class="lede">{first.data.description}</p>
+        <a class="btn btn--solid blog-feature__btn" href={`/blog/${first.id}/`}>Read the post →</a>
+      </div>
+    </div>
+  </section>
+)}
+
+{rest.length > 0 && (
+  <section class="blog-grid ruled ruled--2" aria-label="Posts">
+    {rest.map((p) => <PostCard post={p} headingLevel="h2" />)}
+  </section>
+)}
+
+{pages > 1 && (
+  <nav class="gutter pager mono" aria-label="Pages">
+    {page > 1 && <a href={pageHref(page - 1)}>← Newer</a>}
+    <span>Page {page} of {pages}</span>
+    {page < pages && <a href={pageHref(page + 1)}>Older →</a>}
+  </nav>
+)}
+
+<style>
+  .blog-hero { padding-top: clamp(40px, 6vw, 64px); padding-bottom: 28px; }
+  .blog-hero__h { margin-top: 12px; max-width: 18ch; }
+  .blog-hero__intro { margin-top: 16px; max-width: 56ch; }
+  .blog-filters { display: flex; overflow-x: auto; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin-top: 8px; }
+  .blog-filters a { flex: 0 0 auto; padding: 14px 22px; font-size: 11.5px; letter-spacing: .08em; font-weight: 500; text-transform: uppercase; color: var(--ink); text-decoration: none; border-right: 1px solid var(--rule); }
+  .blog-filters a span { opacity: .6; margin-left: 4px; }
+  .blog-filters a.is-active { background: var(--ink); color: var(--paper); }
+  .blog-filters a:not(.is-active):hover { background: var(--paper-2); }
+  .blog-feature { padding-top: 36px; padding-bottom: 36px; }
+  .blog-feature__grid { display: grid; gap: 28px 44px; align-items: center; }
+  @media (min-width: 1000px) { .blog-feature__grid { grid-template-columns: 7fr 5fr; } }
+  .blog-feature__img { position: relative; aspect-ratio: 16/10; display: block; border: 1px solid var(--rule); }
+  .blog-feature__img .ph { height: 100%; border: 0; }
+  .blog-feature__tag { position: absolute; top: 16px; left: 16px; background: var(--accent); color: var(--dark-paper); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; padding: 6px 10px; font-weight: 600; }
+  .blog-feature__meta { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+  .blog-feature__title { margin: 14px 0 16px; }
+  .blog-feature__title a { text-decoration: none; }
+  .blog-feature__title a:hover { color: var(--accent); }
+  .blog-feature__btn { margin-top: 22px; }
+  .blog-grid { border-left: 0; border-top: 0; }
+  .pager { display: flex; gap: 24px; justify-content: center; align-items: center; padding-top: 28px; padding-bottom: 28px; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+  .pager a { color: var(--accent); }
+</style>

@@ -1,0 +1,19 @@
+---
+// Personalises the page's main heading from the ?name= query parameter,
+// as the old solicitor thank-you page did: "Thank You, Sarah!".
+// Renders nothing itself. The page's own heading (from frontmatter) is the
+// fallback shown when there is no name, or before the script runs.
+interface Props { template?: string }
+const { template = "Thank You, {name}!" } = Astro.props;
+---
+<span hidden data-personalized-heading={template}></span>
+
+<script>
+  const marker = document.querySelector<HTMLElement>("[data-personalized-heading]");
+  const heading = document.querySelector<HTMLHeadingElement>("main h1") ?? document.querySelector<HTMLHeadingElement>("h1");
+  const name = new URLSearchParams(window.location.search).get("name")?.trim();
+  if (marker && heading && name) {
+    const capitalised = name.charAt(0).toUpperCase() + name.slice(1);
+    heading.textContent = (marker.dataset.personalizedHeading ?? "Thank You, {name}!").replace("{name}", capitalised);
+  }
+</script>

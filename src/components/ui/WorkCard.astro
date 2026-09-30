@@ -1,0 +1,35 @@
+---
+import type { Work } from "@/lib/content";
+import Img from "./Img.astro";
+import { hasMedia } from "@/lib/media";
+interface Props { item: Work; size?: "small" | "large" }
+const { item, size = "small" } = Astro.props;
+const d = item.data;
+const stat = d.stats[0];
+---
+<a class:list={["work-card", `work-card--${size}`]} href={`/portfolio/${item.id}/`}>
+  <div class="work-card__img media-frame">
+    {d.image && hasMedia(d.image)
+      ? <Img id={d.image} sizes={size === "large" ? "(min-width: 900px) 50vw, 100vw" : "(min-width: 1000px) 25vw, (min-width: 700px) 50vw, 100vw"} widths={[480, 800, 1200]} />
+      : <div class="ph">{d.client}</div>}
+  </div>
+  <div class="work-card__meta">
+    <span class="label">{d.sector}{d.town ? ` · ${d.town}` : ""}</span>
+    {size === "large" && stat && <span class="label label--accent">{stat.value} {stat.label}</span>}
+  </div>
+  <h3 class="work-card__title serif">{d.client} {size === "large" && <span class="arrow">→</span>}</h3>
+  {size === "small" && stat && <p class="work-card__stat">{stat.value} {stat.label}</p>}
+</a>
+<style>
+  .work-card { display: block; text-decoration: none; color: var(--ink); }
+  .work-card--large { padding: clamp(16px, 2vw, 24px); transition: background .15s; }
+  .work-card--large:hover { background: var(--paper-2); }
+  .work-card__img { aspect-ratio: 16 / 10; border: 1px solid var(--rule); }
+  .work-card__img .ph { height: 100%; border: 0; }
+  .work-card__img :global(img) { transition: transform .4s; }
+  .work-card:hover .work-card__img :global(img) { transform: scale(1.02); }
+  .work-card__meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 12px; margin-top: 14px; }
+  .work-card__title { font-size: 1.3rem; letter-spacing: -0.01em; line-height: 1.15; margin: 6px 0; }
+  .work-card--large .work-card__title { font-size: clamp(1.5rem, 1.2rem + 1vw, 1.9rem); }
+  .work-card__stat { font-size: 0.82rem; color: var(--accent); }
+</style>

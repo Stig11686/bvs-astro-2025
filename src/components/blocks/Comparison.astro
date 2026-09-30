@@ -1,0 +1,16 @@
+---
+// Two columns side by side, e.g. "Do it yourself" vs "Hand it over". The right column is the recommended one.
+interface Side { title: string; items: string[] }
+interface Props { left: Side; right: Side }
+const { left, right } = Astro.props;
+---
+<div class="comparison">
+  <div class="comparison__col">
+    <p class="label">{left.title}</p>
+    <ul>{left.items.map((x) => <li><span aria-hidden="true">✕</span>{x}</li>)}</ul>
+  </div>
+  <div class="comparison__col dark">
+    <p class="label label--accent">{right.title}</p>
+    <ul>{right.items.map((x) => <li><span aria-hidden="true">✓</span>{x}</li>)}</ul>
+  </div>
+</div>

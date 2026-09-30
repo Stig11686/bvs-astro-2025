@@ -1,0 +1,6 @@
+---
+interface Props { href: string; label: string; kind?: "solid" | "accent" | "ghost" }
+const { href, label, kind = "solid" } = Astro.props;
+const ext = /^https?:/.test(href);
+---
+<p class="block-button"><a class={`btn btn--${kind}`} href={href} target={ext ? "_blank" : undefined} rel={ext ? "noopener" : undefined}>{label}</a></p>

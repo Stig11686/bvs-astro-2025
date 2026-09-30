@@ -1,0 +1,11 @@
+---
+// A verified number from src/data/proof.yaml.
+import { getProof } from "@/lib/data";
+interface Props { id: string }
+const p = getProof(Astro.props.id);
+---
+<div class="stat">
+  <p class="stat__value serif">{p.value}</p>
+  <p class="stat__label serif">{p.label}</p>
+  <p class="label">{p.attribution}</p>
+</div>

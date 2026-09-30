@@ -1,0 +1,55 @@
+---
+// Asks once for analytics consent. On "Accept": Google Analytics consent is granted
+// and the Apollo.io website tracker loads (as on the previous site). "Reject" keeps both off.
+// The footer's "Cookie settings" link reopens it.
+---
+<div class="cookie gutter" id="cookie-banner" role="dialog" aria-labelledby="cookie-h" hidden>
+  <div class="cookie__box">
+    <p id="cookie-h" class="serif cookie__h">Cookies</p>
+    <p class="cookie__b">I use analytics cookies to see which pages help people and which don't. Nothing is shared for advertising. <a href="/privacy-policy/">Privacy policy</a></p>
+    <div class="btn-row">
+      <button type="button" class="btn btn--solid" data-consent="granted">Accept</button>
+      <button type="button" class="btn btn--ghost" data-consent="denied">Reject</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var KEY = "bvs-consent";
+    var banner = document.getElementById("cookie-banner");
+    function read() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+    function save(v) { try { localStorage.setItem(KEY, v); } catch (e) {} }
+    function loadApollo() {
+      if (window.trackingFunctions || /--/.test(location.hostname)) return;
+      var s = document.createElement("script");
+      s.src = "https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=" + Math.random().toString(36).slice(7);
+      s.async = true; s.defer = true;
+      s.onload = function () { window.trackingFunctions && window.trackingFunctions.onLoad({ appId: "68e677a6f5e6ec001d41b6ed" }); };
+      document.head.appendChild(s);
+    }
+    function apply(v) {
+      if (typeof gtag === "function") gtag("consent", "update", { analytics_storage: v === "granted" ? "granted" : "denied" });
+      if (v === "granted") loadApollo();
+    }
+    var current = read();
+    if (current) apply(current); else banner.hidden = false;
+    banner.addEventListener("click", function (e) {
+      var v = e.target && e.target.getAttribute && e.target.getAttribute("data-consent");
+      if (!v) return;
+      save(v); apply(v); banner.hidden = true;
+    });
+    document.addEventListener("click", function (e) {
+      if (e.target && e.target.closest && e.target.closest("[data-cookie-settings]")) { e.preventDefault(); banner.hidden = false; }
+    });
+  })();
+</script>
+
+<style>
+  .cookie { position: fixed; left: 0; right: 0; bottom: 16px; z-index: 80; pointer-events: none; }
+  .cookie__box { pointer-events: auto; max-width: 440px; margin-left: auto; background: var(--paper); border: 1px solid var(--rule); box-shadow: 0 18px 50px rgba(0,0,0,0.18); padding: 20px 22px; font-family: var(--font-sans); }
+  .cookie__h { font-size: 1.25rem; }
+  .cookie__b { font-size: .88rem; color: var(--ink-2); line-height: 1.55; margin: 6px 0 14px; }
+  .cookie__b a { color: var(--ink); text-decoration-color: var(--accent); }
+  .cookie .btn { padding: 10px 18px; }
+</style>

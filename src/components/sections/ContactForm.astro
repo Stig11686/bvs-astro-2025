@@ -1,0 +1,97 @@
+---
+// Posts to the BVS CRM as JSON, with the same fields the old site sent.
+import { site } from "@/site.config";
+interface Props { variant?: "contact" | "care"; service?: "new_website" | "support_care" | "site_audit" | "not_sure" }
+const { variant = "contact", service } = Astro.props;
+const stages = [
+  "My site does a small job. I want it kept safe and off my plate",
+  "My business changes through the year and the site has to keep up",
+  "My site is a main source of enquiries and I want more of them",
+  "Not sure yet. Tell me which one fits",
+];
+---
+<form class="cform" data-endpoint={site.formEndpoint} data-variant={variant} novalidate>
+  <div class="cform__row">
+    <label><span class="label">Your name</span><input name="name" type="text" autocomplete="name" required /></label>
+    <label><span class="label">Email address</span><input name="email" type="email" autocomplete="email" required /></label>
+  </div>
+  <label><span class="label">Your website</span><input name="website" type="text" inputmode="url" placeholder="yourbusiness.co.uk, or leave blank if there isn't one yet" /></label>
+  {variant === "care" ? (
+    <>
+      <input type="hidden" name="service_type" value="support_care" />
+      <label><span class="label">Where's your business at?</span>
+        <select name="stage" required>
+          <option value="" disabled selected>Pick the one that sounds most like you</option>
+          {stages.map((s) => <option value={s}>{s}</option>)}
+        </select>
+      </label>
+    </>
+  ) : service ? (
+    <input type="hidden" name="service_type" value={service} />
+  ) : (
+    <label><span class="label">What do you need?</span>
+      <select name="service_type" required>
+        <option value="" disabled selected>Choose one</option>
+        <option value="new_website">A new website</option>
+        <option value="support_care">Help with my current site</option>
+        <option value="site_audit">A website audit</option>
+        <option value="not_sure">Not sure yet</option>
+      </select>
+    </label>
+  )}
+  <label><span class="label">{variant === "care" ? "Anything else worth knowing?" : "What's going on?"}</span>
+    <textarea name="message" rows="6" required placeholder={variant === "care" ? "Who looks after the site now, what keeps going wrong, what you'd like it to do." : "A new site, a rescue, an audit, or not sure yet. Tell me what you can."}></textarea>
+  </label>
+  <label class="cform__check"><input type="checkbox" name="privacy_agreed" value="Agreed" required /> <span>I agree to the <a href="/privacy-policy/">privacy policy</a>.</span></label>
+  <div class="btn-row"><button type="submit" class="btn btn--accent">Send a Message →</button></div>
+  <p class="label cform__note">{variant === "care" ? "No sales sequence. One reply, from me." : "I'll get back to you within one working day."}</p>
+  <p class="cform__status" role="status" aria-live="polite"></p>
+</form>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>("form.cform").forEach((form) => {
+    const status = form.querySelector<HTMLElement>(".cform__status")!;
+    const button = form.querySelector<HTMLButtonElement>("button[type=submit]")!;
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      const data: Record<string, string> = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
+      if (data.stage) { data.message = `${data.stage}\n\n${data.message ?? ""}`.trim(); delete data.stage; }
+      button.disabled = true;
+      status.textContent = "Sending…";
+      try {
+        const res = await fetch(form.dataset.endpoint!, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(data),
+        });
+        const result = await res.json().catch(() => ({}));
+        if (!res.ok || result.success === false) throw new Error(result.message || "Something went wrong.");
+        form.reset();
+        status.textContent = "Thanks, that's with me. I'll come back to you within one working day.";
+        status.dataset.state = "ok";
+      } catch (err) {
+        status.textContent = "Sorry, that didn't send. Please email info@bvswebdesign.co.uk and I'll pick it up.";
+        status.dataset.state = "error";
+      } finally {
+        button.disabled = false;
+      }
+    });
+  });
+</script>
+
+<style>
+  .cform { display: flex; flex-direction: column; gap: 16px; border: 1px solid var(--rule); background: var(--paper); padding: clamp(22px, 3vw, 32px); font-family: var(--font-sans); }
+  .cform__row { display: grid; gap: 16px; }
+  @media (min-width: 640px) { .cform__row { grid-template-columns: 1fr 1fr; } }
+  .cform label { display: block; }
+  .cform .label { display: block; margin-bottom: 7px; }
+  .cform input:not([type=checkbox]), .cform select, .cform textarea { width: 100%; background: var(--paper); border: 1px solid var(--rule); padding: 13px 14px; font-size: 15px; color: var(--ink); border-radius: 0; }
+  .cform input:focus, .cform select:focus, .cform textarea:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: transparent; }
+  .cform textarea { resize: vertical; }
+  .cform__check { display: flex !important; gap: 10px; align-items: flex-start; font-size: .9rem; color: var(--ink-2); }
+  .cform__check input { margin-top: 4px; accent-color: var(--accent); }
+  .cform__status { font-size: .95rem; }
+  .cform__status[data-state="ok"] { color: var(--accent); }
+  .cform__status[data-state="error"] { color: #9b1c1c; }
+</style>
