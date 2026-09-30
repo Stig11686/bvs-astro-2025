@@ -36,6 +36,15 @@ jobs:
           (npx astro preview --port 4321 &) && sleep 4
           node .github/scripts/screenshots.mjs
           cp build.log shots/
+      - name: Lighthouse (mobile)
+        if: success()
+        run: |
+          npm install -g @lhci/cli@0.14.0
+          lhci collect --staticDistDir=./dist --numberOfRuns=3 \
+            --url=http://localhost/ --url=http://localhost/services/website-support/ \
+            --url=http://localhost/blog/who-owns-my-website/ --url=http://localhost/portfolio/jaynes-bridalwear-lincoln/ \
+            --url=http://localhost/web-designer-york/ --url=http://localhost/blog/ || true
+          node .github/scripts/lh-summary.mjs || true
       - name: Publish screenshots to the ci-screenshots branch
         if: success()
         run: |
