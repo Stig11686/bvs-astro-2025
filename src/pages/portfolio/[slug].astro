@@ -1,0 +1,59 @@
+---
+import { render } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/PageHero.astro";
+import Img from "@/components/Img.astro";
+import WorkCard from "@/components/WorkCard.astro";
+import CtaSlab from "@/components/CtaSlab.astro";
+import { mdxComponents } from "@/components/mdx";
+import { getWork, info, type Work } from "@/lib/content";
+import XSell from "@/components/XSell.astro";
+import { sectorFor } from "@/lib/sectors";
+
+export async function getStaticPaths() {
+  const work = await getWork();
+  return work.map((w) => ({ params: { slug: w.id }, props: { work: w, all: work } }));
+}
+const { work, all } = Astro.props as { work: Work; all: Work[] };
+const { Content } = await render(work);
+const d = work.data;
+const sector = sectorFor(info(work, "industry"));
+const more = all.filter((w) => w.id !== work.id).slice(0, 3);
+const words = d.title.split(" ");
+const headline = words.length > 1 ? `${words.slice(0, -1).join(" ")} *${words.at(-1)}*` : d.title;
+---
+
+<Base title={d.metaTitle ?? `${d.title} | Case Study | BVS Web Design`} description={d.metaDescription ?? d.description} image={d.image}>
+  <PageHero title={headline} lede={d.description} crumbs={[{ label: "Projects", href: "/portfolio/" }, { label: d.title }]}>
+    {
+      d.information.length > 0 && (
+        <div class="facts" slot="aside">
+          {d.information.map((i) => (
+            <div>
+              <span>{i.label.replace(/:$/, "")}</span>
+              <b>{i.value}</b>
+            </div>
+          ))}
+        </div>
+      )
+    }
+  </PageHero>
+  <div class="cs-img rv"><Img src={d.image} alt={`${d.title} website`} sizes="(min-width: 1280px) 1232px, 100vw" loading="eager" /></div>
+  <div class="page-body"><article class="art"><Content components={mdxComponents} /></article></div>
+  {
+    sector && (
+      <section class="sec" style="padding-top:0">
+        <div class="wrap">
+          <XSell items={[{ ...sector, title: `Run a similar business? ${sector.title}.` }, { tag: "Free Website Audit", title: "Not sure what your site needs?", text: "Send me your address and I'll tell you what's holding it back and what to fix first.", href: "/services/website-audit/" }]} />
+        </div>
+      </section>
+    )
+  }
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="w-head"><h2 class="dh sh rv">More <span class="it">work.</span></h2><a class="tlink" href="/portfolio/">All projects →</a></div>
+      <div class="wgrid" style="margin-top:0">{more.map((w) => <WorkCard work={w} sizes="(min-width: 1000px) 400px, 92vw" />)}</div>
+    </div>
+  </section>
+  <CtaSlab title="Want results like *these?*" lede="Tell me about your business and what you need your website to do. I'll tell you honestly how I'd approach it." />
+</Base>

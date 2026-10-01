@@ -1,0 +1,14 @@
+---
+// <Accordion label="Question?">Answer in Markdown</Accordion>
+// Consecutive accordions join into one list.
+const { label, expanded = false } = Astro.props;
+---
+
+<div class="acc macc">
+  <div class={`acc-i${expanded ? " open" : ""}`}>
+    <button class="acc-q" type="button" aria-expanded={expanded ? "true" : "false"}>
+      <span class="n">+</span><b>{label}</b><span class="pl"></span>
+    </button>
+    <div class="acc-a"><div class="macc-body"><slot /></div></div>
+  </div>
+</div>

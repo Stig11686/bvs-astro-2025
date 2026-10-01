@@ -1,0 +1,96 @@
+---
+title: Why Your Business Website Needs a Care Plan (And What Happens Without One)
+metaTitle: "Why Your Website Needs a Care Plan | BVS Web Design"
+image: /images/blog/3.jpg
+date: '2025-03-31'
+author: Steve Marks
+categories:
+  - Website Support
+tags:
+  - Website Support
+draft: false
+---
+
+Designing and building your new website is only the first step of your new marketing plan. When your new site is finished, you can either host it yourself, or ask you website designer to do it for you. You see the monthly price and think you can save yourself a bob or two here. But...
+
+Imagine this: You wake up one morning, check your inbox, and find an alarming email from a customer: “Your website isn’t working.”
+
+Panic sets in. You try to access it yourself, but all you see is an error page. You scramble to call your web developer, only to realise you don’t have anyone actively maintaining your site. Worse still, you don’t have a recent backup. Hours (or even days) pass before the issue is resolved, and by then, you’ve lost potential customers and trust.
+
+This nightmare scenario happens all the time to business owners who treat their website as a “set it and forget it” project.
+
+Your website is your 24/7 storefront, your first impression, and often, your biggest sales tool. But without ongoing maintenance, it’s at risk of breaking, getting hacked, or becoming outdated. 
+
+That’s why a website care plan is crucial.
+
+The “Hidden” Risks of Neglecting Your Website
+
+We’ve worked with businesses that didn’t think they needed a care plan, until they experienced one of these disasters firsthand.
+
+## 1. The Business That Lost Thousands Due to a Hacked Website
+
+One of our clients, an e-commerce store owner, called us in distress. Their website had been hacked, and every time a visitor clicked a product link, they were redirected to a spammy gambling site.
+
+- The problem? They hadn’t updated their WordPress plugins in over a year, leaving vulnerabilities hackers exploited.
+- The result? Google flagged their site as “unsafe,” killing their search rankings and scaring off customers.
+- The fix? A full security cleanup, reinstallation, and an SEO recovery plan, which cost them thousands.
+
+ Yet, regular updates and security monitoring would have prevented the breach in the first place. Your web developer will have tools and systems, and years of experience to monitor your site 24 hours a day.
+
+## 2. The Slow Website That Drove Customers Away
+
+A local service business owner reached out to us after noticing a drop in leads from their website. They had been left to fend for themselves, didn't know a thing about modern image formats or optimisation and found their website was loading slowly...
+
+- The problem? Their website took over 10 seconds to load: an eternity in internet time. Visitors were bouncing before the homepage even appeared.
+- The result? They were losing business to competitors with faster, more responsive websites.
+- The fix? We optimised their site, compressed images, updated their hosting, and improved caching, getting their load time down to 2 seconds.
+
+Yet, regular communication with their developer   would have caught the issue early, before it impacted their bottom line.
+
+## 3. The Business That Lost All Their Website Data Overnight
+
+A small consultancy firm woke up to find their website wiped. Everything (blog posts, customer testimonials, service pages) was gone.
+
+- The problem? Their hosting provider had an issue, and without off-site backups, there was no way to restore their content.
+- The result? They had to rebuild their website from scratch, costing them valuable time and money.
+- The fix? We implemented daily backups, so even if the worst happens, their site can be restored in minutes.
+
+In this case, automated backups would have allowed them to recover instantly, instead of facing weeks of downtime.
+
+### What’s Included in a Website Care Plan?
+
+Think of a care plan like insurance for your website: it keeps everything running smoothly and prevents major disasters.
+
+A BVSWebDesign care plan includes:
+
+- Regular Updates & Security Patches: Prevents hacking by keeping WordPress, themes, and plugins up to date.
+- Website Speed Optimisation: Ensures fast loading times so customers don’t leave.
+- Daily Backups: If anything goes wrong, you can restore your website in minutes.
+- Uptime Monitoring: Immediate alerts if your website goes down.
+- Ongoing Support: I'm on call to answer your queries whenever you are in doubt.
+
+As a bonus: My more advanced  plans also include SEO, ensuring your website ranks well on Google.
+
+## The Cost of Doing Nothing
+
+Many business owners hesitate to invest in a care plan because they see it as an “extra expense.” But what costs more?
+
+- A hacked website that costs thousands to fix.
+- Lost customers due to slow performance.
+- Rebuilding a website from scratch because there was no backup.
+
+## Ready to Protect Your Website?
+
+You wouldn’t drive a car without insurance. So why risk your business’s most important online asset?
+
+A website care plan ensures your site is always running at its best, so you can focus on what you do best.
+
+Get in touch to find out more about our care plans.
+
+---
+
+## Related Reading
+
+- [WordPress Isn't Slow: Bad Builds Are](/blog/wordpress-isnt-slow-bad-builds-are/): Performance issues often stem from neglect. A care plan prevents them.
+- [I've Been Scammed by My Web Designer: What Do I Do Next?](/blog/what-to-do-when-my-website-designer-scams-me/): What happens when things go wrong and you don't have support.
+- [Website Design Services](/services/website-design/): How I build sites that are easier to maintain long-term.

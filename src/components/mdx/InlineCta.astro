@@ -1,0 +1,11 @@
+---
+// <CallToAction title="..." description="..." buttonLabel="..." buttonUrl="..." />
+import Button from "../Button.astro";
+const { title, description, buttonLabel, buttonUrl } = Astro.props;
+---
+
+<div class="mquote">
+  <h3 style="margin:0;font-weight:900;font-size:clamp(26px,2.6vw,36px);letter-spacing:-.05em;line-height:1;color:#fff">{title}</h3>
+  {description && <p style="color:rgba(255,255,255,.8);margin-top:14px">{description}</p>}
+  {buttonLabel && <div class="mbtns"><Button href={buttonUrl} kind="light">{buttonLabel}</Button></div>}
+</div>

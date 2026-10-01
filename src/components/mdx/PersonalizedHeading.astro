@@ -1,0 +1,12 @@
+---
+// Heading that greets the visitor by the ?name= in the URL
+const { fallback = "Thank you" } = Astro.props;
+---
+
+<h2 id="greet" data-fallback={fallback}>{fallback}</h2>
+<script is:inline>
+  (function () {
+    var n = new URLSearchParams(location.search).get("name");
+    if (n) document.getElementById("greet").textContent = "Thank you, " + n.replace(/[<>]/g, "") + "!";
+  })();
+</script>

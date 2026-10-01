@@ -1,0 +1,23 @@
+:root{
+  --spacing-8:8px;--spacing-10:10px;--spacing-12:12px;--spacing-14:14px;--spacing-16:16px;--spacing-18:18px;--spacing-22:22px;--spacing-24:24px;--spacing-32:32px;--spacing-40:40px;--spacing-54:54px;--spacing-58:58px;--spacing-72:72px;--spacing-74:74px;--spacing-100:100px;--spacing-122:122px;
+  --page-max-width:1200px;
+  --page-pad:24px;
+  --section-gap:32px;
+  --card-padding:32px;
+  --element-gap:8px;
+
+  --radius-cards:20px;
+  --radius-inputs:12px;
+  --radius-buttons:8px;
+  --radius-icons:8px;
+  --radius-pill:9999px;
+  --radius-round:50%;
+
+  --shadow-xl:rgba(0,0,0,0.07) 0px 6px 27px 0px;
+  --blur-header:blur(10px); /* @kind other */
+
+  --dur-fast:.15s; /* @kind other */
+  --dur-med:.25s; /* @kind other */
+  --dur-slow:.45s; /* @kind other */
+  --ease-standard:cubic-bezier(.4,0,.2,1); /* @kind other */
+}

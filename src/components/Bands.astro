@@ -1,0 +1,9 @@
+---
+// Two crossed scrolling marquee bands.
+const { items } = Astro.props as { items?: string[] };
+---
+
+<div class="bands" aria-hidden="true" data-items={items?.join("|")}>
+  <div class="band b2"><div class="mq" data-dir="-1"></div></div>
+  <div class="band b1"><div class="mq" data-dir="1"></div></div>
+</div>

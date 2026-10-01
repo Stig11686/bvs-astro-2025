@@ -1,0 +1,35 @@
+---
+// /blog/category/<category>/ — one page per category in site.config.ts
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/PageHero.astro";
+import BlogCard from "@/components/BlogCard.astro";
+import CtaSlab from "@/components/CtaSlab.astro";
+import { getPosts } from "@/lib/content";
+import { blogCategories, slugify } from "@/site.config";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return blogCategories.map((name) => ({
+    params: { category: slugify(name) },
+    props: { name, posts: posts.filter((p) => p.data.category === name) },
+  }));
+}
+const { name, posts } = Astro.props;
+const all = await getPosts();
+const used = blogCategories.filter((c) => all.some((p) => p.data.category === c));
+---
+
+<Base title={`${name} | Web Design Blog | BVS Web Design`} description={`Posts about ${name.toLowerCase()} from BVS Web Design: plain-English advice for small business owners.`}>
+  <PageHero title={`${name.split(" ").slice(0, -1).join(" ")} *${name.split(" ").slice(-1)[0]}.*`} crumbs={[{ label: "Blog", href: "/blog/" }, { label: name }]}>
+    <nav class="cat-links" aria-label="Categories">
+      <a class="fchip" href="/blog/">All</a>
+      {used.map((c) => <a class={`fchip${c === name ? " on" : ""}`} href={`/blog/category/${slugify(c)}/`} aria-current={c === name ? "page" : undefined}>{c}</a>)}
+    </nav>
+  </PageHero>
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      {posts.length ? <div class="bgrid2" style="margin-top:0">{posts.map((p) => <BlogCard post={p} />)}</div> : <p class="lede">No posts here yet.</p>}
+    </div>
+  </section>
+  <CtaSlab />
+</Base>

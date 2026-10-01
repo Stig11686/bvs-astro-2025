@@ -1,0 +1,112 @@
+---
+import { render } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/PageHero.astro";
+import Img from "@/components/Img.astro";
+import Button from "@/components/Button.astro";
+import BlogCard from "@/components/BlogCard.astro";
+import CtaSlab from "@/components/CtaSlab.astro";
+import { mdxComponents } from "@/components/mdx";
+import { getPosts, summary, type Post } from "@/lib/content";
+import { formatDate, readingTime } from "@/lib/text";
+import { site, slugify } from "@/site.config";
+import { sectorFor } from "@/lib/sectors";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post, posts } }));
+}
+
+const { post, posts } = Astro.props as { post: Post; posts: Post[] };
+const { Content, headings } = await render(post);
+const d = post.data;
+const toc = headings.filter((h) => h.depth === 2);
+
+// Headline: the last word gets the claret italic
+const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const words = esc(d.title).split(" ");
+const headline = words.length > 1 ? `${words.slice(0, -1).join(" ")} *${words.at(-1)}*` : esc(d.title);
+
+// Related: same category first, then the newest
+const others = posts.filter((p) => p.id !== post.id);
+const related = [...others.filter((p) => p.data.category === d.category), ...others.filter((p) => p.data.category !== d.category)].slice(0, 3);
+
+// Call to action at the end matches the post's category
+const ctas: Record<string, { label: string; href: string; link: string; linkText: string }> = {
+  "Website Rescue": { label: "Get in Touch", href: "/contact/", link: "/services/website-rescue/", linkText: "How Website Rescue works →" },
+  "Website Support": { label: "Get in Touch", href: "/contact/", link: "/services/website-support/", linkText: "See the care plans →" },
+  "Website Audit": { label: "Book a Free Website Review", href: "/services/website-audit/", link: "/contact/", linkText: "Or send me a message →" },
+  "Website Design": { label: "Start a Project", href: site.startProject, link: "/services/website-design/", linkText: "How I build websites →" },
+  "Case Studies": { label: "Get in Touch", href: "/contact/", link: "/portfolio/", linkText: "See more of my work →" },
+};
+const sector = d.category === "Case Studies" ? sectorFor(d.title) : undefined;
+const cta = sector ? { ...ctas["Case Studies"], link: sector.href, linkText: `${sector.tag} →` } : ctas[d.category];
+---
+
+<Base
+  title={d.metaTitle ?? `${d.title} | BVS Web Design`}
+  description={d.metaDescription ?? summary(post)}
+  image={d.image}
+  article={{ published: d.date, author: d.author }}
+>
+  <div class="readbar" id="readbar"></div>
+  <PageHero
+    title={headline}
+    lede={esc(summary(post))}
+    crumbs={[{ label: "Blog", href: "/blog/" }, { label: d.category, href: `/blog/category/${slugify(d.category)}/` }]}
+    class="post-hero"
+    size="post"
+  >
+    <div class="bmeta" slot="above"><span class="c">{d.category}</span></div>
+    <div class="post-meta">
+      <div class="author">
+        <Img src="/images/steve/headshot.webp" alt="" sizes="48px" widths={[96]} />
+        <div><b>{d.author}</b>BVS Web Design, Skipton</div>
+      </div>
+      <span>{formatDate(d.date, "long")}</span>
+      <span>{readingTime(post.body)}</span>
+    </div>
+  </PageHero>
+
+  {
+    d.image && (
+      <div class="post-img rv">
+        <Img src={d.image} alt={d.imageAlt ?? ""} sizes="(min-width: 1280px) 1232px, 100vw" loading="eager" fetchpriority="high" />
+      </div>
+    )
+  }
+
+  <div class="post-body" id="article">
+    <aside class="toc" aria-label="On this page">
+      {toc.length > 1 && <h4>On this page</h4>}
+      {toc.length > 1 && toc.map((h) => <a href={`#${h.slug}`}>{h.text}</a>)}
+      <div class="share">
+        <button class="btn btn--light" type="button" data-copy style="box-shadow:var(--shadow)"><span class="lbl">Copy link</span><span class="ar"><i>↗</i><i>↗</i></span></button>
+      </div>
+    </aside>
+    <article class="art">
+      <Content components={mdxComponents} />
+      <div class="mbtns" style="margin-top:44px">
+        <Button href={cta.href} kind="acc">{cta.label}</Button>
+        <a class="tlink" href={cta.link}>{cta.linkText}</a>
+      </div>
+      <div class="abox">
+        <Img src="/images/steve/headshot.webp" alt="Steve Marks" sizes="96px" widths={[192]} />
+        <div>
+          <b>Written by {d.author}</b>
+          <p>I design, build and look after WordPress websites for small businesses across Yorkshire, from Skipton. You'll always deal with me, start to finish.</p>
+          <a class="tlink" href="/contact/">Get in touch →</a>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="w-head"><h2 class="dh sh rv">Keep <span class="it">reading.</span></h2><a class="tlink" href="/blog/">All posts →</a></div>
+      <div class="bgrid2" style="margin-top:0">{related.map((p) => <BlogCard post={p} />)}</div>
+    </div>
+  </section>
+
+  <CtaSlab />
+</Base>

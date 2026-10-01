@@ -1,28 +1,8 @@
-import parseTomlToJson from "@/lib/utils/parseTomlToJson";
+// robots.txt. Everything is crawlable: CSS, scripts and images in /_astro/
+// must stay open so Google can render pages and index images.
 import type { APIRoute } from "astro";
-const config = parseTomlToJson("./src/config/config.toml");
 
-const { enable, disallow } = config.seo.robotsTxt;
-
-const getRobotsTxt = (
-  sitemapURL: URL,
-) => `# Robots.txt file for controlling web crawler access
-
-User-agent: *
-
-# Allowed pages
-Allow: /
-
-# Disallowed pages
-${disallow.map((item: string) => `Disallow: ${item}`).join("\n")}
-
-# Sitemap location
-Sitemap: ${sitemapURL.href}
-`;
-
-export const GET: APIRoute = ({ site }) => {
-  const sitemapURL = new URL("sitemap-index.xml", site);
-  return enable
-    ? new Response(getRobotsTxt(sitemapURL))
-    : new Response(null, { status: 404 });
-};
+export const GET: APIRoute = ({ site }) =>
+  new Response(`User-agent: *\nAllow: /\n\nSitemap: ${new URL("sitemap-index.xml", site).href}\n`, {
+    headers: { "Content-Type": "text/plain; charset=utf-8" },
+  });

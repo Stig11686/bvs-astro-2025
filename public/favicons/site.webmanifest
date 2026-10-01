@@ -1,0 +1,21 @@
+{
+  "name": "BVSWebDesign",
+  "short_name": "BVSWebDesign",
+  "icons": [
+    {
+      "src": "/favicons/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/favicons/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#e4dfd9",
+  "background_color": "#e4dfd9",
+  "display": "standalone"
+}

@@ -1,0 +1,108 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/PageHero.astro";
+import Button from "@/components/Button.astro";
+import Bands from "@/components/Bands.astro";
+import XSell from "@/components/XSell.astro";
+import CtaSlab from "@/components/CtaSlab.astro";
+import { site } from "@/site.config";
+
+const problems = [
+  { tone: "acc", ic: "…", title: "Developer gone quiet", text: "You've sent the emails. Maybe you've even called. Nothing. Your website is on someone else's server, you don't have the logins, and you're not sure what you own. I'll help you work out what you have and what you can get back." },
+  { tone: "blue", ic: "✕", title: "Locked out of your own site", text: "Some developers, on purpose or not, leave businesses with no access to their own domain, hosting or files. Access can often be recovered through the domain registrar or the host. Sometimes it can't, and the better route is a fresh site you fully own." },
+  { tone: "pink", ic: "£", title: "Wrong platform, wrong price", text: "Some website builders and closed platforms make leaving hard and expensive. Where it makes sense, I move businesses onto WordPress so they own the site and can take it anywhere. Where staying put works out cheaper, I'll say so." },
+];
+---
+
+<Base
+  title="Website Rescue Service | BVS Web Design, Yorkshire"
+  description="Locked out, stuck on the wrong platform, or left by your web developer? A straight answer on what can be recovered, from a Yorkshire web designer."
+>
+  <PageHero
+    title="Your website | shouldn't be someone | else's *hostage.*"
+    lede="If you can't get into your website, can't update it, or are paying too much to keep it, you're not the only one. I'll look at what you've got and tell you straight what can be recovered. Where it can't, I'll build you a new site that you own properly this time."
+    crumbs={[{ label: "Services", href: "/services/" }, { label: "Website Rescue" }]}
+    shapes={["var(--alt-t)", "var(--acc-t)"]}
+  >
+    <Fragment slot="cta">
+      <Button href={site.startProject} kind="acc">Start a Project</Button>
+      <a class="tlink" href="#stories">See recent rescues ↓</a>
+    </Fragment>
+    <div class="factcard" style="rotate:-2deg" slot="aside">
+      <div class="big">30 yrs</div>
+      <p><b>of club history</b> moved to a new site for Ilkley Harriers, after their developer locked everything on a server nobody else could reach.</p>
+    </div>
+  </PageHero>
+
+  <Bands items={["Developer gone quiet", "Locked out", "Wrong platform", "Wrong price", "Back in control"]} />
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="split">
+        <h2 class="dh sh rv">Sound <span class="it">familiar?</span></h2>
+        <p class="lede rv">It happens more than it should. Some of these can be untangled and some can't. Either way, I'll tell you which, and what it would take.</p>
+      </div>
+      <div class="pcards">
+        {
+          problems.map((p) => (
+            <article class={`pcard tone-${p.tone} rv`}>
+              <span class="ic" aria-hidden="true">{p.ic}</span>
+              <h3>{p.title}</h3>
+              <p>{p.text}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <div class="slab rev on-dark" id="stories">
+    <section class="sec">
+      <div class="wrap" style="display:block">
+        <h2 class="dh sh rv">Recent <span class="it">rescues.</span></h2>
+        <div class="stories">
+          <div class="story rv">
+            <h3>Ilkley Harriers</h3>
+            <p>A running club with 30 years of history on their website, and a developer who'd become unreliable and unresponsive, with everything locked on a server nobody else could access. I built a new site while they worked to recover the existing content, managed the migration, and handed them full control of their own domain for the first time.</p>
+            <div class="kicker">Their website, their domain, their call.</div>
+          </div>
+          <div class="story rv">
+            <h3>Climate Action Silsden</h3>
+            <p>A community organisation whose developer communicated sporadically via WhatsApp and had left them with no ownership of their own domain. I built them a new site and made sure they walked away with full control, so they could go elsewhere in future if they wanted to.</p>
+            <div class="kicker"><a href="/portfolio/climate-action-silsden/" style="color:inherit">That's how it should work. →</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="sec">
+    <div class="wrap split">
+      <h2 class="dh sh rv sticky-h">What happens when you <span class="it">get in touch.</span></h2>
+      <div class="prose-lg rv">
+        <p>You don't need to have everything figured out before contacting me. Most people in this situation don't know exactly what they have or what they're missing. That's part of the problem.</p>
+        <p class="ink">Tell me what's going on and I'll tell you <em>what's possible, what it'll take,</em> and whether I'm the right person to help.</p>
+        <p>Sometimes the answer is that the old site can't be recovered, or that you need someone else. If so, I'll say that too.</p>
+        <div style="margin-top:32px"><Button href="/contact/" kind="acc">Get in Touch</Button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <XSell
+        items={[
+          { tag: "Free Website Audit", title: "Not sure what you've got?", text: "A free audit tells you what's working, what isn't, and what to fix first.", href: "/services/website-audit/" },
+          { tag: "Care Plans", title: "Want it looked after afterwards?", text: "Once you have a site you control, a care plan keeps it that way.", href: "/services/website-support/" },
+        ]}
+      />
+    </div>
+  </section>
+
+  <CtaSlab
+    title="Stuck? Let's see *what can be done.*"
+    lede="You don't need it all figured out. Tell me what's going on and I'll tell you what's possible."
+    button={{ label: "Get in Touch", href: "/contact/" }}
+    link={{ label: "Or book a free call →", href: site.introCall }}
+  />
+</Base>

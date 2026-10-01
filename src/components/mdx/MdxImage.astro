@@ -1,0 +1,7 @@
+---
+// <Image src="/images/folder/file.jpg" alt="..." />
+import Img from "../Img.astro";
+const { src, alt = "" } = Astro.props;
+---
+
+<figure><Img src={src} alt={alt} sizes="(min-width: 1000px) 720px, 100vw" /></figure>

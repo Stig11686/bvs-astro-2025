@@ -1,0 +1,29 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/PageHero.astro";
+import WorkCard from "@/components/WorkCard.astro";
+import Reviews from "@/components/Reviews.astro";
+import CtaSlab from "@/components/CtaSlab.astro";
+import { getWork } from "@/lib/content";
+
+const work = await getWork();
+---
+
+<Base
+  title="Portfolio | Web Design Case Studies | BVS Web Design"
+  description="Recent web design projects for service businesses across Yorkshire and the UK: bridal, hospitality, dental and beauty, with the results each one got."
+>
+  <PageHero
+    title="Work that | *works.*"
+    lede="Websites for dental practices, bridal boutiques, hospitality, beauty clinics, retailers and community groups. Each one built to bring in enquiries, and each one with the result to show for it."
+    crumbs={[{ label: "Projects" }]}
+    class="blog-hero"
+  />
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="wgrid" style="margin-top:0">{work.map((w) => <WorkCard work={w} sizes="(min-width: 1000px) 400px, 92vw" />)}</div>
+    </div>
+  </section>
+  <Reviews />
+  <CtaSlab title="Want results like *these?*" lede="Tell me about your business and what you need your website to do. I'll tell you honestly how I'd approach it." />
+</Base>

@@ -1,0 +1,21 @@
+---
+import Img from "./Img.astro";
+import { type Work, result, info } from "@/lib/content";
+
+interface Props {
+  work: Work;
+  sizes?: string;
+}
+const { work, sizes = "(min-width: 1000px) 480px, 80vw" } = Astro.props;
+const place = info(work, "location").split(",")[0];
+const sector = info(work, "industry");
+---
+
+<a class="wcard" data-cursor="View" href={`/portfolio/${work.id}/`}>
+  <div class="wimg"><Img src={work.data.image} alt={`${work.data.title} website`} sizes={sizes} widths={[400, 640, 960, 1280]} /></div>
+  <div class="wmeta">
+    <small>{[sector, place].filter(Boolean).join(" · ")}</small>
+    <h3>{work.data.title}</h3>
+    <div class="st">{result(work)}</div>
+  </div>
+</a>

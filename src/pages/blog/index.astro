@@ -1,0 +1,58 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/PageHero.astro";
+import Img from "@/components/Img.astro";
+import BlogCard from "@/components/BlogCard.astro";
+import CtaSlab from "@/components/CtaSlab.astro";
+import { getPosts, summary } from "@/lib/content";
+import { formatDate, readingTime } from "@/lib/text";
+import { blogCategories } from "@/site.config";
+
+const posts = await getPosts();
+// The big "Start here" card: a post marked featured: true, otherwise the newest
+const feature = posts.find((p) => p.data.featured) ?? posts[0];
+const rest = posts.filter((p) => p !== feature);
+const used = blogCategories.filter((c) => posts.some((p) => p.data.category === c));
+// A text-only coloured card every few posts keeps the grid lively
+const toneFor = (i: number) => (i % 7 === 0 ? "acc" : i % 7 === 4 ? "navy" : undefined);
+---
+
+<Base
+  title="The Journal | Web Design Blog | BVS Web Design"
+  description="Web design tips, WordPress advice, and case studies from BVS Web Design. Practical insights for small business owners in Yorkshire and beyond."
+>
+  <PageHero
+    title="Straight-talking | *advice.*"
+    lede="Plain-English guides, case studies and the odd honest word about the web design industry. Written by me, for small business owners."
+    crumbs={[{ label: "Blog" }]}
+    class="blog-hero"
+  />
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      {
+        feature && (
+          <a class="feature rv" href={`/blog/${feature.id}/`} data-cursor="Read">
+            <div class="fi">
+              {feature.data.image && <Img src={feature.data.image} alt={feature.data.imageAlt ?? ""} sizes="(min-width: 1000px) 700px, 92vw" loading="eager" />}
+              <span class="newsticker">Start here</span>
+            </div>
+            <div class="fb">
+              <div class="bmeta"><span class="c">{feature.data.category}</span>{formatDate(feature.data.date)} · {readingTime(feature.body)}</div>
+              <h2>{feature.data.title}</h2>
+              <p>{summary(feature)}</p>
+              <span class="tlink" style="align-self:flex-start">Read the post →</span>
+            </div>
+          </a>
+        )
+      }
+      <div class="filters" role="group" aria-label="Filter posts">
+        <button class="fchip on" data-f="all" aria-pressed="true">All</button>
+        {used.map((c) => <button class="fchip" data-f={c} aria-pressed="false">{c}</button>)}
+      </div>
+      <div class="bgrid2">{rest.map((p, i) => <BlogCard post={p} tone={toneFor(i)} />)}</div>
+    </div>
+  </section>
+
+  <CtaSlab />
+</Base>

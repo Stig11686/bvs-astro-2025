@@ -1,0 +1,62 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/PageHero.astro";
+import Button from "@/components/Button.astro";
+import XSell from "@/components/XSell.astro";
+import CtaSlab from "@/components/CtaSlab.astro";
+import { site, footerLinks } from "@/site.config";
+
+const services = [
+  { tone: "acc", n: "01", title: "Website Design", text: "A new WordPress website built around generating enquiries. Strategy, design, build and launch, then I stay on to look after it.", href: "/services/website-design/" },
+  { tone: "blue", n: "02", title: "Website Rescue", text: "Developer gone quiet, locked out, or paying too much for the wrong platform. I'll tell you what can be recovered and help you get to a site you own.", href: "/services/website-rescue/" },
+  { tone: "pink", n: "03", title: "Care Plans", text: "Hosting, updates, backups, security and edits, handled by a real person in Skipton. From £35 a month.", href: "/services/website-support/" },
+  { tone: "navy", n: "04", title: "Free Website Audit", text: "A plain-English report on what's holding your site back, talked through on a call, with a priority list that's yours to keep.", href: "/services/website-audit/" },
+];
+---
+
+<Base
+  title="Services | WordPress Web Design, Rescue & Care Plans | BVS Web Design"
+  description="WordPress web design services for Yorkshire businesses: new builds, website rescue, audits, care plans and conversion optimisation."
+>
+  <PageHero
+    title="How I can | *help.*"
+    lede="Four ways in, depending on where your website is right now. If you're not sure which one fits, ask. I'd rather point you to the right thing than sell you the wrong one."
+    crumbs={[{ label: "Services" }]}
+  >
+    <Fragment slot="cta">
+      <Button href="/contact/" kind="acc">Get in Touch</Button>
+      <a class="tlink" href="/services/website-support/#plans">Care plan prices →</a>
+    </Fragment>
+  </PageHero>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="pcards" style="grid-template-columns:repeat(2,minmax(0,1fr));margin-top:0">
+        {
+          services.map((s) => (
+            <a class={`pcard tone-${s.tone} rv`} href={s.href} style="text-decoration:none;color:inherit;min-height:300px">
+              <span class="ic">{s.n}</span>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+              <span class="tlink" style="margin-top:auto;color:inherit">Find out more →</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <h2 class="dh sh rv">Websites for your <span class="it">kind of business.</span></h2>
+      <XSell
+        items={[
+          ...footerLinks.industries.map((l) => ({ tag: l.label, title: `WordPress ${l.label.toLowerCase()}`, text: "Built around the enquiries and bookings your customers make.", href: l.href })),
+          { tag: "Conversion Optimisation", title: "Traffic but no enquiries?", text: "I find exactly where you're losing enquiries and fix it.", href: "/services/conversion-optimisation/" },
+        ]}
+      />
+    </div>
+  </section>
+
+  <CtaSlab />
+</Base>

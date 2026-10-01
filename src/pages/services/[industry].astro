@@ -1,0 +1,110 @@
+---
+// Industry pages. Content: src/content/industries/<name>.md → /services/<name>/
+import { getCollection, type CollectionEntry } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/PageHero.astro";
+import Button from "@/components/Button.astro";
+import Img from "@/components/Img.astro";
+import Features from "@/components/Features.astro";
+import WorkCard from "@/components/WorkCard.astro";
+import SuccessStory from "@/components/SuccessStory.astro";
+import QuoteBand from "@/components/QuoteBand.astro";
+import Faq from "@/components/Faq.astro";
+import CtaSlab from "@/components/CtaSlab.astro";
+import { getWork } from "@/lib/content";
+import { emph } from "@/lib/text";
+import { site } from "@/site.config";
+
+export async function getStaticPaths() {
+  const industries = await getCollection("industries");
+  return industries.map((entry) => ({ params: { industry: entry.id }, props: { entry } }));
+}
+const { entry } = Astro.props as { entry: CollectionEntry<"industries"> };
+const d = entry.data;
+const all = await getWork();
+const picked = d.portfolioSlugs.map((s) => all.find((w) => w.id === s)).filter((w) => w !== undefined);
+const work = (picked.length ? picked : all.filter((w) => w.data.featured)).slice(0, 3);
+const story = d.successStory.business.toLowerCase();
+const storyLink =
+  all.find((w) => story.includes(w.data.title.toLowerCase())) ??
+  all.find((w) => story.includes(w.data.title.split(" ")[0].toLowerCase()));
+---
+
+<Base
+  title={`${d.title} | BVS Web Design`}
+  description={d.metaDescription}
+  image={d.heroImage}
+  schema={{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Website design",
+    name: d.heroEyebrow,
+    description: d.metaDescription,
+    audience: { "@type": "BusinessAudience", name: d.industryPlural },
+    areaServed: ["Yorkshire", "United Kingdom"],
+    provider: { "@type": "ProfessionalService", name: site.name, url: site.url},
+  }}
+>
+  <PageHero title={d.heroHeadline} lede={d.heroExcerpt} crumbs={[{ label: "Services", href: "/services/" }, { label: d.heroEyebrow }]}>
+    <p class="eyebrow" slot="above"><span class="bvs-dot"></span>{d.heroEyebrow} · Skipton, Yorkshire &amp; the UK</p>
+    <Fragment slot="cta">
+      <Button href={site.startProject} kind="acc">Start a Project</Button>
+      <a class="tlink" href="#work">See the work →</a>
+    </Fragment>
+    <div class="factcard" slot="aside">
+      <Img src={d.heroImage} alt={d.heroImageAlt} sizes="(min-width: 1000px) 400px, 90vw" widths={[400, 800]} />
+      <p><b>{d.successStory.business}:</b> {d.successStory.metrics[0] ? `${d.successStory.metrics[0].value} ${d.successStory.metrics[0].label.toLowerCase()}.` : d.successStory.location}</p>
+    </div>
+  </PageHero>
+
+  <section class="sec">
+    <div class="wrap split">
+      <h2 class="dh sh rv sticky-h" set:html={emph(d.whyHeadline)} />
+      <div class="rv">
+        <div class="prose-lg"><p>{d.whyText}</p></div>
+        {d.whyPoints.length > 0 && <ul class="checklist">{d.whyPoints.map((p) => <li><i>✓</i>{p}</li>)}</ul>}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="split">
+        <h2 class="dh sh rv" set:html={emph(d.includesHeadline)} />
+        {d.includesText && <p class="lede rv">{d.includesText}</p>}
+      </div>
+      <Features items={d.includes} />
+    </div>
+  </section>
+
+  <SuccessStory {...d.successStory} href={storyLink && `/portfolio/${storyLink.id}/`} />
+
+  <section class="sec" id="work">
+    <div class="wrap">
+      <div class="split">
+        <h2 class="dh sh rv" set:html={emph(d.portfolioHeadline ?? "Work that *works.*")} />
+        {d.portfolioText && <p class="lede rv">{d.portfolioText}</p>}
+      </div>
+      <div class="wgrid">{work.map((w) => <WorkCard work={w} sizes="(min-width: 1000px) 400px, 92vw" />)}</div>
+    </div>
+  </section>
+
+  {d.testimonial && <QuoteBand {...d.testimonial} />}
+
+  <section class="sec">
+    <div class="wrap split">
+      <div class="sticky-h">
+        <h2 class="dh sh rv" set:html={emph(d.faqHeadline)} />
+        {d.faqText && <p class="lede rv" style="margin-top:20px">{d.faqText}</p>}
+      </div>
+      <div class="rv"><Faq items={d.faq} /></div>
+    </div>
+  </section>
+
+  <CtaSlab
+    title="Let's build something that *earns* its keep."
+    lede="Start with a free 30-minute call. A proper conversation about your business, not your colour scheme."
+    button={{ label: "Start a Project", href: site.startProject }}
+    link={{ label: "Or get in touch →", href: "/contact/" }}
+  />
+</Base>

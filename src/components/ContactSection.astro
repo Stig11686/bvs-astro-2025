@@ -1,0 +1,32 @@
+---
+// Light-blue contact band: left column (slot) + enquiry form.
+import ContactForm, { type Option } from "./ContactForm.astro";
+import { emph } from "@/lib/text";
+
+interface Props {
+  id?: string;
+  title: string;
+  lede?: string;
+  form?: {
+    options?: Option[];
+    selectLabel?: string;
+    selectPlaceholder?: string;
+    fields?: ("business" | "phone" | "website")[];
+    messageLabel?: string;
+    messagePlaceholder?: string;
+    success?: string;
+  };
+}
+const { id = "contact", title, lede, form = {} } = Astro.props;
+---
+
+<section class="sec contact" id={id}>
+  <div class="wrap">
+    <div>
+      <h2 class="dh h2 rv" set:html={emph(title)} />
+      {lede && <p class="lede rv" style="margin-top:24px">{lede}</p>}
+      <slot />
+    </div>
+    <ContactForm {...form} />
+  </div>
+</section>

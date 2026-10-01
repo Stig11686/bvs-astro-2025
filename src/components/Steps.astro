@@ -1,0 +1,21 @@
+---
+interface Props {
+  items: { title: string; text: string }[];
+}
+const { items } = Astro.props;
+---
+
+<div class="steps" style={`--cols:${items.length}`}>
+  <svg class="line" viewBox="0 0 1000 40" preserveAspectRatio="none" aria-hidden="true"
+    ><path d="M20 7 C 200 7, 300 7, 500 7 S 800 7, 990 7"></path></svg
+  >
+  {
+    items.map((s, i) => (
+      <div class="step rv">
+        <span class="n">{String(i + 1).padStart(2, "0")}</span>
+        <h3>{s.title}</h3>
+        <p>{s.text}</p>
+      </div>
+    ))
+  }
+</div>

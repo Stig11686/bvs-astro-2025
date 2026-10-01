@@ -1,0 +1,22 @@
+:root{
+  --font-display:"Newsreader","Iowan Old Style",Georgia,serif;
+  --font-serif:var(--font-display);
+  --font-sans:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font-mono:var(--font-sans);
+
+  --weight-regular:400; /* @kind other */
+  --weight-medium:500; /* @kind other */
+  --weight-semibold:600; /* @kind other */
+
+  /* Scale */
+  --text-display:69px;   --leading-display:1.1; /* @kind other */  --tracking-display:-1.38px;
+  --text-heading:28px;   --leading-heading:1.4; /* @kind other */  --tracking-heading:-0.56px;
+  --text-heading-sm:23px;--leading-heading-sm:1.4; /* @kind other */--tracking-heading-sm:-0.46px;
+  --text-subheading:19px;--leading-subheading:1.4; /* @kind other */--tracking-subheading:-0.38px;
+  --text-body-size:16px; --leading-body:1.5; /* @kind other */     --tracking-body:-0.32px;
+  --text-caption:14px;   --leading-caption:1.2; /* @kind other */  --tracking-caption:-0.28px;
+  --tracking-tight:-0.02em;
+
+  --text-heading-font:var(--font-display);
+  --text-ui-font:var(--font-sans);
+}

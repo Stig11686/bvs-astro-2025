@@ -1,0 +1,59 @@
+---
+// Inner-page hero: breadcrumbs, big animated headline, lede, CTAs (slot "cta")
+// and an optional right-hand card (slot "aside").
+// Headline: separate lines with " | ", emphasise with *word*.
+import { lines } from "@/lib/text";
+
+interface Props {
+  title: string;
+  lede?: string;
+  crumbs?: { label: string; href?: string }[];
+  shapes?: [string, string];
+  class?: string;
+  size?: "page" | "post";
+}
+const { title, lede, crumbs = [], shapes = ["var(--acc-t)", "var(--alt-t)"], class: className = "", size = "page" } = Astro.props;
+const hasAside = Astro.slots.has("aside");
+const site = "https://www.bvswebdesign.co.uk";
+const trail = [{ label: "Home", href: "/" }, ...crumbs];
+const breadcrumbs = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: trail.map((c, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: c.label,
+    item: new URL(c.href ?? (i === trail.length - 1 ? Astro.url.pathname : "/"), site).href,
+  })),
+};
+---
+
+{crumbs.length > 0 && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbs)} />}
+<section class={`ph-hero ${className}`}>
+  <i class="bgshape a" style={`background:${shapes[0]}`}></i><i class="bgshape b" style={`background:${shapes[1]}`}></i>
+  <div class="wrap" style={hasAside ? undefined : "grid-template-columns:1fr"}>
+    <div class="ph-in">
+      {
+        crumbs.length > 0 && (
+          <nav class="crumbs" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            {crumbs.map((c) => (
+              <>
+                <span aria-hidden="true">/</span>
+                {c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+              </>
+            ))}
+          </nav>
+        )
+      }
+      <slot name="above" />
+      <h1 class={`dh ${size === "post" ? "post-h" : "ph-h"}`}>
+        {lines(title).map((l) => <span class="ln"><span set:html={l} /></span>)}
+      </h1>
+      {lede && <p class="lede" set:html={lede} />}
+      {Astro.slots.has("cta") && <div class="ph-cta"><slot name="cta" /></div>}
+      <slot />
+    </div>
+    {hasAside && <div class="ph-aside rv"><slot name="aside" /></div>}
+  </div>
+</section>

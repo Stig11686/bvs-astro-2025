@@ -1,0 +1,13 @@
+---
+// <Quote quote="..." author="..." authorTitle="..." image="/images/testimonial/x.jpg" />
+import Img from "../Img.astro";
+const { quote, author, authorTitle, image } = Astro.props;
+---
+
+<figure class="mquote">
+  <blockquote>“{quote}”</blockquote>
+  <figcaption>
+    {image && <Img src={image} alt="" sizes="52px" widths={[104]} />}
+    <div><b>{author}</b>{authorTitle}</div>
+  </figcaption>
+</figure>

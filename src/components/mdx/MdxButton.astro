@@ -1,0 +1,7 @@
+---
+// <Button label="Book a call" url="/contact/" />
+import Button from "../Button.astro";
+const { label, url, variant } = Astro.props;
+---
+
+<div class="mbtns"><Button href={url} kind={variant === "outline" ? "dark" : "acc"}>{label}</Button></div>

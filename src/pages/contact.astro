@@ -1,0 +1,57 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/PageHero.astro";
+import Button from "@/components/Button.astro";
+import ContactForm from "@/components/ContactForm.astro";
+import AsideList from "@/components/AsideList.astro";
+import { site } from "@/site.config";
+---
+
+<Base
+  title="Contact BVS Web Design | Web Designer in Skipton"
+  description="Get in touch with Steve at BVS Web Design. Send a message or book a free 30-minute call, and you'll hear back personally within one working day."
+>
+  <PageHero
+    title="Get in | *touch.*"
+    lede="Two ways to start: send me a message, or book a free call at a time that suits you. Either way you'll deal with me, personally, with no hard sell."
+    crumbs={[{ label: "Contact" }]}
+  >
+    <Fragment slot="cta">
+      <Button href="#contact" kind="acc" arrow="↓">Send a Message</Button>
+      <a class="tlink" href={site.introCall} target="_blank" rel="noopener">Or book a free call →</a>
+    </Fragment>
+  </PageHero>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="xsell" style="margin-top:0">
+        <a class="xcard" href="#contact">
+          <div class="tag2">Send a message<span>↓</span></div>
+          <h3>Tell me what's going on, in your own time.</h3>
+          <p>Fill in the form below. A few lines is plenty. I'll reply personally within one working day.</p>
+        </a>
+        <a class="xcard" href={site.introCall} target="_blank" rel="noopener">
+          <div class="tag2">Book a call<span>→</span></div>
+          <h3>Rather talk it through?</h3>
+          <p>Pick a time for a free 30-minute video call. A proper conversation about your business, with no deck and no sales pitch.</p>
+        </a>
+      </div>
+      <p class="rv" style="margin-top:28px;color:var(--iron)">Prefer email? <a href={`mailto:${site.email}`}>{site.email}</a></p>
+    </div>
+  </section>
+
+  <section class="sec contact" id="contact">
+    <div class="wrap">
+      <div>
+        <h2 class="dh sh rv">Send me a <span class="it">message.</span></h2>
+        <p class="lede rv" style="margin-top:24px">You don't need to have it all figured out. A few lines on where your website is now and what you'd like it to do is plenty.</p>
+        <AsideList />
+        <div class="callbox rv">
+          <div><b>Rather talk it through?</b><span>Book a free 30-minute call.</span></div>
+          <Button href={site.introCall} kind="light">Book a Call</Button>
+        </div>
+      </div>
+      <ContactForm fields={["business", "phone", "website"]} />
+    </div>
+  </section>
+</Base>

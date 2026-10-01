@@ -1,0 +1,122 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/PageHero.astro";
+import Button from "@/components/Button.astro";
+import Bands from "@/components/Bands.astro";
+import Img from "@/components/Img.astro";
+import Steps from "@/components/Steps.astro";
+import XSell from "@/components/XSell.astro";
+import CtaSlab from "@/components/CtaSlab.astro";
+import { site } from "@/site.config";
+import { sectors } from "@/lib/sectors";
+
+const included = [
+  "Discovery & strategy session",
+  "Custom design for your business",
+  "Copywriting guidance",
+  "On-page SEO foundations",
+  "Mobile-first, fast by default",
+  "Editor training video",
+  "30 days of post-launch fixes",
+];
+const steps = [
+  { title: "Free call", text: "A proper conversation about your business, not your colour scheme." },
+  { title: "Discovery", text: "Your customers, what they need to see, and what is getting in the way." },
+  { title: "Design", text: "Design drafts you can comment on, built around the path to enquiry." },
+  { title: "Build", text: "Built on WordPress: fast, secure, and yours to edit." },
+  { title: "Launch + care", text: "Live, trained, and looked after long after handover." },
+];
+---
+
+<Base
+  title="Website Design in Skipton & Yorkshire | BVS Web Design"
+  description="A WordPress website built to bring the work in. Web design in Skipton & across Yorkshire: strategy, design, build, launch. Projects from £2,000."
+>
+  <PageHero
+    title="A website designed | to get you *found* | by your customers."
+    class="hero-long"
+    lede="A new WordPress website that helps local customers find you, then turns them into enquiries. I handle strategy, copy guidance, design, build and launch, then stay on to look after it."
+    crumbs={[{ label: "Services", href: "/services/" }, { label: "Website Design" }]}
+  >
+    <Fragment slot="cta">
+      <Button href={site.startProject} kind="acc">Start a Project</Button>
+      <a class="tlink" href="/portfolio/">See My Work →</a>
+    </Fragment>
+    <div class="factcard" slot="aside">
+      <Img src="/images/portfolio/rebecca-rennolds-permanent-beauty-and-laser.png" alt="Rebecca Rennolds Permanent Beauty website" sizes="(min-width: 1000px) 400px, 90vw" widths={[400, 800]} />
+      <div class="big">3–4k</div>
+      <p><b>visits per month</b> for Rebecca Rennolds Permanent Beauty, built from scratch with no existing website.</p>
+    </div>
+  </PageHero>
+
+  <Bands items={["Discovery", "Custom design", "Hand-built WordPress", "SEO foundations", "Training", "Aftercare"]} />
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="split">
+        <h2 class="dh sh rv">Everything it takes to <span class="it">launch</span> properly.</h2>
+        <div class="prose-lg rv">
+          <p>No bolt-on extras and no surprise invoices. Every build includes the strategy, design and training you need for the site to do its job from day one.</p>
+          <p class="ink">And because I build it by hand, <em>you can edit it yourself</em> without phoning me on a Sunday.</p>
+          <p>Projects start at £2,000, and I quote every one properly once I understand what you need.</p>
+        </div>
+      </div>
+      <ul class="inc">{included.map((i) => <li class="rv"><i>✓</i>{i}</li>)}</ul>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <h2 class="dh sh rv">How it <span class="it">goes.</span></h2>
+      <Steps items={steps} />
+    </div>
+  </section>
+
+  <section class="band-res tone-blue">
+    <div class="sec">
+      <div class="wrap">
+        <div>
+          <div class="num rv">3–4k<small>visits a month for Rebecca Rennolds Permanent Beauty. She came to me with no website at all, and now ranks strongly for the local searches that matter.</small></div>
+          <div class="rv" style="margin-top:30px"><a class="tlink" href="/portfolio/rebecca-rennolds-permanent-beauty-and-laser/">Read the case study →</a></div>
+        </div>
+        <div class="shots shots--one rv">
+          <Img src="/images/portfolio/rebecca-rennolds-permanent-beauty-and-laser.png" alt="Rebecca Rennolds Permanent Beauty website" sizes="(min-width: 1000px) 520px, 90vw" widths={[520, 1040]} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="dh sh rv">Websites for your <span class="it">kind of business.</span></h2>
+      <div class="xsell-row">
+      <XSell
+        items={[
+          ...sectors.map(({ tag, title, text, href }) => ({ tag, title, text, href })),
+          { tag: "Any service business", title: "Something else entirely?", text: "Trades, retailers, clubs, community groups, professional services. If your customers find you online, the same approach works. Tell me about yours.", href: "/contact/" },
+        ]}
+      />
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <h2 class="dh sh rv">Not quite <span class="it">you?</span></h2>
+      <XSell
+        items={[
+          { tag: "Website Rescue", title: "Already got a site that's stuck?", text: "Developer gone quiet, locked out, or paying too much? I'll tell you what can be recovered and the best way forward.", href: "/services/website-rescue/" },
+          { tag: "Free Website Audit", title: "Not sure what's wrong?", text: "Send me your address and I'll tell you what's holding it back and what to fix first.", href: "/services/website-audit/" },
+          { tag: "Care Plans", title: "Just need it looked after?", text: "Hosting, updates, backups and edits, handled by a real person in Skipton.", href: "/services/website-support/" },
+        ]}
+      />
+    </div>
+  </section>
+
+  <CtaSlab
+    title="Let's build something that *earns* its keep."
+    lede="Start with a free 30-minute call. A proper conversation about your business, with no deck and no questionnaire."
+    button={{ label: "Start a Project", href: site.startProject }}
+    link={{ label: "Or get in touch →", href: "/contact/" }}
+  />
+</Base>

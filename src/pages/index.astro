@@ -1,0 +1,281 @@
+---
+import Base from "@/layouts/Base.astro";
+import Button from "@/components/Button.astro";
+import Bands from "@/components/Bands.astro";
+import Img from "@/components/Img.astro";
+import Reviews from "@/components/Reviews.astro";
+import WorkCard from "@/components/WorkCard.astro";
+import ContactSection from "@/components/ContactSection.astro";
+import { getPosts, getWork } from "@/lib/content";
+import { formatDate } from "@/lib/text";
+import { site } from "@/site.config";
+
+// Projects in the sideways-scrolling strip, in this order
+const workOrder = [
+  "ilkley-dental-care",
+  "maidens-and-ravens",
+  "rebecca-rennolds-permanent-beauty-and-laser",
+  "the-yorkshire-unicorn",
+  "66-sheep-street",
+  "climate-action-silsden",
+  "jaynes-bridalwear-lincoln",
+];
+const allWork = await getWork();
+const work = workOrder.map((slug) => allWork.find((w) => w.id === slug)).filter((w) => w !== undefined);
+const posts = (await getPosts()).slice(0, 3);
+const carePlans = [
+  { name: "Essentials", promise: "I keep it running", price: "£35" },
+  { name: "Active", promise: "I keep it right", price: "£99" },
+  { name: "Growth", promise: "I keep it improving", price: "£249" },
+];
+
+const reasons = [
+  { n: "01", title: "I've lost faith in my website.", text: "It looks fine, but the phone isn't ringing and you can't work out why. I'll go through it properly, find what's holding it back and fix it. A free audit is the easiest place to start.", pick: "lost", stamp: "Start with a free audit" },
+  { n: "02", title: "I'm paying too much for it.", text: "Hefty monthly fees for a website you don't even own? I move businesses onto WordPress, cut the running costs, and hand you the keys so you're never stuck again.", pick: "cost", stamp: "Yours to keep" },
+  { n: "03", title: "I can't get hold of my developer.", text: "Emails unanswered, logins lost, everything sitting on someone else's server. I'll help you work out what you own, what you can get back, and the best way forward from there.", pick: "ghost", stamp: "A straight answer" },
+  { n: "04", title: "I'm starting from scratch.", text: "New business, or your first proper website. I'll build something that brings in enquiries from day one, and show you how to run it yourself.", pick: "new", stamp: "Built to earn" },
+  { n: "05", title: "I just need a bit of support with it.", text: "The site's fine, but updates, fixes and small changes keep sliding down the list. A care plan hands that to me, with someone to ask when you need help.", pick: "support", stamp: "Looked after" },
+];
+
+const localBusiness = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: site.name,
+  url: site.url,
+  image: `${site.url}/og-image.jpg`,
+  email: site.email,
+  priceRange: "££",
+  address: { "@type": "PostalAddress", addressLocality: "Skipton", addressRegion: "North Yorkshire", postalCode: "BD23", addressCountry: "GB" },
+  areaServed: ["Skipton", "Keighley", "Ilkley", "York", "Yorkshire", "United Kingdom"],
+  founder: { "@type": "Person", name: site.author },
+  sameAs: site.social.map((s) => s.url),
+};
+---
+
+<Base
+  title="Web Designer in Skipton, North Yorkshire | BVS Web Design"
+  description="Website designer in Skipton, North Yorkshire. Websites and care plans for service businesses: more enquiries, more bookings, and a site that stays looked after."
+  schema={localBusiness}
+>
+  <section class="hero">
+    <i class="bgshape a" data-par="-60"></i><i class="bgshape b" data-par="40"></i>
+    <div class="wrap">
+      <div class="collage" id="collage" aria-hidden="true">
+        <div class="stk site s1" data-cursor="Drag">
+          <Img src="/images/portfolio/maidens-and-ravens.png" alt="" sizes="300px" widths={[300, 600]} loading="eager" />
+          <div class="cap">Maidens &amp; Ravens<span>York</span></div>
+        </div>
+        <div class="stk site s2" data-cursor="Drag">
+          <Img src="/images/portfolio/the-yorkshire-unicorn.png" alt="" sizes="300px" widths={[300, 600]} loading="eager" />
+          <div class="cap">The Yorkshire Unicorn<span>Skipton</span></div>
+        </div>
+        <div class="stk tag" data-cursor="Drag">Made in Skipton</div>
+        <a class="stk badge" href="#audit" data-cursor="Audit" aria-label="Get a free website audit" tabindex="-1"
+          ><svg viewBox="0 0 132 132" aria-hidden="true"
+            ><defs><path id="circ" d="M66,66 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0"></path></defs><text
+              ><textPath href="#circ">FREE WEBSITE AUDIT · FREE WEBSITE AUDIT · </textPath></text
+            ></svg
+          ><b>↗</b></a
+        >
+      </div>
+      <h1 class="dh hero-h hero-h--long">
+        <span class="ln"><span>Websites designed to</span></span>
+        <span class="ln"><span>bring in <span class="it">more enquiries,</span></span></span>
+        <span class="ln"><span>and cared for like</span></span>
+        <span class="ln"
+          ><span class="sq"
+            >they were my own.<svg viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"
+              ><path id="squig" d="M4 18 C 40 4, 70 28, 110 14 S 180 4, 220 16 S 280 22, 296 10"></path></svg
+            ></span
+          ></span
+        >
+      </h1>
+      <div class="hero-side">
+        <p class="lede">
+          I'm Steve, a website designer in Skipton. I build websites for service businesses across North Yorkshire and the UK, then look after them so
+          they keep bringing work in.
+        </p>
+        <div class="hero-cta">
+          <Button href="#contact" kind="acc">Get in Touch</Button>
+          <a class="tlink" href="#work">See My Work ↓</a>
+        </div>
+        <p class="hero-note">Send a message or book a free call. No hard sell.</p>
+      </div>
+    </div>
+  </section>
+
+  <Bands />
+
+  <section class="state">
+    <div class="wrap">
+      <p id="stmt">
+        Most small business websites aren't broken. They're just <em class="it">losing you work.</em> A contact form nobody
+        checks. A page Google can't find. A developer who's stopped answering. <em class="it">I fix that.</em>
+      </p>
+    </div>
+  </section>
+
+  <section class="sec pil" id="help">
+    <div class="wrap">
+      <div class="pil-head">
+        <h2 class="dh h2 rv">Which one sounds like <span class="it">you?</span></h2>
+        <p class="lede rv">Most people get in touch for one of five reasons. Pick yours and the contact form fills itself in.</p>
+      </div>
+      <div class="stack">
+        {
+          reasons.map((r, i) => (
+            <article class={`pc pc-${i + 1}`} style={`--i:${i}`}>
+              <div class="pc-n">{r.n}</div>
+              <div>
+                <h3>{r.title}</h3>
+                <p>{r.text}</p>
+                <a class="btn mag" href="#contact" data-pick={r.pick}>
+                  <span class="lbl">That's Me</span>
+                  <span class="ar"><i>→</i><i>→</i></span>
+                </a>
+              </div>
+              <div class="stamp">{r.stamp}</div>
+              <span class="ghost"><i /><i /></span>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="sec work" id="work">
+    <div class="wrap w-head">
+      <h2 class="dh h2 rv">Work that <span class="it">works.</span></h2>
+      <a class="tlink" href="/portfolio/">View All Projects →</a>
+    </div>
+    <div class="trackwrap">
+      <div class="track" id="track">
+        {work.map((w) => <WorkCard work={w} />)}
+        <a class="wend" href="/portfolio/">See all<br />my work<em>→</em></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec care-home" id="care">
+    <div class="wrap">
+      <div class="split">
+        <h2 class="dh sh rv">A website needs looking after, and <span class="it">it can keep improving.</span></h2>
+        <div class="prose-lg rv">
+          <p>Some sites need keeping safe and up to date. Some need changes as the business changes. Some should bring in more enquiries every month. Each care plan covers one of those, handled by me in Skipton.</p>
+          <p style="margin-top:22px"><a class="tlink" href="/services/website-support/">Compare the care plans →</a></p>
+        </div>
+      </div>
+      <div class="ladder">
+        {
+          carePlans.map((c, i) => (
+            <a class={`rung tone-${["blue", "acc", "navy"][i]} rv`} href="/services/website-support/#plans">
+              <span class="n">{String(i + 1).padStart(2, "0")}</span>
+              <div>
+                <h3>{c.name}</h3>
+                <p>{c.promise}</p>
+                <p class="from">From {c.price} a month</p>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <div class="slab audit on-dark" id="audit">
+    <section class="sec">
+      <div class="wrap">
+        <div>
+          <h2 class="dh h2 rv">What's holding your site <span class="it">back?</span></h2>
+          <p class="lede rv">
+            Send me your web address. I'll go through it properly and send back a plain-English report: what's working,
+            what isn't, and what I'd fix first. It's free, and there's no obligation.
+          </p>
+          <ul class="checks" id="checks">
+            {
+              [
+                ["First impressions", "Is it clear what you do, and who for, within five seconds?"],
+                ["Showing up on Google", "Are you found for the searches that matter locally?"],
+                ["Enquiry blockers", "What's stopping visitors picking up the phone?"],
+                ["Mobile, speed and security", "The unglamorous stuff that costs you customers."],
+              ].map(([b, t]) => (
+                <li>
+                  <span class="tick"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" /></svg></span>
+                  <div><b>{b}</b>{t}</div>
+                </li>
+              ))
+            }
+          </ul>
+          <form class="aform rv" data-enquiry data-service="site_audit">
+            <input type="text" name="website" placeholder="yourwebsite.co.uk" aria-label="Your website address" required />
+            <input type="text" name="name" placeholder="Your name" aria-label="Your name" required autocomplete="name" />
+            <input type="email" name="email" placeholder="Your email" aria-label="Your email" required autocomplete="email" />
+            <input type="hidden" name="message" value="Free website audit request from the homepage" />
+            <input class="hp" name="company_url" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <button class="btn btn--light mag" type="submit"><span class="lbl">Get My Free Audit</span><span class="ar"><i>→</i><i>→</i></span></button>
+            <p class="aok" role="status">Thanks, it's on my list. I'll be in touch within a couple of working days.</p>
+            <p class="err" role="alert">That didn't send. Please try again, or email {site.email}.</p>
+          </form>
+        </div>
+        <div class="scan-wrap rv" id="scan" aria-hidden="true">
+          <div class="free">Free!</div>
+          <div class="scan">
+            <div class="scan-bar"><i></i><i></i><i></i><span id="surl">yourwebsite.co.uk</span></div>
+            <div class="scan-view">
+              <div class="sl"><i class="big"></i><i style="width:92%"></i><i style="width:76%"></i><i style="width:84%"></i><i style="width:40%;height:40px"></i><i style="width:88%"></i><i style="width:70%"></i><i style="width:80%"></i></div>
+              <div>
+                <div class="ring"><svg width="150" height="150" viewBox="0 0 150 150"><circle class="bg" cx="75" cy="75" r="60"></circle><circle class="fg" id="rfg" cx="75" cy="75" r="60"></circle></svg><b id="rn">0</b></div>
+                <small style="display:block;text-align:center;font-size:13px;color:#737373;margin-top:8px">Your score</small>
+              </div>
+              <div class="scanline"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <Reviews />
+
+  <section class="sec" id="blog">
+    <div class="wrap">
+      <div class="w-head"><h2 class="dh h2 rv">Straight-talking <span class="it">advice.</span></h2><a class="tlink" href="/blog/">Read the Blog →</a></div>
+      <div class="blist">
+        {
+          posts.map((p, i) => (
+            <a class="brow" data-img={i} href={`/blog/${p.id}/`}>
+              <div class="meta"><b>{p.data.category}</b>{formatDate(p.data.date)}</div>
+              <h3>{p.data.title}</h3>
+              <span class="go">→</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+  <div class="bfloat" id="bfloat" aria-hidden="true">
+    {posts.map((p) => <div class="bfi">{p.data.image && <Img src={p.data.image} alt="" sizes="340px" widths={[340, 680]} />}</div>)}
+  </div>
+
+  <ContactSection
+    title="Let's have a proper *chat.*"
+    form={{
+      options: [
+        { label: "I've lost faith in my current website", value: "site_audit", key: "lost" },
+        { label: "I'm paying too much for my website", value: "support_care", key: "cost" },
+        { label: "I can't get hold of my developer", value: "support_care", key: "ghost" },
+        { label: "I'm a new business and need a website", value: "new_website", key: "new" },
+        { label: "I just need some support with my website", value: "support_care", key: "support" },
+      ],
+    }}
+  >
+    <div class="me rv">
+      <div class="polar"><Img src="/images/steve/portrait.webp" alt="Steve Marks" sizes="150px" widths={[150, 300]} /><span>That's me, Steve</span></div>
+      <p><strong>You'll deal with me, start to finish.</strong> No account managers, no handing you off to a junior. Tell me what's going on and I'll come back to you personally.</p>
+    </div>
+    <div class="callbox rv">
+      <div><b>Rather talk it through?</b><span>Book a free 30-minute intro call.</span></div>
+      <Button href={site.introCall} kind="light">Book an Intro Call</Button>
+    </div>
+  </ContactSection>
+</Base>

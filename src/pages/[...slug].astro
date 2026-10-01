@@ -1,0 +1,34 @@
+---
+// Pages from src/content/pages/. The file path is the URL:
+// src/content/pages/privacy-policy.md → /privacy-policy/
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/PageHero.astro";
+import ContactSection from "@/components/ContactSection.astro";
+import AsideList from "@/components/AsideList.astro";
+import { mdxComponents } from "@/components/mdx";
+
+export async function getStaticPaths() {
+  const pages = await getCollection("pages", (p) => import.meta.env.DEV || !p.data.draft);
+  return pages.map((page) => ({ params: { slug: page.id }, props: { page } }));
+}
+const { page } = Astro.props as { page: CollectionEntry<"pages"> };
+const { Content } = await render(page);
+const d = page.data;
+const cleanTitle = d.title.replace(/\s*\|.*$/, "");
+const crumbs = d.crumb
+  ? [{ label: d.crumb, href: `/${d.crumb.toLowerCase()}/` }, { label: cleanTitle }]
+  : [{ label: cleanTitle }];
+---
+
+<Base title={d.metaTitle ?? (d.title.includes("|") ? d.title : `${d.title} | BVS Web Design`)} description={d.metaDescription ?? d.description} noindex={d.noindex}>
+  <PageHero title={d.headline ?? cleanTitle} lede={d.description} crumbs={crumbs} class="blog-hero" />
+  <div class="page-body"><article class="art"><Content components={mdxComponents} /></article></div>
+  {
+    d.contactForm && (
+      <ContactSection title="Let's have a proper *chat.*" lede="Tell me what's going on with your website and I'll come back to you personally within one working day." form={{ fields: ["business", "phone", "website"] }}>
+        <AsideList />
+      </ContactSection>
+    )
+  }
+</Base>

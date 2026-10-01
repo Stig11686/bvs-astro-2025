@@ -1,0 +1,47 @@
+---
+import Brand from "./Brand.astro";
+import Button from "./Button.astro";
+import { site, menu } from "@/site.config";
+
+const path = Astro.url.pathname;
+const isCurrent = (href: string) => (href === "/" ? path === "/" : path.startsWith(href));
+---
+
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <Brand />
+    <div class="hdr-r">
+      <Button href="/contact/" kind="acc" class="hdr-cta">Get in Touch</Button>
+      <button class="mbtn mag" id="mbtn" aria-expanded="false" aria-controls="menu"
+        ><span class="lbl" id="mlbl">Menu</span><span class="dots"><i></i><i></i></span></button
+      >
+    </div>
+  </div>
+</header>
+<div class="scrim" id="scrim"></div>
+<nav class="menu" id="menu" aria-label="Main" inert>
+  <div class="l1"></div><div class="l2"></div>
+  <div class="menu-in">
+    <ul class="mlist">
+      {
+        menu.map((item, i) => (
+          <li>
+            <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>
+              <span class="lbl">{item.label}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="mfoot">
+      <div>
+        <b>Fancy a chat?</b>Send me a message or book a free call. No hard sell.
+        <div style="margin-top:16px"><Button href="/contact/" kind="light">Get in Touch</Button></div>
+      </div>
+      <div>
+        <b>Based in Skipton</b>Working with businesses across Yorkshire and the UK.
+        <div style="margin-top:12px"><a href={`mailto:${site.email}`}>{site.email}</a></div>
+      </div>
+    </div>
+  </div>
+</nav>
