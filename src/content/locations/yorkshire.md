@@ -10,7 +10,7 @@ heroExcerpt: >-
   I'm Steve. I design and build WordPress websites for service businesses across Yorkshire. Not templated, not
   outsourced. Strategy, design, build, launch, and ongoing care. All from one person who actually picks up the
   phone.
-heroImage: /images/steve-1.jpg
+heroImage: /images/steve/office.webp
 heroImageAlt: Steve Marks - Web designer serving Yorkshire businesses
 resultsHeadline: A website that works while you're busy serving customers.
 resultsText: >-

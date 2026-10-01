@@ -27,7 +27,6 @@ const isCurrent = (href: string) => (href === "/" ? path === "/" : path.startsWi
         menu.map((item, i) => (
           <li>
             <a href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>
-              <small>{String(i + 1).padStart(2, "0")}</small>
               <span class="lbl">{item.label}</span>
             </a>
           </li>

@@ -1,4 +1,5 @@
-// Google reviews shown in the review deck. Avatars live in src/assets/images/testimonial/
+// Reviews shown in the review deck. Avatars live in src/assets/images/testimonial/.
+// No avatar? Leave it out and the card shows the person's initials.
 export const testimonials = [
   {
     quote: "My website crashed after a TikTok went viral with over 200,000 views. Steve looked at it immediately and got it back up and running straight away.",
@@ -13,10 +14,9 @@ export const testimonials = [
     avatar: "/images/testimonial/rebecca-rennolds.webp",
   },
   {
-    quote: "I've had poor experiences with website designers before. Limited help, slow responses, and charged a fortune for small tasks. Steve is the opposite. I've no plans to use anyone else.",
-    author: "Elizabeth Matfin",
-    business: "Maidens & Ravens Bridal Boutique, York",
-    avatar: "/images/testimonial/elizabeth.jpg",
+    quote: "We used Steve to create our website. He filled us with confidence from the first conversation. No request was too much to ask, his work is excellent and amazing value for money. I would 100% recommend Steve to anyone needing to take their website to the next level.",
+    author: "Rob North",
+    business: "Director, Antler Interiors",
   },
   {
     quote: "We're absolutely thrilled with the work Steve did on our new websites! He managed to navigate and sort through two separate sites with ease, and the turnaround time was impressively quick.",

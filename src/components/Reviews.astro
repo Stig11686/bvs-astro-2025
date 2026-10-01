@@ -22,7 +22,7 @@ const { title = "Don't just take my *word* for it." } = Astro.props;
                 <div class="qm" aria-hidden="true">“</div>
                 <blockquote>{t.quote}</blockquote>
                 <figcaption>
-                  <Img src={t.avatar} alt="" sizes="54px" widths={[108]} />
+                  {t.avatar ? <Img src={t.avatar} alt="" sizes="54px" widths={[108]} /> : <span class="ini" aria-hidden="true">{t.author.split(" ").map((w) => w[0]).join("")}</span>}
                   <div><b>{t.author}</b><span>{t.business}</span></div>
                   <span class="stars" aria-label="Five stars">★★★★★</span>
                 </figcaption>

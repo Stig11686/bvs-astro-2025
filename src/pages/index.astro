@@ -34,6 +34,7 @@ const reasons = [
   { n: "02", title: "I'm paying too much for it.", text: "Hefty monthly fees for a website you don't even own? I move businesses onto WordPress, cut the running costs, and hand you the keys so you're never stuck again.", pick: "cost", stamp: "Yours to keep" },
   { n: "03", title: "I can't get hold of my developer.", text: "Emails unanswered, logins lost, everything sitting on someone else's server. I've recovered 30 years of content from a locked-down site. I'll take yours over and put you back in control.", pick: "ghost", stamp: "Back in control" },
   { n: "04", title: "I'm starting from scratch.", text: "New business, or your first proper website. I'll build something that brings in enquiries from day one, and show you how to run it yourself.", pick: "new", stamp: "Built to earn" },
+  { n: "05", title: "I just need a bit of support with it.", text: "The site's fine, but updates, fixes and small changes keep sliding down the list. A care plan hands that to me, with someone to ask when you need help.", pick: "support", stamp: "Looked after" },
 ];
 
 const localBusiness = {
@@ -77,11 +78,9 @@ const localBusiness = {
           ><b>↗</b></a
         >
       </div>
-      <p class="eyebrow hero-eyebrow"><span class="bvs-dot"></span>Web design &amp; care plans · Skipton, North Yorkshire</p>
       <h1 class="dh hero-h hero-h--long">
-        <span class="ln"><span>Websites designed in</span></span>
-        <span class="ln"><span>Skipton to bring in</span></span>
-        <span class="ln"><span><span class="it">more enquiries,</span></span></span>
+        <span class="ln"><span>Websites designed to</span></span>
+        <span class="ln"><span>bring in <span class="it">more enquiries,</span></span></span>
         <span class="ln"><span>and cared for like</span></span>
         <span class="ln"
           ><span class="sq"
@@ -120,7 +119,7 @@ const localBusiness = {
     <div class="wrap">
       <div class="pil-head">
         <h2 class="dh h2 rv">Which one sounds like <span class="it">you?</span></h2>
-        <p class="lede rv">Most people get in touch for one of four reasons. Pick yours and the contact form fills itself in.</p>
+        <p class="lede rv">Most people get in touch for one of five reasons. Pick yours and the contact form fills itself in.</p>
       </div>
       <div class="stack">
         {
@@ -198,7 +197,7 @@ const localBusiness = {
                 ["First impressions", "Is it clear what you do, and who for, within five seconds?"],
                 ["Showing up on Google", "Are you found for the searches that matter locally?"],
                 ["Enquiry blockers", "What's stopping visitors picking up the phone?"],
-                ["Mobile, speed and security", "The unglamorous stuff that quietly costs you customers."],
+                ["Mobile, speed and security", "The unglamorous stuff that costs you customers."],
               ].map(([b, t]) => (
                 <li>
                   <span class="tick"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M2.5 8.5l3.5 3.5 7.5-8" /></svg></span>
@@ -266,11 +265,12 @@ const localBusiness = {
         { label: "I'm paying too much for my website", value: "support_care", key: "cost" },
         { label: "I can't get hold of my developer", value: "support_care", key: "ghost" },
         { label: "I'm a new business and need a website", value: "new_website", key: "new" },
+        { label: "I just need some support with my website", value: "support_care", key: "support" },
       ],
     }}
   >
     <div class="me rv">
-      <div class="polar"><Img src="/images/steve.jpg" alt="Steve Marks" sizes="150px" widths={[150, 300]} /><span>That's me, Steve</span></div>
+      <div class="polar"><Img src="/images/steve/portrait.webp" alt="Steve Marks" sizes="150px" widths={[150, 300]} /><span>That's me, Steve</span></div>
       <p><strong>You'll deal with me, start to finish.</strong> No account managers, no handing you off to a junior. Tell me what's going on and I'll come back to you personally.</p>
     </div>
     <div class="callbox rv">
