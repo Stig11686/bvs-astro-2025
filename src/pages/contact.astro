@@ -8,19 +8,37 @@ import { site } from "@/site.config";
 ---
 
 <Base
-  title="Contact BVS Web Design | Web Designer in Skipton & Keighley"
-  description="Ready to turn your website into your best salesperson? Tell me a bit about your project and I'll get back to you within one working day."
+  title="Contact BVS Web Design | Web Designer in Skipton"
+  description="Get in touch with Steve at BVS Web Design. Send a message or book a free 30-minute call, and you'll hear back personally within one working day."
 >
   <PageHero
-    title="Let's have a | proper *chat.*"
-    lede="Tell me what's going on with your website. You'll hear back from me personally, usually within one working day. No account managers, no hard sell."
+    title="Get in | *touch.*"
+    lede="Two ways to start: send me a message, or book a free call at a time that suits you. Either way you'll deal with me, personally, with no hard sell."
     crumbs={[{ label: "Contact" }]}
   >
     <Fragment slot="cta">
-      <Button href={site.introCall} kind="acc">Book an Intro Call</Button>
-      <a class="tlink" href="#contact">Or send a message ↓</a>
+      <Button href="#contact" kind="acc" arrow="↓">Send a Message</Button>
+      <a class="tlink" href={site.introCall} target="_blank" rel="noopener">Or book a free call →</a>
     </Fragment>
   </PageHero>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="xsell" style="margin-top:0">
+        <a class="xcard" href="#contact">
+          <div class="tag2">Send a message<span>↓</span></div>
+          <h3>Tell me what's going on, in your own time.</h3>
+          <p>Fill in the form below. A few lines is plenty. I'll reply personally within one working day.</p>
+        </a>
+        <a class="xcard" href={site.introCall} target="_blank" rel="noopener">
+          <div class="tag2">Book a call<span>→</span></div>
+          <h3>Rather talk it through?</h3>
+          <p>Pick a time for a free 30-minute video call. A proper conversation about your business, with no deck and no sales pitch.</p>
+        </a>
+      </div>
+      <p class="rv" style="margin-top:28px;color:var(--iron)">Prefer email? <a href={`mailto:${site.email}`}>{site.email}</a></p>
+    </div>
+  </section>
 
   <section class="sec contact" id="contact">
     <div class="wrap">
@@ -29,8 +47,8 @@ import { site } from "@/site.config";
         <p class="lede rv" style="margin-top:24px">You don't need to have it all figured out. A few lines on where your website is now and what you'd like it to do is plenty.</p>
         <AsideList />
         <div class="callbox rv">
-          <div><b>Rather talk it through?</b><span>Book a free 30-minute intro call.</span></div>
-          <Button href={site.introCall} kind="light">Book an Intro Call</Button>
+          <div><b>Rather talk it through?</b><span>Book a free 30-minute call.</span></div>
+          <Button href={site.introCall} kind="light">Book a Call</Button>
         </div>
       </div>
       <ContactForm fields={["business", "phone", "website"]} />

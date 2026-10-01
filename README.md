@@ -66,3 +66,15 @@ Enquiry forms post JSON to the CRM (`site.enquiryEndpoint` in `src/site.config.t
 ## Analytics and cookies
 
 Google Analytics runs in Consent Mode. Nothing is stored until a visitor clicks "Accept analytics" in the cookie banner. They can change their mind from the "Cookies" link in the footer.
+
+Events sent (see `trackEvent` in `src/scripts/site.ts`):
+
+| Event | When | Useful parameters |
+| --- | --- | --- |
+| `generate_lead` | A form is sent successfully | `form_name` (contact_form, contact_form_home, care_plan_enquiry, audit_quick_form, solicitor_audit), `service_type` |
+| `book_call_click` | Any TidyCal booking link is clicked | `link_text`, `page_path` |
+| `cta_click` | A main button or text link is clicked | `link_text`, `link_url`, `page_path` |
+| `email_click` | The email address is clicked | `page_path` |
+| `sign_up` | Newsletter sign-up | `method` |
+
+In GA, mark `generate_lead` and `book_call_click` as key events (Admin → Events).

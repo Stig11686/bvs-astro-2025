@@ -51,8 +51,8 @@ const storyLink =
   <PageHero title={d.heroHeadline} lede={d.heroExcerpt} crumbs={[{ label: `Web design in ${d.location}` }]}>
     <p class="eyebrow" slot="above"><span class="bvs-dot"></span>WordPress web designer · {d.location}, {d.region}</p>
     <Fragment slot="cta">
-      <Button href={site.introCall} kind="acc">Book an Intro Call</Button>
-      <a class="tlink" href="#contact">Send a Message →</a>
+      <Button href="#contact" kind="acc">Get in Touch</Button>
+      <a class="tlink" href={site.introCall} target="_blank" rel="noopener">Or book a call →</a>
     </Fragment>
     <div class="factcard" slot="aside">
       <Img src={d.heroImage} alt={d.heroImageAlt} sizes="(min-width: 1000px) 400px, 90vw" widths={[400, 800]} style="aspect-ratio:4/5;object-position:70% 30%" />

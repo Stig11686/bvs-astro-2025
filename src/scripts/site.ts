@@ -341,6 +341,27 @@ function burst(el: Element) {
 // Forms. Enquiries go to the CRM with the same fields the old site sent:
 // name, email, website, service_type, message, privacy_agreed.
 // Extra details (business, phone, situation) are added to the message.
+// Google Analytics events. Nothing is sent unless the visitor accepted analytics
+// (Consent Mode handles that). In GA, mark generate_lead as a key event.
+const trackEvent = (name: string, params: Record<string, string> = {}) =>
+  (window as any).gtag?.("event", name, { page_path: location.pathname, ...params });
+const formName = (form: HTMLFormElement) =>
+  form.dataset.track ||
+  (form.classList.contains("aform") ? "audit_quick_form"
+    : location.pathname === "/" ? "contact_form_home"
+    : location.pathname.startsWith("/services/website-support") ? "care_plan_enquiry"
+    : "contact_form");
+
+document.addEventListener("click", (e) => {
+  const a = (e.target as Element).closest<HTMLAnchorElement>("a[href]");
+  if (!a) return;
+  const href = a.getAttribute("href") ?? "";
+  const text = ((a.querySelector(".lbl, h3") ?? a).textContent ?? "").replace(/[→↓↗]/g, "").replace(/\s+/g, " ").trim().slice(0, 80);
+  if (href.includes("tidycal.com")) trackEvent("book_call_click", { link_text: text, link_url: href });
+  else if (href.startsWith("mailto:")) trackEvent("email_click", { link_text: text });
+  else if (a.matches(".btn, .hdr-cta, .tlink, .xcard, .wend")) trackEvent("cta_click", { link_text: text, link_url: href });
+});
+
 const val = (f: HTMLFormElement, n: string) => ((f.elements.namedItem(n) as HTMLInputElement | null)?.value ?? "").trim();
 const withScheme = (u: string) => (!u || /^https?:\/\//i.test(u) ? u : `https://${u}`);
 
@@ -380,6 +401,7 @@ $$<HTMLFormElement>("form[data-enquiry]").forEach((form) =>
         privacy_agreed: "Agreed",
       });
       form.classList.add("done");
+      trackEvent("generate_lead", { form_name: formName(form), service_type: sel?.value || form.dataset.service || "not_sure" });
       setLabel(btn, "Sent ✓");
       if (btn) burst(btn);
       form.reset();
@@ -407,6 +429,7 @@ $$<HTMLFormElement>("form[data-audit-request]").forEach((form) =>
     };
     try {
       const result = await post(site.auditEndpoint, data);
+      trackEvent("generate_lead", { form_name: "solicitor_audit" });
       const first = data.name.split(" ")[0];
       location.href = result.redirect || `/solicitor-audit-thank-you/?name=${encodeURIComponent(first)}`;
     } catch {
@@ -426,6 +449,7 @@ $$<HTMLFormElement>("form[data-subscribe]").forEach((form) =>
     try {
       await post("/.netlify/functions/subscribe", { firstName: val(form, "firstName"), email: val(form, "email") });
       form.classList.add("done");
+      trackEvent("sign_up", { method: "newsletter" });
       setLabel(btn, "Subscribed ✓");
       if (btn) burst(btn);
     } catch {

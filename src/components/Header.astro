@@ -11,7 +11,7 @@ const isCurrent = (href: string) => (href === "/" ? path === "/" : path.startsWi
   <div class="wrap">
     <Brand />
     <div class="hdr-r">
-      <Button href={site.introCall} kind="acc" class="hdr-cta">Book an Intro Call</Button>
+      <Button href="/contact/" kind="acc" class="hdr-cta">Get in Touch</Button>
       <button class="mbtn mag" id="mbtn" aria-expanded="false" aria-controls="menu"
         ><span class="lbl" id="mlbl">Menu</span><span class="dots"><i></i><i></i></span></button
       >
@@ -36,8 +36,8 @@ const isCurrent = (href: string) => (href === "/" ? path === "/" : path.startsWi
     </ul>
     <div class="mfoot">
       <div>
-        <b>Fancy a chat first?</b>30 minutes, free, no hard sell.
-        <div style="margin-top:16px"><Button href={site.introCall} kind="light">Book an Intro Call</Button></div>
+        <b>Fancy a chat?</b>Send me a message or book a free call. No hard sell.
+        <div style="margin-top:16px"><Button href="/contact/" kind="light">Get in Touch</Button></div>
       </div>
       <div>
         <b>Based in Skipton</b>Working with businesses across Yorkshire and the UK.
