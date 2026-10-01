@@ -25,7 +25,6 @@ const year = new Date().getFullYear();
       <ul>
         <li><a href={site.introCall} target="_blank" rel="noopener">Book an intro call</a></li>
         <li><a href="/contact/">Contact form</a></li>
-        <li><a href={site.phoneHref}>{site.phone}</a></li>
         <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
         {site.social.map((s) => <li><a href={s.url} target="_blank" rel="noopener">{s.label}</a></li>)}
       </ul>

@@ -1,10 +1,12 @@
 ---
 title: Who Actually Owns Your Website? What Every Small Business Owner Needs to Know
 description: >-
-  If your web designer registered your domain, you may not own your website at all. Here's what to check, what
-  to watch out for, and how a good designer should work.
+  If your web designer registered your domain, you may not own your website at all. What to check, what to
+  watch out for, and how a good designer should work.
 metaTitle: Who Owns My Website? What Small Business Owners Need to Know | BVS Web Design
-metaDescription: "Think you own your website? If your designer registered your domain, you might not. What to check, and what good looks like."
+metaDescription: >-
+  Think you own your website? If your designer registered your domain, you might not. What to check, and what
+  good looks like.
 image: /images/blog/domain.jpg
 keywords:
   - who owns my website
@@ -25,25 +27,25 @@ tags:
 draft: false
 ---
 
-I was speaking to a client recently — repeat business, always a good sign — and she told me something that made my stomach turn.
+I was speaking to a client recently (repeat business, always a good sign) and she told me something that made my stomach turn.
 
-A friend of hers had been paying up to £300 a month for basic website edits. On a side hustle. When she finally said enough is enough and told the agency she didn't need any more work done, they quietly renewed her domain without asking. Then quoted her £250 to transfer it out.
+A friend of hers had been paying up to £300 a month for basic website edits. On a side hustle. When she finally said enough is enough and told the agency she didn't need any more work done, they renewed her domain without asking. Then quoted her £250 to transfer it out.
 
 I've asked to be put in touch.
 
-That story isn't as unusual as it should be. The web design industry has a reputation problem, and situations like this are a big part of why. So I want to explain exactly what you should own, what you should have access to, and what to watch out for — whether you're looking for a designer now or already working with one.
+That story isn't as unusual as it should be. The web design industry has a reputation problem, and situations like this are a big part of why. So I want to explain exactly what you should own, what you should have access to, and what to watch out for, whether you're looking for a designer now or already working with one.
 
 ---
 
-## What Does "Owning Your Website" Actually Mean?
+## What Does "Owning Your Website" Mean?
 
 Your website is made up of several separate things, and each one can be controlled by a different person. Most clients don't realise this until something goes wrong.
 
-**Your domain** (e.g. yourbusiness.co.uk) is your address on the internet. It should be registered in your name, with login credentials only you hold. If your designer registered it in their own account, they legally control it — not you. And as the story above shows, that matters enormously the moment the relationship ends.
+**Your domain** (e.g. yourbusiness.co.uk) is your address on the internet. It should be registered in your name, with login credentials only you hold. If your designer registered it in their own account, they legally control it, not you. And as the story above shows, that matters enormously the moment the relationship ends.
 
-**Your hosting** is where your website's files actually live. You should either have your own hosting account, or at minimum have login access to wherever your site is hosted.
+**Your hosting** is where your website's files live. You should either have your own hosting account, or at minimum have login access to wherever your site is hosted.
 
-**Your website files** — the code, images, database, everything that makes it work — should be available to you on request. Always.
+**Your website files** (the code, images, database, everything that makes it work) should be available to you on request. Always.
 
 **Your admin login** to WordPress (or whatever platform you're on) should be yours from day one.
 
@@ -53,11 +55,11 @@ If you don't have access to all of the above, you don't fully own your website.
 
 ## The Tactics That Trap People
 
-Some of this happens deliberately. Some of it is carelessness that conveniently benefits the designer. Either way, here's what to watch out for.
+Some of this happens deliberately. Some of it is carelessness that conveniently benefits the designer. Either way, watch out for these.
 
-**Domain registered in the agency's name.** The most common issue — and the most damaging. If the domain is in their account, they control it. Transferring it away requires their cooperation, and some make that very expensive indeed.
+**Domain registered in the agency's name.** The most common issue, and the most damaging. If the domain is in their account, they control it. Transferring it away requires their cooperation, and some make that very expensive indeed.
 
-**No client access to hosting.** If you can't log in to where your site lives, you're dependent on them for everything — updates, changes, backups, and eventually leaving.
+**No client access to hosting.** If you can't log in to where your site lives, you're dependent on them for everything: updates, changes, backups, and eventually leaving.
 
 **Auto-renewing services without telling you.** Renewing a domain or hosting plan without asking, then using that renewal as leverage, is not an admin oversight. It's a tactic.
 
@@ -65,17 +67,17 @@ Some of this happens deliberately. Some of it is carelessness that conveniently 
 
 ---
 
-## How I Work — and Why It's Different
+## How I Work, and Why It's Different
 
 I'm not going to pretend every designer does this badly. But I do think it's worth being specific about how I work, because transparency is easy to claim and harder to demonstrate.
 
-**Your domain is yours.** I'll store it for you or walk you through buying it yourself — either way, it's in your name and you hold the credentials.
+**Your domain is yours.** I'll store it for you or walk you through buying it yourself. Either way, it's in your name and you hold the credentials.
 
-**The contract you sign protects you.** Not just me. It sets out exactly what you're paying, what you get, and what happens if either of us wants to move on. It's written to be readable, not to bury things in small print — and it protects you from the kind of practices described above.
+**The contract you sign protects you.** Not only me. It sets out exactly what you're paying, what you get, and what happens if either of us wants to move on. It's written to be readable, not to bury things in small print, and it protects you from the kind of practices described above.
 
 **My pricing is straightforward.** A yearly fee covers hosting and updates. Anything else is agreed and quoted separately before any work starts. No surprises on the invoice.
 
-**Leaving is easy.** One month's notice. I'll make sure your new supplier has everything they need to keep you up and running without missing a beat. The goal is to do work good enough that you want to stay — not to make leaving difficult enough that you feel you have to.
+**Leaving is easy.** One month's notice. I'll make sure your new supplier has everything they need to keep you up and running without missing a beat. The goal is to do work good enough that you want to stay, not to make leaving difficult enough that you feel you have to.
 
 It's not difficult to behave ethically. It can just be difficult to find someone who does.
 
@@ -97,20 +99,20 @@ A good designer will answer all of these without hesitation. A bad one will stal
 
 ## If You're Already in This Situation
 
-If you're not sure who controls your domain or hosting right now, here's where to start.
+If you're not sure who controls your domain or hosting right now, start here.
 
-Check your emails for the original domain registration confirmation — it'll show whose account it was registered to. Ask your designer directly for your login credentials. If they stall or make it complicated, that's your answer.
+Check your emails for the original domain registration confirmation. It'll show whose account it was registered to. Ask your designer directly for your login credentials. If they stall or make it complicated, that's your answer.
 
 For .co.uk domains, you can check registrant details via [Nominet's WHOIS tool](https://www.nominet.uk/whois/). If the registrant isn't you or your business, you'll want to address that sooner rather than later.
 
-If you're being charged to access something you've already paid for, you don't have to accept it. Get a second opinion — and if necessary, seek advice from Trading Standards.
+If you're being charged to access something you've already paid for, you don't have to accept it. Get a second opinion and, if necessary, seek advice from Trading Standards.
 
 ---
 
 ## Final Thought
 
-The best client relationships in this industry are built on trust, not dependency. A client who feels looked after and in control comes back. A client who feels trapped leaves the moment they can — and tells people about it.
+The best client relationships in this industry are built on trust, not dependency. A client who feels looked after and in control comes back. A client who feels trapped leaves the moment they can, and tells people about it.
 
-If you're not sure whether you actually own your website, I'm happy to take a look and give you a straight answer. No catch.
+If you're not sure whether you own your website, I'm happy to take a look and give you a straight answer. No catch.
 
 [Get in touch →](/contact/)

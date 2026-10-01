@@ -8,7 +8,7 @@ industryPlural: Hotels
 heroEyebrow: Hotel & B&B Website Design
 heroHeadline: Hotel and B&B website design for more *direct bookings.*
 heroExcerpt: >-
-  I'm Steve — I design and build WordPress websites for hotels, B&Bs, and guest houses. Not a template with
+  I'm Steve. I design and build WordPress websites for hotels, B&Bs, and guest houses. Not a template with
   your logo slapped on. Strategy, design, build, launch, and ongoing care. All from one person who understands
   hospitality.
 heroImage: /images/portfolio/the-coach-house-skipton.png
@@ -23,12 +23,12 @@ whyPoints:
   - Designed to compete with Booking.com and Expedia listings
   - Room galleries and availability that look professional
   - Local SEO to capture 'hotels near me' searches
-  - Mobile-first — because most guests book on their phone
+  - Mobile-first, because most guests book on their phone
   - Fast, secure, and built to handle peak season traffic
 includesHeadline: What's included
 includes:
   - title: Discovery & strategy session
-    text: I start with your business — your rooms, your guests, your competitive landscape
+    text: 'I start with your business: your rooms, your guests, your local competition'
   - title: Custom design
     text: Not a hotel template. A site designed around your property and your booking flow
   - title: Booking integration
@@ -42,7 +42,7 @@ includes:
   - title: Editor training video
     text: So you can update rates, rooms, and content yourself
   - title: Support after launch
-    text: I don't disappear at handover — ongoing care plans available
+    text: Ongoing care plans, so I don't disappear at handover
 portfolioText: Hotels and hospitality businesses I've helped reduce OTA dependency and drive direct bookings.
 portfolioSlugs:
   - the-coach-house-skipton
@@ -51,8 +51,8 @@ successStory:
   business: The Coach House
   location: Skipton
   text: >-
-    A Skipton institution that had no website at all — every booking came through Booking.com and Expedia,
-    each one taking a cut. We built a site that drives direct bookings weekly, cutting out the middleman and
+    A Skipton institution that had no website at all. Every booking came through Booking.com and Expedia, each
+    one taking a cut. We built a site that drives direct bookings weekly, cutting out the middleman and
     putting more money back in their pocket.
   metrics:
     - value: 0→1
@@ -73,13 +73,13 @@ faq:
   - question: How much does a hotel website cost?
     answer: >-
       Hotel websites start at £2,000 due to the complexity of booking integration and room showcases. I quote
-      every project properly once I understand what you need — number of rooms, booking system requirements,
-      and whether you need PMS integration. You'll know the full price before I start.
+      every project once I understand what you need: number of rooms, booking system requirements, and whether
+      you need PMS integration. You'll know the full price before I start.
   - question: Can you integrate with my booking system?
     answer: >-
       Yes. I work with most major property management systems and booking engines. Whether you use Freetobook,
-      eviivo, Little Hotelier, or something else — we can integrate it properly so guests can check
-      availability and book direct.
+      eviivo, Little Hotelier, or something else, we can integrate it so guests can check availability and
+      book direct.
   - question: Will it help me compete with Booking.com?
     answer: >-
       That's the whole point. Your website should appear alongside OTA listings in search results, and when
@@ -88,7 +88,7 @@ faq:
   - question: How long does it take?
     answer: >-
       Most hotel builds take 4-6 weeks from our first call to launch. The variable is usually photography,
-      content, and booking system setup — not the build itself. I'll give you an honest timeline up front.
+      content, and booking system setup, not the build itself. I'll give you an honest timeline up front.
   - question: Will I be able to update it myself?
     answer: >-
       Yes. I build on WordPress so you can update room rates, add seasonal offers, change photos, and manage
@@ -96,6 +96,6 @@ faq:
       yourself.
   - question: What about hosting and domains?
     answer: >-
-      I handle both. Your domain is registered in your name — you own it. Hosting is fast, secure, and
-      managed. Everything is yours to take with you if you ever want to leave. No lock-in, no hostage fees.
+      I handle both. I register your domain in your name, so you own it. Hosting is fast, secure, and managed.
+      Everything is yours to take with you if you ever want to leave. No lock-in, no hostage fees.
 ---

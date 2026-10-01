@@ -7,9 +7,9 @@ location: Yorkshire
 region: North & West Yorkshire
 heroHeadline: Web design in Yorkshire for businesses that want more *enquiries.*
 heroExcerpt: >-
-  I'm Steve — I design and build WordPress websites for service businesses across Yorkshire. Not templated,
-  not outsourced. Strategy, design, build, launch, and ongoing care. All from one person who actually picks up
-  the phone.
+  I'm Steve. I design and build WordPress websites for service businesses across Yorkshire. Not templated, not
+  outsourced. Strategy, design, build, launch, and ongoing care. All from one person who actually picks up the
+  phone.
 heroImage: /images/steve-1.jpg
 heroImageAlt: Steve Marks - Web designer serving Yorkshire businesses
 resultsHeadline: A website that works while you're busy serving customers.
@@ -33,7 +33,7 @@ features:
   - title: Built to convert
     text: Designed around getting enquiries, not just looking good. Every page has a job to do.
   - title: WordPress, no lock-in
-    text: You own everything — domain, hosting, files. Move it whenever you want. No hostage situations.
+    text: 'You own everything: domain, hosting, files. Move it whenever you want. No hostage situations.'
   - title: Local understanding
     text: >-
       Based in Skipton, I work with businesses across North and West Yorkshire. I know the area and the
@@ -43,7 +43,7 @@ features:
   - title: Ongoing support
     text: I don't disappear at launch. Website care plans keep your site secure, backed up, and looked after.
 portfolioText: >-
-  From dental practices to bridal boutiques, beauty clinics to hospitality — these are some of the Yorkshire
+  From dental practices to bridal boutiques, beauty clinics to hospitality: these are some of the Yorkshire
   businesses I've helped get found and get enquiries.
 portfolioSlugs:
   - ilkley-dental-care
@@ -54,8 +54,7 @@ successStory:
   location: Ilkley
   text: >-
     A dental practice that went from a broken contact form and zero web enquiries to 30+ enquiries every
-    month. Trust-critical, compliance-heavy work where every detail counts — rebuilt to actually generate
-    business.
+    month. Trust-critical, compliance-heavy work where every detail counts, rebuilt to generate business.
   metrics:
     - value: 30+
       label: Enquiries per month
@@ -79,31 +78,31 @@ faqText: Answers to the questions I hear most often from Yorkshire businesses. I
 faq:
   - question: How much does a website cost?
     answer: >-
-      Projects start at £2,000, and I quote every one properly once I understand what you need — so there's no
-      surprise invoice and no day-rate meter ticking over. What moves the number is scope: how many pages,
-      whether you're selling online, how much is built from scratch. You'll know the full price before I start
-      a thing.
+      Projects start at £2,000, and I quote every one once I understand what you need, so there's no surprise
+      invoice and no day-rate meter ticking over. What moves the number is scope: how many pages, whether
+      you're selling online, how much is built from scratch. You'll know the full price before I start a
+      thing.
   - question: Why start at £2,000 when I've been quoted a few hundred?
     answer: >-
-      Because a £300 website and a £2,000 website aren't the same product at different prices — they're
+      Because a £300 website and a £2,000 website aren't the same product at different prices. They're
       different things. The cheap one is usually a template filled in fast, with no thought to whether it
       ranks or turns visitors into enquiries. Mine are designed around getting you work and built to last.
   - question: How long does it take?
     answer: >-
-      Most builds run a few weeks from our first call to launch — the variable is usually how quickly content
+      Most builds run a few weeks from our first call to launch. The variable is usually how quickly content
       and photos come together, not the build itself. I'll give you an honest timeline up front.
   - question: Will I be able to update it myself?
     answer: >-
       Yes. I hand-build on WordPress partly so you're never held hostage for a simple text change. You get a
-      training video and a site you can actually edit — swap images, change copy, add a page. I'm there when
+      training video and a site you can edit yourself: swap images, change copy, add a page. I'm there when
       you want me, not because you're stuck.
   - question: Where in Yorkshire do you work?
     answer: >-
-      I'm based in Skipton and work with businesses across North Yorkshire, West Yorkshire, and beyond — York,
+      I'm based in Skipton and work with businesses across North Yorkshire, West Yorkshire, and beyond: York,
       Ilkley, Harrogate, Keighley, Leeds, Bradford. Plenty of the work happens remotely via video calls. Where
       you are matters far less than whether we're a good fit.
   - question: What about hosting and domains?
     answer: >-
-      I handle both. Your domain is registered in your name — you own it. Hosting is fast, secure, and
-      managed. Everything is yours to take with you if you ever want to leave. No lock-in, no hostage fees.
+      I handle both. I register your domain in your name, so you own it. Hosting is fast, secure, and managed.
+      Everything is yours to take with you if you ever want to leave. No lock-in, no hostage fees.
 ---

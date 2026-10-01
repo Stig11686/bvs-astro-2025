@@ -16,11 +16,11 @@ Phil and Owen, the owners of **[Ilkley Dental Care](https://www.ilkleydentalcare
 
 ## The Challenge: A Website That Did More Harm Than Good
 
-Patients found it difficult to navigate, and enquiries were rare. Worse, their reception staff spent hours answering basic questions over the phone-time that could have been spent supporting patients in person.
+Patients found it difficult to navigate, and enquiries were rare. Worse, their reception staff spent hours answering basic questions over the phone: time that could have been spent supporting patients in person.
 
 Phil and Owen summed it up: *"We were ready to give up on the website altogether."*
 
-## The Solution: A Patient-Centered Redesign
+## The Solution: A Patient-Centred Redesign
 
 I worked with them to create a **professional dental website** designed for both patients and the practice team.
 
@@ -28,7 +28,7 @@ I worked with them to create a **professional dental website** designed for both
 - **Clear navigation** so patients could find treatments and information easily
 - **Mobile-friendly layout** to suit patients browsing on their phones
 - **Online enquiry forms** to reduce pressure on the phones
-- **Local SEO optimization** to make sure they appeared in Ilkley searches
+- **Local SEO optimisation** to make sure they appeared in Ilkley searches
 
 ## The Results: More Patients, Less Pressure
 
@@ -38,7 +38,7 @@ I worked with them to create a **professional dental website** designed for both
 
 ## Takeaway  
 
-Ilkley Dental Care's story proves that a dental website can be more than just a brochure—it can be a lead generator and time-saver.  
+Ilkley Dental Care's story proves that a dental website can be more than a brochure. It can be a lead generator and time-saver.  
 
 👉 If your practice needs the same transformation, [book a free consultation today](/contact/).
 
@@ -46,6 +46,6 @@ Ilkley Dental Care's story proves that a dental website can be more than just a 
 
 ## Related Reading
 
-- [Dental Website Design Services](/services/dental-web-design/) — Professional websites for dentists and dental practices
-- [View the Ilkley Dental Care Project](/portfolio/ilkley-dental-care/) — See the full portfolio case study
-- [Bridal Website Design — Maidens and Ravens](/blog/bridal-website-design-maidens-and-ravens/) — How we helped a bridal boutique grow to 1,000+ monthly visitors
+- [Dental Website Design Services](/services/dental-web-design/): Professional websites for dentists and dental practices
+- [View the Ilkley Dental Care Project](/portfolio/ilkley-dental-care/): See the full portfolio case study
+- [Bridal Website Design: Maidens and Ravens](/blog/bridal-website-design-maidens-and-ravens/): How we helped a bridal boutique grow to 1,000+ monthly visitors

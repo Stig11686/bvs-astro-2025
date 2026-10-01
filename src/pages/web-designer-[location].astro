@@ -45,7 +45,7 @@ const storyLink =
     name: `Web design in ${d.location}`,
     description: d.metaDescription,
     areaServed: { "@type": "Place", name: `${d.location}, ${d.region}` },
-    provider: { "@type": "ProfessionalService", name: site.name, url: site.url, telephone: "+447521917508", address: { "@type": "PostalAddress", addressLocality: "Skipton", addressRegion: "North Yorkshire", addressCountry: "GB" } },
+    provider: { "@type": "ProfessionalService", name: site.name, url: site.url, address: { "@type": "PostalAddress", addressLocality: "Skipton", addressRegion: "North Yorkshire", addressCountry: "GB" } },
   }}
 >| BVS Web Design`} description={d.metaDescription}>
   <PageHero title={d.heroHeadline} lede={d.heroExcerpt} crumbs={[{ label: `Web design in ${d.location}` }]}>

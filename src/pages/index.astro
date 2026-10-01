@@ -23,6 +23,11 @@ const workOrder = [
 const allWork = await getWork();
 const work = workOrder.map((slug) => allWork.find((w) => w.id === slug)).filter((w) => w !== undefined);
 const posts = (await getPosts()).slice(0, 3);
+const carePlans = [
+  { name: "Essentials", promise: "I keep it running", price: "£35" },
+  { name: "Active", promise: "I keep it right", price: "£99" },
+  { name: "Growth", promise: "I keep it improving", price: "£249" },
+];
 
 const reasons = [
   { n: "01", title: "I've lost faith in my website.", text: "It looks fine, but the phone isn't ringing and you can't work out why. I'll go through it properly, find what's holding it back and fix it. A free audit is the easiest place to start.", pick: "lost", stamp: "Start with a free audit" },
@@ -37,7 +42,6 @@ const localBusiness = {
   name: site.name,
   url: site.url,
   image: `${site.url}/og-image.jpg`,
-  telephone: "+447521917508",
   email: site.email,
   priceRange: "££",
   address: { "@type": "PostalAddress", addressLocality: "Skipton", addressRegion: "North Yorkshire", postalCode: "BD23", addressCountry: "GB" },
@@ -49,7 +53,7 @@ const localBusiness = {
 
 <Base
   title="Web Designer in Skipton, North Yorkshire | BVS Web Design"
-  description="Website designer in Skipton, North Yorkshire. WordPress websites for small businesses, built to bring in enquiries and looked after by Steve. Free audit."
+  description="Website designer in Skipton, North Yorkshire. Websites and care plans for service businesses: more enquiries, more bookings, and a site that stays looked after."
   schema={localBusiness}
 >
   <section class="hero">
@@ -73,22 +77,24 @@ const localBusiness = {
           ><b>↗</b></a
         >
       </div>
-      <h1 class="eyebrow hero-eyebrow"><span class="bvs-dot"></span>Web designer in Skipton, North Yorkshire</h1>
-      <p class="dh hero-h">
-        <span class="ln"><span>Websites that</span></span>
-        <span class="ln"><span><span class="it">earn</span> their</span></span>
+      <p class="eyebrow hero-eyebrow"><span class="bvs-dot"></span>Web design &amp; care plans · Skipton, North Yorkshire</p>
+      <h1 class="dh hero-h hero-h--long">
+        <span class="ln"><span>Websites designed in</span></span>
+        <span class="ln"><span>Skipton to bring in</span></span>
+        <span class="ln"><span><span class="it">more enquiries,</span></span></span>
+        <span class="ln"><span>and cared for like</span></span>
         <span class="ln"
           ><span class="sq"
-            >keep.<svg viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"
+            >they were my own.<svg viewBox="0 0 300 30" preserveAspectRatio="none" aria-hidden="true"
               ><path id="squig" d="M4 18 C 40 4, 70 28, 110 14 S 180 4, 220 16 S 280 22, 296 10"></path></svg
             ></span
           ></span
         >
-      </p>
+      </h1>
       <div class="hero-side">
         <p class="lede">
-          I'm Steve, a website designer in Skipton. I design, build and look after WordPress websites for small businesses across Yorkshire. They bring in
-          enquiries, and when you need me, I pick up.
+          I'm Steve, a website designer in Skipton. I build websites for service businesses across North Yorkshire and the UK, then look after them so
+          they keep bringing work in.
         </p>
         <div class="hero-cta">
           <Button href={site.introCall} kind="acc">Book an Intro Call</Button>
@@ -147,6 +153,32 @@ const localBusiness = {
       <div class="track" id="track">
         {work.map((w) => <WorkCard work={w} />)}
         <a class="wend" href="/portfolio/">See all<br />my work<em>→</em></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec care-home" id="care">
+    <div class="wrap">
+      <div class="split">
+        <h2 class="dh sh rv">A website needs looking after, and <span class="it">it can keep improving.</span></h2>
+        <div class="prose-lg rv">
+          <p>Some sites need keeping safe and up to date. Some need changes as the business changes. Some should bring in more enquiries every month. Each care plan covers one of those, handled by me in Skipton.</p>
+          <p style="margin-top:22px"><a class="tlink" href="/services/website-support/">Compare the care plans →</a></p>
+        </div>
+      </div>
+      <div class="ladder">
+        {
+          carePlans.map((c, i) => (
+            <a class={`rung tone-${["blue", "acc", "navy"][i]} rv`} href="/services/website-support/#plans">
+              <span class="n">{String(i + 1).padStart(2, "0")}</span>
+              <div>
+                <h3>{c.name}</h3>
+                <p>{c.promise}</p>
+                <p class="from">From {c.price} a month</p>
+              </div>
+            </a>
+          ))
+        }
       </div>
     </div>
   </section>

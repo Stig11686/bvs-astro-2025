@@ -2,7 +2,7 @@
 title: Blog Traffic Means Nothing If Nobody Enquires. Here's How I Fix That.
 description: >-
   Getting someone to read an article is the easy part. Getting them to enquire requires a deliberate process
-  that most websites simply don't have.
+  that most websites don't have.
 metaTitle: How I Turn Blog Traffic Into Actual Enquiries | BVS Web Design
 metaDescription: >-
   Blog traffic that never turns into enquiries is common. How I connect blog posts to services so readers get
@@ -30,9 +30,9 @@ Most businesses treat their blog as a box-ticking exercise. Post something, shar
 
 The traffic arrives. Nothing happens. Repeat.
 
-The problem isn't the writing. It's that the blog was never designed to do anything beyond exist. Getting someone to read an article is the easy part. Getting them to take the next step — to actually get in touch — requires a deliberate process that most websites simply don't have.
+The writing is fine. The blog was never designed to do anything beyond exist. Getting someone to read an article is the easy part. Getting them to take the next step and get in touch requires a deliberate process that most websites don't have.
 
-Here's how I approach it differently.
+I approach it differently.
 
 ---
 
@@ -44,35 +44,35 @@ There's a meaningful difference.
 
 A topic-led post might be: _"5 Things to Know About SEO."_ Informative, perhaps. But it doesn't attract anyone in particular, and it doesn't speak to anyone's specific situation.
 
-A problem-led post targets someone at a specific moment — someone who has just Googled _"why isn't my website bringing in enquiries"_ or _"how do I get more leads from my website."_ That person isn't browsing. They have a real problem and they're actively looking for someone who understands it.
+A problem-led post targets someone at a specific moment: someone who has just Googled _"why isn't my website bringing in enquiries"_ or _"how do I get more leads from my website."_ That person isn't browsing. They have a real problem and they're actively looking for someone who understands it.
 
-That's the reader worth writing for. And when the post speaks directly to their situation, something shifts: they don't just read it and leave. They start wondering whether you're the person who can help them.
+That's the reader worth writing for. And when the post speaks directly to their situation, something shifts: they don't read it and leave. They start wondering whether you're the person who can help them.
 
 ---
 
-## Step 2: Write About What You Actually Sell
+## Step 2: Write About What You Sell
 
 This sounds obvious. It rarely happens in practice.
 
-Most business blogs drift. Posts get written because someone had an idea, or because a competitor wrote something similar, or because "we need to post something this month." The connection between what gets published and what the business actually does becomes loose and accidental.
+Most business blogs drift. Posts get written because someone had an idea, or because a competitor wrote something similar, or because "we need to post something this month." The connection between what gets published and what the business does becomes loose and accidental.
 
 Every post should have a clear line back to a service you offer.
 
-If you do SEO — write about why websites lose rankings, what good technical foundations look like, and what happens when meta descriptions are ignored. If you do web design — write about conversion, page structure, and why some websites generate enquiries and others don't.
+If you do SEO, write about why websites lose rankings, what good technical foundations look like, and what happens when meta descriptions are ignored. If you do web design, write about conversion, page structure, and why some websites generate enquiries and others don't.
 
-This matters for two reasons. First, you're attracting readers who have a problem you can actually solve — not just general traffic with no commercial relevance. Second, when someone reads the post and wants to go further, the natural next step is one of your service pages. The content and the offer are already aligned.
+This matters for two reasons. First, you're attracting readers who have a problem you can solve, rather than general traffic with no commercial relevance. Second, when someone reads the post and wants to go further, the natural next step is one of your service pages. The content and the offer are already aligned.
 
-A blog that isn't mapped to your services is just a publishing exercise. One that is becomes a quiet, consistent source of warm leads.
+A blog that isn't mapped to your services is a publishing exercise. One that is becomes a quiet, consistent source of warm leads.
 
 ---
 
 ## Step 3: Earn the Click Before They Even Land
 
-Getting someone to your blog post starts in the search results — and that's where most content loses before it even begins.
+Getting someone to your blog post starts in the search results, and that's where most content loses before it even begins.
 
 A generic title gets a generic result. If your post looks identical to the nine others on the same page, there's no reason to choose yours.
 
-I write titles and meta descriptions that are specific, direct, and framed around what the reader is actually trying to solve. Not clever for the sake of it. Just clearly relevant to the person searching.
+I write titles and meta descriptions that are specific, direct, and framed around what the reader is trying to solve. Not clever for the sake of it, but clearly relevant to the person searching.
 
 A realistic example of what this shift looks like in practice:
 
@@ -87,36 +87,36 @@ Same ranking position. Meaningfully more clicks.
 
 ## Step 4: Structure the Post to Build Trust, Then Create Intent
 
-Once someone is reading, the job shifts. You're no longer trying to earn the click — you're trying to earn credibility.
+Once someone is reading, the job shifts. You're no longer trying to earn the click. You're trying to earn credibility.
 
 The structure I use follows a simple logic:
 
-1. **Open with the problem** — make it clear immediately that you understand their situation
-2. **Explain why it happens** — demonstrate that you know the subject deeply
-3. **Show what good looks like** — give them something genuinely useful
-4. **Close with the implication** — make it natural to wonder whether this applies to them
+1. **Open with the problem**: make it clear immediately that you understand their situation
+2. **Explain why it happens**: demonstrate that you know the subject well
+3. **Show what good looks like**: give them something useful
+4. **Close with the implication**: make it natural to wonder whether this applies to them
 
 That final step is where most blogs fall flat. They end with nothing. No next thought, no direction, no reason to do anything other than close the tab.
 
 A post that earns trust but gives the reader nowhere to go has done half the job.
 
-Think of it this way: someone lands on your blog unaware of you, reads something that speaks directly to their situation, and finishes the post believing you know what you're talking about. That's a significant shift in their relationship with your business — but only if there's a clear path to take it further.
+Someone lands on your blog unaware of you, reads something that speaks directly to their situation, and finishes the post believing you know what you're talking about. That's a significant shift in their relationship with your business, but only if there's a clear path to take it further.
 
 ---
 
 ## Step 5: Use CTAs That Match the Moment
 
-Every post I write includes calls to action — but not the same one dropped in at the end as an afterthought.
+Every post I write includes calls to action, but not the same one dropped in at the end as an afterthought.
 
-Contextual CTAs work because they meet the reader where they are in the post. Someone halfway through an article about conversion rates isn't ready to hand over their budget. But they might be ready to learn more about how a service page audit works. Someone at the end of a detailed, trust-building post is in a very different position — and the CTA should reflect that.
+Contextual CTAs work because they meet the reader where they are in the post. Someone halfway through an article about conversion rates isn't ready to hand over their budget. But they might be ready to learn more about how a service page audit works. Someone at the end of a detailed, trust-building post is in a very different position, and the CTA should reflect that.
 
 In practice this means:
 
-- **Early in the post** — a soft, low-commitment nudge: _"If this sounds familiar, it might be worth reading how we approached it here."_
-- **Mid-post** — a relevant internal link to a service or related article
-- **End of post** — a direct, specific ask: _"If your blog is generating traffic but not enquiries, I offer a free audit that shows you exactly where you're losing people."_
+- **Early in the post**: a soft, low-commitment nudge: _"If this sounds familiar, it might be worth reading how we approached it here."_
+- **Mid-post**: a relevant internal link to a service or related article
+- **End of post**: a direct, specific ask: _"If your blog is generating traffic but not enquiries, I offer a free audit that shows you exactly where you're losing people."_
 
-The key word throughout is _specific_. A vague CTA — _"get in touch if you need help with your website"_ — requires the reader to do mental work. A specific one removes that friction entirely.
+The key word throughout is _specific_. A vague CTA (_"get in touch if you need help with your website"_) requires the reader to do mental work. A specific one removes that friction entirely.
 
 Illustrative numbers that reflect what this process produces:
 
@@ -131,13 +131,13 @@ The traffic didn't change. The process around it did.
 
 ## Step 6: Build Internal Links With Purpose
 
-Internal linking is one of the most underused tools on most business websites — and one of the most valuable when done deliberately.
+Internal linking is one of the most underused tools on most business websites, and one of the most valuable when done deliberately.
 
-The goal isn't to link for the sake of it. It's to create a logical path from a blog post to the thing you want the reader to do next.
+The goal is a logical path from a blog post to the thing you want the reader to do next.
 
-In practice, every post should link to at least one relevant service page — not tucked away at the bottom, but placed naturally at the point in the article where the reader is most likely to want more. If you're writing about why websites don't convert and you offer conversion audits, the link to that service belongs in the section where the reader is most engaged with that problem.
+In practice, every post should link to at least one relevant service page, placed naturally at the point in the article where the reader is most likely to want more rather than tucked away at the bottom. If you're writing about why websites don't convert and you offer conversion audits, the link to that service belongs in the section where the reader is most engaged with that problem.
 
-Done consistently, this does two things. It keeps readers on your site longer, moving from content into your services at their own pace. And it signals to Google that your blog and your service pages are topically connected — which strengthens the rankings of both.
+Done consistently, this does two things. It keeps readers on your site longer, moving from content into your services at their own pace. And it signals to Google that your blog and your service pages are topically connected, which strengthens the rankings of both.
 
 A post that earns attention but doesn't direct it anywhere is a missed opportunity. Internal links are how you make sure that attention goes somewhere useful.
 
@@ -145,34 +145,34 @@ A post that earns attention but doesn't direct it anywhere is a missed opportuni
 
 ## Step 7: Use the Content Beyond the Post
 
-A well-written blog post isn't a one-time asset. It's the foundation for everything else.
+A well-written blog post is the foundation for everything else.
 
 Each post gets repurposed across:
 
-- **LinkedIn** — broken into 3–5 standalone posts that each make a single, sharp point
-- **Email** — summarised for a nurture sequence that keeps past visitors warm over time
-- **Search** — optimised to attract new readers months and years after it was first published
+- **LinkedIn**: broken into 3–5 standalone posts that each make a single, sharp point
+- **Email**: summarised for a nurture sequence that keeps past visitors warm over time
+- **Search**: optimised to attract new readers months and years after it was first published
 
-This matters because most people who read your blog aren't ready to enquire today. They're researching, building a picture of who they might work with. Staying present across multiple channels means that when they are ready, you're the name they think of first.
+Most people who read your blog aren't ready to enquire today. They're researching, building a picture of who they might work with. Staying present across multiple channels means that when they are ready, you're the name they think of first.
 
 ---
 
 ## What This Looks Like in Practice
 
-This isn't a content strategy built on volume. It's built on precision.
+This content strategy is built on precision rather than volume.
 
-One well-structured post, written around a real problem your services solve, with deliberate internal links and contextual CTAs — will consistently outperform ten generic posts that exist purely to fill a content calendar.
+One well-structured post, written around a real problem your services solve, with deliberate internal links and contextual CTAs, will consistently outperform ten generic posts that exist purely to fill a content calendar.
 
 The businesses I work with aren't publishing for the sake of it. Every piece of content is doing a specific job: attracting the right reader, building the right impression, and making it easy to take the next step.
 
 ---
 
-## Want Your Blog to Actually Work?
+## Want Your Blog to Work?
 
-If you're producing content but not seeing enquiries come from it, the issue is almost certainly structural — not the quality of your writing.
+If you're producing content but not seeing enquiries come from it, the issue is almost certainly the structure, not the quality of your writing.
 
 I work with small businesses to audit what's already there, identify exactly where the process breaks down, and put in place the changes that turn readers into leads.
 
-If that sounds like a conversation worth having, get in touch below — I'll take a look at your current setup and tell you honestly where the gaps are.
+If that sounds like a conversation worth having, get in touch below. I'll take a look at your current setup and tell you honestly where the gaps are.
 
 [Get in touch →](/contact/)

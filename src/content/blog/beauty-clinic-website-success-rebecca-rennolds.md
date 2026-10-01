@@ -16,7 +16,7 @@ When Becca launched **Rebecca Rennolds Permanent Beauty and Laser**, she started
 
 ## The Challenge: Limited Reach, Big Dreams
 
-Becca's goals were ambitious-growing her treatment base, scaling into her own clinic, and building a strong reputation. But without a credible website, she struggled with:
+Becca's goals were ambitious: growing her treatment base, scaling into her own clinic, and building a strong reputation. But without a credible website, she struggled with:
 
 - **Limited trust** from potential new clients
 - **Restricted growth** through word-of-mouth alone
@@ -25,7 +25,7 @@ Becca's goals were ambitious-growing her treatment base, scaling into her own cl
 
 We created a website designed to support long-term success:
 
-- **Professional visuals and branding** to elevate her image
+- **Professional visuals and branding** to strengthen her image
 - **Service pages** explaining treatments clearly and persuasively
 - **Integrated booking system** to make client scheduling simple
 - **Local SEO targeting** so she ranked in searches for laser hair removal
@@ -39,7 +39,7 @@ We created a website designed to support long-term success:
 
 ## Takeaway  
 
-A strong website isn't an expense—it's an investment in growth.  
+A strong website is an investment in growth.  
 
 👉 Ready to take your business to the next level? [Get in touch to start your project](/contact/).
 
@@ -47,6 +47,6 @@ A strong website isn't an expense—it's an investment in growth.
 
 ## Related Reading
 
-- [View Rebecca's Website Project](/portfolio/rebecca-rennolds-permanent-beauty-and-laser/) — See the full portfolio case study
-- [Salon & Beauty Website Design Services](/services/salon-website-design/) — Elegant websites for salons, spas, and beauty clinics
-- [Bridal Website Design — Maidens and Ravens](/blog/bridal-website-design-maidens-and-ravens/) — How we helped a bridal boutique grow to 1,000+ monthly visitors
+- [View Rebecca's Website Project](/portfolio/rebecca-rennolds-permanent-beauty-and-laser/): See the full portfolio case study
+- [Salon & Beauty Website Design Services](/services/salon-website-design/): Elegant websites for salons, spas, and beauty clinics
+- [Bridal Website Design: Maidens and Ravens](/blog/bridal-website-design-maidens-and-ravens/): How we helped a bridal boutique grow to 1,000+ monthly visitors

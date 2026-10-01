@@ -26,7 +26,7 @@ We only collect personal data that you choose to provide through our contact for
   - Device type and browser information  
   - General location (city/country level, not exact addresses)  
 
-This data is collected in an anonymized or aggregated format. We do not use Google Analytics to personally identify you.  
+This data is collected in an anonymised or aggregated format. We do not use Google Analytics to personally identify you.  
 
 ---
 
@@ -35,7 +35,7 @@ This data is collected in an anonymized or aggregated format. We do not use Goog
 We use the information we collect for the following purposes:  
 
 - To respond to your inquiries sent through the contact form.  
-- To analyze website traffic and improve user experience.  
+- To analyse website traffic and improve user experience.  
 
 We only send marketing emails to people who have signed up for them. We do not sell or share your data with third parties.  
 

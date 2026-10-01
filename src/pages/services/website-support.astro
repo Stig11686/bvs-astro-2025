@@ -48,19 +48,35 @@ const covers = [
 const faq = [
   { question: "Which plan do most businesses start on?", answer: "Active. It suits any business that changes through the year, which is most of them. Essentials suits sites doing a smaller, steadier job. Growth suits businesses ready to put real work into the site every month." },
   { question: "What is the difference between Active and Growth?", answer: "On Active you decide what changes and I make it happen, plus I check the site monthly for anything that has gone out of date. On Growth I look at your data, decide what should change, build it, and report on what it did." },
-  { question: "What do I actually receive on Growth?", answer: "A report each month naming what I changed, what the numbers did, and what I am working on next. Plus the change itself, built and live." },
+  { question: "What do I receive on Growth?", answer: "A report each month naming what I changed, what the numbers did, and what I am working on next. Plus the change itself, built and live." },
   { question: "How much does website maintenance cost?", answer: "Plans start at £35 a month, or £350 for the year. The right one depends on how much you lean on your site. A site doing a small job needs less than one bringing in daily enquiries." },
   { question: "Can I move between plans?", answer: "Yes, any month. Most people start on Essentials or Active and move up when the site starts mattering more to the business." },
   { question: "Why is there a setup fee on Growth?", answer: "Improvements only mean something if you can measure them, and on most sites I take over the tracking has gaps. Month one is spent fixing that and recording where you are starting from. If I built the site, that work is done and there is no fee." },
   { question: "Do I have to commit to a year?", answer: "No. Every plan runs month to month if you prefer. The annual option exists because it is cheaper for you, and because Growth needs time to show what it is doing." },
   { question: "Do I need a care plan for a WordPress site?", answer: "Yes. WordPress and its plugins release security patches constantly, and a site left un-updated for months is the most common way small business sites get hacked or break." },
-  { question: "Do you only work with Yorkshire businesses?", answer: "I am based in Skipton and work with businesses across Yorkshire, but care plans are handled remotely so location is not a barrier. Plenty of clients I have never met in person, and their sites are looked after just the same." },
+  { question: "Do you only work with Yorkshire businesses?", answer: "I am based in Skipton and work with businesses across Yorkshire, but care plans are handled remotely so location is not a barrier. Plenty of clients I have never met in person, and I look after their sites the same way." },
 ];
 ---
 
 <Base
-  title="Website Care Plans & Maintenance Packages | BVS Web Design"
+  title="Website Maintenance & Care Plans | BVS Web Design"
   description="Website care plans for growing businesses: hosting, updates, backups and security, all handled by a real person in Skipton. From £35/month or £350/year."
+  schema={{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Website maintenance",
+    name: "Website care plans",
+    url: `${site.url}/services/website-support/`,
+    areaServed: [{ "@type": "Place", name: "Skipton" }, { "@type": "Place", name: "North Yorkshire" }, { "@type": "Country", name: "United Kingdom" }],
+    provider: { "@type": "ProfessionalService", name: site.name, url: site.url },
+    offers: plans.map((p) => ({
+      "@type": "Offer",
+      name: `${p.name} care plan`,
+      price: p.month.replace(/[£,]/g, ""),
+      priceCurrency: "GBP",
+      priceSpecification: { "@type": "UnitPriceSpecification", price: p.month.replace(/[£,]/g, ""), priceCurrency: "GBP", unitCode: "MON" },
+    })),
+  }}
 >
   <PageHero
     title="Care plans that | keep your site | *working.*"

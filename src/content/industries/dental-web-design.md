@@ -8,7 +8,7 @@ industryPlural: Dental Practices
 heroEyebrow: Dental Website Design
 heroHeadline: Dental website design that brings in *patient enquiries.*
 heroExcerpt: >-
-  I'm Steve — I design and build WordPress websites for dental practices across Yorkshire. Not a template with
+  I'm Steve. I design and build WordPress websites for dental practices across Yorkshire. Not a template with
   stock photos of smiling models. Strategy, design, build, launch, and ongoing care. All from one person who
   understands what patients need to see.
 heroImage: /images/portfolio/ilkley-dental-care.png
@@ -17,7 +17,7 @@ whyHeadline: Why dental practices need a different kind of website
 whyText: >-
   Dental websites need to build trust before a patient ever picks up the phone. They need to see your team,
   understand your approach, and feel confident they're making the right choice. Generic web designers miss
-  this — I don't.
+  this. I don't.
 whyPoints:
   - Trust-building design that converts nervous visitors
   - Team profiles and credentials front and centre
@@ -28,13 +28,13 @@ whyPoints:
 includesHeadline: What's included
 includes:
   - title: Discovery & strategy session
-    text: I start with your practice — your patients, your treatments, your competitive landscape
+    text: 'I start with your practice: your patients, your treatments, your local competition'
   - title: Custom design
     text: Not a dental template. A site designed around your practice and your patient journey
   - title: Treatment pages
     text: Clear, educational pages for each service that build confidence
   - title: Team profiles
-    text: Proper introductions to your dentists and staff — because people choose people
+    text: Proper introductions to your dentists and staff, because people choose people
   - title: Online booking integration
     text: Appointment booking that works with your practice management software
   - title: Local SEO foundations
@@ -42,7 +42,7 @@ includes:
   - title: Editor training video
     text: So you can add new team members, update treatments, and manage content yourself
   - title: Support after launch
-    text: I don't disappear at handover — ongoing care plans available
+    text: Ongoing care plans, so I don't disappear at handover
 portfolioText: Dental practices I've helped build trust online and turn website visitors into new patient enquiries.
 portfolioSlugs:
   - ilkley-dental-care
@@ -51,8 +51,7 @@ successStory:
   location: Ilkley
   text: >-
     A dental practice that went from a broken contact form and zero web enquiries to 30+ enquiries every
-    month. Trust-critical, compliance-heavy work where every detail counts — rebuilt to actually generate
-    business.
+    month. Trust-critical, compliance-heavy work where every detail counts, rebuilt to generate business.
   metrics:
     - value: 30+
       label: Enquiries per month
@@ -73,13 +72,13 @@ faq:
   - question: How much does a dental website cost?
     answer: >-
       Dental websites start at £2,000 due to the number of treatment pages and trust-building elements
-      required. I quote every project properly once I understand what you need — number of treatments, team
-      size, and booking integration requirements. You'll know the full price before I start.
+      required. I quote every project once I understand what you need: number of treatments, team size, and
+      booking integration requirements. You'll know the full price before I start.
   - question: Can you integrate with our practice management software?
     answer: >-
       Yes. I work with most dental practice management systems for online booking integration. Whether you use
-      Dentally, Software of Excellence, Exact, or something else — we can integrate it properly so patients
-      can book online.
+      Dentally, Software of Excellence, Exact, or something else, we can integrate it so patients can book
+      online.
   - question: Do you understand dental compliance requirements?
     answer: >-
       I've worked with dental practices before and understand the GDC and CQC considerations around dental
@@ -88,7 +87,7 @@ faq:
   - question: How long does it take?
     answer: >-
       Most dental builds take 4-6 weeks from our first call to launch. The variable is usually team
-      photography, treatment content, and booking system setup — not the build itself. I'll give you an honest
+      photography, treatment content, and booking system setup, not the build itself. I'll give you an honest
       timeline up front.
   - question: Will we be able to update it ourselves?
     answer: >-
@@ -97,6 +96,6 @@ faq:
       actually manage.
   - question: What about hosting and domains?
     answer: >-
-      I handle both. Your domain is registered in your name — you own it. Hosting is fast, secure, and
-      managed. Everything is yours to take with you if you ever want to leave. No lock-in, no hostage fees.
+      I handle both. I register your domain in your name, so you own it. Hosting is fast, secure, and managed.
+      Everything is yours to take with you if you ever want to leave. No lock-in, no hostage fees.
 ---

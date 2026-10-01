@@ -1,9 +1,9 @@
 ---
 title: What I Found When I Audited a Bridal Boutique Website
-metaTitle: "Bridal Boutique Website Audit: What I Found | BVS Web Design"
+metaTitle: 'Bridal Boutique Website Audit: What I Found | BVS Web Design'
 description: >-
-  A beautiful, well-branded site was quietly losing appointments every week. Here's what a proper audit found
-  — and what it means for bridal, beauty and dental businesses.
+  A beautiful, well-branded site was losing appointments every week. This audit shows why, and what it means
+  for bridal, beauty and dental businesses.
 date: '2026-04-10'
 tags:
   - Website Audit
@@ -21,7 +21,7 @@ metaDescription: >-
 
 A bridal boutique reached out for a free website audit.
 
-They had a beautiful site. They were paying £1,500 a month for it — website platform, hosting, and Google Ads management all bundled into one monthly fee. They'd been doing this for years.
+They had a beautiful site. They were paying £1,500 a month for it: website platform, hosting, and Google Ads management all bundled into one monthly fee. They'd been doing this for years.
 
 They had a feeling the website wasn't working as hard as it should. But with no clear reporting and no tracked conversions, they couldn't prove it either way.
 
@@ -35,37 +35,37 @@ The answer here was nothing. Or certainly nothing they could quantify.
 
 The first thing I asked for was their ad reports.
 
-Across five months of data, the total amount that actually reached Google Ads was approximately **£678**. The rest of the monthly fee — the difference between £678 and roughly £7,500 over the same period — was going on platform fees, management, and hosting.
+Across five months of data, the total amount that reached Google Ads was approximately **£678**. The rest of the monthly fee (the difference between £678 and roughly £7,500 over the same period) was going on platform fees, management, and hosting.
 
-Nobody had told them this. The monthly check-in email from their ads manager simply asked how things were going at the store.
+Nobody had told them this. The monthly check-in email from their ads manager only asked how things were going at the store.
 
 When the campaigns were running, the location data told its own story. Their boutique is in Yorkshire. Their top traffic sources from paid search included **London, Bath, and Plymouth**.
 
-Bath appeared month after month as a significant traffic source. This wasn't a coincidence — it was a direct result of running Performance Max campaigns, which let Google serve display and YouTube ads to whatever demographic it decides is most likely to convert, nationally. Google identified Bath as a strong bridal area. So it kept showing ads there. To brides who were never going to travel to Yorkshire for an appointment.
+Bath appeared month after month as a significant traffic source. This was a direct result of running Performance Max campaigns, which let Google serve display and YouTube ads to whatever demographic it decides is most likely to convert, nationally. Google identified Bath as a strong bridal area. So it kept showing ads there. To brides who were never going to travel to Yorkshire for an appointment.
 
 In March 2026, both campaigns delivered **zero impressions and zero clicks** for the entire reporting period. The monthly fee continued.
 
 ---
 
-## Nobody knew if the ads were working — because nothing was tracked
+## Nobody knew if the ads were working, because nothing was tracked
 
-Their booking system sat behind a third-party link. By default, GA4 and Facebook Pixel cannot track actions that happen outside the site — which means no appointment booking was ever confirmed as having come from an ad click.
+Their booking system sat behind a third-party link. By default, GA4 and Facebook Pixel cannot track actions that happen outside the site, which means no appointment booking was ever confirmed as having come from an ad click.
 
 Five months of reporting. Thousands of pounds in fees. **Zero tracked conversions.**
 
-Not zero conversions necessarily — but zero proof of any. And without proof, there's no way to know what was working and what wasn't. You can't optimise what you can't measure.
+Not necessarily zero conversions, but zero proof of any. And without proof, there's no way to know what was working and what wasn't. You can't optimise what you can't measure.
 
 ---
 
 ## Google was telling the wrong story
 
-The business had recently closed one location and consolidated to another. A significant change — a fresh chapter.
+The business had recently closed one location and consolidated to another. A significant change, and a fresh chapter.
 
 Their website hadn't caught up.
 
-The meta description — the text that appears under your business name in every Google search result — still referenced an old location. The structured data Google uses for knowledge panels? Same story. Every time a bride searched for them, Google presented a business that no longer existed in the form being described.
+The meta description (the text that appears under your business name in every Google search result) still referenced an old location. The structured data Google uses for knowledge panels? Same story. Every time a bride searched for them, Google presented a business that no longer existed in the form being described.
 
-This isn't just a branding problem. It's a trust problem. A bride who clicks through and finds something different from what she was promised doesn't book an appointment. She leaves.
+This is a trust problem as well as a branding problem. A bride who clicks through and finds something different from what she was promised doesn't book an appointment. She leaves.
 
 ---
 
@@ -73,37 +73,37 @@ This isn't just a branding problem. It's a trust problem. A bride who clicks thr
 
 This one required a look at the source code.
 
-The H1 tag is one of the strongest on-page SEO signals available. It tells Google — clearly and unambiguously — what a page is about. For a local service business, it's where you put your location, your service, your identity.
+The H1 tag is one of the strongest on-page SEO signals available. It tells Google, clearly and unambiguously, what a page is about. For a local service business, it's where you put your location, your service, your identity.
 
 The homepage had none. Not a hidden one, not a weak one. None at all.
 
-The site was already ranking well locally despite this. With proper foundations in place, the organic performance could be significantly stronger — without spending a penny on ads.
+The site was already ranking well locally despite this. With proper foundations in place, the organic performance could be stronger without spending a penny on ads.
 
 ---
 
-## The organic foundations were actually strong
+## The organic foundations were strong
 
-Here's what made this audit interesting: despite everything, the site was doing well organically.
+Despite everything, the site was doing well organically.
 
-Organic search was consistently the dominant traffic channel — comfortably ahead of paid in every month reviewed. The site ranked first locally for key bridal search terms. Real brides were finding it.
+Organic search was consistently the dominant traffic channel, comfortably ahead of paid in every month reviewed. The site ranked first locally for key bridal search terms. Real brides were finding it.
 
-The problem wasn't that the site wasn't attracting visitors. The problem was that those visitors were not turning into bookings.
+The site was attracting visitors. Those visitors were not turning into bookings.
 
 ---
 
-## What this actually cost
+## What this cost
 
 Let's be precise about the numbers.
 
 **£1,500/month × 12 months = £18,000/year.**
 
-That covered: website hosting on a proprietary bridal platform, Google Ads management (with approximately £250/month actually reaching Google), and a Performance Max campaign that spent £60–£113/fortnight targeting audiences with no geographic relevance to a Yorkshire boutique.
+That covered: website hosting on a proprietary bridal platform, Google Ads management (with approximately £250/month reaching Google), and a Performance Max campaign that spent £60–£113/fortnight targeting audiences with no geographic relevance to a Yorkshire boutique.
 
 The new setup: a properly built WordPress site for £3,000, first year hosting included, at £35/month thereafter.
 
 **Year one saving: £15,000. Year two saving onwards: £17,580.**
 
-No ads needed initially — because the organic foundations that should have been there all along will do the job that £18,000 a year couldn't prove it was doing. If ads are required later - great.
+No ads needed initially, because the organic foundations that should have been there all along will do the job that £18,000 a year couldn't prove it was doing. If ads are required later, great.
 
 ---
 
@@ -113,7 +113,7 @@ No ads needed initially — because the organic foundations that should have bee
 - No H1 on the homepage
 - Duplicate Google Ads tracking tags from a legacy account
 - Zero tracked conversions across five months of ad spend
-- Ads targeting London, Bath and Plymouth — not Lincoln
+- Ads targeting London, Bath and Plymouth, not Lincoln
 - Performance Max campaigns with no geographic controls
 - A booking system that couldn't pass conversion data to GA4
 - 90 blog posts that would be lost without proper migration and redirects
@@ -127,9 +127,9 @@ None of these were catastrophic individually. Together, they were costing £18,0
 
 I put together a proposal. The new site is now in build.
 
-The blog — all 90 posts — will be migrated with proper redirects in place, preserving the organic authority those posts have built. The meta description will tell the right story. The H1 will be there. Conversion tracking will be properly configured. And for the first time, every enquiry will be traceable back to its source.
+The blog (all 90 posts) will be migrated with proper redirects in place, preserving the organic authority those posts have built. The meta description will tell the right story. The H1 will be there. Conversion tracking will be properly configured. And for the first time, every enquiry will be traceable back to its source.
 
-When the site is live and performing, there's a conversation to have about reintroducing Google Ads — properly targeted, tightly geo-focused, managed by a specialist. But that's a phase two conversation. The foundation comes first.
+When the site is live and performing, there's a conversation to have about reintroducing Google Ads: properly targeted, tightly geo-focused, managed by a specialist. But that's a phase two conversation. The foundation comes first.
 
 For those interested, I'll be posting a follow up later in the year with the results. With an £18k cost saving, can we now drive sales to get the impact of a new website to £50k profit? I think so.
 
@@ -139,12 +139,12 @@ For those interested, I'll be posting a follow up later in the year with the res
 
 This isn't a story that's unique to bridal boutiques.
 
-I see the same pattern regularly across service businesses — bridal, beauty, dentistry, hospitality. A bundled monthly platform fee that feels like a single manageable cost but contains multiples of what the actual value delivered would justify. Reporting that measures activity rather than outcomes. Ads that generate traffic rather than bookings.
+I see the same pattern regularly across service businesses: bridal, beauty, dentistry, hospitality. A bundled monthly platform fee that feels like a single manageable cost but contains multiples of what the value delivered would justify. Reporting that measures activity rather than outcomes. Ads that generate traffic rather than bookings.
 
 The question worth asking isn't "am I spending too much?" It's "can I prove what my spend is delivering?"
 
-If the answer is no — that's where a website audit starts.
+If the answer is no, that's where a website audit starts.
 
 ---
 
-_If you're a service business owner with a website that looks the part but isn't generating the enquiries it should be — I offer a straightforward website audit with clear findings, plain English, and no jargon. [Book a free 30-minute website review](https://tidycal.com/bvswebdesign/30-minute-meeting) and let's find out what's holding yours back._
+_If you're a service business owner with a website that looks the part but isn't generating the enquiries it should be, I offer a straightforward website audit with clear findings, plain English, and no jargon. [Book a free 30-minute website review](https://tidycal.com/bvswebdesign/30-minute-meeting) and let's find out what's holding yours back._

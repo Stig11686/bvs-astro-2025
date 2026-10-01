@@ -4,10 +4,9 @@ export const site = {
   name: "BVS Web Design",
   url: "https://www.bvswebdesign.co.uk",
   description:
-    "WordPress websites for small businesses across Yorkshire. Designed, built and looked after by Steve in Skipton.",
+    "Website design and care plans for service businesses in Skipton and across North Yorkshire. More enquiries, more bookings, and a site that stays looked after.",
   author: "Steve Marks",
-  phone: "07521 917508",
-  phoneHref: "tel:+447521917508",
+  // No phone number on the site, by choice.
   email: "info@bvswebdesign.co.uk",
   location: "Skipton, North Yorkshire",
   introCall: "https://tidycal.com/bvswebdesign/30-minute-meeting",

@@ -10,7 +10,7 @@ const looks = [
   { title: "First impressions", text: "Does it pass the five-second test? Is it immediately clear what you do and who for?" },
   { title: "SEO foundations", text: "Are you showing up on Google for the right searches? Are there basic technical issues holding you back?" },
   { title: "Conversion blockers", text: "Why aren't visitors getting in touch? What's getting in the way between landing on the page and picking up the phone?" },
-  { title: "Mobile experience", text: "Over 60% of your visitors are on a phone. Does your site actually work for them?" },
+  { title: "Mobile experience", text: "Over 60% of your visitors are on a phone. Does your site work for them?" },
   { title: "Technical health", text: "Speed, security, broken links, Core Web Vitals. The unglamorous stuff that drags performance down without anyone noticing." },
 ];
 ---
@@ -25,7 +25,7 @@ const looks = [
     crumbs={[{ label: "Services", href: "/services/" }, { label: "Free Website Audit" }]}
   >
     <Fragment slot="cta">
-      <Button href={site.introCall} kind="acc">Book Your Free Audit</Button>
+      <Button href={site.introCall} kind="acc">Book a Free Website Review</Button>
       <a class="tlink" href="#look">What I look at ↓</a>
     </Fragment>
     <div class="scan-wrap" id="scan" aria-hidden="true" slot="aside">
@@ -67,7 +67,7 @@ const looks = [
         <div class="prose-lg rv">
           <p>A video walkthrough of your site where I talk you through everything I've found, in plain English, no jargon. Plus a written priority list so you know exactly what to tackle first.</p>
           <p class="ink">The whole thing takes around 30 minutes of your time. The call is free. <em>The findings are yours to keep.</em></p>
-          <div style="margin-top:32px"><Button href={site.introCall} kind="light">Book Your Free Audit</Button></div>
+          <div style="margin-top:32px"><Button href={site.introCall} kind="light">Book a Free Website Review</Button></div>
         </div>
       </div>
     </section>
@@ -91,7 +91,7 @@ const looks = [
   <CtaSlab
     title="Ready to get more from your *website?*"
     lede="A free, no-obligation audit. Around 30 minutes of your time, and the findings are yours to keep."
-    button={{ label: "Book Your Free Audit", href: site.introCall }}
+    button={{ label: "Book a Free Website Review", href: site.introCall }}
     link={{ label: "Or send me a message →", href: "/contact/" }}
   />
 </Base>
