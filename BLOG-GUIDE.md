@@ -2,6 +2,8 @@
 
 This is everything a person or an agent needs to add a post to bvswebdesign.co.uk.
 
+**What to write about:** [CONTENT-PLAN.md](CONTENT-PLAN.md) has the current schedule and a brief for each post (search target, search title, slug, category, must-answer questions and links). When a post is for a numbered brief, use the brief's values.
+
 **One Markdown file = one blog post.** Add the file, push to `main`, and Netlify publishes it in a couple of minutes.
 
 ## 1. Create the file
