@@ -790,3 +790,6 @@ picture{display:contents}
 .hero-long .ph-h{font-size:clamp(40px,5.2vw,84px)}
 .xsell-row .xsell{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
 .xsell-row .xcard h3{font-size:21px}
+/* Featured (claret) care plan: all text white */
+.plan.feat b,.plan.feat .alt,.plan.feat li span,.plan.feat .not,.plan.feat .you{color:#fff}
+.reviews-wrap{padding-bottom:clamp(20px,3vw,40px)}

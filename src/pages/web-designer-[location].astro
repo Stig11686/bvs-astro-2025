@@ -28,7 +28,8 @@ const { entry } = Astro.props as { entry: CollectionEntry<"locations"> };
 const d = entry.data;
 const all = await getWork();
 const picked = d.portfolioSlugs.map((s) => all.find((w) => w.id === s)).filter((w) => w !== undefined);
-const work = (picked.length >= 3 ? picked : [...picked, ...all.filter((w) => w.data.featured && !picked.includes(w))]).slice(0, 3);
+// Only the projects named in the town file; featured work if none are named
+const work = (picked.length ? picked : all.filter((w) => w.data.featured)).slice(0, 3);
 const story = d.successStory.business.toLowerCase();
 const storyLink =
   all.find((w) => story.includes(w.data.title.toLowerCase())) ??
@@ -47,7 +48,7 @@ const storyLink =
     areaServed: { "@type": "Place", name: `${d.location}, ${d.region}` },
     provider: { "@type": "ProfessionalService", name: site.name, url: site.url, address: { "@type": "PostalAddress", addressLocality: "Skipton", addressRegion: "North Yorkshire", addressCountry: "GB" } },
   }}
->| BVS Web Design`} description={d.metaDescription}>
+>
   <PageHero title={d.heroHeadline} lede={d.heroExcerpt} crumbs={[{ label: `Web design in ${d.location}` }]}>
     <p class="eyebrow" slot="above"><span class="bvs-dot"></span>WordPress web designer · {d.location}, {d.region}</p>
     <Fragment slot="cta">

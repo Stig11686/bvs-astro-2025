@@ -21,7 +21,7 @@ export const GET: APIRoute = async () => {
     `- [Website Design](${u("/services/website-design/")}): new WordPress websites built to bring in enquiries, then looked after.`,
     `- [Website Rescue](${u("/services/website-rescue/")}): taking over sites with an absent developer, lost access or a costly platform.`,
     `- [Website Care Plans](${u("/services/website-support/")}): Essentials £35/month, Active £99/month, Growth £249/month. Hosting, updates, backups, edits and monthly improvements.`,
-    `- [Free Website Audit](${u("/services/website-audit/")}): a plain-English video walkthrough and a priority list.`,
+    `- [Free Website Audit](${u("/services/website-audit/")}): a plain-English written report and priority list, talked through on a call.`,
     "",
     "## Industries",
     ...industries.map((i) => `- [${i.data.heroEyebrow}](${u(`/services/${i.id}/`)}): ${i.data.metaDescription}`),
