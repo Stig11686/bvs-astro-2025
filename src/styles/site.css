@@ -781,3 +781,12 @@ picture{display:contents}
 .polar img{object-position:50% 30%}
 .author img,.art .abox img{object-position:50% 30%}
 .qc figcaption .ini{width:54px;height:54px;flex:none;border-radius:50%;background:var(--acc-t);color:var(--acc);display:grid;place-items:center;font-weight:800;font-size:18px}
+
+.band-res .shots--one{grid-template-columns:1fr}
+.band-res .shots--one img:first-child{rotate:-2deg;aspect-ratio:4/3}
+/* Text links on the navy CTA slab */
+.ctaslab .tlink{color:#fff}
+.ctaslab .tlink:hover{color:var(--acc-b)}
+.hero-long .ph-h{font-size:clamp(40px,5.2vw,84px)}
+.xsell-row .xsell{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.xsell-row .xcard h3{font-size:21px}

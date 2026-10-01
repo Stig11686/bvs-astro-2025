@@ -12,8 +12,7 @@ import { sectors } from "@/lib/sectors";
 
 const included = [
   "Discovery & strategy session",
-  "Custom design in Figma",
-  "Hand-built WordPress (no page builders)",
+  "Custom design for your business",
   "Copywriting guidance",
   "On-page SEO foundations",
   "Mobile-first, fast by default",
@@ -23,8 +22,8 @@ const included = [
 const steps = [
   { title: "Free call", text: "A proper conversation about your business, not your colour scheme." },
   { title: "Discovery", text: "Your customers, what they need to see, and what is getting in the way." },
-  { title: "Design", text: "Figma drafts you can mark up, built around the path to enquiry." },
-  { title: "Build", text: "Hand-built WordPress. No bloated page builders." },
+  { title: "Design", text: "Design drafts you can comment on, built around the path to enquiry." },
+  { title: "Build", text: "Built on WordPress: fast, secure, and yours to edit." },
   { title: "Launch + care", text: "Live, trained, and looked after long after handover." },
 ];
 ---
@@ -34,8 +33,9 @@ const steps = [
   description="A WordPress website built to bring the work in. Web design in Skipton & across Yorkshire: strategy, design, build, launch. Projects from £2,000."
 >
   <PageHero
-    title="A website built | around *enquiries,* | not applause."
-    lede="A new WordPress website built to generate enquiries as well as look good. I handle strategy, copy guidance, design, build and launch, then stay on to look after it."
+    title="A website designed | to get you *found* | by your customers."
+    class="hero-long"
+    lede="A new WordPress website that helps local customers find you, then turns them into enquiries. I handle strategy, copy guidance, design, build and launch, then stay on to look after it."
     crumbs={[{ label: "Services", href: "/services/" }, { label: "Website Design" }]}
   >
     <Fragment slot="cta">
@@ -79,9 +79,8 @@ const steps = [
           <div class="num rv">3–4k<small>visits a month for Rebecca Rennolds Permanent Beauty. She came to me with no website at all, and now ranks strongly for the local searches that matter.</small></div>
           <div class="rv" style="margin-top:30px"><a class="tlink" href="/portfolio/rebecca-rennolds-permanent-beauty-and-laser/">Read the case study →</a></div>
         </div>
-        <div class="shots rv">
-          <Img src="/images/portfolio/rebecca-rennolds-permanent-beauty-and-laser.png" alt="Rebecca Rennolds website" sizes="(min-width: 1000px) 340px, 50vw" widths={[340, 680]} />
-          <Img src="/images/portfolio/ilkley-dental-care.png" alt="Ilkley Dental Care website" sizes="(min-width: 1000px) 240px, 40vw" widths={[240, 480]} />
+        <div class="shots shots--one rv">
+          <Img src="/images/portfolio/rebecca-rennolds-permanent-beauty-and-laser.png" alt="Rebecca Rennolds Permanent Beauty website" sizes="(min-width: 1000px) 520px, 90vw" widths={[520, 1040]} />
         </div>
       </div>
     </div>
@@ -90,7 +89,14 @@ const steps = [
   <section class="sec">
     <div class="wrap">
       <h2 class="dh sh rv">Websites for your <span class="it">kind of business.</span></h2>
-      <XSell items={sectors.map(({ tag, title, text, href }) => ({ tag, title, text, href }))} />
+      <div class="xsell-row">
+      <XSell
+        items={[
+          ...sectors.map(({ tag, title, text, href }) => ({ tag, title, text, href })),
+          { tag: "Any service business", title: "Something else entirely?", text: "Trades, retailers, clubs, community groups, professional services. If your customers find you online, the same approach works. Tell me about yours.", href: "/contact/" },
+        ]}
+      />
+      </div>
     </div>
   </section>
 
@@ -99,7 +105,7 @@ const steps = [
       <h2 class="dh sh rv">Not quite <span class="it">you?</span></h2>
       <XSell
         items={[
-          { tag: "Website Rescue", title: "Already got a site that's stuck?", text: "Developer gone quiet, locked out, or paying too much. I take it over and sort it out.", href: "/services/website-rescue/" },
+          { tag: "Website Rescue", title: "Already got a site that's stuck?", text: "Developer gone quiet, locked out, or paying too much? I'll tell you what can be recovered and the best way forward.", href: "/services/website-rescue/" },
           { tag: "Free Website Audit", title: "Not sure what's wrong?", text: "Send me your address and I'll tell you what's holding it back and what to fix first.", href: "/services/website-audit/" },
           { tag: "Care Plans", title: "Just need it looked after?", text: "Hosting, updates, backups and edits, handled by a real person in Skipton.", href: "/services/website-support/" },
         ]}
