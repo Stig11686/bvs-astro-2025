@@ -2,7 +2,23 @@
 
 One post a week (Mondays) for 12 weeks, plus four refreshes of existing posts. Each brief says what people search for, what the post must answer, and where it links. The blog agent publishes from these; see [BLOG-GUIDE.md](BLOG-GUIDE.md) for the mechanics.
 
-**Built from:** Google UK autocomplete and "People also ask" (October 2026), who ranks for each search today, and the 18 posts already on the site. Search Console data isn't in yet. When it is, check each target against what the site already gets impressions for and re-order.
+**Built from:** Search Console (July to September 2026), Google UK autocomplete and "People also ask" (October 2026), who ranks for each search today, and the 18 posts already on the site.
+
+## What Search Console says (last 3 months)
+
+128 clicks from 16,400 impressions: a 0.8% click-through rate at an average position of 19.4. Google already shows the site a lot, mostly on page 2. Moving pages from position 10 to 20 up into the top 5 is the fastest route to more traffic.
+
+| Group of searches | Impressions | Position | What to do |
+| --- | --- | --- | --- |
+| Skipton (web design skipton, web designer skipton, website designer in skipton…) | ~1,400 | 11 to 29 | Homepage now targets "web designer in Skipton". Support it with Skipton case studies (66 Sheep Street, The Coach House, The Yorkshire Unicorn) that link to the homepage, plus Google Business Profile and reviews |
+| Care plans (website care plans, website care plan) | ~300 | 18 to 20 | The care plans page and the old care plan post compete. Make /services/website-support/ the target for "website care plan(s)" and point the post at "do I need…" questions (refresh R4) |
+| Keighley (keighley website design #3, wordpress web design keighley #5…) | ~500 | 3 to 10 | Already top 10 with almost no clicks: titles and descriptions were fixed in the redesign. Watch CTR after launch |
+| Bridal (bridal boutique website design #5, web design for bridal shops #6…) | ~350 | 5 to 14 | Same: top 10, no clicks. Brief 9 adds a supporting bridal post |
+| York (york web designer, web designer york, web design york…) | ~1,100 | 28 to 39 | Page 3. Maidens & Ravens is in York: refresh R5 makes that case study the York proof |
+| B&B (b&b website design, bed and breakfast web design) | ~200 | 32 to 57 | People say "B&B", not "hotel". Brief 10 uses that wording |
+| AI agency (ai web agency, ai web development agency…) | ~450 | 6 to 7 | The AI agents post is the top page by clicks (47). Decide whether AI automation is something to sell; if so, it deserves a service page |
+| Rescue (can't get hold of my web designer…) | ~700 on the "gone silent" post | 14.6 | Refresh R1 |
+
 
 ## How to use a brief
 
@@ -30,12 +46,12 @@ One post a week (Mondays) for 12 weeks, plus four refreshes of existing posts. E
 | 6 | 9 Nov | 6. Website hacked? What to do in the first hour | Website Support | website hacked what to do |
 | 7 | 16 Nov | 7. Questions to ask a web designer before you hire them | Website Design | questions to ask a web designer |
 | 8 | 23 Nov | 8. How to get more Google reviews (without being awkward) | Website Audit | how to get more google reviews for my business |
-| 9 | 30 Nov | 9. What a website care plan should include | Website Support | website care plan / wordpress maintenance plans |
-| 10 | 7 Dec | 10. Hotel and B&B websites: cutting Booking.com commission | Website Design | hotel website direct bookings |
+| 9 | 30 Nov | 9. What brides look for on a bridal boutique website | Website Design | bridal boutique website design |
+| 10 | 7 Dec | 10. B&B and small hotel websites: cutting Booking.com commission | Website Design | b&b website design |
 | 11 | 14 Dec | 11. A website audit checklist for small businesses | Website Audit | website audit checklist |
 | 12 | 21 Dec | 12. How long does it take to build a website? | Website Design | how long does it take to build a website |
 
-Refreshes (do these between new posts; they're quicker): R1 in week 2, R2 week 4, R3 week 7, R4 week 10.
+Refreshes (do these between new posts; they're quicker): R1 in week 1, R4 week 2, R5 week 3, R2 week 5, R3 week 8.
 
 ## Briefs
 
@@ -115,19 +131,22 @@ Refreshes (do these between new posts; they're quicker): R1 in week 2, R2 week 4
 - **From Steve:** Maidens & Ravens got 30 Google reviews in three months; how they did it.
 - **Links:** /blog/reviews-ai-search-local-business/ (sibling), /services/website-audit/, /portfolio/maidens-and-ravens/
 
-### 9. What a website care plan should include
+### 9. What brides look for on a bridal boutique website
 
-- **Search title:** `What Should a Website Care Plan Include? | BVS Web Design`
-- **Slug:** `what-should-a-website-care-plan-include`
-- **Category:** Website Support
-- **Must answer:** What's the difference between hosting, maintenance and a care plan? What should be included as standard? What are the red flags (no backups off-site, updates not tested, lock-in)?
-- **From Steve:** the Essentials / Active / Growth split and why it exists.
-- **Links:** /services/website-support/ (main), brief 2's post, brief 6's post
+- **Search title:** `Bridal Boutique Website Design: What Brides Look For`
+- **Slug:** `bridal-boutique-website-what-brides-look-for`
+- **Category:** Website Design (audience: bridal)
+- **Why now:** the bridal sector page already sits in the top 10 for "bridal boutique website design" and "web design for bridal shops" but gets no clicks. A supporting post adds depth and internal links.
+- **Must answer:** What do brides check before booking an appointment? How should dresses be shown (galleries, designers, price guidance)? How do online appointment bookings work? What puts brides off?
+- **From Steve:** what Maidens & Ravens and Jaynes Bridalwear changed, and what you found in the bridal boutique audit.
+- **Links:** /services/bridal-web-design/ (main), /portfolio/maidens-and-ravens/, /portfolio/jaynes-bridalwear-lincoln/, /blog/bridal-boutique-audit/
+- **Replaces:** "What a website care plan should include", dropped because it would compete with the care plans page, which is already on page 2 for those searches.
 
-### 10. Hotel and B&B websites: cutting Booking.com commission
+### 10. B&B and small hotel websites: cutting Booking.com commission
 
-- **Search title:** `Hotel Website Direct Bookings: Cut OTA Commission`
-- **Slug:** `hotel-website-direct-bookings`
+- **Search title:** `B&B Website Design: Win Direct Bookings, Cut Commission`
+- **Slug:** `bnb-website-direct-bookings`
+- **Why the wording:** Search Console shows "b&b website design" and "bed and breakfast web design", not "hotel".
 - **Category:** Website Design (audience: hospitality)
 - **Must answer:** What do OTAs really cost? What makes guests book direct? Do I need a booking engine? Should I leave Booking.com entirely (usually no)?
 - **From Steve:** The Coach House Skipton and The Yorkshire Unicorn: direct bookings from launch.
@@ -156,13 +175,15 @@ Refreshes (do these between new posts; they're quicker): R1 in week 2, R2 week 4
 
 Small edits to existing posts that already have some authority. Update `date:` only if the content changes substantially.
 
-- **R1. `what-to-do-when-my-website-designer-scams-me`.** People search "my web designer has **disappeared**" far more than "gone silent". Change the search title to `My Web Designer Has Disappeared: What to Do Next`, use "disappeared" in the opening paragraph, and link to brief 3's post.
+- **R1. `what-to-do-when-my-website-designer-scams-me`.** 694 impressions at position 14.6. People search "my web designer has **disappeared**" and "can't get hold of my web designer" more than "gone silent". Change the search title to `My Web Designer Has Disappeared: What to Do Next`, use both phrases in the opening paragraphs, and link to brief 3's post.
 - **R2. `why-is-my-website-traffic-not-bringing-leads`.** It targets "website traffic but no leads" (good) but is filed as Case Studies. Move it to `Website Audit`, set the search title to `Website Traffic but No Leads? Here's Why`, and link to /website-not-generating-leads/ so the two don't compete.
 - **R3. `the-5-biggest-mistakes…`, `5-essential-tips…` and `these-5-sales-boosting-tips…`** are 2025 posts with stock theme images and generic advice. Merge the best parts into one stronger post (e.g. "Small business website mistakes that cost you enquiries"), keep the strongest URL, and add redirects from the other two in `public/_redirects`. Do this with Steve, not automatically.
-- **R4. `why-your-business-website-needs-a-care-plan…`.** Make it match the current Essentials / Active / Growth plans and link to briefs 2 and 9.
+- **R4. `why-your-business-website-needs-a-care-plan…`.** 351 impressions at position 18.9, competing with the care plans page. Make it match the current Essentials / Active / Growth plans, retarget the search title at "Do I Need a Website Care Plan?" and link prominently to /services/website-support/ so Google treats that page as the main one for "website care plans".
+- **R5. `bridal-website-design-maidens-and-ravens`.** Maidens & Ravens is the York proof. Name York in the search title and opening paragraph, and link to /web-designer-york/ (and add the post's link on the York page if it isn't already in the work grid).
 
 ## After the 12 weeks
 
 - Check Search Console for each post: impressions, average position, which queries it shows for. Rewrite search titles on posts sitting at positions 8 to 20.
+- Re-check the Skipton, Keighley and bridal groups four weeks after the redesign goes live; the title changes should show up as clicks there first.
 - Squarespace vs WordPress; "my website is down"; dental and salon "what clients look for" posts, one per sector page.
 - One local case study a month (66 Sheep Street, Climate Action Silsden), category Case Studies, each linking to its town page.
