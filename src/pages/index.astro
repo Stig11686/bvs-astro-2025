@@ -6,6 +6,7 @@ import Img from "@/components/Img.astro";
 import Reviews from "@/components/Reviews.astro";
 import WorkCard from "@/components/WorkCard.astro";
 import ContactSection from "@/components/ContactSection.astro";
+import Turnstile from "@/components/Turnstile.astro";
 import { getPosts, getWork } from "@/lib/content";
 import { formatDate } from "@/lib/text";
 import { site } from "@/site.config";
@@ -212,6 +213,7 @@ const localBusiness = {
             <input type="email" name="email" placeholder="Your email" aria-label="Your email" required autocomplete="email" />
             <input type="hidden" name="message" value="Free website audit request from the homepage" />
             <input class="hp" name="company_url" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <Turnstile action="audit_quick" />
             <button class="btn btn--light mag" type="submit"><span class="lbl">Get My Free Audit</span><span class="ar"><i>→</i><i>→</i></span></button>
             <p class="aok" role="status">Thanks, it's on my list. I'll be in touch within a couple of working days.</p>
             <p class="err" role="alert">That didn't send. Please try again, or email {site.email}.</p>

@@ -6,7 +6,10 @@ export const site = {
   description:
     "Website design and care plans for service businesses in Skipton and across North Yorkshire. More enquiries, more bookings, and a site that stays looked after.",
   author: "Steve Marks",
-  // No phone number on the site, by choice.
+  // No phone number on the site, by choice. WhatsApp links go through
+  // /whatsapp/ (netlify/functions/whatsapp.js), so the number stays out of the
+  // HTML; they only appear once WHATSAPP_NUMBER is set in Netlify.
+  whatsapp: "/whatsapp/",
   email: "info@bvswebdesign.co.uk",
   location: "Skipton, North Yorkshire",
   introCall: "https://tidycal.com/bvswebdesign/30-minute-meeting",
