@@ -1,0 +1,13 @@
+---
+// Cloudflare Turnstile spam check, placed inside a form. Renders nothing until
+// PUBLIC_TURNSTILE_SITE_KEY is set in Netlify, so the forms work unchanged
+// before then. The widget itself is loaded and drawn by src/scripts/site.ts.
+interface Props {
+  action?: string;
+}
+
+const { action } = Astro.props;
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+---
+
+{siteKey && <div class="ts" data-turnstile data-sitekey={siteKey} data-action={action}></div>}

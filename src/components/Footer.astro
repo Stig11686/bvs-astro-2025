@@ -26,6 +26,7 @@ const year = new Date().getFullYear();
         <li><a href={site.introCall} target="_blank" rel="noopener">Book an intro call</a></li>
         <li><a href="/contact/">Contact form</a></li>
         <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        {import.meta.env.WHATSAPP_NUMBER && <li><a href={site.whatsapp} target="_blank" rel="noopener nofollow">WhatsApp</a></li>}
         {site.social.map((s) => <li><a href={s.url} target="_blank" rel="noopener">{s.label}</a></li>)}
       </ul>
     </div>

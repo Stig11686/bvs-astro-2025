@@ -63,6 +63,19 @@ In templates, use the `Img` component:
 
 Enquiry forms post JSON to the CRM (`site.enquiryEndpoint` in `src/site.config.ts`) with the fields `name`, `email`, `website`, `service_type`, `message` and `privacy_agreed`. The solicitor audit form posts to `site.auditEndpoint`. The handling code is at the bottom of `src/scripts/site.ts`.
 
+### Spam protection (Cloudflare Turnstile)
+
+Every form carries a Turnstile widget (`src/components/Turnstile.astro`) and sends its token as `cf-turnstile-response`. It is set up with two Netlify environment variables:
+
+- `PUBLIC_TURNSTILE_SITE_KEY`: the widget's site key. Without it no widget is drawn and the forms work as before.
+- `TURNSTILE_SECRET_KEY`: the secret key, used by `netlify/functions/subscribe.js` to check the newsletter sign-up. The CRM checks enquiries with the same secret, set as `TURNSTILE_SECRET_KEY` in its own `.env`.
+
+The script only loads when a form comes near the screen, and in "interaction-only" mode most visitors never see the widget.
+
+## WhatsApp
+
+Set `WHATSAPP_NUMBER` in Netlify (`07700 900123` or `+44 7700 900123` both work) and a WhatsApp link appears in the footer and beside every contact form. Links go to `/whatsapp/`, which `netlify/functions/whatsapp.js` redirects to WhatsApp with a greeting filled in, so the number never appears in the page HTML. Until the variable is set, the links are hidden and `/whatsapp/` answers 404.
+
 ## Analytics and cookies
 
 Google Analytics runs in Consent Mode. Nothing is stored until a visitor clicks "Accept analytics" in the cookie banner. They can change their mind from the "Cookies" link in the footer.
@@ -73,6 +86,7 @@ Events sent (see `trackEvent` in `src/scripts/site.ts`):
 | --- | --- | --- |
 | `generate_lead` | A form is sent successfully | `form_name` (contact_form, contact_form_home, care_plan_enquiry, audit_quick_form, solicitor_audit), `service_type` |
 | `book_call_click` | Any TidyCal booking link is clicked | `link_text`, `page_path` |
+| `whatsapp_click` | A WhatsApp link is clicked | `link_text`, `page_path` |
 | `cta_click` | A main button or text link is clicked | `link_text`, `link_url`, `page_path` |
 | `email_click` | The email address is clicked | `page_path` |
 | `sign_up` | Newsletter sign-up | `method` |

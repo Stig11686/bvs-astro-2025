@@ -708,6 +708,8 @@ picture{display:contents}
 .aform.done .aok{display:block}
 .aform input[name=website]{grid-column:1/-1}
 .hp{position:absolute;left:-9999px}
+.ts{grid-column:1/-1}
+.ts:empty{display:none}
 
 /* Blog pagination-free category header */
 .cat-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
