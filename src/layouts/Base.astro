@@ -81,8 +81,14 @@ const schemas = [pageSchema, ...(schema ? (Array.isArray(schema) ? schema : [sch
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    {!image && <meta property="og:image:width" content="1200" />}
+    {!image && <meta property="og:image:height" content="630" />}
+    <meta property="og:image:alt" content={image ? title : "BVS Web Design homepage: websites designed to bring in more enquiries, and cared for like they were my own."} />
     <meta property="og:locale" content="en_GB" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
     <link rel="icon" href="/favicons/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicons/favicon-96x96.png" sizes="96x96" type="image/png" />
