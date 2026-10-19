@@ -47,13 +47,13 @@ Now add one fault that puts off one buyer in ten.
 
 You won't get an email telling you. No error message lands in your inbox. The orders don't arrive, and you put it down to a quiet month.
 
-With moderate traffic, a fault like that phone number can cost a shop thousands a week in missed sales.
+With moderate traffic, a fault like that phone number can cost a shop over a thousand pounds a week in missed sales.
 
 ---
 
 ## Your customers are on their phones
 
-About 78% of visits to retail websites come from a smartphone, according to [Statista figures for 2025](https://www.charle.co.uk/articles/good-ecommerce-conversion-rate-benchmarks/).
+About 78% of visits to retail websites come from a smartphone, according to [Charle, citing Statista figures for 2025](https://www.charle.co.uk/articles/good-ecommerce-conversion-rate-benchmarks/).
 
 So your customers meet your shop on a small screen, with a thumb, often in a hurry. When they hit a snag, they don't write to you about it. They press back and buy from the next shop on Google.
 
