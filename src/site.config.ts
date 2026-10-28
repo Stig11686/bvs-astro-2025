@@ -40,6 +40,7 @@ export const footerLinks = {
     { label: "Website Rescue", href: "/services/website-rescue/" },
     { label: "Care Plans", href: "/services/website-support/" },
     { label: "Free Website Audit", href: "/services/website-audit/" },
+    { label: "Switch From Your Agency", href: "/switch-web-agency/" },
   ],
   industries: [
     { label: "Dental websites", href: "/services/dental-web-design/" },
