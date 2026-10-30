@@ -44,6 +44,7 @@ We only send marketing emails to people who have signed up for them. We do not s
 ## 3. Data Sharing and Third Parties  
 
 - **MailerLite** stores email update subscribers. Please refer to [MailerLite’s Privacy Policy](https://www.mailerlite.com/legal/privacy-policy) for details.  
+- **Cloudflare Turnstile** checks that form submissions come from a person rather than a bot. Please refer to [Cloudflare's Privacy Policy](https://www.cloudflare.com/privacypolicy/) for details.  
 - **Netlify** hosts this website. Please refer to [Netlify’s Privacy Policy](https://www.netlify.com/privacy/) for details.  
 - **Google Analytics** is provided by Google LLC. Please refer to [Google’s Privacy Policy](https://policies.google.com/privacy) for more details.  
 

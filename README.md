@@ -74,7 +74,16 @@ The script only loads when a form comes near the screen, and in "interaction-onl
 
 ## WhatsApp
 
-Set `WHATSAPP_NUMBER` in Netlify (`07700 900123` or `+44 7700 900123` both work) and a WhatsApp link appears in the footer and beside every contact form. Links go to `/whatsapp/`, which `netlify/functions/whatsapp.js` redirects to WhatsApp with a greeting filled in, so the number never appears in the page HTML. Until the variable is set, the links are hidden and `/whatsapp/` answers 404.
+Set `WHATSAPP_NUMBER` in Netlify (`07700 900123` or `+44 7700 900123` both work) and a WhatsApp link appears in the footer and beside every contact form. Until it's set, the links are hidden.
+
+The number is kept away from bots:
+
+- It's never in the HTML. Links (`src/components/WhatsAppLink.astro`) point at `/contact/`.
+- A real click runs `src/scripts/site.ts`, which POSTs to `netlify/functions/whatsapp.js` and opens the WhatsApp address it returns, with a greeting filled in.
+- When Turnstile is on, that POST needs a Turnstile token, so automated clicks get nothing.
+- A plain GET to `/whatsapp/` (a bot following a link) is redirected to `/contact/`, and robots.txt disallows it.
+
+Anyone who does message you will see the number; that's how WhatsApp works. Use the WhatsApp Business app with business hours and an away message so evening messages don't ring through.
 
 ## Analytics and cookies
 

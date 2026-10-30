@@ -2,7 +2,7 @@
 // Light-blue contact band: left column (slot) + enquiry form.
 import ContactForm, { type Option } from "./ContactForm.astro";
 import { emph } from "@/lib/text";
-import { site } from "@/site.config";
+import WhatsAppLink from "./WhatsAppLink.astro";
 
 interface Props {
   id?: string;
@@ -30,7 +30,7 @@ const { id = "contact", title, lede, form = {} } = Astro.props;
       <slot />
       {import.meta.env.WHATSAPP_NUMBER && (
         <p class="rv" style="margin-top:28px">
-          <a class="tlink" href={site.whatsapp} target="_blank" rel="noopener nofollow">Prefer WhatsApp? Message me →</a>
+          <WhatsAppLink class="tlink">Prefer WhatsApp? Message me →</WhatsAppLink>
         </p>
       )}
     </div>

@@ -358,7 +358,6 @@ document.addEventListener("click", (e) => {
   const href = a.getAttribute("href") ?? "";
   const text = ((a.querySelector(".lbl, h3") ?? a).textContent ?? "").replace(/[→↓↗]/g, "").replace(/\s+/g, " ").trim().slice(0, 80);
   if (href.includes("tidycal.com")) trackEvent("book_call_click", { link_text: text, link_url: href });
-  else if (href === site.whatsapp) trackEvent("whatsapp_click", { link_text: text });
   else if (href.startsWith("mailto:")) trackEvent("email_click", { link_text: text });
   else if (a.matches(".btn, .hdr-cta, .tlink, .xcard, .wend")) trackEvent("cta_click", { link_text: text, link_url: href });
 });
@@ -426,6 +425,9 @@ if (tsBoxes.length) {
 async function turnstileToken(form: HTMLFormElement): Promise<Record<string, string>> {
   const el = $<HTMLElement>("[data-turnstile]", form);
   if (!el) return {};
+  return waitForToken(el);
+}
+async function waitForToken(el: HTMLElement): Promise<Record<string, string>> {
   const id = await drawTurnstile(el);
   const ts = (window as any).turnstile as TS | undefined;
   let token = "";
@@ -436,6 +438,41 @@ async function turnstileToken(form: HTMLFormElement): Promise<Record<string, str
   }
   return { "cf-turnstile-response": token };
 }
+// WhatsApp: the link points at /contact/ for bots and no-JS visitors. A real
+// click asks the function for the WhatsApp address (passing a Turnstile check
+// first when that's on) and only then opens it.
+let waBox: HTMLElement | null = null;
+$$<HTMLAnchorElement>("a[data-whatsapp]").forEach((a) =>
+  a.addEventListener("click", async (e) => {
+    e.preventDefault();
+    trackEvent("whatsapp_click", { link_text: (a.textContent ?? "").replace(/[→↗]/g, "").trim() });
+    const win = window.open("about:blank", "_blank"); // opened now, so pop-up blockers allow it
+    let token: Record<string, string> = {};
+    if (a.dataset.sitekey) {
+      if (!waBox) {
+        waBox = document.createElement("div");
+        waBox.className = "ts ts--float";
+        waBox.dataset.sitekey = a.dataset.sitekey;
+        waBox.dataset.action = "whatsapp";
+        document.body.append(waBox);
+      }
+      token = await waitForToken(waBox);
+    }
+    try {
+      const { url } = await post(site.whatsappEndpoint, token);
+      if (win) win.location.href = url;
+      else location.href = url;
+    } catch {
+      win?.close();
+      location.href = "/contact/";
+    }
+    if (waBox) {
+      const id = await tsIds.get(waBox);
+      if (id) (window as any).turnstile?.reset(id);
+    }
+  }),
+);
+
 // Tokens are single-use, so every attempt needs a fresh one.
 const resetTurnstile = async (form: HTMLFormElement) => {
   const el = $<HTMLElement>("[data-turnstile]", form);

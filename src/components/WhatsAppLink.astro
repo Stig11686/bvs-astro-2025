@@ -1,0 +1,14 @@
+---
+// WhatsApp link. Shown only once WHATSAPP_NUMBER is set in Netlify.
+// It points at /contact/: a real click runs src/scripts/site.ts, which asks
+// netlify/functions/whatsapp.js for the WhatsApp address (after a Turnstile
+// check, when that's switched on). Bots following the link get the contact page.
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+const enabled = Boolean(import.meta.env.WHATSAPP_NUMBER);
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+---
+
+{enabled && <a href="/contact/" class={className} data-whatsapp data-sitekey={siteKey || undefined} rel="nofollow"><slot /></a>}
