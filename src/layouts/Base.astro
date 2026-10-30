@@ -10,7 +10,7 @@ import { getImage as optimise } from "astro:assets";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import CookieBanner from "@/components/CookieBanner.astro";
-import { site } from "@/site.config";
+import { site, person, personSchema } from "@/site.config";
 import { getImage } from "@/lib/images";
 
 interface Props {
@@ -19,7 +19,7 @@ interface Props {
   image?: string; // "/images/..." path, used for social sharing
   noindex?: boolean;
   schema?: Record<string, unknown> | Record<string, unknown>[];
-  article?: { published: Date; author?: string };
+  article?: { published: Date; author?: string; type?: "BlogPosting" | "Article" };
   bodyClass?: string;
 }
 
@@ -34,15 +34,20 @@ if (image) {
   ogImage = new URL(og.src, site.url).href;
 }
 
+// Author photo for structured data (only needed on articles)
+const authorImage = article
+  ? new URL((await optimise({ src: getImage(person.image), width: 400, format: "jpg" })).src, site.url).href
+  : undefined;
+
 const pageSchema = {
   "@context": "https://schema.org",
-  "@type": article ? "BlogPosting" : "WebPage",
+  "@type": article ? (article.type ?? "BlogPosting") : "WebPage",
   ...(article
     ? {
         headline: title,
         datePublished: article.published.toISOString(),
         dateModified: article.published.toISOString(),
-        author: { "@type": "Person", name: article.author ?? site.author },
+        author: (article.author ?? person.name) === person.name ? personSchema(authorImage) : { "@type": "Person", name: article.author },
       }
     : { name: title }),
   description,

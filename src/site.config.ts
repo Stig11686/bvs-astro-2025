@@ -68,3 +68,33 @@ export const blogCategories = [
 
 export const slugify = (s: string) =>
   s.toLowerCase().replace(/['’]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+// The author: used for bylines, the author box on posts and case studies,
+// the About page, and the structured data that tells Google who wrote what.
+export const person = {
+  name: "Steve Marks",
+  jobTitle: "Web designer",
+  profilePath: "/about/",
+  image: "/images/steve/headshot.webp",
+  // Your personal LinkedIn profile, e.g. "https://www.linkedin.com/in/your-name/".
+  // Leave empty to hide the LinkedIn links.
+  linkedin: "https://www.linkedin.com/in/steven-marks-bvswebdesign/",
+  bio: "I design, build and look after WordPress websites for small businesses across Yorkshire, from Skipton. You'll always deal with me, start to finish, and I write everything on this site myself.",
+  knowsAbout: ["Web design", "WordPress", "Website maintenance", "Website rescue", "Local SEO", "Website accessibility"],
+};
+
+// Structured data for the author. Every post and case study points at the same
+// @id, so Google connects them all to one person and their profile page.
+export const personId = `${site.url}${person.profilePath}#steve`;
+export const personSchema = (imageUrl?: string) => ({
+  "@type": "Person",
+  "@id": personId,
+  name: person.name,
+  jobTitle: person.jobTitle,
+  url: `${site.url}${person.profilePath}`,
+  ...(imageUrl ? { image: imageUrl } : {}),
+  ...(person.linkedin ? { sameAs: [person.linkedin] } : {}),
+  worksFor: { "@type": "Organization", name: site.name, url: site.url },
+  knowsAbout: person.knowsAbout,
+  address: { "@type": "PostalAddress", addressLocality: "Skipton", addressRegion: "North Yorkshire", addressCountry: "GB" },
+});

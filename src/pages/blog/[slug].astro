@@ -6,10 +6,11 @@ import Img from "@/components/Img.astro";
 import Button from "@/components/Button.astro";
 import BlogCard from "@/components/BlogCard.astro";
 import CtaSlab from "@/components/CtaSlab.astro";
+import AuthorBox from "@/components/AuthorBox.astro";
 import { mdxComponents } from "@/components/mdx";
 import { getPosts, summary, type Post } from "@/lib/content";
 import { formatDate, readingTime } from "@/lib/text";
-import { site, slugify } from "@/site.config";
+import { site, slugify, person } from "@/site.config";
 import { sectorFor } from "@/lib/sectors";
 
 export async function getStaticPaths() {
@@ -60,8 +61,8 @@ const cta = sector ? { ...ctas["Case Studies"], link: sector.href, linkText: `${
     <div class="bmeta" slot="above"><span class="c">{d.category}</span></div>
     <div class="post-meta">
       <div class="author">
-        <Img src="/images/steve/headshot.webp" alt="" sizes="48px" widths={[96]} />
-        <div><b>{d.author}</b>BVS Web Design, Skipton</div>
+        <Img src={person.image} alt="" sizes="48px" widths={[96]} />
+        <div><b>{d.author === person.name ? <a href={person.profilePath} rel="author">{d.author}</a> : d.author}</b>{person.jobTitle}, BVS Web Design, Skipton</div>
       </div>
       <span>{formatDate(d.date, "long")}</span>
       <span>{readingTime(post.body)}</span>
@@ -90,14 +91,7 @@ const cta = sector ? { ...ctas["Case Studies"], link: sector.href, linkText: `${
         <Button href={cta.href} kind="acc">{cta.label}</Button>
         <a class="tlink" href={cta.link}>{cta.linkText}</a>
       </div>
-      <div class="abox">
-        <Img src="/images/steve/headshot.webp" alt="Steve Marks" sizes="96px" widths={[192]} />
-        <div>
-          <b>Written by {d.author}</b>
-          <p>I design, build and look after WordPress websites for small businesses across Yorkshire, from Skipton. You'll always deal with me, start to finish.</p>
-          <a class="tlink" href="/contact/">Get in touch →</a>
-        </div>
-      </div>
+      <AuthorBox />
     </article>
   </div>
 

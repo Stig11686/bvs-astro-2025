@@ -6,7 +6,12 @@ import Img from "@/components/Img.astro";
 import NumberedRows from "@/components/NumberedRows.astro";
 import Reviews from "@/components/Reviews.astro";
 import CtaSlab from "@/components/CtaSlab.astro";
-import { site } from "@/site.config";
+import { getImage as optimise } from "astro:assets";
+import { site, person, personSchema } from "@/site.config";
+import { getImage } from "@/lib/images";
+
+// This page is the author profile Google connects every post and case study to
+const photo = new URL((await optimise({ src: getImage(person.image), width: 400, format: "jpg" })).src, site.url).href;
 
 const how = [
   { title: "I talk about your business, not just your website.", text: "Before I touch any design, I want to understand who your customers are, what they need to see before they trust you, and what's currently getting in the way of them getting in touch." },
@@ -20,11 +25,9 @@ const how = [
   description="I'm Steve Marks, a freelance web designer based in Skipton, North Yorkshire. I build WordPress websites that generate enquiries for local service businesses."
   schema={{
     "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Steve Marks",
-    jobTitle: "Web Designer",
-    worksFor: { "@type": "Organization", name: site.name, url: site.url },
-    address: { "@type": "PostalAddress", addressLocality: "Skipton", addressRegion: "North Yorkshire", addressCountry: "GB" },
+    "@type": "ProfilePage",
+    url: `${site.url}${person.profilePath}`,
+    mainEntity: personSchema(photo),
   }}
 >
   <PageHero
@@ -35,6 +38,7 @@ const how = [
     <Fragment slot="cta">
       <Button href="/services/website-audit/" kind="acc">Book a Free Website Review</Button>
       <a class="tlink" href="/portfolio/">See My Work →</a>
+      {person.linkedin && <a class="tlink" href={person.linkedin} target="_blank" rel="noopener me">Find me on LinkedIn ↗</a>}
     </Fragment>
     <div class="about-photo" slot="aside">
       <Img src="/images/steve/office.webp" alt="Steve Marks, web designer in Skipton" sizes="(min-width: 1000px) 440px, 90vw" widths={[440, 880]} loading="eager" />
@@ -83,6 +87,7 @@ const how = [
         <p>I've been designing and building websites for years, and I'm based in Skipton in the Yorkshire Dales. I work with service businesses across Yorkshire, from Ilkley and Keighley to York and beyond.</p>
         <p class="ink">I work as a freelancer, which means you deal directly with me from the first conversation to launch day and beyond. <em>No account managers, no handoffs, no surprises.</em></p>
         <p>When a project calls for specialist skills like copywriting, photography or SEO, I bring in trusted collaborators from my network. But I'm always your main point of contact and always responsible for the outcome.</p>
+        <p>Every article and case study on this site is written by me, from my own projects.{person.linkedin && <> You can also <a href={person.linkedin} target="_blank" rel="noopener me">find me on LinkedIn</a>.</>}</p>
       </div>
     </div>
   </section>

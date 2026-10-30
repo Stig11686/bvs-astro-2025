@@ -5,6 +5,7 @@ import PageHero from "@/components/PageHero.astro";
 import Img from "@/components/Img.astro";
 import WorkCard from "@/components/WorkCard.astro";
 import CtaSlab from "@/components/CtaSlab.astro";
+import AuthorBox from "@/components/AuthorBox.astro";
 import { mdxComponents } from "@/components/mdx";
 import { getWork, info, type Work } from "@/lib/content";
 import XSell from "@/components/XSell.astro";
@@ -23,7 +24,7 @@ const words = d.title.split(" ");
 const headline = words.length > 1 ? `${words.slice(0, -1).join(" ")} *${words.at(-1)}*` : d.title;
 ---
 
-<Base title={d.metaTitle ?? `${d.title} | Case Study | BVS Web Design`} description={d.metaDescription ?? d.description} image={d.image}>
+<Base title={d.metaTitle ?? `${d.title} | Case Study | BVS Web Design`} description={d.metaDescription ?? d.description} image={d.image} article={{ published: d.date, type: "Article" }}>
   <PageHero title={headline} lede={d.description} crumbs={[{ label: "Projects", href: "/portfolio/" }, { label: d.title }]}>
     {
       d.information.length > 0 && (
@@ -39,7 +40,7 @@ const headline = words.length > 1 ? `${words.slice(0, -1).join(" ")} *${words.at
     }
   </PageHero>
   <div class="cs-img rv"><Img src={d.image} alt={`${d.title} website`} sizes="(min-width: 1280px) 1232px, 100vw" loading="eager" /></div>
-  <div class="page-body"><article class="art"><Content components={mdxComponents} /></article></div>
+  <div class="page-body"><article class="art"><Content components={mdxComponents} /><AuthorBox label="Project by" /></article></div>
   {
     sector && (
       <section class="sec" style="padding-top:0">
