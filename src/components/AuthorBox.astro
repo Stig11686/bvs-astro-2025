@@ -1,0 +1,19 @@
+---
+// "Written by" box for blog posts and case studies.
+import Img from "./Img.astro";
+import { person, site } from "@/site.config";
+const { label = "Written by" } = Astro.props as { label?: string };
+---
+
+<div class="abox">
+  <Img src={person.image} alt={person.name} sizes="96px" widths={[192]} />
+  <div>
+    <b>{label} <a href={person.profilePath} rel="author">{person.name}</a></b>
+    <p>{person.bio}</p>
+    <div class="abox-links">
+      <a class="tlink" href={person.profilePath}>More about me →</a>
+      {person.linkedin && <a class="tlink" href={person.linkedin} target="_blank" rel="noopener me">LinkedIn ↗</a>}
+      <a class="tlink" href="/contact/">Get in touch →</a>
+    </div>
+  </div>
+</div>
