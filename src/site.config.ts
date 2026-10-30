@@ -78,7 +78,7 @@ export const person = {
   image: "/images/steve/headshot.webp",
   // Your personal LinkedIn profile, e.g. "https://www.linkedin.com/in/your-name/".
   // Leave empty to hide the LinkedIn links.
-  linkedin: "",
+  linkedin: "https://www.linkedin.com/in/steven-marks-bvswebdesign/",
   bio: "I design, build and look after WordPress websites for small businesses across Yorkshire, from Skipton. You'll always deal with me, start to finish, and I write everything on this site myself.",
   knowsAbout: ["Web design", "WordPress", "Website maintenance", "Website rescue", "Local SEO", "Website accessibility"],
 };
