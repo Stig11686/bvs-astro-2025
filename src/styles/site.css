@@ -708,6 +708,8 @@ picture{display:contents}
 .aform.done .aok{display:block}
 .aform input[name=website]{grid-column:1/-1}
 .hp{position:absolute;left:-9999px}
+.ts{grid-column:1/-1}
+.ts:empty{display:none}
 
 /* Blog pagination-free category header */
 .cat-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
@@ -799,3 +801,4 @@ picture{display:contents}
 .art .abox-links .tlink{font-size:17px}
 .author b a{color:inherit;text-decoration:none}
 .author b a:hover{color:var(--acc)}
+.ts--float{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:95}

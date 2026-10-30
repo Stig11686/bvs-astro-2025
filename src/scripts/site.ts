@@ -376,6 +376,110 @@ async function post(url: string, data: Record<string, string>) {
   return json;
 }
 
+// Cloudflare Turnstile. The script loads when a form first comes near the
+// screen, so pages nobody scrolls to a form on never fetch it. With
+// "interaction-only" most visitors never see it at all.
+type TS = {
+  render: (el: HTMLElement, o: Record<string, unknown>) => string;
+  getResponse: (id: string) => string | undefined;
+  reset: (id: string) => void;
+};
+const tsIds = new Map<HTMLElement, Promise<string>>();
+let tsReady: Promise<TS> | null = null;
+const loadTurnstile = () =>
+  (tsReady ??= new Promise<TS>((ok, fail) => {
+    (window as any).onTurnstileLoad = () => ok((window as any).turnstile);
+    const s = document.createElement("script");
+    s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onTurnstileLoad";
+    s.async = true;
+    s.onerror = fail;
+    document.head.append(s);
+  }));
+// Resolves to the widget id, or "" if the script could not load.
+const drawTurnstile = (el: HTMLElement) => {
+  let id = tsIds.get(el);
+  if (!id) {
+    id = loadTurnstile().then((ts) => ts.render(el, {
+      sitekey: el.dataset.sitekey,
+      action: el.dataset.action,
+      appearance: "interaction-only",
+      size: "flexible",
+      theme: "auto",
+    })).catch(() => "");
+    tsIds.set(el, id);
+  }
+  return id;
+};
+const tsBoxes = $$<HTMLElement>("[data-turnstile]");
+if (tsBoxes.length) {
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (e.isIntersecting) { io.unobserve(e.target); drawTurnstile(e.target as HTMLElement); }
+  }), { rootMargin: "600px 0px" });
+  tsBoxes.forEach((el) => {
+    io.observe(el);
+    el.closest("form")?.addEventListener("focusin", () => drawTurnstile(el), { once: true });
+  });
+}
+// The token can take a moment, so a quick submit waits for it rather than
+// being turned away. Empty when Turnstile is off or failed to load.
+async function turnstileToken(form: HTMLFormElement): Promise<Record<string, string>> {
+  const el = $<HTMLElement>("[data-turnstile]", form);
+  if (!el) return {};
+  return waitForToken(el);
+}
+async function waitForToken(el: HTMLElement): Promise<Record<string, string>> {
+  const id = await drawTurnstile(el);
+  const ts = (window as any).turnstile as TS | undefined;
+  let token = "";
+  for (let i = 0; i < 40 && ts && id; i++) {
+    token = ts.getResponse(id) ?? "";
+    if (token) break;
+    await new Promise((r) => setTimeout(r, 250));
+  }
+  return { "cf-turnstile-response": token };
+}
+// WhatsApp: the link points at /contact/ for bots and no-JS visitors. A real
+// click asks the function for the WhatsApp address (passing a Turnstile check
+// first when that's on) and only then opens it.
+let waBox: HTMLElement | null = null;
+$$<HTMLAnchorElement>("a[data-whatsapp]").forEach((a) =>
+  a.addEventListener("click", async (e) => {
+    e.preventDefault();
+    trackEvent("whatsapp_click", { link_text: (a.textContent ?? "").replace(/[→↗]/g, "").trim() });
+    const win = window.open("about:blank", "_blank"); // opened now, so pop-up blockers allow it
+    let token: Record<string, string> = {};
+    if (a.dataset.sitekey) {
+      if (!waBox) {
+        waBox = document.createElement("div");
+        waBox.className = "ts ts--float";
+        waBox.dataset.sitekey = a.dataset.sitekey;
+        waBox.dataset.action = "whatsapp";
+        document.body.append(waBox);
+      }
+      token = await waitForToken(waBox);
+    }
+    try {
+      const { url } = await post(site.whatsappEndpoint, token);
+      if (win) win.location.href = url;
+      else location.href = url;
+    } catch {
+      win?.close();
+      location.href = "/contact/";
+    }
+    if (waBox) {
+      const id = await tsIds.get(waBox);
+      if (id) (window as any).turnstile?.reset(id);
+    }
+  }),
+);
+
+// Tokens are single-use, so every attempt needs a fresh one.
+const resetTurnstile = async (form: HTMLFormElement) => {
+  const el = $<HTMLElement>("[data-turnstile]", form);
+  const id = el && (await tsIds.get(el));
+  if (id) (window as any).turnstile?.reset(id);
+};
+
 $$<HTMLFormElement>("form[data-enquiry]").forEach((form) =>
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -393,6 +497,7 @@ $$<HTMLFormElement>("form[data-enquiry]").forEach((form) =>
     if (btn) btn.disabled = true;
     try {
       await post(site.enquiryEndpoint, {
+        ...(await turnstileToken(form)),
         name: val(form, "name"),
         email: val(form, "email"),
         website: withScheme(val(form, "website")),
@@ -409,6 +514,7 @@ $$<HTMLFormElement>("form[data-enquiry]").forEach((form) =>
       form.classList.add("fail");
       if (btn) btn.disabled = false;
     }
+    resetTurnstile(form);
   }),
 );
 
@@ -421,6 +527,7 @@ $$<HTMLFormElement>("form[data-audit-request]").forEach((form) =>
     form.classList.remove("fail");
     if (btn) btn.disabled = true;
     const data = {
+      ...(await turnstileToken(form)),
       name: val(form, "name"),
       firm_name: val(form, "firm_name"),
       website_url: withScheme(val(form, "website_url")),
@@ -435,6 +542,7 @@ $$<HTMLFormElement>("form[data-audit-request]").forEach((form) =>
     } catch {
       form.classList.add("fail");
       if (btn) btn.disabled = false;
+      resetTurnstile(form);
     }
   }),
 );
@@ -447,7 +555,7 @@ $$<HTMLFormElement>("form[data-subscribe]").forEach((form) =>
     form.classList.remove("fail");
     if (btn) btn.disabled = true;
     try {
-      await post("/.netlify/functions/subscribe", { firstName: val(form, "firstName"), email: val(form, "email") });
+      await post("/.netlify/functions/subscribe", { ...(await turnstileToken(form)), firstName: val(form, "firstName"), email: val(form, "email") });
       form.classList.add("done");
       trackEvent("sign_up", { method: "newsletter" });
       setLabel(btn, "Subscribed ✓");
@@ -455,6 +563,7 @@ $$<HTMLFormElement>("form[data-subscribe]").forEach((form) =>
     } catch {
       form.classList.add("fail");
       if (btn) btn.disabled = false;
+      resetTurnstile(form);
     }
   }),
 );

@@ -1,5 +1,6 @@
 ---
 import Brand from "./Brand.astro";
+import WhatsAppLink from "./WhatsAppLink.astro";
 import { site, footerLinks, person } from "@/site.config";
 const year = new Date().getFullYear();
 ---
@@ -26,6 +27,7 @@ const year = new Date().getFullYear();
         <li><a href={site.introCall} target="_blank" rel="noopener">Book an intro call</a></li>
         <li><a href="/contact/">Contact form</a></li>
         <li><a href={`mailto:${site.email}`}>{site.email}</a></li>
+        {import.meta.env.WHATSAPP_NUMBER && <li><WhatsAppLink>WhatsApp</WhatsAppLink></li>}
         {person.linkedin && <li><a href={person.linkedin} target="_blank" rel="noopener me">Steve on LinkedIn</a></li>}
         {site.social.map((s) => <li><a href={s.url} target="_blank" rel="noopener">{s.label}</a></li>)}
       </ul>

@@ -3,6 +3,10 @@
 # Netlify processes top-to-bottom; first match wins.
 # -------------------------------------------------------
 
+# WhatsApp: the number is only in the function's environment, never the HTML
+/whatsapp/                              /.netlify/functions/whatsapp         200!
+/whatsapp                               /.netlify/functions/whatsapp         200!
+
 # Old service pages
 /services/websites-in-a-week/           /services/                           301!
 /services/hosting-and-email/            /services/website-support/           301!

@@ -63,6 +63,28 @@ In templates, use the `Img` component:
 
 Enquiry forms post JSON to the CRM (`site.enquiryEndpoint` in `src/site.config.ts`) with the fields `name`, `email`, `website`, `service_type`, `message` and `privacy_agreed`. The solicitor audit form posts to `site.auditEndpoint`. The handling code is at the bottom of `src/scripts/site.ts`.
 
+### Spam protection (Cloudflare Turnstile)
+
+Every form carries a Turnstile widget (`src/components/Turnstile.astro`) and sends its token as `cf-turnstile-response`. It is set up with two Netlify environment variables:
+
+- `PUBLIC_TURNSTILE_SITE_KEY`: the widget's site key. Without it no widget is drawn and the forms work as before.
+- `TURNSTILE_SECRET_KEY`: the secret key, used by `netlify/functions/subscribe.js` to check the newsletter sign-up. The CRM checks enquiries with the same secret, set as `TURNSTILE_SECRET_KEY` in its own `.env`.
+
+The script only loads when a form comes near the screen, and in "interaction-only" mode most visitors never see the widget.
+
+## WhatsApp
+
+Set `WHATSAPP_NUMBER` in Netlify (`07700 900123` or `+44 7700 900123` both work) and a WhatsApp link appears in the footer and beside every contact form. Until it's set, the links are hidden.
+
+The number is kept away from bots:
+
+- It's never in the HTML. Links (`src/components/WhatsAppLink.astro`) point at `/contact/`.
+- A real click runs `src/scripts/site.ts`, which POSTs to `netlify/functions/whatsapp.js` and opens the WhatsApp address it returns, with a greeting filled in.
+- When Turnstile is on, that POST needs a Turnstile token, so automated clicks get nothing.
+- A plain GET to `/whatsapp/` (a bot following a link) is redirected to `/contact/`, and robots.txt disallows it.
+
+Anyone who does message you will see the number; that's how WhatsApp works. Use the WhatsApp Business app with business hours and an away message so evening messages don't ring through.
+
 ## Analytics and cookies
 
 Google Analytics runs in Consent Mode. Nothing is stored until a visitor clicks "Accept analytics" in the cookie banner. They can change their mind from the "Cookies" link in the footer.
@@ -73,6 +95,7 @@ Events sent (see `trackEvent` in `src/scripts/site.ts`):
 | --- | --- | --- |
 | `generate_lead` | A form is sent successfully | `form_name` (contact_form, contact_form_home, care_plan_enquiry, audit_quick_form, solicitor_audit), `service_type` |
 | `book_call_click` | Any TidyCal booking link is clicked | `link_text`, `page_path` |
+| `whatsapp_click` | A WhatsApp link is clicked | `link_text`, `page_path` |
 | `cta_click` | A main button or text link is clicked | `link_text`, `link_url`, `page_path` |
 | `email_click` | The email address is clicked | `page_path` |
 | `sign_up` | Newsletter sign-up | `method` |

@@ -5,6 +5,37 @@
  * Posts subscriber data to MailerLite API with the configured group ID.
  */
 
+/**
+ * Cloudflare Turnstile check. Off until TURNSTILE_SECRET_KEY is set. Only a
+ * missing or rejected token fails; if Cloudflare is down or the secret is
+ * wrong the sign-up goes through, as the CRM does for enquiries.
+ */
+async function passesTurnstile(token) {
+  const secret = process.env.TURNSTILE_SECRET_KEY;
+  if (!secret) return true;
+  if (!token) return false;
+
+  try {
+    const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+      method: 'POST',
+      body: new URLSearchParams({ secret, response: token }),
+      signal: AbortSignal.timeout(5000),
+    });
+    if (!res.ok) return true;
+    const data = await res.json();
+    if (data.success) return true;
+    const codes = data['error-codes'] || [];
+    if (codes.some((c) => ['missing-input-secret', 'invalid-input-secret', 'internal-error'].includes(c))) {
+      console.error('Turnstile is misconfigured; sign-up let through:', codes);
+      return true;
+    }
+    return false;
+  } catch (error) {
+    console.error('Turnstile unreachable; sign-up let through:', error);
+    return true;
+  }
+}
+
 export async function handler(event) {
   // Only allow POST requests
   if (event.httpMethod !== 'POST') {
@@ -22,7 +53,15 @@ export async function handler(event) {
   };
 
   try {
-    const { email, firstName } = JSON.parse(event.body);
+    const { email, firstName, 'cf-turnstile-response': token } = JSON.parse(event.body);
+
+    if (!(await passesTurnstile(token))) {
+      return {
+        statusCode: 403,
+        headers,
+        body: JSON.stringify({ error: 'Spam check failed. Please refresh the page and try again.' }),
+      };
+    }
 
     // Validate required fields
     if (!email || !firstName) {
