@@ -1,0 +1,155 @@
+---
+// Agency-takeover landing page. Linked from cold outreach and the footer.
+// Aimed at solicitors, accountants and dental/clinics on agency retainers.
+import Base from "@/layouts/Base.astro";
+import PageHero from "@/components/PageHero.astro";
+import Button from "@/components/Button.astro";
+import Steps from "@/components/Steps.astro";
+import NumberedRows from "@/components/NumberedRows.astro";
+import QuoteBand from "@/components/QuoteBand.astro";
+import Faq from "@/components/Faq.astro";
+import ContactSection from "@/components/ContactSection.astro";
+import AsideList from "@/components/AsideList.astro";
+import { site } from "@/site.config";
+
+const proof = [
+  {
+    title: "A multi-office Yorkshire law firm.",
+    text: "Paying an agency £9,000 a year to look after two websites. I took both over for a fraction of that, and I'm now rebuilding them so they are quicker to keep up to date.",
+  },
+  {
+    title: "A business paying £750 a month for maintenance.",
+    text: "My audit found around 250 critical errors, including 90 pages that no longer existed. I moved the site off the agency in October. They now work with me as and when they need to, at a much lower cost.",
+  },
+  {
+    title: "Jaynes Bridalwear, Lincoln.",
+    text: 'Running on a specialist platform at around £18,000 a year. I moved them off it and cut most of that bill from day one. <a class="tlink" href="/portfolio/jaynes-bridalwear-lincoln/">Read the case study →</a>',
+  },
+  {
+    title: "Ilkley Dental Care.",
+    text: 'A website the practice had given up on now brings in 30+ enquiries a month. <a class="tlink" href="/portfolio/ilkley-dental-care/">Read the case study →</a>',
+  },
+];
+
+const steps = [
+  { title: "Free cost review", text: "Tell me what you pay and send me your site. Within 48 hours you get a written note: what the fee covers, what it should cost, and anything on the site that needs attention." },
+  { title: "A straight answer", text: "If staying where you are is the better deal, I'll say so. If it isn't, you get a fixed price for the move and the monthly plan before anything changes." },
+  { title: "The handover", text: "I deal with the technical side: files, database, domain, hosting and email. Your part is giving notice to your agency." },
+  { title: "Looked after", text: "The site goes onto a care plan. You email me a change, and it goes live, usually the same day." },
+];
+
+const faq = [
+  { question: "Am I tied into my agency contract?", answer: "Most retainers run on a notice period. Send me the contract or your last invoice and I'll point out the notice terms and what the fee includes. If anything looks contentious, take your own legal advice before acting on it." },
+  { question: "Who owns my website?", answer: "You should. Some agencies keep the domain in their own account, or build on a platform only they can edit. The review checks this. If anything sits in their name, I'll help you get it moved into yours." },
+  { question: "Will my site or email go down during the move?", answer: "The move is planned so they don't. I copy everything across and test it on the new hosting before the domain is switched. Email is moved and checked before the old account is closed." },
+  { question: "Do I have to rebuild the site?", answer: "No. Most sites move as they are. If yours is slow, out of date or hard to change, I'll tell you, and price a rebuild separately so you can decide." },
+  { question: "What does it cost once I've moved?", answer: 'Care plans are <a href="/services/website-support/">published on the site</a>. Most firms moving from an agency suit Active at £99 a month: two hours of edits, a monthly check of the whole site, and security monitoring. That is usually a fraction of the retainer it replaces.' },
+  { question: "What will my team need to do?", answer: "Very little. Whoever sends website changes now carries on doing that, only now they come to me. The review looks at the agency arrangement, not at anyone in your team." },
+  { question: "Do you only work with Yorkshire firms?", answer: "I'm based in Skipton and most of my clients are across Yorkshire. The work is done remotely, so location isn't a barrier." },
+];
+---
+
+<Base
+  title="Switch From Your Web Agency | BVS Web Design"
+  description="Paying an agency a monthly retainer for a website that barely changes? I take over websites for Yorkshire solicitors, accountants and clinics. Free cost review."
+  schema={{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Website maintenance",
+    name: "Agency website takeover",
+    url: `${site.url}/switch-web-agency/`,
+    areaServed: [{ "@type": "Place", name: "Yorkshire" }, { "@type": "Country", name: "United Kingdom" }],
+    provider: { "@type": "ProfessionalService", name: site.name, url: site.url },
+  }}
+>
+  <PageHero
+    title="Paying an agency | for a site that | *barely changes?*"
+    lede="I take over websites from agencies for solicitors, accountants and clinics across Yorkshire. You keep your site, pay less, and get changes made the same day."
+    crumbs={[{ label: "Services", href: "/services/" }, { label: "Switch From Your Agency" }]}
+  >
+    <Fragment slot="cta">
+      <Button href="#review" kind="acc">Get a Free Cost Review</Button>
+      <a class="tlink" href={site.introCall} target="_blank" rel="noopener">Or book a 30-minute call →</a>
+    </Fragment>
+    <div class="factcard" slot="aside">
+      <div class="big">£750</div>
+      <p><b>a month.</b> What two recent clients were paying their previous agencies before they moved to me.</p>
+    </div>
+  </PageHero>
+
+  <section class="sec">
+    <div class="wrap split">
+      <h2 class="dh sh rv">Nobody signs up <span class="it">to overpay.</span></h2>
+      <div class="prose-lg rv">
+        <p>The agency contract made sense when you signed it. They built the site, they knew how it worked, and a monthly fee meant someone was looking after it.</p>
+        <p>A few years on, the fee is still going out. The site looks much as it did at launch. Small changes go into a ticket queue, come back a week later, and sometimes arrive with an invoice of their own.</p>
+        <p>Nobody has done anything wrong. The arrangement has never been checked against what you get for it.</p>
+        <p class="ink">That check is where I start. <em>It's free, and you don't have to move anything to get it.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="split">
+        <h2 class="dh sh rv">What changes when <span class="it">you switch.</span></h2>
+        <p class="lede rv">The same website, or a better one. A different arrangement for looking after it.</p>
+      </div>
+      <div class="compare">
+        <div class="cmp bad rv"><h4>A typical agency retainer</h4><ul><li><span>✕</span>Changes go into a ticket queue</li><li><span>✕</span>Small jobs charged on top of the monthly fee</li><li><span>✕</span>The domain or platform sits in their account</li><li><span>✕</span>Prices rise each year with no review of what you use</li></ul></div>
+        <div class="cmp good rv"><h4>Looked after by me</h4><ul><li><span>✓</span>You email me, the change goes live, usually the same day</li><li><span>✓</span>Edits included every month, at a published price</li><li><span>✓</span>You own the domain and the site, and they leave with you if you ever go</li><li><span>✓</span>One person who knows your site, not whoever is on shift</li></ul></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <h2 class="dh sh rv">Businesses that have <span class="it">already moved.</span></h2>
+      <NumberedRows items={proof} />
+    </div>
+  </section>
+
+  <QuoteBand
+    quote="I have had poor experience in the past from other website designers: limited help, poor response times, and extortionate charging for small tasks. Steve is definitely the opposite of this."
+    author="Elizabeth Matfin"
+    business="Maidens & Ravens Bridal Boutique, York"
+    avatar="/images/testimonial/elizabeth.jpg"
+  />
+
+  <section class="sec">
+    <div class="wrap">
+      <h2 class="dh sh rv">How a switch <span class="it">works.</span></h2>
+      <Steps items={steps} />
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap split">
+      <h2 class="dh sh rv sticky-h">The things people <span class="it">ask first.</span></h2>
+      <div class="rv"><Faq items={faq} /></div>
+    </div>
+  </section>
+
+  <ContactSection
+    id="review"
+    title="Send me what you pay. *I'll tell you what it should cost.*"
+    lede="Your website, your current fee and who it's with. You'll get a written cost review within 48 hours. It's free, and there's no obligation to move."
+    form={{
+      fields: ["business", "website"],
+      selectLabel: "Who looks after your website now?",
+      selectPlaceholder: "Pick the closest",
+      options: [
+        { label: "An agency on a monthly retainer", value: "site_audit" },
+        { label: "A freelancer or the developer who built it", value: "site_audit" },
+        { label: "Someone in-house", value: "site_audit" },
+        { label: "Nobody at the moment", value: "support_care" },
+      ],
+      messageLabel: "What do you pay, and what's included?",
+      messagePlaceholder: "Roughly is fine. For example: £400 a month for hosting and updates, changes charged extra.",
+      success: "Thanks, that's with me. You'll have your cost review within 48 hours.",
+      button: "Get My Free Cost Review",
+    }}
+  >
+    <AsideList />
+  </ContactSection>
+</Base>

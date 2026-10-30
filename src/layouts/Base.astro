@@ -10,7 +10,7 @@ import { getImage as optimise } from "astro:assets";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import CookieBanner from "@/components/CookieBanner.astro";
-import { site } from "@/site.config";
+import { site, person, personSchema } from "@/site.config";
 import { getImage } from "@/lib/images";
 
 interface Props {
@@ -19,7 +19,7 @@ interface Props {
   image?: string; // "/images/..." path, used for social sharing
   noindex?: boolean;
   schema?: Record<string, unknown> | Record<string, unknown>[];
-  article?: { published: Date; author?: string };
+  article?: { published: Date; author?: string; type?: "BlogPosting" | "Article" };
   bodyClass?: string;
 }
 
@@ -34,15 +34,20 @@ if (image) {
   ogImage = new URL(og.src, site.url).href;
 }
 
+// Author photo for structured data (only needed on articles)
+const authorImage = article
+  ? new URL((await optimise({ src: getImage(person.image), width: 400, format: "jpg" })).src, site.url).href
+  : undefined;
+
 const pageSchema = {
   "@context": "https://schema.org",
-  "@type": article ? "BlogPosting" : "WebPage",
+  "@type": article ? (article.type ?? "BlogPosting") : "WebPage",
   ...(article
     ? {
         headline: title,
         datePublished: article.published.toISOString(),
         dateModified: article.published.toISOString(),
-        author: { "@type": "Person", name: article.author ?? site.author },
+        author: (article.author ?? person.name) === person.name ? personSchema(authorImage) : { "@type": "Person", name: article.author },
       }
     : { name: title }),
   description,
@@ -81,8 +86,14 @@ const schemas = [pageSchema, ...(schema ? (Array.isArray(schema) ? schema : [sch
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    {!image && <meta property="og:image:width" content="1200" />}
+    {!image && <meta property="og:image:height" content="630" />}
+    <meta property="og:image:alt" content={image ? title : "BVS Web Design homepage: websites designed to bring in more enquiries, and cared for like they were my own."} />
     <meta property="og:locale" content="en_GB" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
 
     <link rel="icon" href="/favicons/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicons/favicon-96x96.png" sizes="96x96" type="image/png" />
